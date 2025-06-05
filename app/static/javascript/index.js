@@ -19,7 +19,7 @@ search_btn.addEventListener('click', async function () {
             'filters': checked
         }
 
-        if (checked.length > 0 && valueInput.value.length > 0) {
+        if (checked.length > 0 && valueInput) {
             const response = await fetch("/search", {
                 method: "POST",
                 headers: {
