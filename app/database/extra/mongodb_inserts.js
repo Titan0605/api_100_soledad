@@ -144,6 +144,54 @@ db.eventos.insertMany([
     texto_completo:
       "La decisión de José Arcadio Segundo de trabajar para la compañía marca su primera transformación importante. Inicialmente atraído por las oportunidades económicas, gradualmente desarrolla una conciencia social que lo llevará a liderar la resistencia obrera.",
   },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcde13"),
+    nombre: "Construcción del ferrocarril",
+    descripcion:
+      "La compañía bananera construye la línea férrea que conecta Macondo con el mundo exterior, estableciendo la estación del tren como nuevo centro de actividad económica y social del pueblo.",
+    capitulo: 13,
+    importancia: 8,
+    tipo: "historico",
+    fecha_narrativa: "1915-1920",
+    personajes_involucrados: [
+      ObjectId("64a1b2c3d4e5f6789abcde62"), // La Compañía Bananera
+      ObjectId("64a1b2c3d4e5f6789abcde51"), // José Arcadio Segundo
+    ],
+    localizaciones: [
+      ObjectId("64a1b2c3d4e5f6789abcd101"), // Estación del tren
+      ObjectId("64a1b2c3d4e5f6789abcd102"), // Macondo
+    ],
+    objetos_relacionados: [
+      ObjectId("64a1b2c3d4e5f6789abcd201"), // El tren
+    ],
+    simbolismo: ["conexión forzada con el exterior", "fin del aislamiento mítico", "progreso tecnológico"],
+    consecuencias: ["transformación de la geografía urbana", "nuevo centro económico", "llegada masiva de extranjeros"],
+    palabras_clave: ["ferrocarril", "construcción", "estación", "tren", "conexión", "exterior", "progreso"],
+    texto_completo:
+      "La construcción del ferrocarril marca el fin definitivo del aislamiento de Macondo. Las vías férreas no solo transportan bananos, sino que traen consigo una nueva concepción del tiempo, del espacio y de las relaciones económicas que transformará para siempre la identidad del pueblo.",
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcde14"),
+    nombre: "Deterioro de la casa Buendía",
+    descripcion:
+      "La mansión familiar comienza a mostrar signos evidentes de abandono y decadencia. Los patios se llenan de maleza, las habitaciones se deterioran y la estructura misma de la casa refleja el declive de la familia.",
+    capitulo: 13,
+    importancia: 6,
+    tipo: "simbólico",
+    fecha_narrativa: "1915-1920",
+    personajes_involucrados: [
+      ObjectId("64a1b2c3d4e5f6789abcde53"), // Úrsula Iguarán
+      ObjectId("64a1b2c3d4e5f6789abcde54"), // Fernanda del Carpio
+    ],
+    localizaciones: [
+      ObjectId("64a1b2c3d4e5f6789abcd104"), // Casa de los Buendía
+    ],
+    simbolismo: ["decadencia familiar", "pérdida del esplendor pasado", "abandono de tradiciones"],
+    consecuencias: ["aislamiento progresivo de la familia", "pérdida del prestigio social"],
+    palabras_clave: ["deterioro", "casa", "buendía", "decadencia", "abandono", "maleza", "ruinas"],
+    texto_completo:
+      "El deterioro físico de la casa de los Buendía funciona como espejo de la decadencia espiritual y social de la familia. Cada grieta en las paredes, cada patio invadido por la maleza, representa la pérdida de la vitalidad que una vez caracterizó a la estirpe.",
+  },
 
   // EVENTOS DEL CAPÍTULO 14
   {
@@ -199,7 +247,7 @@ db.eventos.insertMany([
     fecha_narrativa: "post-1928",
     personajes_involucrados: [
       ObjectId("64a1b2c3d4e5f6789abcde51"), // José Arcadio Segundo
-      ObjectId("64a1b2c3d4e5f6789abcde57"), // El pueblo de Macondo
+      ObjectId("64a1b2c3d4e5f6789abcde61"), // El pueblo de Macondo
     ],
     localizaciones: [ObjectId("64a1b2c3d4e5f6789abcd102")], // Macondo
     simbolismo: ["manipulación de la verdad", "poder de la amnesia", "soledad del testigo"],
@@ -255,6 +303,28 @@ db.eventos.insertMany([
     texto_completo:
       "La muerte simultánea de los gemelos marca simbólicamente el fin de la generación más productiva y vital de los Buendía. Sus personalidades opuestas pero complementarias habían mantenido un equilibrio que, con su partida, se rompe definitivamente.",
   },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcde33"),
+    nombre: "Fin de la época dorada",
+    descripcion:
+      "Terminan definitivamente los excesos y la abundancia que caracterizaron a Macondo durante la presencia de la compañía bananera. La época de prosperidad, fiestas y derroches llega a su fin con el diluvio y la muerte de los gemelos.",
+    capitulo: 15,
+    importancia: 7,
+    tipo: "social",
+    fecha_narrativa: "durante el diluvio",
+    personajes_involucrados: [
+      ObjectId("64a1b2c3d4e5f6789abcde52"), // Aureliano Segundo
+      ObjectId("64a1b2c3d4e5f6789abcde61"), // El pueblo de Macondo
+    ],
+    localizaciones: [
+      ObjectId("64a1b2c3d4e5f6789abcd102"), // Macondo
+    ],
+    simbolismo: ["fin de la abundancia", "regreso a la pobreza ancestral", "ciclo económico cerrado"],
+    consecuencias: ["empobrecimiento general", "nostalgia por tiempos mejores", "preparación para el declive final"],
+    palabras_clave: ["fin", "época dorada", "abundancia", "excesos", "pobreza", "declive", "nostalgia"],
+    texto_completo:
+      "El fin de la época dorada marca el retorno de Macondo a su pobreza ancestral, pero ahora cargada de nostalgia por la abundancia perdida. Lo que una vez fue progreso y modernidad se revela como un espejismo que, al desvanecerse, deja al pueblo más empobrecido que antes.",
+  },
 
   // EVENTOS DEL CAPÍTULO 16
   {
@@ -309,7 +379,10 @@ db.eventos.insertMany([
     fecha_narrativa: "después del diluvio, aproximadamente 1920-1925", // Fecha dentro de la narrativa
     personajes_involucrados: [ObjectId("64a1b2c3d4e5f6789abcde54")], // Fernanda del Carpio
     localizaciones: [ObjectId("64a1b2c3d4e5f6789abcd104")],
-    objetos_relacionados: [ObjectId("64a1b2c3d4e5f6789abcd205"), ObjectId("espejos_empañados")],
+    objetos_relacionados: [
+      ObjectId("64a1b2c3d4e5f6789abcd205"),
+      ObjectId("64a1b2c3d4e5f6789abcd213")
+    ],
     simbolismo: ["fin de una era", "orgullo aristocrático", "soledad extrema", "muerte del pasado"],
     consecuencias: ["liberación de la casa de la rigidez aristocrática", "preparación para el regreso de Amaranta Úrsula", "eliminación del último obstáculo para la renovación"],
     contexto_previo: "Después del diluvio de cuatro años que purificó Macondo",
@@ -317,7 +390,79 @@ db.eventos.insertMany([
     palabras_clave: ["fernanda", "del carpio", "muerte", "soledad", "amargura", "orgullo", "aristocracia", "fin de era", "aislamiento"],
     texto_completo:
       "La muerte de Fernanda del Carpio representa el fin definitivo de las pretensiones aristocráticas en la casa de los Buendía. Muere sola y amargada, habiendo mantenido hasta el último momento su rigidez social y su desdén por las costumbres locales. Su fallecimiento, que ocurre después del gran diluvio purificador, simboliza la eliminación de los últimos vestigios del pasado que impedían la renovación de la familia. Fernanda, quien siempre se sintió superior a Macondo y a los Buendía, termina sus días en la misma soledad que caracteriza a todos los miembros de la familia, pero con la particularidad de que su soledad era autoimpuesta por su orgullo y prejuicios de clase.",
-  }
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcde44"),
+    nombre: "Llegada de Aureliano Babilonia",
+    descripcion:
+      "El último Aureliano llega a Macondo como el descendiente final de la estirpe. Es un joven estudioso, obsesionado con descifrar los pergaminos de Melquíades, quien representa la culminación intelectual de la familia.",
+    capitulo: 16,
+    importancia: 9,
+    tipo: "personal",
+    fecha_narrativa: "final de la saga",
+    personajes_involucrados: [
+      ObjectId("64a1b2c3d4e5f6789abcde59"), // Aureliano Babilonia
+    ],
+    localizaciones: [
+      ObjectId("64a1b2c3d4e5f6789abcd104"), // Casa de los Buendía
+      ObjectId("64a1b2c3d4e5f6789abcd105"), // Cuarto de Melquíades
+    ],
+    objetos_relacionados: [
+      ObjectId("64a1b2c3d4e5f6789abcd205"), // Pergaminos de Melquíades
+    ],
+    simbolismo: ["último heredero", "culminación intelectual", "destinado a descifrar el misterio"],
+    consecuencias: ["descifrado final de los pergaminos", "encuentro con Amaranta Úrsula"],
+    palabras_clave: ["aureliano babilonia", "último", "llegada", "pergaminos", "descendiente", "estudioso"],
+    texto_completo:
+      "La llegada de Aureliano Babilonia a Macondo representa la convergencia final de todos los hilos narrativos. Es el último Aureliano, el único capaz de descifrar los pergaminos, y su destino está inextricablemente ligado al cumplimiento de la profecía familiar.",
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcde45"),
+    nombre: "Fin del diluvio",
+    descripcion:
+      "Después de cuatro años, once meses y dos días, cesa finalmente la lluvia torrencial que había sumergido a Macondo. El pueblo emerge transformado, más deteriorado pero purificado por el agua.",
+    capitulo: 16,
+    importancia: 8,
+    tipo: "sobrenatural",
+    fecha_narrativa: "transición hacia el final",
+    personajes_involucrados: [
+      ObjectId("64a1b2c3d4e5f6789abcde61"), // El pueblo de Macondo
+    ],
+    localizaciones: [
+      ObjectId("64a1b2c3d4e5f6789abcd102"), // Macondo
+      ObjectId("64a1b2c3d4e5f6789abcd104"), // Casa de los Buendía
+    ],
+    simbolismo: ["fin de la purificación", "preparación para el acto final", "renovación aparente"],
+    consecuencias: ["regreso de Amaranta Úrsula", "último intento de renovación"],
+    palabras_clave: ["fin", "diluvio", "lluvia", "cesa", "purificación", "transformación"],
+    texto_completo:
+      "El fin del diluvio marca el inicio del acto final de la saga. Macondo emerge del agua como un pueblo fantasma, preparado para recibir a los últimos protagonistas de la historia de los Buendía. La purificación ha sido completada, pero a un costo terrible.",
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcde46"),
+    nombre: "Construcción del hangar de Gastón",
+    descripcion:
+      "Gastón, el esposo aviador de Amaranta Úrsula, construye un hangar para su avión, simbolizando el intento de conectar definitivamente Macondo con la modernidad mundial a través de la aviación.",
+    capitulo: 16,
+    importancia: 6,
+    tipo: "personal",
+    fecha_narrativa: "post-diluvio",
+    personajes_involucrados: [
+      ObjectId("64a1b2c3d4e5f6789abcde58"), // Gastón
+      ObjectId("64a1b2c3d4e5f6789abcde57"), // Amaranta Úrsula
+    ],
+    localizaciones: [
+      ObjectId("64a1b2c3d4e5f6789abcd106"), // El hangar (nueva localización)
+    ],
+    objetos_relacionados: [
+      ObjectId("64a1b2c3d4e5f6789abcd206"), // El avión de Gastón
+    ],
+    simbolismo: ["modernidad tecnológica", "conexión aérea con el mundo", "proyecto frustrado"],
+    consecuencias: ["alejamiento temporal de Gastón", "soledad de Amaranta Úrsula"],
+    palabras_clave: ["hangar", "gastón", "avión", "construcción", "modernidad", "aviación"],
+    texto_completo:
+      "La construcción del hangar representa el último intento de modernización tecnológica en Macondo. El proyecto de Gastón simboliza la posibilidad de conexión directa con el mundo moderno a través del aire, saltándose las limitaciones terrestres que siempre han aislado al pueblo.",
+  },
 ]);
 
 // ================================
@@ -342,12 +487,12 @@ db.personajes.insertMany([
     relaciones: [
       {
         tipo: "hermano_gemelo",
-        personaje: ObjectId("64a1b2c3d4e5f6789abcde52"),
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde52"), // Aureliano Segundo
         descripcion: "Hermano gemelo de Aureliano Segundo, personalidades completamente opuestas",
       },
       {
         tipo: "bisnieto",
-        personaje: ObjectId("64a1b2c3d4e5f6789abcde53"),
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde53"), // Úrsula
         descripcion: "Bisnieto de Úrsula Iguarán, quien le transmitió valores de memoria familiar",
       },
     ],
@@ -606,6 +751,307 @@ db.personajes.insertMany([
     simbolismo: ["feminidad natural", "abundancia", "amor libre", "vitalidad"],
     palabras_clave: ["petra cotes", "amante", "abundancia", "vitalidad", "generosidad", "sensualidad"],
   },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcde61"),
+    nombre: "El pueblo de Macondo",
+    apellido: null,
+    generacion: null,
+    descripcion_fisica: "Comunidad rural transformada por la modernización industrial",
+    personalidad: ["colectivo", "cambiante", "amnésico", "receptivo al cambio", "vulnerable a la manipulación"],
+    capitulos_aparicion: [13, 14, 15, 16],
+    eventos_principales: [
+      ObjectId("64a1b2c3d4e5f6789abcde11"), // Llegada de la compañia bananera
+      ObjectId("64a1b2c3d4e5f6789abcde22"), // La masacre de los tres mil
+      ObjectId("64a1b2c3d4e5f6789abcde23"), // El olvido colectivo
+      ObjectId("64a1b2c3d4e5f6789abcde31"), // El gran diluvio de cuatro años
+    ],
+    relaciones: [
+      {
+        tipo: "transformado_por",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde62"), // Compañia Bananera
+        descripcion: "Transformado radicalmente por la llegada de la compañía extranjera",
+      },
+    ],
+    transformacion: "De pueblo tradicional y aislado a centro industrial moderno, luego a comunidad amnésica que niega su propia historia",
+    muerte: null, // Como entidad colectiva, no muere pero se transforma
+    caracteristicas_especiales: {
+      amnesia_colectiva: {
+        capitulo: 14,
+        descripcion: "Desarrolla capacidad de olvidar eventos traumáticos",
+        simbolismo: "Negación histórica, manipulación de la memoria",
+      },
+      modernización: {
+        capitulo: 13,
+        elementos: ["ferrocarril", "calles pavimentadas", "hoteles", "extranjeros"],
+        simbolismo: "Pérdida de identidad tradicional",
+      },
+    },
+    simbolismo: ["identidad cultural en transformación", "memoria colectiva manipulada", "resistencia y adaptación", "microcosmos de América Latina"],
+    palabras_clave: ["macondo", "pueblo", "comunidad", "transformación", "modernización", "amnesia", "colectivo", "olvido", "memoria", "identidad"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcde62"),
+    nombre: "La Compañía Bananera",
+    apellido: null,
+    generacion: null, // Entidad externa
+    descripcion_fisica: "Corporación extranjera con infraestructura industrial masiva",
+    personalidad: ["dominante", "explotadora", "modernizadora", "capitalista", "manipuladora", "destructiva", "eficiente"],
+    capitulos_aparicion: [13, 14],
+    eventos_principales: [ObjectId("64a1b2c3d4e5f6789abcde11"), ObjectId("64a1b2c3d4e5f6789abcde21"), ObjectId("64a1b2c3d4e5f6789abcde22"), ObjectId("64a1b2c3d4e5f6789abcde23")],
+    relaciones: [
+      {
+        tipo: "empleador",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde51"),
+        descripcion: "José Arcadio Segundo trabaja como capataz",
+      },
+      {
+        tipo: "opresor",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde55"),
+        descripcion: "Explota a los trabajadores locales",
+      },
+      {
+        tipo: "transformador",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde61"),
+        descripcion: "Transforma radicalmente la estructura social y económica",
+      },
+    ],
+    transformacion: "De agente modernizador a instrumento de represión y manipulación histórica",
+    muerte: {
+      capitulo: 15, // Se retira implícitamente
+      circunstancias: "Abandona Macondo tras el diluvio y la crisis económica",
+      simbolismo: "Abandono típico del capital extranjero tras la explotación",
+    },
+    caracteristicas_especiales: {
+      infraestructura: {
+        elementos: ["ferrocarril", "estación", "plantaciones", "campamentos", "oficinas"],
+        simbolismo: "Poder industrial y tecnológico",
+      },
+      metodos_control: ["empleo masivo", "transformación urbana", "manipulación legal", "represión militar", "control de información"],
+      representacion_historica: {
+        inspiracion: "United Fruit Company",
+        contexto: "Imperialismo económico en América Latina",
+        simbolismo: "Neocolonialismo del siglo XX",
+      },
+    },
+    simbolismo: ["imperialismo económico", "explotación capitalista", "destrucción cultural", "poder corporativo", "colonialismo moderno"],
+    palabras_clave: ["compañía", "bananera", "corporación", "extranjera", "explotación", "capitalismo", "imperialismo", "represión", "modernización", "industrial"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcde63"),
+    nombre: "Los Extranjeros",
+    apellido: "Colectivo Internacional",
+    generacion: 4,
+    descripcion_fisica: "Hombres de diversas nacionalidades, principalmente estadounidenses y europeos. Visten trajes formales, tienen aspecto próspero y modales cosmopolitas.",
+    personalidad: ["cosmopolitas", "eficientes", "distantes", "modernos", "técnicos", "desarraigados"],
+    capitulos_aparicion: [13],
+    eventos_principales: [
+      ObjectId("64a1b2c3d4e5f6789abcde11"), // Llegada de la compañía bananera
+    ],
+    relaciones: [
+      {
+        tipo: "empleados",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde62"),
+        descripcion: "Ingenieros, administradores y técnicos de la compañía bananera",
+      },
+      {
+        tipo: "transformadores",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde61"),
+        descripcion: "Agentes de cambio cultural y tecnológico en Macondo",
+      },
+    ],
+    transformacion: "Llegan como portadores de modernidad y progreso, pero representan también la penetración cultural extranjera.",
+    simbolismo: ["penetración cultural", "modernización", "desarraigo", "cosmopolitismo", "tecnología"],
+    palabras_clave: ["extranjeros", "ingenieros", "administradores", "compañía", "modernización", "tecnología", "cosmopolitas"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcde64"),
+    nombre: "Los Abogados de la Compañía",
+    apellido: "Jurídico",
+    generacion: 4,
+    descripcion_fisica: "Hombres vestidos impecablemente con trajes oscuros, portafolios de cuero y expresiones serias y calculadoras.",
+    personalidad: ["manipuladores", "elocuentes", "cínicos", "eficientes", "despiadados", "legalistas"],
+    capitulos_aparicion: [14],
+    eventos_principales: [
+      ObjectId("64a1b2c3d4e5f6789abcde22"), // La masacre
+      ObjectId("64a1b2c3d4e5f6789abcde23"), // Manipulación de la verdad oficial
+    ],
+    relaciones: [
+      {
+        tipo: "defensores",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde62"),
+        descripcion: "Representantes legales de la compañía bananera",
+      },
+      {
+        tipo: "manipuladores",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde61"),
+        descripcion: "Arquitectos de la versión oficial que niega la masacre",
+      },
+    ],
+    transformacion: "Funcionan como instrumentos de manipulación legal y construcción de la verdad oficial que niega los hechos históricos.",
+    simbolismo: ["manipulación legal", "poder jurídico", "construcción de verdad oficial", "impunidad"],
+    palabras_clave: ["abogados", "compañía", "legal", "manipulación", "verdad", "oficial", "impunidad", "jurídico"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcde66"),
+    nombre: "Los Ingenieros",
+    apellido: "Técnicos",
+    generacion: 4,
+    descripcion_física: "Profesionales especializados, con equipos de medición y planos. Visten ropa práctica pero de calidad, representan el conocimiento técnico moderno.",
+    personalidad: ["técnicos", "eficientes", "prácticos", "modernos", "especializados", "impersonales"],
+    capitulos_aparicion: [13],
+    eventos_principales: [
+      ObjectId("64a1b2c3d4e5f6789abcde11"), // Modernización de Macondo
+    ],
+    relaciones: [
+      {
+        tipo: "empleados",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde62"),
+        descripcion: "Personal técnico especializado de la compañía bananera",
+      },
+    ],
+    transformacion: "Llegan como portadores del conocimiento técnico que transforma la infraestructura de Macondo.",
+    simbolismo: ["conocimiento técnico", "modernización", "racionalidad", "especialización"],
+    palabras_clave: ["ingenieros", "técnicos", "modernización", "infraestructura", "conocimiento", "especialización"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcde67"),
+    nombre: "Los Administradores",
+    apellido: "Gerenciales",
+    generacion: 4,
+    descripcion_fisica: "Hombres de mediana edad, con aspecto próspero y autoritario. Visten trajes formales y portan símbolos de autoridad empresarial.",
+    personalidad: ["autoritarios", "eficientes", "burocráticos", "jerárquicos", "organizados", "despersonalizados"],
+    capitulos_aparicion: [13],
+    eventos_principales: [
+      ObjectId("64a1b2c3d4e5f6789abcde11"), // Organización de la producción bananera
+    ],
+    relaciones: [
+      {
+        tipo: "directivos",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde62"),
+        descripcion: "Personal directivo de la compañía bananera",
+      },
+      {
+        tipo: "supervisores",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde55"),
+        descripcion: "Supervisan y organizan el trabajo de los obreros",
+      },
+    ],
+    transformacion: "Implementan la organización empresarial moderna que transforma las relaciones laborales tradicionales.",
+    simbolismo: ["burocracia moderna", "organización empresarial", "jerarquía", "eficiencia capitalista"],
+    palabras_clave: ["administradores", "gerencia", "organización", "burocracia", "eficiencia", "jerarquía"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcde68"),
+    nombre: "Los Jueces",
+    apellido: "Poder Judicial",
+    generacion: 4,
+    descripcion_fisica: "Hombres serios con togas o trajes formales, expresiones graves y gestos ceremoniosos que representan la autoridad legal.",
+    personalidad: ["formales", "ceremoniosos", "manipulables", "corruptos", "burocráticos", "serviles al poder"],
+    capitulos_aparicion: [14],
+    eventos_principales: [
+      ObjectId("64a1b2c3d4e5f6789abcde23"), // Negación legal de la masacre
+    ],
+    relaciones: [
+      {
+        tipo: "cómplices",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde64"),
+        descripcion: "Colaboran con los abogados de la compañía en la manipulación legal",
+      },
+      {
+        tipo: "autoridad_corrupta",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde61"),
+        descripcion: "Imponen la versión oficial que niega la masacre al pueblo",
+      },
+    ],
+    transformacion: "De representantes de la justicia se convierten en instrumentos de manipulación y encubrimiento.",
+    simbolismo: ["justicia corrupta", "poder judicial cómplice", "legalidad manipulada", "impunidad institucional"],
+    palabras_clave: ["jueces", "justicia", "corrupción", "legal", "manipulación", "impunidad", "institucional"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcde69"),
+    nombre: "Los Hoteleros y Comerciantes",
+    apellido: "Sector Servicios",
+    generacion: 4,
+    descripcion_fisica: "Empresarios locales que se adaptan rápidamente a los cambios, con aspecto próspero y modales comerciales.",
+    personalidad: ["oportunistas", "adaptables", "comerciales", "prósperos", "pragmáticos", "colaboracionistas"],
+    capitulos_aparicion: [13],
+    eventos_principales: [
+      ObjectId("64a1b2c3d4e5f6789abcde11"), // Crecimiento económico durante la época bananera
+    ],
+    relaciones: [
+      {
+        tipo: "beneficiarios",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde62"),
+        descripcion: "Se benefician económicamente de la llegada de la compañía",
+      },
+      {
+        tipo: "transformadores",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde61"),
+        descripcion: "Contribuyen a la modernización comercial de Macondo",
+      },
+    ],
+    transformacion: "Evolucionan de comerciantes tradicionales a empresarios modernos que se benefician del boom económico.",
+    simbolismo: ["oportunismo comercial", "adaptación económica", "burguesía emergente", "colaboración con el capital extranjero"],
+    palabras_clave: ["hoteleros", "comerciantes", "oportunistas", "prósperos", "adaptación", "burguesía", "servicios"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcde70"),
+    nombre: "Los Médicos y Funcionarios Oficiales",
+    apellido: "Burocracia Estatal",
+    generacion: 4,
+    descripcion_fisica: "Profesionales con títulos universitarios, vestimenta formal y actitud oficial. Representan la autoridad técnica del Estado.",
+    personalidad: ["oficiales", "técnicos", "burocráticos", "cómplices", "autoritarios", "despersonalizados"],
+    capitulos_aparicion: [14],
+    eventos_principales: [
+      ObjectId("64a1b2c3d4e5f6789abcde23"), // Certificación oficial de la no-existencia de víctimas
+    ],
+    relaciones: [
+      {
+        tipo: "validadores",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde64"),
+        descripcion: "Proporcionan validación técnica a la versión oficial",
+      },
+    ],
+    transformación: "Se convierten en instrumentos de la manipulación técnica y científica de la verdad.",
+    simbolismo: ["ciencia cómplice", "autoridad técnica corrupta", "burocracia estatal", "validación oficial falsa"],
+    palabras_clave: ["médicos", "funcionarios", "oficiales", "técnicos", "burocracia", "validación", "autoridad"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcde71"),
+    nombre: "Familia Buendía",
+    apellido: null,
+    generacion: null,
+    descripcion_fisica: "Durante esta etapa, los miembros de la familia presentan signos visibles de desgaste físico y emocional. Rasgos marcados por la soledad, la obsesión y la decadencia.",
+    personalidad: ["obsesivos", "fragmentados", "melancólicos", "desconectados", "testigos del fin"],
+    capitulos_aparicion: [13, 14, 15, 16],
+    eventos_principales: [
+      ObjectId("64a1b2c3d4e5f6789abcde21"), // Huelga bananera
+      ObjectId("64a1b2c3d4e5f6789abcde22"), // Masacre
+      ObjectId("64a1b2c3d4e5f6789abcde32"), // Muerte de José Arcadio Segundo
+      ObjectId("64a1b2c3d4e5f6789abcde33"), // Aislamiento progresivo de la familia
+    ],
+    relaciones: [
+      {
+        tipo: "miembro_destacado",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde51"), // José Arcadio Segundo
+        descripcion: "Representa el declive moral y el intento desesperado por preservar la memoria de la familia",
+      },
+      {
+        tipo: "miembro_destacado",
+        personaje: ObjectId("64a1b2c3d4e5f6789abcde52"), // Aureliano Segundo
+        descripcion: "Contraparte festiva y despreocupada, en contraste con el peso histórico que carga su hermano",
+      },
+    ],
+    transformacion:
+      "Durante estos capítulos, la familia Buendía entra en una fase de aislamiento, pérdida de cohesión y olvido progresivo. La narrativa muestra el inicio del cierre del ciclo familiar.",
+    muerte: {
+      capitulo: null,
+      circunstancias: "Aunque la estirpe aún no termina, en estos capítulos se marca un punto de inflexión irreversible hacia su extinción.",
+      simbolismo: "Preludio del fin: la familia como sombra de lo que fue, cada vez más encerrada en sí misma",
+    },
+    simbolismo: ["decadencia", "aislamiento", "memoria fragmentada", "desconexión generacional"],
+    palabras_clave: ["familia buendía", "capítulos 13-16", "memoria", "declive", "obsesión", "soledad"],
+  },
 ]);
 
 // ================================
@@ -775,6 +1221,33 @@ db.localizaciones.insertMany([
     ],
     palabras_clave: ["cuarto", "melquíades", "pergaminos", "refugio", "memoria", "conocimiento", "profecía"],
   },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcd106"),
+    nombre: "Taller de aeroplano",
+    tipo: "construcción",
+    descripcion: "Hangar construido por Gastón para su avión, representa la modernidad tecnológica que llega a Macondo",
+    capitulos_aparicion: [16],
+    eventos_importantes: [
+      ObjectId("64a1b2c3d4e5f6789abcde46"), // Construcción del hangar de Gastón
+      ObjectId("64a1b2c3d4e5f6789abcde41"), // Regreso de Amaranta Úrsula
+      ObjectId("64a1b2c3d4e5f6789abcde45"), // Fin del diluvio
+      ObjectId("64a1b2c3d4e5f6789abcde42"), // El amor prohibido final
+    ],
+    simbolismo: ["modernidad tecnológica", "conexión con el mundo exterior", "progreso técnico", "aviación como símbolo de libertad"],
+    transformaciones: [
+      {
+        capitulo: 16,
+        estado: "construcción nueva por Gastón para albergar su avión",
+      },
+    ],
+    personajes_asociados: [
+      ObjectId("64a1b2c3d4e5f6789abcde58"), // Gaston
+      ObjectId("64a1b2c3d4e5f6789abcde57"), // Amaranta Ursula
+    ],
+    relacion_con_casa_buendia: "Construcción anexa que simboliza la modernización intentada por Amaranta Úrsula",
+    importancia_narrativa: 6,
+    palabras_clave: ["hangar", "taller", "aeroplano", "avión", "gastón", "modernidad", "tecnología", "aviación"],
+  },
 ]);
 
 // ================================
@@ -789,7 +1262,7 @@ db.objetos.insertMany([
     descripcion:
       "Locomotora y vagones del ferrocarril que conecta Macondo con el mundo exterior. Símbolo ambivalente del progreso que trae modernización pero también explotación y tragedia. Transporta mercancías, personas y finalmente cadáveres.",
     capitulos_aparicion: [13, 14],
-    propietarios: [ObjectId("64a1b2c3d4e5f6789abcde011")], // Compañía bananera (a crear)
+    propietarios: [ObjectId("64a1b2c3d4e5f6789abcde62")], // Compañía bananera
     ubicacion_fisica: "Estación del tren y vías férreas",
     simbolismo: ["progreso", "conexión mundial", "modernización", "vehículo de la tragedia"],
     transformaciones: [
@@ -812,7 +1285,7 @@ db.objetos.insertMany([
     descripcion:
       "Fruta tropical que se convierte en el centro de la economía de Macondo. Representa la transformación de un recurso natural en mercancía de exportación y símbolo de la explotación económica internacional.",
     capitulos_aparicion: [13, 14],
-    propietarios: [ObjectId("64a1b2c3d4e5f6789abcde011")], // Compañía bananera
+    propietarios: [ObjectId("64a1b2c3d4e5f6789abcde62")], // Compañía bananera
     ubicacion_fisica: "Plantaciones y centros de procesamiento",
     simbolismo: ["explotación económica", "colonialismo", "monocultivo", "mercancía"],
     transformaciones: [
@@ -915,6 +1388,216 @@ db.objetos.insertMany([
     importancia_narrativa: 6,
     palabras_clave: ["avión", "gastón", "modernidad", "técnica", "progreso", "hangar", "aviación"],
   },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcd207"),
+    nombre: "Las Máquinas de la Compañía Bananera",
+    tipo: "maquinaria_industrial",
+    descripcion:
+      "Maquinaria pesada introducida para la producción industrial de bananos. Representan la modernización tecnológica y la industrialización que transforma irreversiblemente el paisaje rural de Macondo.",
+    capitulos_aparicion: [13],
+    propietarios: [ObjectId("64a1b2c3d4e5f6789abcde62")], // Compañía bananera
+    ubicacion_fisica: "Plantaciones bananeras y centros de procesamiento",
+    simbolismo: ["industrialización", "modernización", "transformación", "progreso tecnológico"],
+    transformaciones: [
+      {
+        capitulo: 13,
+        descripcion: "Introducción masiva para la producción industrial",
+      },
+    ],
+    importancia_narrativa: 7,
+    palabras_clave: ["máquinas", "industria", "bananos", "modernización", "tecnología", "producción"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcd208"),
+    nombre: "Los Billetes Extranjeros",
+    tipo: "moneda",
+    descripcion:
+      "Nueva moneda introducida por la compañía bananera que reemplaza el sistema de trueque tradicional. Simboliza la penetración del capitalismo internacional y la transformación de las relaciones económicas locales.",
+    capitulos_aparicion: [13],
+    propietarios: [ObjectId("64a1b2c3d4e5f6789abcde62")], // Compañía bananera
+    ubicacion_fisica: "Circulación en todo Macondo",
+    simbolismo: ["capitalismo", "economía monetaria", "penetración extranjera", "transformación económica"],
+    transformaciones: [
+      {
+        capitulo: 13,
+        descripcion: "Reemplazo del trueque por economía monetaria",
+      },
+    ],
+    importancia_narrativa: 6,
+    palabras_clave: ["billetes", "moneda", "extranjeros", "capitalismo", "economía", "trueque"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcd209"),
+    nombre: "Los Telegramas",
+    tipo: "comunicación",
+    descripcion:
+      "Sistema de comunicación telegráfica que conecta Macondo con el mundo exterior de manera instantánea. Representa la revolución en las comunicaciones y la aceleración del tiempo histórico.",
+    capitulos_aparicion: [13],
+    propietarios: [], // Sistema público
+    ubicacion_fisica: "Oficina de telégrafos en Macondo",
+    simbolismo: ["comunicación instantánea", "conexión mundial", "modernidad", "aceleración temporal"],
+    transformaciones: [
+      {
+        capitulo: 13,
+        descripcion: "Establecimiento del sistema telegráfico moderno",
+      },
+    ],
+    importancia_narrativa: 5,
+    palabras_clave: ["telegramas", "comunicación", "telégrafo", "instantáneo", "conexión", "modernidad"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcd210"),
+    nombre: "Los Tres Mil Muertos",
+    tipo: "número_simbólico",
+    descripcion:
+      "Cifra exacta de los trabajadores masacrados en la estación del tren. Número bíblico y simbólico que representa la magnitud del genocidio y la precisión de la memoria histórica frente al olvido oficial.",
+    capitulos_aparicion: [14],
+    propietarios: [], // Pertenece a la memoria colectiva
+    ubicacion_fisica: "Memoria histórica y cuarto de Melquíades",
+    simbolismo: ["genocidio", "memoria histórica", "número bíblico", "verdad vs olvido"],
+    transformaciones: [
+      {
+        capitulo: 14,
+        descripcion: "De realidad histórica a cifra negada oficialmente",
+      },
+    ],
+    importancia_narrativa: 10,
+    palabras_clave: ["tres mil", "muertos", "masacre", "genocidio", "memoria", "olvido", "oficial"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcd211"),
+    nombre: "Las Actas Oficiales",
+    tipo: "documento_legal",
+    descripcion:
+      "Documentos gubernamentales que niegan oficialmente la existencia de la masacre de trabajadores. Representan la manipulación institucional de la verdad y la construcción de la historia oficial.",
+    capitulos_aparicion: [14],
+    propietarios: [ObjectId("64a1b2c3d4e5f6789abcde56")], // El Estado/gobierno
+    ubicacion_fisica: "Archivos oficiales y juzgados",
+    simbolismo: ["negación oficial", "manipulación de la verdad", "historia oficial", "poder institucional"],
+    transformaciones: [
+      {
+        capitulo: 14,
+        descripcion: "Creación de versión oficial que niega la masacre",
+      },
+    ],
+    importancia_narrativa: 8,
+    palabras_clave: ["actas", "oficiales", "negación", "masacre", "gobierno", "verdad", "manipulación"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcd212"),
+    nombre: "La Lluvia del Diluvio",
+    tipo: "fenómeno_meteorológico",
+    descripcion: "Lluvia torrencial que dura cuatro años, once meses y dos días. Símbolo bíblico de purificación, castigo divino y renovación cósmica que marca el fin de una era en Macondo.",
+    capitulos_aparicion: [15],
+    propietarios: [], // Fenómeno natural
+    ubicacion_fisica: "Todo Macondo",
+    simbolismo: ["purificación", "castigo divino", "diluvio bíblico", "renovación", "fin de era"],
+    transformaciones: [
+      {
+        capitulo: 15,
+        descripcion: "Transformación gradual del paisaje y la sociedad",
+      },
+    ],
+    importancia_narrativa: 9,
+    palabras_clave: ["lluvia", "diluvio", "cuatro años", "purificación", "bíblico", "renovación"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcd213"),
+    nombre: "Los Espejos Empañados",
+    tipo: "objeto_doméstico",
+    descripcion:
+      "Espejos de la casa Buendía empañados por la humedad del diluvio. Simbolizan la pérdida de claridad, la identidad difusa y la imposibilidad de reconocimiento en tiempos de decadencia.",
+    capitulos_aparicion: [15],
+    propietarios: [ObjectId("64a1b2c3d4e5f6789abcde71")], // Familia Buendía
+    ubicacion_fisica: "Casa de los Buendía",
+    simbolismo: ["identidad difusa", "pérdida de claridad", "reflexión imposible", "decadencia"],
+    transformaciones: [
+      {
+        capitulo: 15,
+        descripcion: "Empañamiento gradual por la humedad del diluvio",
+      },
+    ],
+    importancia_narrativa: 6,
+    palabras_clave: ["espejos", "empañados", "humedad", "identidad", "reflexión", "claridad"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcd214"),
+    nombre: "Las Flores Acuáticas",
+    tipo: "elemento_natural",
+    descripcion:
+      "Flores y plantas acuáticas que crecen en los patios inundados durante el diluvio. Representan la belleza que emerge de la destrucción y la capacidad de la naturaleza para crear vida en medio de la devastación.",
+    capitulos_aparicion: [15],
+    propietarios: [], // Pertenecen a la naturaleza
+    ubicacion_fisica: "Patios y jardines inundados de la casa Buendía",
+    simbolismo: ["belleza en destrucción", "vida en devastación", "naturaleza resiliente", "renovación"],
+    transformaciones: [
+      {
+        capitulo: 15,
+        descripcion: "Florecimiento espontáneo en medio de la inundación",
+      },
+    ],
+    importancia_narrativa: 5,
+    palabras_clave: ["flores", "acuáticas", "diluvio", "belleza", "destrucción", "vida", "naturaleza"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcd215"),
+    nombre: "Las Plantas Europeas",
+    tipo: "elemento_botánico",
+    descripcion: "Plantas y flores traídas de Europa por Amaranta Úrsula para renovar los jardines familiares. Simbolizan el intento de injerto cultural y la tensión entre lo autóctono y lo foráneo.",
+    capitulos_aparicion: [16],
+    propietarios: [ObjectId("64a1b2c3d4e5f6789abcde57")], // Amaranta Úrsula
+    ubicacion_fisica: "Jardines renovados de la casa Buendía",
+    simbolismo: ["injerto cultural", "modernización", "tensión autóctono-foráneo", "renovación"],
+    transformaciones: [
+      {
+        capitulo: 16,
+        descripcion: "Plantación en suelo americano como símbolo de renovación",
+      },
+    ],
+    importancia_narrativa: 6,
+    palabras_clave: ["plantas", "europeas", "amaranta úrsula", "jardines", "injerto", "cultural", "renovación"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcd216"),
+    nombre: "Las Cartas de Amor",
+    tipo: "correspondencia",
+    descripcion:
+      "Intercambio epistolar entre Amaranta Úrsula y Gastón durante su separación. Representan el amor burgués moderno, la comunicación a distancia y los vínculos que se mantienen a pesar de la separación física.",
+    capitulos_aparicion: [16],
+    propietarios: [
+      ObjectId("64a1b2c3d4e5f6789abcde57"), // Amaranta Úrsula
+      ObjectId("64a1b2c3d4e5f6789abcde58"), // Gastón
+    ],
+    ubicacion_fisica: "Casa de los Buendía y Europa",
+    simbolismo: ["amor moderno", "comunicación epistolar", "vínculos a distancia", "burguesía"],
+    transformaciones: [
+      {
+        capitulo: 16,
+        descripcion: "Mantenimiento del vínculo amoroso a través de la distancia",
+      },
+    ],
+    importancia_narrativa: 5,
+    palabras_clave: ["cartas", "amor", "amaranta úrsula", "gastón", "correspondencia", "distancia"],
+  },
+  {
+    _id: ObjectId("64a1b2c3d4e5f6789abcd217"),
+    nombre: "Los Libros Antiguos",
+    tipo: "biblioteca",
+    descripcion:
+      "Colección de libros acumulados en la biblioteca familiar de los Buendía. Representa la sabiduría ancestral, el conocimiento preservado y la cultura letrada que contrasta con la oralidad popular.",
+    capitulos_aparicion: [16],
+    propietarios: [ObjectId("64a1b2c3d4e5f6789abcde71")], // Familia Buendía
+    ubicacion_fisica: "Biblioteca de la casa Buendía",
+    simbolismo: ["sabiduría ancestral", "conocimiento preservado", "cultura letrada", "memoria familiar"],
+    transformaciones: [
+      {
+        capitulo: 16,
+        descripcion: "Redescubrimiento y valoración por Aureliano Babilonia",
+      },
+    ],
+    importancia_narrativa: 7,
+    palabras_clave: ["libros", "antiguos", "biblioteca", "sabiduría", "conocimiento", "cultura", "letrada"],
+  },
 ]);
 
 // ================================
@@ -923,8 +1606,8 @@ db.objetos.insertMany([
 
 db.suenos_visiones.insertMany([
   {
-    _id: ObjectId(),
-    soñador: "ursula_iguaran", // REFERENCIA: ObjectId del personaje Úrsula Iguarán
+    _id: ObjectId("64a1b2c3d4e5f6789abcd301"),
+    soñador: ObjectId("64a1b2c3d4e5f6789abcde53"), // REFERENCIA: ObjectId del personaje Úrsula Iguarán
     tipo: "premonicion",
     capitulo: 13,
     descripcion: "Úrsula tiene premoniciones sobre la llegada de cambios destructivos al pueblo",
@@ -934,8 +1617,8 @@ db.suenos_visiones.insertMany([
     palabras_clave: ["premonición", "cambios", "extranjeros", "destrucción", "ursula"],
   },
   {
-    _id: ObjectId(),
-    soñador: "jose_arcadio_segundo", // REFERENCIA: ObjectId del personaje José Arcadio Segundo
+    _id: ObjectId("64a1b2c3d4e5f6789abcd302"),
+    soñador: ObjectId("64a1b2c3d4e5f6789abcde51"), // REFERENCIA: ObjectId del personaje José Arcadio Segundo
     tipo: "vision_traumática",
     capitulo: 14,
     descripcion: "Visiones recurrentes de la masacre de los trabajadores bananeros",
@@ -945,8 +1628,8 @@ db.suenos_visiones.insertMany([
     palabras_clave: ["visión", "masacre", "trauma", "memoria", "trabajadores"],
   },
   {
-    _id: ObjectId(),
-    soñador: "aureliano_segundo", // REFERENCIA: ObjectId del personaje Aureliano Segundo
+    _id: ObjectId("64a1b2c3d4e5f6789abcd303"),
+    soñador: ObjectId("64a1b2c3d4e5f6789abcde52"), // REFERENCIA: ObjectId del personaje Aureliano Segundo
     tipo: "pesadilla",
     capitulo: 15,
     descripcion: "Pesadillas sobre ahogarse en un mar de billetes que se convierten en hojas secas",
@@ -956,8 +1639,8 @@ db.suenos_visiones.insertMany([
     palabras_clave: ["pesadilla", "ruina", "billetes", "muerte", "abundancia"],
   },
   {
-    _id: ObjectId(),
-    soñador: "fernanda_del_carpio", // REFERENCIA: ObjectId del personaje Fernanda del Carpio
+    _id: ObjectId("64a1b2c3d4e5f6789abcd304"),
+    soñador: ObjectId("64a1b2c3d4e5f6789abcde54"), // REFERENCIA: ObjectId del personaje Fernanda del Carpio
     tipo: "sueño_nostálgico",
     capitulo: 15,
     descripcion: "Sueña repetidamente con su ciudad natal y su juventud aristocrática",
@@ -967,8 +1650,8 @@ db.suenos_visiones.insertMany([
     palabras_clave: ["nostalgia", "aristocracia", "juventud", "palacio", "pureza"],
   },
   {
-    _id: ObjectId(),
-    soñador: "amaranta_ursula", // REFERENCIA: ObjectId del personaje Amaranta Úrsula
+    _id: ObjectId("64a1b2c3d4e5f6789abcd305"),
+    soñador: ObjectId("64a1b2c3d4e5f6789abcde57"), // REFERENCIA: ObjectId del personaje Amaranta Úrsula
     tipo: "sueño_profético",
     capitulo: 16,
     descripcion: "Sueña con restaurar la casa familiar y devolverle su antiguo esplendor",
@@ -978,8 +1661,8 @@ db.suenos_visiones.insertMany([
     palabras_clave: ["restauración", "renovación", "casa", "jardines", "esperanza"],
   },
   {
-    _id: ObjectId(),
-    soñador: "aureliano_babilonia", // REFERENCIA: ObjectId del personaje Aureliano Babilonia
+    _id: ObjectId("64a1b2c3d4e5f6789abcd306"),
+    soñador: ObjectId("64a1b2c3d4e5f6789abcde59"), // REFERENCIA: ObjectId del personaje Aureliano Babilonia
     tipo: "vision_profética",
     capitulo: 16,
     descripción: "Visiones sobre el contenido de los pergaminos mientras los descifra",
@@ -993,9 +1676,9 @@ db.suenos_visiones.insertMany([
 // 7. COLECCIÓN: parejas_relaciones
 db.parejas_relaciones.insertMany([
   {
-    _id: ObjectId(),
-    personaje1: "jose_arcadio_segundo", // REFERENCIA: ObjectId del personaje José Arcadio Segundo
-    personaje2: "aureliano_segundo", // REFERENCIA: ObjectId del personaje Aureliano Segundo
+    _id: ObjectId("64a1b2c3d4e5f6789abcd401"),
+    personaje1: ObjectId("64a1b2c3d4e5f6789abcde51"), // REFERENCIA: ObjectId del personaje José Arcadio Segundo
+    personaje2: ObjectId("64a1b2c3d4e5f6789abcde52"), // REFERENCIA: ObjectId del personaje Aureliano Segundo
     tipo_relacion: "hermanos_gemelos",
     capitulo_inicio: 13,
     descripcion: "Hermanos gemelos con personalidades completamente opuestas que se van diferenciando más con el tiempo",
@@ -1005,9 +1688,9 @@ db.parejas_relaciones.insertMany([
     palabras_clave: ["gemelos", "hermanos", "opuestos", "dualidad", "destino"],
   },
   {
-    _id: ObjectId(),
-    personaje1: "aureliano_segundo", // REFERENCIA: ObjectId del personaje Aureliano Segundo
-    personaje2: "petra_cotes", // REFERENCIA: ObjectId del personaje Petra Cotes
+    _id: ObjectId("64a1b2c3d4e5f6789abcd402"),
+    personaje1: ObjectId("64a1b2c3d4e5f6789abcde52"), // REFERENCIA: ObjectId del personaje Aureliano Segundo
+    personaje2: ObjectId("64a1b2c3d4e5f6789abcde60"), // REFERENCIA: ObjectId del personaje Petra Cotes
     tipo_relacion: "amantes",
     capitulo_inicio: 13,
     descripcion: "Relación pasional y hedonista basada en el desenfreno y la abundancia",
@@ -1017,9 +1700,9 @@ db.parejas_relaciones.insertMany([
     palabras_clave: ["amantes", "pasión", "abundancia", "desenfreno", "petra"],
   },
   {
-    _id: ObjectId(),
-    personaje1: "aureliano_segundo", // REFERENCIA: ObjectId del personaje Aureliano Segundo
-    personaje2: "fernanda_del_carpio", // REFERENCIA: ObjectId del personaje Fernanda del Carpio
+    _id: ObjectId("64a1b2c3d4e5f6789abcd403"),
+    personaje1: ObjectId("64a1b2c3d4e5f6789abcde52"), // REFERENCIA: ObjectId del personaje Aureliano Segundo
+    personaje2: ObjectId("64a1b2c3d4e5f6789abcde54"), // REFERENCIA: ObjectId del personaje Fernanda del Carpio
     tipo_relacion: "matrimonio_deteriorado",
     capitulo_inicio: 13,
     descripcion: "Matrimonio marcado por la incompatibilidad, el resentimiento y la distancia emocional",
@@ -1029,9 +1712,9 @@ db.parejas_relaciones.insertMany([
     palabras_clave: ["matrimonio", "deteriorado", "resentimiento", "orgullo", "fernanda"],
   },
   {
-    _id: ObjectId(),
-    personaje1: "amaranta_ursula", // REFERENCIA: ObjectId del personaje Amaranta Úrsula
-    personaje2: "gaston", // REFERENCIA: ObjectId del personaje Gastón
+    _id: ObjectId("64a1b2c3d4e5f6789abcd404"),
+    personaje1: ObjectId("64a1b2c3d4e5f6789abcde57"), // REFERENCIA: ObjectId del personaje Amaranta Úrsula
+    personaje2: ObjectId("64a1b2c3d4e5f6789abcde58"), // REFERENCIA: ObjectId del personaje Gastón
     tipo_relacion: "matrimonio_moderno",
     capitulo_inicio: 16,
     descripcion: "Matrimonio europeo moderno basado en la companía intelectual y los intereses comunes",
@@ -1041,9 +1724,9 @@ db.parejas_relaciones.insertMany([
     palabras_clave: ["matrimonio", "moderno", "europeo", "racional", "gaston"],
   },
   {
-    _id: ObjectId(),
-    personaje1: "amaranta_ursula", // REFERENCIA: ObjectId del personaje Amaranta Úrsula
-    personaje2: "aureliano_babilonia", // REFERENCIA: ObjectId del personaje Aureliano Babilonia
+    _id: ObjectId("64a1b2c3d4e5f6789abcd405"),
+    personaje1: ObjectId("64a1b2c3d4e5f6789abcde57"), // REFERENCIA: ObjectId del personaje Amaranta Úrsula
+    personaje2: ObjectId("64a1b2c3d4e5f6789abcde59"), // REFERENCIA: ObjectId del personaje Aureliano Babilonia
     tipo_relacion: "amor_prohibido",
     capitulo_inicio: 16,
     descripcion: "Amor pasional e incestuoso entre tía y sobrino que representa la culminación del destino familiar",
@@ -1053,9 +1736,9 @@ db.parejas_relaciones.insertMany([
     palabras_clave: ["amor", "prohibido", "incesto", "destino", "pasión", "fin"],
   },
   {
-    _id: ObjectId(),
-    personaje1: "jose_arcadio_segundo", // REFERENCIA: ObjectId del personaje José Arcadio Segundo
-    personaje2: "trabajadores_bananeros", // REFERENCIA: ObjectId de la colección de trabajadores (grupo)
+    _id: ObjectId("64a1b2c3d4e5f6789abcd406"),
+    personaje1: ObjectId("64a1b2c3d4e5f6789abcde51"), // REFERENCIA: ObjectId del personaje José Arcadio Segundo
+    personaje2: ObjectId("64a1b2c3d4e5f6789abcde55"), // REFERENCIA: ObjectId de la colección de trabajadores (grupo)
     tipo_relacion: "solidaridad_laboral",
     capitulo_inicio: 14,
     descripcion: "Relación de solidaridad y liderazgo con los trabajadores durante la huelga",
@@ -1069,18 +1752,26 @@ db.parejas_relaciones.insertMany([
 // 8. COLECCIÓN: simbolos_temas
 db.simbolos_temas.insertMany([
   {
-    _id: ObjectId(),
+    _id: ObjectId("64a1b2c3d4e5f6789abcd501"),
     nombre: "La compañía bananera",
     tipo: "símbolo_histórico",
     capitulos_aparicion: [13, 14],
     interpretaciones: ["Imperialismo económico", "Explotación colonial", "Progreso destructivo", "Pérdida de identidad cultural"],
     elementos_asociados: ["tren", "extranjeros", "modernización", "explotación"],
-    personajes_afectados: ["jose_arcadio_segundo", "trabajadores_bananeros", "macondo"], // REFERENCIAS a ObjectIds
-    eventos_relacionados: ["llegada_compañia_bananera", "huelga_trabajadores", "masacre_estacion"], // REFERENCIAS a ObjectIds de eventos
+    personajes_afectados: [
+      ObjectId("64a1b2c3d4e5f6789abcde51"), // Jose Arcadio Segundo
+      ObjectId("64a1b2c3d4e5f6789abcde55"), // Trabajadores Bananeros
+      ObjectId("64a1b2c3d4e5f6789abcde61") // Pueblo de Macondo
+    ],
+    eventos_relacionados: [
+      "llegada_compañia_bananera",
+      "huelga_trabajadores",
+      "masacre_estacion"
+    ],
     palabras_clave: ["compañía", "bananera", "imperialismo", "explotación", "progreso"],
   },
   {
-    _id: ObjectId(),
+    _id: ObjectId("64a1b2c3d4e5f6789abcd502"),
     nombre: "La masacre olvidada",
     tipo: "símbolo_político",
     capitulos_aparicion: [14],
@@ -1091,7 +1782,7 @@ db.simbolos_temas.insertMany([
     palabras_clave: ["masacre", "olvido", "memoria", "historia", "oficial", "tres mil"],
   },
   {
-    _id: ObjectId(),
+    _id: ObjectId("64a1b2c3d4e5f6789abcd503"),
     nombre: "El diluvio",
     tipo: "símbolo_natural",
     capitulos_aparicion: [15],
@@ -1102,7 +1793,7 @@ db.simbolos_temas.insertMany([
     palabras_clave: ["diluvio", "lluvia", "purificación", "castigo", "renovación", "cuatro años"],
   },
   {
-    _id: ObjectId(),
+    _id: ObjectId("64a1b2c3d4e5f6789abcd504"),
     nombre: "Los pergaminos de Melquíades",
     tipo: "símbolo_místico",
     capitulos_aparicion: [13, 14, 15, 16],
@@ -1113,7 +1804,7 @@ db.simbolos_temas.insertMany([
     palabras_clave: ["pergaminos", "melquíades", "destino", "profecía", "sabiduría", "ancestral"],
   },
   {
-    _id: ObjectId(),
+    _id: ObjectId("64a1b2c3d4e5f6789abcd505"),
     nombre: "La soledad",
     tipo: "tema_existencial",
     capitulos_aparicion: [13, 14, 15, 16],
@@ -1124,7 +1815,7 @@ db.simbolos_temas.insertMany([
     palabras_clave: ["soledad", "aislamiento", "incomunicación", "destino", "buendía"],
   },
   {
-    _id: ObjectId(),
+    _id: ObjectId("64a1b2c3d4e5f6789abcd506"),
     nombre: "El tiempo cíclico",
     tipo: "tema_temporal",
     capitulos_aparicion: [13, 14, 15, 16],
@@ -1135,7 +1826,7 @@ db.simbolos_temas.insertMany([
     palabras_clave: ["tiempo", "cíclico", "repetición", "patrones", "eterno", "retorno"],
   },
   {
-    _id: ObjectId(),
+    _id: ObjectId("64a1b2c3d4e5f6789abcd507"),
     nombre: "La casa Buendía",
     tipo: "símbolo_espacial",
     capitulos_aparicion: [13, 14, 15, 16],
@@ -1146,7 +1837,7 @@ db.simbolos_temas.insertMany([
     palabras_clave: ["casa", "buendía", "deterioro", "renovación", "microcosmos", "refugio"],
   },
   {
-    _id: ObjectId(),
+    _id: ObjectId("64a1b2c3d4e5f6789abcd508"),
     nombre: "El progreso destructor",
     tipo: "tema_social",
     capitulos_aparicion: [13, 14],
@@ -1157,7 +1848,7 @@ db.simbolos_temas.insertMany([
     palabras_clave: ["progreso", "destructor", "modernización", "tradiciones", "identidad"],
   },
   {
-    _id: ObjectId(),
+    _id: ObjectId("64a1b2c3d4e5f6789abcd509"),
     nombre: "La memoria vs el olvido",
     tipo: "tema_cognitivo",
     capitulos_aparicion: [14, 15],
