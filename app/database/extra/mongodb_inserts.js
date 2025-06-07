@@ -1764,9 +1764,9 @@ db.simbolos_temas.insertMany([
       ObjectId("64a1b2c3d4e5f6789abcde61") // Pueblo de Macondo
     ],
     eventos_relacionados: [
-      "llegada_compañia_bananera",
-      "huelga_trabajadores",
-      "masacre_estacion"
+      ObjectId("64a1b2c3d4e5f6789abcde11"), // llegada_compañia_bananera
+      ObjectId("64a1b2c3d4e5f6789abcde21"), // huelga_trabajadores
+      ObjectId("64a1b2c3d4e5f6789abcde22") // masacre_estacion
     ],
     palabras_clave: ["compañía", "bananera", "imperialismo", "explotación", "progreso"],
   },
@@ -1777,8 +1777,15 @@ db.simbolos_temas.insertMany([
     capitulos_aparicion: [14],
     interpretaciones: ["Manipulación de la historia oficial", "Amnesia colectiva impuesta", "Negación de la violencia estatal", "Resistencia de la memoria individual"],
     elementos_asociados: ["tres mil muertos", "tren", "documentos oficiales", "olvido"],
-    personajes_afectados: ["jose_arcadio_segundo", "trabajadores_bananeros", "pueblo_macondo"], // REFERENCIAS a ObjectIds
-    eventos_relacionados: ["masacre_trabajadores", "olvido_colectivo"], // REFERENCIAS a ObjectIds de eventos
+    personajes_afectados: [
+      ObjectId("64a1b2c3d4e5f6789abcde51"), // jose_arcadio_segundo
+      ObjectId("64a1b2c3d4e5f6789abcde55"), // trabajadores_bananeros
+      ObjectId("64a1b2c3d4e5f6789abcde61") // pueblo_macondo
+    ],
+    eventos_relacionados: [
+      ObjectId("64a1b2c3d4e5f6789abcde22"), // masacre_trabajadores
+      ObjectId("64a1b2c3d4e5f6789abcde23") // olvido_colectivo
+    ],
     palabras_clave: ["masacre", "olvido", "memoria", "historia", "oficial", "tres mil"],
   },
   {
@@ -1788,8 +1795,16 @@ db.simbolos_temas.insertMany([
     capitulos_aparicion: [15],
     interpretaciones: ["Purificación bíblica", "Castigo divino por los pecados", "Renovación cíclica de la naturaleza", "Destrucción necesaria para el renacimiento"],
     elementos_asociados: ["lluvia interminable", "inundación", "hongos", "decadencia"],
-    personajes_afectados: ["todos_los_buendia", "macondo_completo"], // REFERENCIAS a ObjectIds
-    eventos_relacionados: ["muerte_gemelos", "deterioro_casa", "fin_epoca_dorada"], // REFERENCIAS a ObjectIds de eventos
+    personajes_afectados: [
+      ObjectId("64a1b2c3d4e5f6789abcde71"), // Familia Buendia
+      ObjectId("64a1b2c3d4e5f6789abcde61") // Pueblo de Macondo
+    ], // REFERENCIAS a ObjectIds
+    eventos_relacionados: [
+      ObjectId("64a1b2c3d4e5f6789abcde31"), // El gran diluvio de cuatro años
+      ObjectId("64a1b2c3d4e5f6789abcde32"), // Muerte simultánea de los gemelos
+      ObjectId("64a1b2c3d4e5f6789abcde14"), // Deterioro de la casa Buendía
+      ObjectId("64a1b2c3d4e5f6789abcde33") // Fin de la época dorada
+    ], // REFERENCIAS a ObjectIds de eventos
     palabras_clave: ["diluvio", "lluvia", "purificación", "castigo", "renovación", "cuatro años"],
   },
   {
@@ -1799,8 +1814,14 @@ db.simbolos_temas.insertMany([
     capitulos_aparicion: [13, 14, 15, 16],
     interpretaciones: ["Destino familiar predeterminado", "Sabiduría ancestral oculta", "Profecía autocumplida", "Círculo temporal infinito"],
     elementos_asociados: ["escritura sánscrita", "espejo", "profecía", "tiempo"],
-    personajes_afectados: ["jose_arcadio_segundo", "aureliano_babilonia"], // REFERENCIAS a ObjectIds
-    eventos_relacionados: ["desciframiento_pergaminos", "revelacion_destino"], // REFERENCIAS a ObjectIds de eventos
+    personajes_afectados: [
+      ObjectId("64a1b2c3d4e5f6789abcde51"),
+      ObjectId("64a1b2c3d4e5f6789abcde59")
+    ], // REFERENCIAS a ObjectIds
+    eventos_relacionados: [
+      ObjectId("64a1b2c3d4e5f6789abcde42"), // Amor con Amaranta Úrsula
+      ObjectId("64a1b2c3d4e5f6789abcde32")  // Muerte de José Arcadio Segundo
+    ],
     palabras_clave: ["pergaminos", "melquíades", "destino", "profecía", "sabiduría", "ancestral"],
   },
   {
@@ -1810,8 +1831,15 @@ db.simbolos_temas.insertMany([
     capitulos_aparicion: [13, 14, 15, 16],
     interpretaciones: ["Condición existencial de los Buendía", "Aislamiento emocional y social", "Incapacidad para el amor verdadero", "Destino inevitable de la estirpe"],
     elementos_asociados: ["aislamiento", "incomunicación", "destino", "repetición"],
-    personajes_afectados: ["todos_los_buendia"], // REFERENCIA a ObjectIds de todos los Buendía
-    eventos_relacionados: ["todos_los_eventos_familiares"], // REFERENCIA general a eventos
+    personajes_afectados: [
+      ObjectId("64a1b2c3d4e5f6789abcde71")
+    ], // REFERENCIA a ObjectIds de todos los Buendía
+    eventos_relacionados: [
+      ObjectId("64a1b2c3d4e5f6789abcde21"),
+      ObjectId("64a1b2c3d4e5f6789abcde22"),
+      ObjectId("64a1b2c3d4e5f6789abcde32"),
+      ObjectId("64a1b2c3d4e5f6789abcde42")
+    ], // REFERENCIA general a eventos
     palabras_clave: ["soledad", "aislamiento", "incomunicación", "destino", "buendía"],
   },
   {
@@ -1821,8 +1849,18 @@ db.simbolos_temas.insertMany([
     capitulos_aparicion: [13, 14, 15, 16],
     interpretaciones: ["Historia que se repite en espirales", "Eterno retorno de los patrones", "Imposibilidad de escape del destino", "Circularidad mítica del tiempo"],
     elementos_asociados: ["repetición", "nombres", "patrones", "espejo"],
-    personajes_afectados: ["generaciones_buendia"], // REFERENCIA a ObjectIds de múltiples generaciones
-    eventos_relacionados: ["patrones_repetitivos_familiares"], // REFERENCIA general a eventos cíclicos
+    personajes_afectados: [
+      ObjectId("64a1b2c3d4e5f6789abcde51"), // José Arcadio Segundo
+      ObjectId("64a1b2c3d4e5f6789abcde52"), // Aureliano Segundo
+      ObjectId("64a1b2c3d4e5f6789abcde57"), // Amaranta Úrsula
+      ObjectId("64a1b2c3d4e5f6789abcde59"), // Aureliano Babilonia
+      ObjectId("64a1b2c3d4e5f6789abcde71")  // Familia Buendía
+    ], // REFERENCIA a ObjectIds de múltiples generaciones
+    eventos_relacionados: [
+      ObjectId("64a1b2c3d4e5f6789abcde32"), // Muerte simultánea de los gemelos
+      ObjectId("64a1b2c3d4e5f6789abcde42"), // El amor prohibido final
+      ObjectId("64a1b2c3d4e5f6789abcde14")  // Deterioro de la casa Buendía
+    ], // REFERENCIA general a eventos cíclicos
     palabras_clave: ["tiempo", "cíclico", "repetición", "patrones", "eterno", "retorno"],
   },
   {
@@ -1832,8 +1870,19 @@ db.simbolos_temas.insertMany([
     capitulos_aparicion: [13, 14, 15, 16],
     interpretaciones: ["Microcosmos de Macondo", "Espejo de la decadencia familiar", "Refugio y prisión simultánea", "Testimonio físico de la historia"],
     elementos_asociados: ["deterioro", "renovación", "memoria", "refugio"],
-    personajes_afectados: ["todos_los_buendia"], // REFERENCIA a ObjectIds de todos los Buendía
-    eventos_relacionados: ["deterioro_casa", "renovacion_amaranta_ursula"], // REFERENCIAS a ObjectIds de eventos
+    personajes_afectados: [
+      ObjectId("64a1b2c3d4e5f6789abcde71"), // Familia Buendía
+      ObjectId("64a1b2c3d4e5f6789abcde53"), // Úrsula
+      ObjectId("64a1b2c3d4e5f6789abcde54"), // Fernanda
+      ObjectId("64a1b2c3d4e5f6789abcde57"), // Amaranta Úrsula
+      ObjectId("64a1b2c3d4e5f6789abcde59")  // Aureliano Babilonia
+    ], // REFERENCIA a ObjectIds de todos los Buendía
+    eventos_relacionados: [
+      ObjectId("64a1b2c3d4e5f6789abcde14"), // Deterioro de la casa
+      ObjectId("64a1b2c3d4e5f6789abcde41"), // Regreso y renovación de Amaranta Úrsula
+      ObjectId("64a1b2c3d4e5f6789abcde31"), // El diluvio
+      ObjectId("64a1b2c3d4e5f6789abcde42")  // El amor prohibido final
+    ], // REFERENCIAS a ObjectIds de eventos
     palabras_clave: ["casa", "buendía", "deterioro", "renovación", "microcosmos", "refugio"],
   },
   {
@@ -1843,8 +1892,14 @@ db.simbolos_temas.insertMany([
     capitulos_aparicion: [13, 14],
     interpretaciones: ["Modernización que destruye tradiciones", "Colonialismo cultural y económico", "Falso desarrollo impuesto", "Pérdida de la identidad local"],
     elementos_asociados: ["tren", "modernización", "extranjeros", "explotación"],
-    personajes_afectados: ["macondo_completo", "trabajadores"], // REFERENCIAS a ObjectIds
-    eventos_relacionados: ["llegada_compañia", "transformacion_macondo"], // REFERENCIAS a ObjectIds de eventos
+    personajes_afectados: [
+      ObjectId("64a1b2c3d4e5f6789abcde61"), // El pueblo de Macondo
+      ObjectId("64a1b2c3d4e5f6789abcde55")  // Los trabajadores bananeros
+    ], // REFERENCIAS a ObjectIds
+    eventos_relacionados: [
+      ObjectId("64a1b2c3d4e5f6789abcde11"), // Llegada compañía bananera
+      ObjectId("64a1b2c3d4e5f6789abcde21")  // Huelga trabajadores
+    ], // REFERENCIAS a ObjectIds de eventos
     palabras_clave: ["progreso", "destructor", "modernización", "tradiciones", "identidad"],
   },
   {
@@ -1854,8 +1909,14 @@ db.simbolos_temas.insertMany([
     capitulos_aparicion: [14, 15],
     interpretaciones: ["Lucha entre recordar y olvidar", "Memoria individual vs amnesia colectiva", "Resistencia ante la historia oficial", "Preservación de la verdad"],
     elementos_asociados: ["testimonio", "olvido colectivo", "verdad", "resistencia"],
-    personajes_afectados: ["jose_arcadio_segundo", "pueblo_macondo"], // REFERENCIAS a ObjectIds
-    eventos_relacionados: ["masacre_trabajadores", "olvido_colectivo"], // REFERENCIAS a ObjectIds de eventos
+    personajes_afectados: [
+      ObjectId("64a1b2c3d4e5f6789abcde51"), // José Arcadio Segundo
+      ObjectId("64a1b2c3d4e5f6789abcde61")  // El pueblo de Macondo
+    ], // REFERENCIAS a ObjectIds
+    eventos_relacionados: [
+      ObjectId("64a1b2c3d4e5f6789abcde22"), // La masacre
+      ObjectId("64a1b2c3d4e5f6789abcde23")  // El olvido colectivo
+    ], // REFERENCIAS a ObjectIds de eventos
     palabras_clave: ["memoria", "olvido", "verdad", "testimonio", "resistencia", "historia"],
   },
 ]);
