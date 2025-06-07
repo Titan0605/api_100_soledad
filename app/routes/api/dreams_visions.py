@@ -5,7 +5,7 @@ from app.utils import iterate_arrays_api
 bp = Blueprint("api_dreams_visions", __name__)
 search_model = SearchingModel()
 
-@bp.route("/dreams-visions-search", methods=['GET'])
+@bp.route("/dreams-visions-search", methods=['POST'])
 def dreams_visions_search():
     data = request.get_json()
     if not data or "query" not in data:
@@ -37,7 +37,7 @@ def dreams_visions_search():
         "results": dreams_visions_results
     }), 200
 
-@bp.route("/search-especific-dream-vision", methods=["GET"])
+@bp.route("/search-especific-dream-vision", methods=["POST"])
 def specific_object():
     data = request.get_json()
     if not data or "id" not in data:

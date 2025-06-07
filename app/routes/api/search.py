@@ -21,7 +21,7 @@ TOPIC_FUNCS = {
     "symbols":        search_symbols,
 }
 
-@bp.route("/general-search", methods=["GET"])
+@bp.route("/general-search", methods=["POST"])
 def general_search():
     data = request.get_json(force=True)
     user_query = data.get("query", "").strip()
@@ -40,13 +40,12 @@ def general_search():
     results = []
     for key in selected:
         try:
-            # recreamos el cuerpo JSON para cada llamada
             with current_app.test_request_context(
                 path=f"/{key}-search",
                 method="GET",
                 json={"query": user_query}
             ):
-                resp = TOPIC_FUNCS[key]()            # invoca la ruta directamente
+                resp = TOPIC_FUNCS[key]()          
                 if resp[1] == 200:
                     part = resp[0].get_json()
                     results.extend(part.get("results", []))

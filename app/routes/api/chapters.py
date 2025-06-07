@@ -5,7 +5,7 @@ from app.utils import iterate_arrays_api
 bp = Blueprint("api_chapters", __name__)
 search_model = SearchingModel()
 
-@bp.route("/chapters-search", methods=['GET'])
+@bp.route("/chapters-search", methods=['POST'])
 def search_chapters():
     data = request.get_json()
     if not data or "query" not in data:
@@ -34,7 +34,7 @@ def search_chapters():
         "results": chapters_results
     }), 200
 
-bp.route("/search-specific-chapter", methods=["GET"])
+bp.route("/search-specific-chapter", methods=["POST"])
 def specific_chapter():
     data = request.get_json()
     if not data or "id" not in data:

@@ -5,7 +5,7 @@ from app.utils import iterate_arrays_api
 bp = Blueprint("api_symbols", __name__)
 search_model = SearchingModel()
 
-@bp.route("/symbols-search", methods=['GET'])
+@bp.route("/symbols-search", methods=['POST'])
 def search_symbols():
     data = request.get_json()
     if not data or "query" not in data:
@@ -34,7 +34,7 @@ def search_symbols():
         "results": symbols_results
     }), 200
 
-bp.route("/search-specific-symbol", methods=["GET"])
+bp.route("/search-specific-symbol", methods=["POST"])
 def specific_symbol():
     data = request.get_json()
     if not data or "id" not in data:

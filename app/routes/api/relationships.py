@@ -4,7 +4,7 @@ from app.models import SearchingModel
 bp = Blueprint("api_relationships", __name__)
 search_model = SearchingModel()
 
-@bp.route("/relationships-search")
+@bp.route("/relationships-search", methods=["POST"])
 def search_relationships():
     data = request.get_json()
     if not data or "query" not in data:
@@ -38,7 +38,7 @@ def search_relationships():
         "results": relationships_results
     }), 200
 
-@bp.route("/search-especific-relationship", methods=['GET'])
+@bp.route("/search-especific-relationship", methods=['POST'])
 def specific_relationship():
     data = request.get_json()
     if not data or "id" not in data:
