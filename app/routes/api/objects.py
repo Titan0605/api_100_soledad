@@ -26,6 +26,7 @@ def objects_search():
     objects_results = []
     for doc in objects_cursor:
         doc["propietarios"] = iterate_arrays_api(doc.get("propietarios", []), "personajes")
+        doc["type"] = "objects"
         doc["_id"] = str(doc["_id"])
         objects_results.append(doc)
 
@@ -56,6 +57,7 @@ def search_especific_object():
         }), 404
     
     object["propietarios"] = iterate_arrays_api(object.get("propietarios", []), "personajes")
+    object["type"] = "objects"
     object["_id"] = str(object["_id"])
 
     return jsonify({

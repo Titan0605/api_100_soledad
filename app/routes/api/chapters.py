@@ -23,6 +23,7 @@ def search_events():
     chapters_results = []
     for doc in chapters_cursor:
         doc["eventos_relacionados"] = iterate_arrays_api(doc.get("eventos_relacionados", []), "eventos")
+        doc["type"] = "chapters"
         doc["_id"] = str(doc["_id"])
         chapters_results.append(doc)
     
@@ -53,6 +54,7 @@ def specific_event():
         }), 404
 
     chapter["eventos_relacionados"] = iterate_arrays_api(chapter.get("eventos_relacionados", []), "eventos")
+    chapter["type"] = "chapters"
     chapter["_id"] = str(chapter["_id"])
 
 

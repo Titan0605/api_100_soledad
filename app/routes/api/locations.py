@@ -27,6 +27,7 @@ def locations_search():
     for doc in locations_cursor:
         doc["eventos_importantes"] = iterate_arrays_api(doc.get("eventos_importantes", []), "eventos")
         doc["personajes_asociados"] = iterate_arrays_api(doc.get("personajes_asociados", []), "personajes")
+        doc["type"] = "locations"
         doc["_id"] = str(doc["_id"])
         locations_results.append(doc)
 
@@ -58,6 +59,7 @@ def search_especific_location():
     
     location["eventos_importantes"] = iterate_arrays_api(location.get("eventos_importantes", []), "eventos")
     location["personajes_asociados"] = iterate_arrays_api(location.get("personajes_asociados", []), "personajes")
+    location["type"] = "locations"
     location["_id"] = str(location["_id"])
 
     return jsonify({

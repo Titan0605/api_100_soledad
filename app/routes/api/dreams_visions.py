@@ -26,6 +26,7 @@ def dreams_visions_search():
     dreams_visions_results = []
     for doc in dreams_visions_cursor:
         doc["soñador"] = iterate_arrays_api(doc.get("soñador", []), "personajes")
+        doc["type"] = "dreams_visions"
         doc["_id"] = str(doc["_id"])
         dreams_visions_results.append(doc)
 
@@ -56,6 +57,7 @@ def search_especific_object():
         }), 404
     
     dream_vision["soñador"] = iterate_arrays_api(dream_vision.get("soñador", []), "personajes")
+    dream_vision["type"] = "dreams_visions"
     dream_vision["_id"] = str(dream_vision["_id"])
 
     return jsonify({

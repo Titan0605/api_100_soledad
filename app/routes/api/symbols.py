@@ -23,6 +23,7 @@ def search_events():
     symbols_results = []
     for doc in symbols_cursor:
         doc["eventos_relacionados"] = iterate_arrays_api(doc.get("eventos_relacionados", []), "eventos")
+        doc["type"] = "symbols"
         doc["_id"] = str(doc["_id"])
         symbols_results.append(doc)
     
@@ -53,6 +54,7 @@ def specific_event():
         }), 404
 
     symbol["eventos_relacionados"] = iterate_arrays_api(symbol.get("eventos_relacionados", []), "eventos")
+    symbol["type"] = "symbols"
     symbol["_id"] = str(symbol["_id"])
 
 

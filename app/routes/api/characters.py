@@ -27,6 +27,7 @@ def search_characters():
     character_results = []
     for doc in characters_cursor:
         doc["eventos_principales"] = iterate_arrays_api(doc.get("eventos_principales", []), "eventos")
+        doc["type"] = "characters"
         doc["_id"] = str(doc["_id"])
         character_results.append(doc)
     
@@ -57,7 +58,7 @@ def search_especific_character():
         }), 404
     
     character["eventos_principales"] = iterate_arrays_api(character.get("eventos_principales", []), "eventos")
-
+    character["type"] = ""
     character["_id"] = str(character["_id"])
     return jsonify({
         "status": "successful",

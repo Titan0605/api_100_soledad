@@ -25,6 +25,7 @@ def search_events():
         doc["personajes_involucrados"] = iterate_arrays_api(doc.get("personajes_involucrados", []),"personajes")
         doc["localizaciones"] = iterate_arrays_api(doc.get("localizaciones", []), "localizaciones")
         doc["objetos_relacionados"] = iterate_arrays_api(doc.get("objetos_relacionados", []), "objetos")
+        doc["type"] = "events"
         doc["_id"] = str(doc["_id"])
         events_results.append(doc)
     
@@ -57,6 +58,7 @@ def specific_event():
     event["personajes_involucrados"] = iterate_arrays_api(event.get("personajes_involucrados", []),"personajes")
     event["localizaciones"] = iterate_arrays_api(event.get("localizaciones", []), "localizaciones")
     event["objetos_relacionados"] = iterate_arrays_api(event.get("objetos_relacionados", []), "objetos")
+    event["type"] = "events"
     event["_id"] = str(event["_id"])
 
 
