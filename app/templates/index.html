@@ -64,6 +64,82 @@
       </button>
     </div>
   </form>
+  <div class="flex justify-end mb-4">
+    <button id="openModal" class="size-1/9 end-2.5 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-full text-xl">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+  </div>
+  <!-- Modal  -->
+  <div id="customModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-white bg-opacity-80">
+    <div class="relative w-full max-w-2xl p-4 bg-gray-900 text-white rounded-2xl shadow-xl mx-4 md:mx-auto">
+      <button type="button" class="absolute top-2 right-3 text-white text-2xl font-bold" onclick="document.getElementById('customModal').classList.add('hidden')">&times;</button>
+      <!-- Header del modal -->
+      <div class="mb-4">
+        <h2 class="text-2xl font-bold text-center">Agregar Información</h2>
+        <p class="text-sm text-center text-gray-300">Selecciona el tipo de entidad para agregar</p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-2 mb-6">
+        <button class="bg-blue-700 hover:bg-blue-800 text-white font-semibold py-1 px-3 rounded" onclick="mostrarFormulario('formEvento')">Evento</button>
+        <button class="bg-purple-700 hover:bg-purple-800 text-white font-semibold py-1 px-3 rounded" onclick="mostrarFormulario('formPersonaje')">Personaje</button>
+        <button class="bg-pink-700 hover:bg-pink-800 text-white font-semibold py-1 px-3 rounded" onclick="mostrarFormulario('formObjeto')">Objeto</button>
+        <button class="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-1 px-3 rounded" onclick="mostrarFormulario('formLocalizacion')">Localización</button>
+      </div>
+
+      <!-- Formularios -->
+      <form id="formEvento" class="hidden space-y-3">
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Nombre del evento" />
+        <textarea class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Descripción"></textarea>
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Capítulo" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Importancia" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Tipo (histórico, personal, etc)" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Fecha narrativa" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Personajes involucrados (IDs separados por coma)" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Localizaciones (IDs separados por coma)" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Simbolismo (separado por coma)" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Consecuencias (separado por coma)" />
+      </form>
+
+      <form id="formPersonaje" class="hidden space-y-3">
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Nombre completo" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Generación" />
+        <textarea class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Descripción física"></textarea>
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Personalidad (lista separada por coma)" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Capítulos de aparición" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Eventos principales (IDs)" />
+        <textarea class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Transformación"></textarea>
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Muerte (capítulo y circunstancias)" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Simbolismo" />
+      </form>
+
+      <form id="formObjeto" class="hidden space-y-3">
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Nombre del objeto" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Tipo (mágico, simbólico, cotidiano)" />
+        <textarea class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Descripción"></textarea>
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Capítulos de aparición" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Propietarios (IDs)" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Ubicación física" />
+        <textarea class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Transformaciones (capítulo y estado)"></textarea>
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Simbolismo" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Importancia narrativa" />
+      </form>
+
+      <form id="formLocalizacion" class="hidden space-y-3">
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Nombre de la localización" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Tipo (natural, mítica, construcción)" />
+        <textarea class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Descripción"></textarea>
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Capítulos de aparición" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Eventos importantes (IDs)" />
+        <textarea class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Transformaciones (capítulo y estado)"></textarea>
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Personajes asociados (IDs)" />
+        <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Simbolismo" />
+      </form>
+
+      <div class="mt-4 flex justify-end">
+        <button class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded">Guardar</button>
+      </div>
+    </div>
+  </div>
 
   <div id="results" class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
     <div class="bg-gray-800 text-white rounded-2xl shadow-lg p-6 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200">
@@ -75,6 +151,24 @@
     </div>
   </div>
 </div>
+<!-- Script provisional para ocultar el formulario pq no le se al JS -->
+<script>
+  function mostrarFormulario(id) {
+    ["formEvento", "formPersonaje", "formObjeto", "formLocalizacion"].forEach((f) => {
+      document.getElementById(f).classList.add("hidden");
+    });
+    document.getElementById(id).classList.remove("hidden");
+  }
 
+  document.getElementById("openModal").addEventListener("click", function () {
+    document.getElementById("customModal").classList.remove("hidden");
+  });
+
+  document.getElementById("customModal").addEventListener("click", function (e) {
+    if (e.target === this) {
+      this.classList.add("hidden");
+    }
+  });
+</script>
 <script src="{{ url_for('static', filename='javascript/index.js') }}"></script>
 {%endblock%}
