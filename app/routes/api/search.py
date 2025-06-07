@@ -33,19 +33,23 @@ def general_search():
         return jsonify({"status":"error","message":"the filters must be an array"}), 400
 
     selected = filters or list(TOPIC_FUNCS.keys())
-
     invalid = [f for f in selected if f not in TOPIC_FUNCS]
     if invalid:
-        return jsonify({
-            "status":"error",
-            "message":f"Filter unknown : {invalid}"
-        }), 400
+        return jsonify({"status":"error","message":f"Filter unknown : {invalid}"}), 400
 
     results = []
     for key in selected:
         try:
-            topic_results = TOPIC_FUNCS[key](user_query)
-            results.extend(topic_results)
+            # recreamos el cuerpo JSON para cada llamada
+            with current_app.test_request_context(
+                path=f"/{key}-search",
+                method="GET",
+                json={"query": user_query}
+            ):
+                resp = TOPIC_FUNCS[key]()            # invoca la ruta directamente
+                if resp[1] == 200:
+                    part = resp[0].get_json()
+                    results.extend(part.get("results", []))
         except Exception as e:
             current_app.logger.error(f"Error searching {key}: {e}")
             continue
