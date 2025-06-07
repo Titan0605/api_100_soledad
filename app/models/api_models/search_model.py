@@ -28,11 +28,13 @@ class SearchingModel:
 
     def search_general(self, query, collection_name):
         db = self.getCollection(collection_name)
-
-        results = db.find(
-        {"$text": {"$search": query}},
-        {"score": {"$meta": "textScore"}}
-        ).sort([("score", {"$meta": "textScore"})]).limit(10)
+        try:
+            results = db.find(
+            {"$text": {"$search": query}},
+            {"score": {"$meta": "textScore"}}
+            ).sort([("score", {"$meta": "textScore"})]).limit(10)
+        except:
+            return []
 
         return results
     

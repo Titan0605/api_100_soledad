@@ -15,7 +15,7 @@ search_btn.addEventListener('click', async function () {
         console.log('Checked: ', checked)
 
         let data = {
-            'to_search': valueInput,
+            'query': valueInput,
             'filters': checked
         }
 
