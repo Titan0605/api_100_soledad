@@ -6,7 +6,7 @@ bp = Blueprint("api_symbols", __name__)
 search_model = SearchingModel()
 
 @bp.route("/symbols-search", methods=['GET'])
-def search_events():
+def search_symbols():
     data = request.get_json()
     if not data or "query" not in data:
         return jsonify({"status": "error", "message": "You must send something a 'query' field in JSON"}), 400
@@ -35,7 +35,7 @@ def search_events():
     }), 200
 
 bp.route("/search-specific-symbol", methods=["GET"])
-def specific_event():
+def specific_symbol():
     data = request.get_json()
     if not data or "id" not in data:
         return jsonify({

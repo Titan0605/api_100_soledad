@@ -1,49 +1,60 @@
-from flask import Blueprint, request, jsonify
-import requests
+from flask import Blueprint, request, jsonify, current_app
+from app.routes.api.chapters       import search_chapters
+from app.routes.api.characters     import search_characters
+from app.routes.api.dreams_visions import dreams_visions_search
+from app.routes.api.events         import search_events
+from app.routes.api.locations      import locations_search
+from app.routes.api.objects        import objects_search
+from app.routes.api.relationships  import search_relationships
+from app.routes.api.symbols        import search_symbols
 
 bp = Blueprint("api_search", __name__)
 
-@bp.route("/general-search")
+TOPIC_FUNCS = {
+    "chapters":       search_chapters,
+    "characters":     search_characters,
+    "dreams_visions": dreams_visions_search,
+    "events":         search_events,
+    "locations":      locations_search,
+    "objects":        objects_search,
+    "relationships":  search_relationships,
+    "symbols":        search_symbols,
+}
+
+@bp.route("/general-search", methods=["GET"])
 def general_search():
-    topics = ["chapters", "characters", "dreams_visions", "events", "locations", "objects", "relationships", "symbols"]
+    data = request.get_json(force=True)
+    user_query = data.get("query", "").strip()
+    filters    = data.get("filters", [])
 
-    data = request.get_json()
-    if not data or "query" not in data or "filters" not in data:
-        return jsonify({"status": "error", "message": "You must send something a 'query' or 'filters' field in JSON"}), 400
-    
-    user_query = data.get('query', 'Remedios la bella')
-    filters = data.get('filters', [])
+    if not user_query:
+        return jsonify({"status":"error","message":"the field 'query' is obligatory"}), 400
+    if not isinstance(filters, list):
+        return jsonify({"status":"error","message":"the filters must be an array"}), 400
 
-    payload = {
-        "query": user_query
-    }
+    selected = filters or list(TOPIC_FUNCS.keys())
+
+    invalid = [f for f in selected if f not in TOPIC_FUNCS]
+    if invalid:
+        return jsonify({
+            "status":"error",
+            "message":f"Filter unknown : {invalid}"
+        }), 400
+
     results = []
-    if filters:
-        for filter in filters:
-            response = requests.get(f"/{filter}-search", json=payload)
-            if response.status_code == 200:
-                result = response.json()
-                results.extend(result.get("results", []))
-            else:
-                print(f"Something went wrong in the filter {filter}")
-                print("response: ", response.json())
-    else:
-        for topic in topics:
-            response = requests.get(f"/{topic}-search", json=payload)
-            if response.status_code == 200:
-                result = response.json()
-                results.extend(result.get("results", []))
-            else:
-                print(f"Something went wrong in the filter {topic}")
-                print("response: ", response.json())
+    for key in selected:
+        try:
+            topic_results = TOPIC_FUNCS[key](user_query)
+            results.extend(topic_results)
+        except Exception as e:
+            current_app.logger.error(f"Error searching {key}: {e}")
+            continue
 
     if not results:
-        return jsonify({
-            "status": "error",
-            "message": "Nothing was found"
-        }), 404
-    
+        return jsonify({"status":"error","message":"Nothing was found"}), 404
+
     return jsonify({
-        "status": "successful",
-        "message": "Request was successful"
+        "status":  "successful",
+        "message": "Search successful",
+        "results": results
     }), 200

@@ -38,7 +38,7 @@ def objects_search():
     }), 200
 
 @bp.route("/search-especific-object", methods=["GET"])
-def search_especific_object():
+def specific_object():
     data = request.get_json()
     if not data or "id" not in data:
         return jsonify({

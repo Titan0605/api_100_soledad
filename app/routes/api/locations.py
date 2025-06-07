@@ -39,7 +39,7 @@ def locations_search():
     }), 200
 
 @bp.route("/search-especific-location", methods=["GET"])
-def search_especific_location():
+def specific_location():
     data = request.get_json()
     if not data or "id" not in data:
         return jsonify({

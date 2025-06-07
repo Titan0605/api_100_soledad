@@ -5,7 +5,7 @@ bp = Blueprint("api_relationships", __name__)
 search_model = SearchingModel()
 
 @bp.route("/relationships-search")
-def search_characters():
+def search_relationships():
     data = request.get_json()
     if not data or "query" not in data:
         return jsonify({
@@ -39,7 +39,7 @@ def search_characters():
     }), 200
 
 @bp.route("/search-especific-relationship", methods=['GET'])
-def search_especific_character():
+def specific_relationship():
     data = request.get_json()
     if not data or "id" not in data:
         return jsonify({

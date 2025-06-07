@@ -39,7 +39,7 @@ def search_characters():
     }), 200
 
 @bp.route("/search-especific-character", methods=['GET'])
-def search_especific_character():
+def specific_character():
     data = request.get_json()
     if not data or "id" not in data:
         return jsonify({
