@@ -2,12 +2,12 @@
 {% block title %} 100 años de soledad {% endblock %} 
 {%block main%}
     <div class="flex flex-col justify-self-center content-center p-8 gap-4">
-        <div class="flex items-center gap-7">
+        <div class="flex items-center gap-8">
 
             <!-- EVENTOS -->
             <div>
                 <input type="checkbox" id="eventos" class="peer hidden" value="eventos">
-                <label for="eventos" class="filters h-13 bg-gray-800 p-2 rounded-md cursor-pointer flex items-center gap-2 text-white shadow-lg px-3 font-bold text-lg transition-colors duration-300 peer-checked:bg-red-500 peer-checked:text-white">
+                <label for="eventos" class="filters h-13 bg-gray-800 p-2 rounded-md cursor-pointer flex items-center gap-2 text-white shadow-lg px-3 font-semibold text-lg transition-colors duration-300 peer-checked:bg-red-500 peer-checked:text-white transition-all duration-300 transform hover:scale-105">
                 <span class="select-none">Eventos</span>
                 </label>
             </div>
@@ -15,7 +15,7 @@
             <!-- PERSONAJES -->
             <div>
                 <input type="checkbox" id="personajes" class="peer hidden" value="personajes">
-                <label for="personajes" class="filters h-13 bg-gray-800 p-2 rounded-md cursor-pointer flex items-center gap-2 text-white shadow-lg px-3 font-bold text-lg transition-colors duration-300 peer-checked:bg-blue-500 peer-checked:text-white">
+                <label for="personajes" class="filters h-13 bg-gray-800 p-2 rounded-md cursor-pointer flex items-center gap-2 text-white shadow-lg px-3 font-semibold text-lg transition-colors duration-300 peer-checked:bg-blue-500 peer-checked:text-white transition-all duration-300 transform hover:scale-105">
                 <span class="select-none">Personajes</span>
                 </label>
             </div>
@@ -23,7 +23,7 @@
             <!-- LOCALIZACIONES -->
             <div>
                 <input type="checkbox" id="localizaciones" class="peer hidden" value="localizaciones">
-                <label for="localizaciones" class="filters h-13 bg-gray-800 p-2 rounded-md cursor-pointer flex items-center gap-2 text-white shadow-lg px-3 font-bold text-lg transition-colors duration-300 peer-checked:bg-green-500 peer-checked:text-white">
+                <label for="localizaciones" class="filters h-13 bg-gray-800 p-2 rounded-md cursor-pointer flex items-center gap-2 text-white shadow-lg px-3 font-semibold text-lg transition-colors duration-300 peer-checked:bg-green-500 peer-checked:text-white transition-all duration-300 transform hover:scale-105">
                 <span class="select-none">Localizaciones</span>
                 </label>
             </div>
@@ -31,7 +31,7 @@
             <!-- OBJETOS -->
             <div>
                 <input type="checkbox" id="objetos" class="peer hidden" value="objetos">
-                <label for="objetos" class="filters h-13 bg-gray-800 p-2 rounded-md cursor-pointer flex items-center gap-2 text-white shadow-lg px-3 font-bold text-lg transition-colors duration-300 peer-checked:bg-yellow-500 peer-checked:text-black">
+                <label for="objetos" class="filters h-13 bg-gray-800 p-2 rounded-md cursor-pointer flex items-center gap-2 text-white shadow-lg px-3 font-semibold text-lg transition-colors duration-300 peer-checked:bg-yellow-500 transition-all duration-300 transform hover:scale-105">
                 <span class="select-none">Objetos</span>
                 </label>
             </div>
@@ -45,8 +45,8 @@
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                     <i class="fa-solid fa-magnifying-glass text-white"></i>
                 </div>
-                <input id="to_search" name="to_search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Aureliano Buendia" required />
-                <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                <input id="to_search" name="to_search" class="block w-full p-4 ps-10 text-md text-white font-semibold border border-gray-600 rounded-lg bg-gray-700 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 hover:shadow-2xl" placeholder="Aureliano Buendia" required />
+                <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Search</button>
             </div>
         </form>
 
