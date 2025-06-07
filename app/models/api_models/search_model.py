@@ -18,13 +18,16 @@ class SearchingModel:
         return self._client
     
     @property
-    def collection(self, collection) -> Collection:
-        self._users_collection = get_collection(collection)
+    def collection(self) -> Collection:
+        self._users_collection = get_collection("")
         return self._users_collection
     
+    def getCollection(self, collection) -> Collection:
+        self._users_collection = get_collection(collection)
+        return self._users_collection
 
     def search_general(self, query, collection_name):
-        db = self.collection(collection_name)
+        db = self.getCollection(collection_name)
 
         results = db.find(
         {"$text": {"$search": query}},
@@ -34,8 +37,11 @@ class SearchingModel:
         return results
     
     def search_especific(self, id, collection_name):
-        db = self.collection(collection_name)
-        
-        information = db.find_one({"_id": ObjectId(id)})
-
+        db = self.getCollection(collection_name)
+        # Convierte la cadena a ObjectId antes de buscar
+        try:
+            oid = ObjectId(id)
+        except Exception:
+            return None
+        information = db.find_one({"_id": oid})
         return information
