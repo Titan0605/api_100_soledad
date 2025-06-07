@@ -1,4 +1,4 @@
-from models import SearchingModel
+from app.models import SearchingModel
 search_model = SearchingModel()
 
 def iterate_arrays_api(array, collection_name):

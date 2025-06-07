@@ -1,1 +1,1 @@
-from models.api_models.search_model import SearchingModel
+from .api_models import SearchingModel

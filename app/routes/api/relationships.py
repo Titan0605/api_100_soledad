@@ -1,6 +1,5 @@
 from flask import Blueprint, request, jsonify
-from models import SearchingModel
-from utils import iterate_arrays_api
+from app.models import SearchingModel
 
 bp = Blueprint("api_relationships", __name__)
 search_model = SearchingModel()
