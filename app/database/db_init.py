@@ -1,7 +1,6 @@
 from pymongo import MongoClient
 import os
 
-
 def init_db(app) -> MongoClient:
     MONGO_USER = os.environ.get("DB_USER")
     MONGO_PASSWORD = os.environ.get("DB_PASSWORD")
