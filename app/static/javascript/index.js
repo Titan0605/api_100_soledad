@@ -2,7 +2,8 @@ const to_search = document.getElementById('to_search');
 const search_btn = document.getElementById('search_btn');
 const checkboxes = document.querySelectorAll('.tag');
 
-search_btn.addEventListener('click', async function () {
+search_btn.addEventListener('click', async function (event) {
+    event.preventDefault();
     try {
         const valueInput = to_search.value;
         const checkboxArray = Array.from(checkboxes);
