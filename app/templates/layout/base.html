@@ -7,24 +7,18 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>{%block title%}{%endblock%}</title>
 </head>
-<body>
+<body class="bg-blue-50/90">
     <header class="antialiased bg-gray-50 dark:bg-gray-900">
-      <nav class="bg-gray-800 border-b border-gray-200 px-4 py-3 dark:bg-gray-800 dark:border-gray-700 z-50">
-        <div class="flex flex-wrap justify-between items-center">
+      <nav class="bg-gray-800 border-b border-gray-200 px-4 py-4 dark:bg-gray-800 dark:border-gray-700 z-50">
+        <div class="flex flex-wrap justify-center items-center">
           <div class="flex gap-2">
             <!-- Toggle button -->
             </button>
-            <a href="" class="flex items-center justify-between gap-4 mr-4 hover:scale-105 transition-transform duration-300">
+            <a href="" class="flex items-center justify-between gap-4 mr-4 transition-all duration-100 transform hover:scale-105">
               <i class="fa-solid fa-book-bookmark text-3xl text-white mt-1"></i> 
               <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">100 años de soledad</span>
             </a>
           </div>
-          
-          <div class="gap-4 hidden sm:flex mr-3">
-            <a href="#" class="text-white/70 text-xs hover:scale-105 hover:duration-300 hover:transition-transform">Personajes</a>
-            <a href="#" class="text-white/70 text-xs hover:scale-105 hover:duration-300 hover:transition-transform">Eventos</a>
-            <a href="#" class="text-white/70 text-xs hover:scale-105 hover:duration-300 hover:transition-transform">Localizaciones</a>
-          </div> 
         </div>
       </nav>
 
@@ -35,6 +29,8 @@
         {%block main%}{%endblock%}
     </main>
 
-    {%block scripts%}{%endblock%}
+    {%block scripts%}
+    
+    {%endblock%}
 </body>
 </html>
