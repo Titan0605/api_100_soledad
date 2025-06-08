@@ -81,14 +81,14 @@
       </div>
 
       <div class="flex flex-wrap justify-center gap-2 mb-6">
-        <button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-3 rounded" onclick="mostrarFormulario('formEvento')">Evento</button>
-        <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded" onclick="mostrarFormulario('formPersonaje')">Personaje</button>
-        <button class="bg-green-500 hover:bg-green-600 text-white font-semibold py-1 px-3 rounded" onclick="mostrarFormulario('formObjeto')">Objeto</button>
-        <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-1 px-3 rounded" onclick="mostrarFormulario('formLocalizacion')">Localización</button>
+        <button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-3 rounded" onclick="mostrarFormulario('formEvent')">Evento</button>
+        <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded" onclick="mostrarFormulario('formCharacter')">Personaje</button>
+        <button class="bg-green-500 hover:bg-green-600 text-white font-semibold py-1 px-3 rounded" onclick="mostrarFormulario('formObject')">Objeto</button>
+        <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-1 px-3 rounded" onclick="mostrarFormulario('formLocation')">Localización</button>
       </div>
 
       <!-- Formularios -->
-      <form id="formEvento" class="hidden space-y-3">
+      <form id="formEvent" class="hidden space-y-3">
         <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Nombre del evento" />
         <textarea class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Descripción"></textarea>
         <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Capítulo" />
@@ -101,7 +101,7 @@
         <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Consecuencias (separado por coma)" />
       </form>
 
-      <form id="formPersonaje" class="hidden space-y-3">
+      <form id="formCharacter" class="hidden space-y-3">
         <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Nombre completo" />
         <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Generación" />
         <textarea class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Descripción física"></textarea>
@@ -113,7 +113,7 @@
         <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Simbolismo" />
       </form>
 
-      <form id="formObjeto" class="hidden space-y-3">
+      <form id="formObject" class="hidden space-y-3">
         <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Nombre del objeto" />
         <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Tipo (mágico, simbólico, cotidiano)" />
         <textarea class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Descripción"></textarea>
@@ -125,7 +125,7 @@
         <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Importancia narrativa" />
       </form>
 
-      <form id="formLocalizacion" class="hidden space-y-3">
+      <form id="formLocation" class="hidden space-y-3">
         <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Nombre de la localización" />
         <input class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Tipo (natural, mítica, construcción)" />
         <textarea class="w-full p-2 rounded bg-gray-800 text-white" placeholder="Descripción"></textarea>
@@ -142,34 +142,20 @@
     </div>
   </div>
 
-  <div id="results" class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-    <div class="bg-gray-800 text-white rounded-2xl shadow-lg p-6 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200">
-      <h2 class="text-xl font-bold">Aureliano Buendía</h2>
-      <p><span class="font-semibold text-white">Tipo:</span> Personaje</p>
-      <p class="break-words"><span class="font-semibold text-white">Descripción:</span> Uno de los miembros más destacados de la familia Buendía, conocido por su liderazgo durante la guerra.</p>
-      <p class="break-words"><span class="font-semibold text-white">Eventos:</span> Guerra civil, fundación de Macondo.</p>
-      <p><span class="font-semibold text-white">Relevancia:</span> Alta</p>
-    </div>
+  <div id="results_container" class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    
   </div>
+  
+  <div class="flex flex-col items-center justify-center hidden" id="not_found">
+    <p class="text-center">No se encontraron resultados :c</p>
+    <ol>
+      <li>Prueba con palabras clave más generales</li>
+      <li>Prueba con menos palabras clave</li>
+    </ol>
+  </div>
+
 </div>
-<!-- Script provisional para ocultar el formulario pq no le se al JS -->
-<script>
-  function mostrarFormulario(id) {
-    ["formEvento", "formPersonaje", "formObjeto", "formLocalizacion"].forEach((f) => {
-      document.getElementById(f).classList.add("hidden");
-    });
-    document.getElementById(id).classList.remove("hidden");
-  }
 
-  document.getElementById("openModal").addEventListener("click", function () {
-    document.getElementById("customModal").classList.remove("hidden");
-  });
-
-  document.getElementById("customModal").addEventListener("click", function (e) {
-    if (e.target === this) {
-      this.classList.add("hidden");
-    }
-  });
-</script>
 <script src="{{ url_for('static', filename='javascript/index.js') }}"></script>
+<script src="{{ url_for('static', filename='javascript/insertService.js') }}"></script>
 {%endblock%}
