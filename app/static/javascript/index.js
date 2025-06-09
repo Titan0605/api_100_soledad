@@ -87,7 +87,11 @@ function drawResults(results) {
                             <span class="text-xs text-gray-400">
                                 ${result.importancia ? `Importancia ${result.importancia}` : ''}
                             </span>
-                            <span class="text-xs text-blue-400 font-medium">Ver más</span>
+                            <span class="text-xs text-blue-400 font-medium">
+                                <button id="see_more" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value="${result._id}">
+                                    Ver más
+                                </button>
+                            </span>
                         </div>
                     </div>`
                 break;
@@ -97,8 +101,7 @@ function drawResults(results) {
                         <h2 class="text-xl font-bold text-white">${result.nombre} ${result.apellido || ''}</h2>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="text-sm bg-blue-600 text-white px-2 py-1 rounded">Personaje</span>                            
-                            <span class="text-sm bg-purple-600 text-white px-2 py-1 rounded">Generación ${result.generacion}</span>
-                            <span class="text-sm text-gray-300">${result.apellido}</span>
+                            <span class="text-sm bg-purple-600 text-white px-2 py-1 rounded">Generación ${result.generacion}</span>                            
                         </div>
                     </div>
                     <div class="mb-3">
@@ -109,15 +112,17 @@ function drawResults(results) {
                     <div class="mb-3">
                         <p class="text-white font-semibold text-sm mb-1">Personalidad:</p>
                         <div class="flex flex-wrap gap-1">
-                            ${result.personalidad ? result.personalidad.slice(0, 3).map(trait =>
-                                    `<span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">${trait}</span>`
+                            ${result.personalidad ? result.personalidad.slice(0, 3).map(personalidad =>                            
+                                    `<span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">${personalidad}</span>`
                                 ).join('') : '<span class="text-gray-400 text-xs">No disponible</span>'}
                         </div>
                     </div>
                     <div class="mb-3">
                         <p class="text-white font-semibold text-sm mb-1">Simbolismo:</p>
                         <p class="text-gray-300 text-sm italic">
-                            ${result.simbolismo && result.simbolismo[0] ? result.simbolismo[0] : 'No disponible'}
+                            ${result.simbolismo ? result.simbolismo.slice(0, 3).map(simbolismo =>                                
+                                `${simbolismo}` 
+                            ).join(', ') : 'No disponible'}
                         </p>
                     </div>
                     <div class="mt-4 pt-3 border-t border-gray-700">
@@ -125,7 +130,11 @@ function drawResults(results) {
                             <span class="text-xs text-gray-400">
                                 ${result.capitulos_aparicion ? `Aparece en ${result.capitulos_aparicion.length} capítulo(s)` : ''}
                             </span>
-                            <span class="text-xs text-blue-400 font-medium">Ver más</span>
+                            <span class="text-xs text-blue-400 font-medium">
+                                <button id="see_more" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value="${result._id}">
+                                    Ver más
+                                </button>
+                            </span>
                         </div>
                     </div>`
                 break;
@@ -134,9 +143,7 @@ function drawResults(results) {
                 card.innerHTML = `<div class="mb-3">
                         <h2 class="text-xl font-bold text-white">${result.nombre} ${result.apellido || ''}</h2>
                         <div class="flex items-center gap-2 mt-1">
-                            <span class="text-sm bg-green-500 text-white px-2 py-1 rounded">Localización</span>                            
-                            <span class="text-sm bg-purple-600 text-white px-2 py-1 rounded">Generación ${result.generacion}</span>
-                            <span class="text-sm text-gray-300">${result.apellido}</span>
+                            <span class="text-sm bg-green-500 text-white px-2 py-1 rounded">Localización</span>                                                        
                         </div>
                     </div>
                     <div class="mb-3">
@@ -145,17 +152,19 @@ function drawResults(results) {
                         </p>
                     </div>
                     <div class="mb-3">
-                        <p class="text-white font-semibold text-sm mb-1">Personalidad:</p>
+                        <p class="text-white font-semibold text-sm mb-1">Personajes Involucrados:</p>
                         <div class="flex flex-wrap gap-1">
-                            ${result.personalidad ? result.personalidad.slice(0, 3).map(trait =>
-                                    `<span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">${trait}</span>`
+                            ${result.personajes_asociados ? result.personajes_asociados.slice(0, 3).map(personaje =>
+                                    `<span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">${personaje.nombre}</span>`
                                 ).join('') : '<span class="text-gray-400 text-xs">No disponible</span>'}
                         </div>
                     </div>
                     <div class="mb-3">
                         <p class="text-white font-semibold text-sm mb-1">Simbolismo:</p>
                         <p class="text-gray-300 text-sm italic">
-                            ${result.simbolismo && result.simbolismo[0] ? result.simbolismo[0] : 'No disponible'}
+                            ${result.simbolismo ? result.simbolismo.slice(0, 3).map(simbolismo =>                                
+                                `${simbolismo}` 
+                            ).join(', ') : 'No disponible'}
                         </p>
                     </div>
                     <div class="mt-4 pt-3 border-t border-gray-700">
@@ -163,12 +172,55 @@ function drawResults(results) {
                             <span class="text-xs text-gray-400">
                                 ${result.capitulos_aparicion ? `Aparece en ${result.capitulos_aparicion.length} capítulo(s)` : ''}
                             </span>
-                            <span class="text-xs text-blue-400 font-medium">Ver más</span>
+                            <span class="text-xs text-blue-400 font-medium">
+                                <button id="see_more" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value="${result._id}">
+                                    Ver más
+                                </button>
+                            </span>
                         </div>
                     </div>`
                 break
             case 'objects':
-                console.log('LALALALA OBJETOS')
+                card.className = 'bg-gray-800 text-white rounded-2xl shadow-lg p-6 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200'
+                card.innerHTML = `<div class="mb-3">
+                        <h2 class="text-xl font-bold text-white">${result.nombre} ${result.apellido || ''}</h2>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="text-sm bg-yellow-500 text-white px-2 py-1 rounded">Objeto</span>                                                        
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            ${result.descripcion ? result.descripcion.slice(0, result.descripcion.length) : 'Sin descripción disponible'}
+                        </p>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-white font-semibold text-sm mb-1">Propietarios:</p>
+                        <div class="flex flex-wrap gap-1">
+                            ${result.propietarios ? result.propietarios.slice(0, 3).map(propietario =>
+                                    `<span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">${propietario.nombre}</span>`
+                                ).join('') : '<span class="text-gray-400 text-xs">No disponible</span>'}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-white font-semibold text-sm mb-1">Simbolismo:</p>
+                        <p class="text-gray-300 text-sm italic">
+                            ${result.simbolismo ? result.simbolismo.slice(0, 3).map(simbolismo =>                                
+                                `${simbolismo}` 
+                            ).join(', ') : 'No disponible'}
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-gray-700">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-400">
+                                ${result.capitulos_aparicion ? `Aparece en ${result.capitulos_aparicion} capítulo(s)` : ''}
+                            </span>
+                            <span class="text-xs text-blue-400 font-medium">
+                                <button id="see_more" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value="${result._id}">
+                                    Ver más
+                                </button>
+                            </span>
+                        </div>
+                    </div>`
             default:
                 break;
         }
