@@ -40,10 +40,22 @@ class SearchingModel:
     
     def search_especific(self, id, collection_name):
         db = self.getCollection(collection_name)
-        # Convierte la cadena a ObjectId antes de buscar
         try:
             oid = ObjectId(id)
         except Exception:
             return None
         information = db.find_one({"_id": oid})
         return information
+    
+    def update(self, id, collection_name, dictionary):
+        db = self.getCollection(collection_name)
+        try:
+            oid = ObjectId(id)
+            db.update_one(
+                {"_id": oid},
+                {"$set": dictionary}
+            )
+            return True
+        except Exception as e:
+            print(f"Error updating: {e}")
+            return False
