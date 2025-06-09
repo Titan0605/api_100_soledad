@@ -55,6 +55,8 @@ def general_search():
 
     if not results:
         return jsonify({"status":"error","message":"Nothing was found"}), 404
+    
+    results.sort(key=lambda x: x["score"], reverse=True)
 
     return jsonify({
         "status":  "successful",
