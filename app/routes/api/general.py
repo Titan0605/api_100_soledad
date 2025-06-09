@@ -8,7 +8,7 @@ from app.routes.api.objects        import objects_search
 from app.routes.api.relationships  import search_relationships
 from app.routes.api.symbols        import search_symbols
 
-bp = Blueprint("api_search", __name__)
+bp = Blueprint("api_general", __name__)
 
 TOPIC_FUNCS = {
     "chapters":       search_chapters,
@@ -63,3 +63,4 @@ def general_search():
         "message": "Search successful",
         "results": results
     }), 200
+
