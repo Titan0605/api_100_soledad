@@ -19,7 +19,7 @@ search_btn.addEventListener('click', async function (event) {
             'filters': checked
         };
 
-        if (checked.length > 0 && valueInput) {
+        if (checked.length >= 0 && valueInput) {
             document.getElementById('loading_symbol').classList.remove('hidden');
 
             const response = await fetch("/general-search", {
@@ -64,7 +64,7 @@ function drawResults(results) {
                         <h2 class="text-xl font-bold text-white">${result.nombre}</h2>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="text-sm bg-red-600 text-white px-2 py-1 rounded">Evento</span>                            
-                            <span class="text-sm bg-purple-600 text-white px-2 py-1 rounded">Capitulo ${result.capitulo}</span>                            
+                            <span class="text-sm text-gray-300 px-2 py-1 rounded">Capitulo ${result.capitulo}</span>                            
                         </div>
                     </div>
                     <div class="mb-3">
@@ -105,7 +105,7 @@ function drawResults(results) {
                         <h2 class="text-xl font-bold text-white">${result.nombre} ${result.apellido || ''}</h2>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="text-sm bg-blue-600 text-white px-2 py-1 rounded">Personaje</span>                            
-                            <span class="text-sm bg-purple-600 text-white px-2 py-1 rounded">Generación ${result.generacion}</span>                            
+                            <span class="text-sm text-gray-300 px-2 py-1 rounded">Generación ${result.generacion}</span>                            
                         </div>
                     </div>
                     <div class="mb-3">
