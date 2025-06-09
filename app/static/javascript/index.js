@@ -20,6 +20,8 @@ search_btn.addEventListener('click', async function (event) {
         };
 
         if (checked.length > 0 && valueInput) {
+            document.getElementById('loading_symbol').classList.remove('hidden');
+
             const response = await fetch("/general-search", {
                 method: "POST",
                 headers: {
@@ -45,6 +47,8 @@ search_btn.addEventListener('click', async function (event) {
 
 function drawResults(results) {
     document.getElementById('not_found').classList.add('hidden');
+    document.getElementById('loading_symbol').classList.add('hidden');
+
     const results_container = document.getElementById('results_container');
     results_container.innerHTML = ``
 
