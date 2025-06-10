@@ -1,12 +1,12 @@
 from flask import Blueprint, request, jsonify, current_app
-from app.routes.api.chapters       import search_chapters
-from app.routes.api.characters     import search_characters
-from app.routes.api.dreams_visions import dreams_visions_search
-from app.routes.api.events         import search_events
-from app.routes.api.locations      import locations_search
-from app.routes.api.objects        import objects_search
-from app.routes.api.relationships  import search_relationships
-from app.routes.api.symbols        import search_symbols
+from app.routes.api.chapters       import search_chapters, update_chapters
+from app.routes.api.characters     import search_characters, update_characters
+from app.routes.api.dreams_visions import dreams_visions_search, update_dreams_visions
+from app.routes.api.events         import search_events, update_events
+from app.routes.api.locations      import locations_search, update_locations
+from app.routes.api.objects        import objects_search, update_objects
+from app.routes.api.relationships  import search_relationships, update_relationships
+from app.routes.api.symbols        import search_symbols, update_symbols
 
 bp = Blueprint("api_general", __name__)
 
@@ -64,3 +64,38 @@ def general_search():
         "results": results
     }), 200
 
+TOPIC_FUNCS_UPDATE = {
+    "chapters":       update_chapters,
+    "characters":     update_characters,
+    "dreams_visions": update_dreams_visions,
+    "events":         update_events,
+    "locations":      update_locations,
+    "objects":        update_objects,
+    "relationships":  update_relationships,
+    "symbols":        update_symbols,
+}
+
+@bp.route("/general-update", methods=["PUT"])
+def general_update():
+    data = request.get_json(force=True)
+    event_id   = data.get("id", "").strip()
+    dictionary = data.get("dictionary")
+    collection = data.get("collection", "").strip()
+
+    if not event_id or not dictionary or not collection:
+        return jsonify({"status":"error","message":"Fields 'id', 'dictionary' and 'collection' are required"}), 400
+    if not isinstance(dictionary, dict):
+        return jsonify({"status":"error","message":"the information must be sent as dictionary"}), 400
+    if collection not in TOPIC_FUNCS_UPDATE:
+        return jsonify({"status":"error","message":f"Unknown collection: {collection}"}), 400
+
+    try:
+        success = TOPIC_FUNCS_UPDATE[collection](event_id, dictionary)
+    except Exception as e:
+        current_app.logger.error(f"Update error for {collection}: {e}")
+        success = False
+
+    if success:
+        return jsonify({"status":"successful","message":"the update went well"}), 200
+
+    return jsonify({"status":"error","message":"something went wrong in the update"}), 400
