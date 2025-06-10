@@ -2,7 +2,7 @@ from flask import Flask
 from dotenv import load_dotenv
 from app.database.db_init import init_db
 from app.utils.db_utils import utils_save_db
-from app.routes.views import index_view
+from app.routes.views import index_view, view_more
 from app.routes.api import chapters, characters, dreams_visions, general, symbols, relationships, events, locations, objects
 
 def create_app() -> Flask:
@@ -14,6 +14,7 @@ def create_app() -> Flask:
     utils_save_db(mongo_client)
     
     app.register_blueprint(index_view.bp)
+    app.register_blueprint(view_more.bp)
     app.register_blueprint(chapters.bp)
     app.register_blueprint(characters.bp)
     app.register_blueprint(dreams_visions.bp)
