@@ -111,7 +111,7 @@
       <section class="bg-gray-800 rounded-2xl shadow-lg p-6">
         <h2 class="text-2xl font-bold text-white mb-6 border-b border-gray-700 pb-3">Muerte y Legado</h2>
 
-        <div class="bg-gradient-to-r from-red-900/20 to-purple-900/20 rounded-lg p-6 border border-red-600/30">
+        <div class="p-6">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
               <h3 class="text-white font-semibold text-sm mb-2">Capítulo de muerte</h3>
@@ -140,7 +140,7 @@
       <section class="bg-gray-800 rounded-2xl shadow-lg p-6">
         <h3 class="text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Relaciones Familiares</h3>
         <div class="space-y-3">
-          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200 cursor-pointer">
+          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200">
             <div class="flex items-center gap-2 mb-1">
               <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
             </div>
@@ -148,7 +148,7 @@
             <p class="text-gray-300 text-xs mt-1">Hermano gemelo - Personalidades opuestas</p>
           </div>
 
-          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200 cursor-pointer">
+          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200">
             <div class="flex items-center gap-2 mb-1">
               <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
             </div>
@@ -162,7 +162,7 @@
       <section class="bg-gray-800 rounded-2xl shadow-lg p-6">
         <h3 class="text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Localizaciones</h3>
         <div class="space-y-3">
-          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200 cursor-pointer">
+          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200">
             <div class="flex items-center gap-2 mb-1">
               <span class="text-xs bg-green-600 text-white px-2 py-1 rounded-full">Localización</span>
             </div>
@@ -170,7 +170,7 @@
             <p class="text-gray-300 text-xs mt-1">Escenario de la masacre</p>
           </div>
 
-          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200 cursor-pointer">
+          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200">
             <div class="flex items-center gap-2 mb-1">
               <span class="text-xs bg-green-600 text-white px-2 py-1 rounded-full">Localización</span>
             </div>
@@ -184,7 +184,7 @@
       <section class="bg-gray-800 rounded-2xl shadow-lg p-6">
         <h3 class="text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Objetos Relacionados</h3>
         <div class="space-y-3">
-          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200 cursor-pointer">
+          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200">
             <div class="flex items-center gap-2 mb-1">
               <span class="text-xs bg-yellow-600 text-white px-2 py-1 rounded-full">Objeto Mágico</span>
               <span class="text-xs text-gray-400">10/10</span>
@@ -199,7 +199,7 @@
       <section class="bg-gray-800 rounded-2xl shadow-lg p-6">
         <h3 class="text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Símbolos Asociados</h3>
         <div class="space-y-3">
-          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200 cursor-pointer">
+          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200">
             <div class="flex items-center gap-2 mb-1">
               <span class="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">Símbolo</span>
             </div>
@@ -207,7 +207,7 @@
             <p class="text-gray-300 text-xs mt-1">La importancia del testimonio</p>
           </div>
 
-          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200 cursor-pointer">
+          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200">
             <div class="flex items-center gap-2 mb-1">
               <span class="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">Símbolo</span>
             </div>
@@ -221,34 +221,16 @@
 
   <!-- Botón de regreso -->
   <div class="mt-8 text-center">
-    <button onclick="window.history.back()" class="bg-blue-600 hover:bg-blue-800 text-white font-medium rounded-lg px-6 py-3 transition-colors duration-200">← Volver atrás</button>
+    <button onclick="window.history.back()" class="bg-blue-600 hover:bg-blue-800 text-white font-medium rounded-lg px-6 py-3 transition-colors duration-200">Volver atrás</button>
   </div>
 </div>
 
-<script>
-  // Smooth scroll para navegación interna
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute("href"));
-      if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    });
-  });
-</script>
 <!-- EVENTO -->
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <nav class="mb-6">
     <div class="flex items-center space-x-2 text-sm text-gray-400">
       <a href="/" class="hover:text-blue-400 transition-colors">Inicio</a>
       <span>/</span>
-      <a href="/eventos" class="hover:text-blue-400 transition-colors">Eventos</a>
-      <span>/</span>
-      <span class="text-white">Masacre de trabajadores</span>
     </div>
   </nav>
 
@@ -356,9 +338,6 @@
     <div class="flex items-center space-x-2 text-sm text-gray-400">
       <a href="/" class="hover:text-blue-400 transition-colors">Inicio</a>
       <span>/</span>
-      <a href="/objetos" class="hover:text-blue-400 transition-colors">Objetos</a>
-      <span>/</span>
-      <span class="text-white">Pergaminos de Melquíades</span>
     </div>
   </nav>
 
@@ -454,6 +433,635 @@
             <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
             <h4 class="text-white font-bold text-sm mt-2">Aureliano Babilonia</h4>
             <p class="text-gray-300 text-xs mt-1">El descifrador final de los pergaminos</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<!-- Localizaciones -->
+<div class="container mx-auto px-4 py-6 max-w-7xl">
+  <nav class="mb-6">
+    <div class="flex items-center space-x-2 text-sm text-gray-400">
+      <a href="/" class="hover:text-blue-400 transition-colors">Inicio</a>
+      <span>/</span>
+    </div>
+  </nav>
+
+  <header class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 mb-8">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+      <div class="flex-1">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Casa de los Buendía</h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-4">Corazón del universo narrativo</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="text-xs md:text-sm bg-green-600 text-white px-3 py-1 rounded-full">Lugar</span>
+          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Emblemático</span>
+          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Caps. 1-20</span>
+        </div>
+      </div>
+      <div class="text-center lg:text-right mt-4 lg:mt-0">
+        <div class="text-2xl md:text-3xl font-bold text-green-400">10/10</div>
+        <div class="text-xs md:text-sm text-gray-400">Importancia narrativa</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 md:gap-8">
+    <div class="xl:col-span-2 space-y-6">
+      <!-- INFORMACIÓN -->
+      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
+        <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Información del Lugar</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div class="bg-gray-700 rounded-lg p-4">
+            <h3 class="text-white font-semibold text-sm mb-2">Ubicación</h3>
+            <p class="text-gray-300 text-sm">Centro de Macondo</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4">
+            <h3 class="text-white font-semibold text-sm mb-2">Tipo</h3>
+            <p class="text-gray-300 text-sm">Residencia familiar</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4">
+            <h3 class="text-white font-semibold text-sm mb-2">Estado Actual</h3>
+            <p class="text-gray-300 text-sm">Destruida por el huracán</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4">
+            <h3 class="text-white font-semibold text-sm mb-2">Fundador</h3>
+            <p class="text-gray-300 text-sm">José Arcadio Buendía</p>
+          </div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="bg-gray-700 rounded-lg p-4 mb-4">
+          <h3 class="text-white font-semibold text-sm mb-2">Descripción</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            La casa de los Buendía es el epicentro de la saga familiar, testigo silencioso de siete generaciones. Sus muros han presenciado nacimientos, muertes, amores, traiciones y el peso
+            inexorable de la soledad que marca a la estirpe.
+          </p>
+        </div>
+
+        <!-- Espacios importantes -->
+        <div class="mb-6">
+          <h3 class="text-white font-semibold text-sm mb-3">Espacios Importantes</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="bg-gray-700 rounded-lg p-3">
+              <h4 class="text-white font-semibold text-xs mb-1">Cuarto de Melquíades</h4>
+              <p class="text-gray-300 text-xs">Santuario de la sabiduría y los pergaminos</p>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-3">
+              <h4 class="text-white font-semibold text-xs mb-1">Laboratorio de alquimia</h4>
+              <p class="text-gray-300 text-xs">Espacio de experimentación y reflexión</p>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-3">
+              <h4 class="text-white font-semibold text-xs mb-1">Patio de los almendros</h4>
+              <p class="text-gray-300 text-xs">Centro de reunión familiar</p>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-3">
+              <h4 class="text-white font-semibold text-xs mb-1">Corredor</h4>
+              <p class="text-gray-300 text-xs">Espacio de contemplación y espera</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANSFORMACIONES -->
+      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
+        <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Transformaciones</h2>
+        <div class="space-y-4">
+          <div class="bg-gray-700 rounded-lg p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-sm bg-green-600 text-white px-2 py-1 rounded">Construcción</span>
+            </div>
+            <p class="text-gray-300 text-sm">José Arcadio Buendía construye la casa con la ayuda de sus vecinos.</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-sm bg-yellow-600 text-white px-2 py-1 rounded">Expansión</span>
+            </div>
+            <p class="text-gray-300 text-sm">Se amplía y modifica a lo largo de las generaciones.</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-sm bg-red-600 text-white px-2 py-1 rounded">Destrucción</span>
+            </div>
+            <p class="text-gray-300 text-sm">Finalmente es arrasada por el huracán profético.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="space-y-6">
+      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
+        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Habitantes Principales</h3>
+        <div class="space-y-3">
+          <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
+            <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
+            <h4 class="text-white font-bold text-sm mt-2">Úrsula Iguarán</h4>
+            <p class="text-gray-300 text-xs mt-1">Matriarca y guardiana de la casa</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
+            <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
+            <h4 class="text-white font-bold text-sm mt-2">José Arcadio Buendía</h4>
+            <p class="text-gray-300 text-xs mt-1">Fundador y patriarca</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<!-- Sueños y Visiones -->
+<div class="container mx-auto px-4 py-6 max-w-7xl">
+  <nav class="mb-6">
+    <div class="flex items-center space-x-2 text-sm text-gray-400">
+      <a href="/" class="hover:text-blue-400 transition-colors">Inicio</a>
+      <span>/</span>
+    </div>
+  </nav>
+
+  <header class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 mb-8">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+      <div class="flex-1">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">La Soledad</h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-4">Tema central de la narrativa</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="text-xs md:text-sm bg-orange-600 text-white px-3 py-1 rounded-full">Concepto</span>
+          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Filosófico</span>
+          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Transversal</span>
+        </div>
+      </div>
+      <div class="text-center lg:text-right mt-4 lg:mt-0">
+        <div class="text-2xl md:text-3xl font-bold text-orange-400">10/10</div>
+        <div class="text-xs md:text-sm text-gray-400">Importancia narrativa</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 md:gap-8">
+    <div class="xl:col-span-2 space-y-6">
+      <!-- INFORMACIÓN -->
+      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
+        <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Definición del Concepto</h2>
+
+        <!-- Descripción -->
+        <div class="bg-gray-700 rounded-lg p-4 mb-6">
+          <h3 class="text-white font-semibold text-sm mb-2">Descripción</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            La soledad en Cien años de soledad no es solo un estado emocional, sino una condición existencial que define a la estirpe Buendía. Es la incapacidad de conectar genuinamente con otros, de
+            romper el ciclo de repetición que los condena al aislamiento.
+          </p>
+        </div>
+
+        <!-- Manifestaciones -->
+        <div class="mb-6">
+          <h3 class="text-white font-semibold text-sm mb-3">Manifestaciones</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="bg-gray-700 rounded-lg p-3">
+              <h4 class="text-white font-semibold text-xs mb-1">Soledad física</h4>
+              <p class="text-gray-300 text-xs">Aislamiento geográfico de Macondo</p>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-3">
+              <h4 class="text-white font-semibold text-xs mb-1">Soledad emocional</h4>
+              <p class="text-gray-300 text-xs">Incapacidad de amar plenamente</p>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-3">
+              <h4 class="text-white font-semibold text-xs mb-1">Soledad histórica</h4>
+              <p class="text-gray-300 text-xs">Repetición cíclica del destino</p>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-3">
+              <h4 class="text-white font-semibold text-xs mb-1">Soledad existencial</h4>
+              <p class="text-gray-300 text-xs">Falta de trascendencia</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Símbolos relacionados -->
+        <div class="mb-6">
+          <h3 class="text-white font-semibold text-sm mb-3">Símbolos Relacionados</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">El espejo</span>
+            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Los círculos</span>
+            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">El laberinto</span>
+            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">La memoria</span>
+          </div>
+        </div>
+
+        <!-- Sueños y Visiones Relacionados -->
+        <div class="mb-6">
+          <h3 class="text-white font-semibold text-sm mb-3">Sueños y Visiones Relacionados</h3>
+          <div class="grid grid-cols-1 gap-3">
+            <div class="bg-gray-700 rounded-lg p-3">
+              <h4 class="text-white font-semibold text-xs mb-1">Premoniciones de Úrsula</h4>
+              <p class="text-gray-300 text-xs">Visiones sobre la decadencia familiar que refuerzan el tema de la soledad inevitable</p>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-3">
+              <h4 class="text-white font-semibold text-xs mb-1">Sueños proféticos</h4>
+              <p class="text-gray-300 text-xs">Los sueños que anuncian muertes y separaciones, perpetuando el aislamiento</p>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-3">
+              <h4 class="text-white font-semibold text-xs mb-1">Visiones de los pergaminos</h4>
+              <p class="text-gray-300 text-xs">Las revelaciones de Melquíades sobre el destino solitario de la estirpe</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PERSONAJES AFECTADOS -->
+      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
+        <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Personajes Más Afectados</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-gray-700 rounded-lg p-4">
+            <h4 class="text-white font-bold text-sm mb-2">José Arcadio Buendía</h4>
+            <p class="text-gray-300 text-xs">Soledad del visionario incomprendido</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4">
+            <h4 class="text-white font-bold text-sm mb-2">Coronel Aureliano Buendía</h4>
+            <p class="text-gray-300 text-xs">Soledad del poder y la guerra</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4">
+            <h4 class="text-white font-bold text-sm mb-2">Amaranta</h4>
+            <p class="text-gray-300 text-xs">Soledad del amor no correspondido</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4">
+            <h4 class="text-white font-bold text-sm mb-2">Aureliano Babilonia</h4>
+            <p class="text-gray-300 text-xs">Soledad del último de la estirpe</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="space-y-6">
+      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
+        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Conceptos Relacionados</h3>
+        <div class="space-y-3">
+          <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
+            <span class="text-xs bg-orange-600 text-white px-2 py-1 rounded-full">Concepto</span>
+            <h4 class="text-white font-bold text-sm mt-2">El Tiempo Circular</h4>
+            <p class="text-gray-300 text-xs mt-1">La repetición que perpetúa la soledad</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
+            <span class="text-xs bg-orange-600 text-white px-2 py-1 rounded-full">Concepto</span>
+            <h4 class="text-white font-bold text-sm mt-2">El Destino</h4>
+            <p class="text-gray-300 text-xs mt-1">La predestinación que aisla</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Nueva sección de Sueños y Visiones -->
+      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
+        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">De la Colección: Sueños y Visiones</h3>
+        <div class="space-y-3">
+          <div class="bg-gray-700 rounded-lg p-4 hover:bg-purple-600 transition-colors duration-200">
+            <span class="text-xs bg-purple-500 text-white px-2 py-1 rounded-full">Premonición</span>
+            <h4 class="text-white font-bold text-sm mt-2">Visión de la Decadencia</h4>
+            <p class="text-gray-300 text-xs mt-1">Úrsula prevé el fin solitario de la familia</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4 hover:bg-purple-600 transition-colors duration-200">
+            <span class="text-xs bg-purple-500 text-white px-2 py-1 rounded-full">Sueño Profético</span>
+            <h4 class="text-white font-bold text-sm mt-2">Los Pergaminos Revelados</h4>
+            <p class="text-gray-300 text-xs mt-1">Las profecías sobre la soledad eterna</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<!-- SEPARADOR VISUAL -->
+<div class="my-12 md:my-16 border-t-4 border-indigo-600"></div>
+
+<!-- EJEMPLO 5: SÍMBOLO -->
+<div class="container mx-auto px-4 py-6 max-w-7xl">
+  <nav class="mb-6">
+    <div class="flex items-center space-x-2 text-sm text-gray-400">
+      <a href="/" class="hover:text-blue-400 transition-colors">Inicio</a>
+      <span>/</span>
+    </div>
+  </nav>
+
+  <header class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 mb-8">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+      <div class="flex-1">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Los Espejos</h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-4">Símbolo de repetición y autoconocimiento</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="text-xs md:text-sm bg-indigo-600 text-white px-3 py-1 rounded-full">Símbolo</span>
+          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Recurrente</span>
+          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Múltiple</span>
+        </div>
+      </div>
+      <div class="text-center lg:text-right mt-4 lg:mt-0">
+        <div class="text-2xl md:text-3xl font-bold text-indigo-400">9/10</div>
+        <div class="text-xs md:text-sm text-gray-400">Importancia simbólica</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 md:gap-8">
+    <div class="xl:col-span-2 space-y-6">
+      <!-- INFORMACIÓN -->
+      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
+        <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Significado Simbólico</h2>
+
+        <!-- Descripción -->
+        <div class="bg-gray-700 rounded-lg p-4 mb-6">
+          <h3 class="text-white font-semibold text-sm mb-2">Interpretación</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            Los espejos en la obra representan la naturaleza cíclica del tiempo y el destino de los Buendía. Reflejan la repetición de patrones, la búsqueda del autoconocimiento y la imposibilidad de
+            escapar de la propia naturaleza.
+          </p>
+        </div>
+
+        <!-- Apariciones -->
+        <div class="mb-6">
+          <h3 class="text-white font-semibold text-sm mb-3">Apariciones en la Obra</h3>
+          <div class="space-y-3">
+            <div class="bg-gray-700 rounded-lg p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-sm bg-blue-600 text-white px-2 py-1 rounded">Capítulo 6</span>
+              </div>
+              <p class="text-gray-300 text-sm">Los espejos traídos por los gitanos causan asombro y confusión.</p>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-sm bg-purple-600 text-white px-2 py-1 rounded">Capítulo 20</span>
+              </div>
+              <p class="text-gray-300 text-sm">Los espejos reflejan la culminación del destino profético.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Niveles de significado -->
+        <div class="mb-6">
+          <h3 class="text-white font-semibold text-sm mb-3">Niveles de Significado</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="bg-gray-700 rounded-lg p-3">
+              <h4 class="text-white font-semibold text-xs mb-1">Literal</h4>
+              <p class="text-gray-300 text-xs">Objetos que reflejan la imagen</p>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-3">
+              <h4 class="text-white font-semibold text-xs mb-1">Psicológico</h4>
+              <p class="text-gray-300 text-xs">Autoconocimiento y introspección</p>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-3">
+              <h4 class="text-white font-semibold text-xs mb-1">Temporal</h4>
+              <p class="text-gray-300 text-xs">Repetición cíclica del tiempo</p>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-3">
+              <h4 class="text-white font-semibold text-xs mb-1">Metafísico</h4>
+              <p class="text-gray-300 text-xs">Naturaleza de la realidad</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="space-y-6">
+      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
+        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Símbolos Relacionados</h3>
+        <div class="space-y-3">
+          <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
+            <span class="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">Símbolo</span>
+            <h4 class="text-white font-bold text-sm mt-2">Los Círculos</h4>
+            <p class="text-gray-300 text-xs mt-1">Representación del tiempo cíclico</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
+            <span class="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">Símbolo</span>
+            <h4 class="text-white font-bold text-sm mt-2">El Laberinto</h4>
+            <p class="text-gray-300 text-xs mt-1">La búsqueda sin salida</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<!-- SEPARADOR VISUAL -->
+<div class="my-12 md:my-16 border-t-4 border-pink-600"></div>
+
+<!-- EJEMPLO 6: RELACIÓN -->
+<div class="container mx-auto px-4 py-6 max-w-7xl">
+  <nav class="mb-6">
+    <div class="flex items-center space-x-2 text-sm text-gray-400">
+      <a href="/" class="hover:text-blue-400 transition-colors">Inicio</a>
+      <span>/</span>
+    </div>
+  </nav>
+
+  <header class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 mb-8">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+      <div class="flex-1">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Aureliano Babilonia y Amaranta Úrsula</h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-4">El amor que cierra la estirpe</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="text-xs md:text-sm bg-pink-600 text-white px-3 py-1 rounded-full">Relación</span>
+          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Amorosa</span>
+          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Capítulo 20</span>
+        </div>
+      </div>
+      <div class="text-center lg:text-right mt-4 lg:mt-0">
+        <div class="text-2xl md:text-3xl font-bold text-pink-400">10/10</div>
+        <div class="text-xs md:text-sm text-gray-400">Importancia narrativa</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 md:gap-8">
+    <div class="xl:col-span-2 space-y-6">
+      <!-- INFORMACIÓN -->
+      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
+        <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Información de la Relación</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div class="bg-gray-700 rounded-lg p-4">
+            <h3 class="text-white font-semibold text-sm mb-2">Tipo de Relación</h3>
+            <p class="text-gray-300 text-sm">Amorosa / Incestuosa</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4">
+            <h3 class="text-white font-semibold text-sm mb-2">Duración</h3>
+            <p class="text-gray-300 text-sm">Breve pero intensa</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4">
+            <h3 class="text-white font-semibold text-sm mb-2">Consecuencia</h3>
+            <p class="text-gray-300 text-sm">Nacimiento del último Aureliano</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4">
+            <h3 class="text-white font-semibold text-sm mb-2">Destino</h3>
+            <p class="text-gray-300 text-sm">Cumplimiento de la profecía</p>
+          </div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="bg-gray-700 rounded-lg p-4 mb-6">
+          <h3 class="text-white font-semibold text-sm mb-2">Descripción</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            El amor entre Aureliano Babilonia y Amaranta Úrsula representa la culminación de la maldición familiar. Su pasión desenfrenada y la ignorancia de su parentesco los lleva a consumar el
+            incesto profetizado, sellando el destino de la estirpe Buendía.
+          </p>
+        </div>
+
+        <!-- Participantes -->
+        <div class="mb-6">
+          <h3 class="text-white font-semibold text-sm mb-3">Participantes</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-gray-700 rounded-lg p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
+              </div>
+              <h4 class="text-white font-bold mb-2">Aureliano Babilonia</h4>
+              <p class="text-gray-300 text-sm">El último de la estirpe, descifrador de pergaminos</p>
+            </div>
+            <div class="bg-gray-700 rounded-lg p-4">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
+              </div>
+              <h4 class="text-white font-bold mb-2">Amaranta Úrsula</h4>
+              <p class="text-gray-300 text-sm">La última mujer de la casa, llena de vitalidad</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EVOLUCIÓN -->
+      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
+        <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Evolución de la Relación</h2>
+        <div class="space-y-4">
+          <div class="bg-gray-700 rounded-lg p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-sm bg-blue-600 text-white px-2 py-1 rounded">Encuentro</span>
+            </div>
+            <p class="text-gray-300 text-sm">Amaranta Úrsula regresa a Macondo y encuentra a Aureliano.</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-sm bg-yellow-600 text-white px-2 py-1 rounded">Atracción</span>
+            </div>
+            <p class="text-gray-300 text-sm">Surge una atracción mutua e inevitable entre ambos.</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-sm bg-pink-600 text-white px-2 py-1 rounded">Consumación</span>
+            </div>
+            <p class="text-gray-300 text-sm">Se entregan al amor sin conocer su parentesco.</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-sm bg-red-600 text-white px-2 py-1 rounded">Revelación</span>
+            </div>
+            <p class="text-gray-300 text-sm">El descubrimiento de su parentesco confirma la profecía.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="space-y-6">
+      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
+        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Relaciones Similares</h3>
+        <div class="space-y-3">
+          <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
+            <span class="text-xs bg-pink-600 text-white px-2 py-1 rounded-full">Relación</span>
+            <h4 class="text-white font-bold text-sm mt-2">José Arcadio y Pilar Ternera</h4>
+            <p class="text-gray-300 text-xs mt-1">Primera relación incestuosa de la saga</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<!-- SEPARADOR VISUAL -->
+<div class="my-12 md:my-16 border-t-4 border-teal-600"></div>
+
+<!-- EJEMPLO 7: CAPÍTULO -->
+<div class="container mx-auto px-4 py-6 max-w-7xl">
+  <nav class="mb-6">
+    <div class="flex items-center space-x-2 text-sm text-gray-400">
+      <a href="/" class="hover:text-blue-400 transition-colors">Inicio</a>
+      <span>/</span>
+    </div>
+  </nav>
+
+  <header class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 mb-8">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+      <div class="flex-1">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Capítulo 13</h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-4">La llegada de la compañía bananera</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="text-xs md:text-sm bg-teal-600 text-white px-3 py-1 rounded-full">Capítulo</span>
+          <span class="text-xs md:text-sm bg-red-600 text-white px-3 py-1 rounded-full">Transformación</span>
+          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Progreso y explotación</span>
+        </div>
+      </div>
+      <div class="text-center lg:text-right mt-4 lg:mt-0">
+        <div class="text-2xl md:text-3xl font-bold text-yellow-400">8/10</div>
+        <div class="text-xs md:text-sm text-gray-400">Importancia narrativa</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 md:gap-8">
+    <div class="xl:col-span-2 space-y-6">
+      <!-- INFORMACIÓN -->
+      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
+        <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Resumen del Capítulo</h2>
+
+        <!-- Descripción -->
+        <div class="bg-gray-700 rounded-lg p-4 mb-6">
+          <h3 class="text-white font-semibold text-sm mb-2">Descripción General</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            Este capítulo marca la llegada de la compañía bananera a Macondo, lo cual desencadena una transformación profunda en la estructura social, económica y cultural del pueblo. Se introduce una
+            modernización agresiva con la llegada del tren, trabajadores extranjeros y nuevos modelos de trabajo. Aunque inicialmente se percibe como progreso, la compañía simboliza una explotación
+            sistemática de los recursos y las personas de Macondo.
+          </p>
+        </div>
+
+        <!-- Temas principales -->
+        <div class="mb-6">
+          <h3 class="text-white font-semibold text-sm mb-3">Temas Principales</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">Progreso destructivo</span>
+            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">Explotación económica</span>
+            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">Transformación cultural</span>
+          </div>
+        </div>
+
+        <!-- Palabras clave -->
+        <div class="mb-6">
+          <h3 class="text-white font-semibold text-sm mb-3">Palabras Clave</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Compañía bananera</span>
+            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Modernización</span>
+            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Tren</span>
+            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Extranjeros</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- EVENTOS RELACIONADOS -->
+      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
+        <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Eventos Relacionados</h2>
+        <div class="space-y-4">
+          <div class="bg-gray-700 rounded-lg p-4">
+            <h4 class="text-white font-semibold text-sm mb-2">Llegada del tren</h4>
+            <p class="text-gray-300 text-sm">El tren simboliza el comienzo de la industrialización en Macondo.</p>
+          </div>
+          <div class="bg-gray-700 rounded-lg p-4">
+            <h4 class="text-white font-semibold text-sm mb-2">Contrato con la compañía extranjera</h4>
+            <p class="text-gray-300 text-sm">Se firma el acuerdo que da paso al dominio extranjero sobre los cultivos de banano.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="space-y-6">
+      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
+        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Otros Capítulos Relevantes</h3>
+        <div class="space-y-3">
+          <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
+            <span class="text-xs bg-blue-600 text-white px-2 py-1 rounded-full">Capítulo</span>
+            <h4 class="text-white font-bold text-sm mt-2">Capítulo 14</h4>
+            <p class="text-gray-300 text-xs mt-1">Se intensifica el conflicto laboral con la compañía</p>
           </div>
         </div>
       </section>
