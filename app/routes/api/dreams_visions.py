@@ -16,7 +16,7 @@ def dreams_visions_search():
     
     user_query = data.get("query", "")
 
-    dreams_visions_cursor = search_model.search_general(user_query, "objetos")
+    dreams_visions_cursor = search_model.search_general(user_query, "sueños_visiones")
     if not dreams_visions_cursor:
         return jsonify({
             "status": "error",
@@ -48,7 +48,7 @@ def specific_object():
     
     dream_vision_id = data.get("id")
 
-    dream_vision = search_model.search_especific(dream_vision_id, "localizaciones")
+    dream_vision = search_model.search_especific(dream_vision_id, "sueños_visiones")
 
     if not dream_vision:
         return jsonify({
@@ -66,3 +66,6 @@ def specific_object():
         "type": "dreams_visions",
         "results": dream_vision
     }), 200
+
+def update_dreams_visions(id, dictionary):
+    return search_model.update(id, "sueños_visiones", dictionary)
