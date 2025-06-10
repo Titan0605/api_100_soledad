@@ -68,3 +68,6 @@ def specific_location():
         "type": "locations",
         "results": location
     }), 200
+
+def update_locations(id, dictionary):
+    return search_model.update(id, "localizaciones", dictionary)

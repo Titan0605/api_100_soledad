@@ -47,7 +47,7 @@ class SearchingModel:
         information = db.find_one({"_id": oid})
         return information
     
-    def update(self, id, collection_name, dictionary):
+    def update(self, id, collection_name, dictionary: dict):
         db = self.getCollection(collection_name)
         try:
             oid = ObjectId(id)
