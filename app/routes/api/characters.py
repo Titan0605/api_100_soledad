@@ -66,3 +66,6 @@ def specific_character():
         "type": "characters",
         "results": character
     }), 200
+
+def update_characters(id, dictionary):
+    return search_model.update(id, "personajes", dictionary)

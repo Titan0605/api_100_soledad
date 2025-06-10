@@ -48,7 +48,7 @@ def specific_object():
     
     object_id = data.get("id")
 
-    object = search_model.search_especific(object_id, "localizaciones")
+    object = search_model.search_especific(object_id, "objetos")
 
     if not object:
         return jsonify({
@@ -66,3 +66,6 @@ def specific_object():
         "type": "objects",
         "results": object
     }), 200
+
+def update_objects(id, dictionary):
+    return search_model.update(id, "objetos", dictionary)

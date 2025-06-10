@@ -64,3 +64,6 @@ def specific_chapter():
         "type": "chapters",
         "results": chapter
     }), 200
+
+def update_chapters(id, dictionary):
+    return search_model.update(id, "capitulos", dictionary)

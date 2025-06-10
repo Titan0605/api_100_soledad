@@ -15,7 +15,7 @@ def search_relationships():
     
     user_query = data.get("query")
 
-    relationships_cursor = search_model.search_general(user_query, "personajes")
+    relationships_cursor = search_model.search_general(user_query, "parejas_relaciones")
 
     if not relationships_cursor:
         return jsonify({
@@ -49,7 +49,7 @@ def specific_relationship():
     
     relationship_id = data.get("id")
 
-    relationship = search_model.search_especific(relationship_id, "personajes")
+    relationship = search_model.search_especific(relationship_id, "parejas_relaciones")
 
     if not relationship:
         return jsonify({
@@ -68,3 +68,6 @@ def specific_relationship():
         "type": "relationships",
         "results": relationship
     }), 200
+
+def update_relationships(id, dictionary):
+    return search_model.update(id, "parejas_relaciones", dictionary)

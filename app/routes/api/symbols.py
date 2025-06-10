@@ -64,3 +64,6 @@ def specific_symbol():
         "type": "symbols",
         "results": symbol
     }), 200
+
+def update_symbols(id, dictionary):
+    return search_model.update(id, "simbolos_temas", dictionary)

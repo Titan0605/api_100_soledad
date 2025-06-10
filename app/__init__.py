@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from app.database.db_init import init_db
 from app.utils.db_utils import utils_save_db
 from app.routes.views import index_view
-from app.routes.api import chapters, characters, dreams_visions, symbols, relationships, events, locations, objects, search
+from app.routes.api import chapters, characters, dreams_visions, general, symbols, relationships, events, locations, objects
 
 def create_app() -> Flask:
     load_dotenv()
@@ -22,6 +22,6 @@ def create_app() -> Flask:
     app.register_blueprint(events.bp)
     app.register_blueprint(locations.bp)
     app.register_blueprint(objects.bp)
-    app.register_blueprint(search.bp)
+    app.register_blueprint(general.bp)
     
     return app
