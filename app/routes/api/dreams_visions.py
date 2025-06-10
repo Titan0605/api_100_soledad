@@ -16,7 +16,7 @@ def dreams_visions_search():
     
     user_query = data.get("query", "")
 
-    dreams_visions_cursor = search_model.search_general(user_query, "sueños_visiones")
+    dreams_visions_cursor = search_model.search_general(user_query, "suenos_visiones")
     if not dreams_visions_cursor:
         return jsonify({
             "status": "error",
@@ -25,7 +25,7 @@ def dreams_visions_search():
     
     dreams_visions_results = []
     for doc in dreams_visions_cursor:
-        doc["soñador"] = iterate_arrays_api(doc.get("soñador", []), "personajes")
+        doc["soñador"] = search_model.search_especific(doc.get("soñador", ""), "personajes")
         doc["type"] = "dreams_visions"
         doc["_id"] = str(doc["_id"])
         dreams_visions_results.append(doc)
