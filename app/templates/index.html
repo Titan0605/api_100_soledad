@@ -12,6 +12,28 @@
       </label>
     </div>
 
+    <!-- CAPITULOS -->
+    <div>
+      <input type="checkbox" id="capitulos" class="peer hidden tag" value="chapters" />
+      <label
+        for="capitulos"
+        class="filters h-13 bg-gray-800 p-2 rounded-md cursor-pointer flex items-center gap-2 text-white shadow-lg px-3 font-semibold text-lg transition-colors duration-300 peer-checked:bg-purple-500 peer-checked:text-white transition-all duration-300 transform hover:scale-105"
+      >
+        <span class="select-none">Capitulos</span>
+      </label>
+    </div>
+
+      <!-- RELACIONES -->
+    <div>
+      <input type="checkbox" id="relaciones" class="peer hidden tag" value="relationships" />
+      <label
+        for="relaciones"
+        class="filters h-13 bg-gray-800 p-2 rounded-md cursor-pointer flex items-center gap-2 text-white shadow-lg px-3 font-semibold text-lg transition-colors duration-300 peer-checked:bg-pink-500 peer-checked:text-white transition-all duration-300 transform hover:scale-105"
+      >
+        <span class="select-none">Relaciones</span>
+      </label>
+    </div>
+    
     <!-- PERSONAJES -->
     <div>
       <input type="checkbox" id="personajes" class="peer hidden tag" value="characters" />
@@ -20,6 +42,17 @@
         class="filters h-13 bg-gray-800 p-2 rounded-md cursor-pointer flex items-center gap-2 text-white shadow-lg px-3 font-semibold text-lg transition-colors duration-300 peer-checked:bg-blue-500 peer-checked:text-white transition-all duration-300 transform hover:scale-105"
       >
         <span class="select-none">Personajes</span>
+      </label>
+    </div>
+
+    <!-- SUEÑOS Y VICIONES -->
+    <div>
+      <input type="checkbox" id="sueños_visiones" class="peer hidden tag" value="dreams_visions" />
+      <label
+        for="sueños_visiones"
+        class="filters h-13 bg-gray-800 p-2 rounded-md cursor-pointer flex items-center gap-2 text-white shadow-lg px-3 font-semibold text-lg transition-colors duration-300 peer-checked:bg-cyan-500 peer-checked:text-white transition-all duration-300 transform hover:scale-105"
+      >
+        <span class="select-none">Sueños y Viciones</span>
       </label>
     </div>
 
@@ -42,6 +75,17 @@
         class="filters h-13 bg-gray-800 p-2 rounded-md cursor-pointer flex items-center gap-2 text-white shadow-lg px-3 font-semibold text-lg transition-colors duration-300 peer-checked:bg-yellow-500 transition-all duration-300 transform hover:scale-105"
       >
         <span class="select-none">Objetos</span>
+      </label>
+    </div>
+
+    <!-- SIMBOLOS -->
+    <div>
+      <input type="checkbox" id="simbolos" class="peer hidden tag" value="symbols" />
+      <label
+        for="simbolos"
+        class="filters h-13 bg-gray-800 p-2 rounded-md cursor-pointer flex items-center gap-2 text-white shadow-lg px-3 font-semibold text-lg transition-colors duration-300 peer-checked:bg-orange-500 peer-checked:text-white transition-all duration-300 transform hover:scale-105"
+      >
+        <span class="select-none">Simbolos</span>
       </label>
     </div>
   </div>
@@ -165,6 +209,6 @@
 
 </div>
 
-<script src="{{ url_for('static', filename='javascript/index.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='javascript/index.js') }}"></script>
 <script src="{{ url_for('static', filename='javascript/insertService.js') }}"></script>
 {%endblock%}
