@@ -268,10 +268,9 @@ export function drawResults(results) {
                 case 'dreams_visions':
                     card.className = 'bg-gray-800 text-white rounded-2xl shadow-lg p-6 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200'
                     card.innerHTML = `<div class="mb-3">
-                        <h2 class="text-xl font-bold text-white">${result.nombre}</h2>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="text-sm bg-cyan-500 text-white px-2 py-1 rounded">Sueño y/o vición</span>                            
-                            <span class="text-sm text-gray-300 px-2 py-1 rounded">Soñador: ${result.soñador}</span>                            
+                            <span class="text-sm text-gray-300 px-2 py-1 rounded">Soñador: ${result.soñador.nombre}</span>                            
                         </div>
                     </div>
                     <div class="mb-3">
@@ -282,15 +281,15 @@ export function drawResults(results) {
                     <div class="mb-3">
                         <p class="text-white font-semibold text-sm mb-1">Simbolismos:</p>
                         <div class="flex flex-wrap gap-2">
-                            ${result.simbolismo ? result.simbolismo.slice(0, 3).map(simbolo =>
+                            ${result.elementos_simbolicos ? result.elementos_simbolicos.slice(0, 3).map(simbolo =>
                                     `<span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">${simbolo}</span>`
                                 ).join('') : '<span class="text-gray-400 text-xs">No disponible</span>'}
                         </div>
                     </div>
                     <div class="mb-3">
-                        <p class="text-white font-semibold text-sm mb-1">Ubicación:</p>
+                        <p class="text-white font-semibold text-sm mb-1">Tipo:</p>
                         <p class="text-gray-300 text-sm italic">
-                            ${result.ubicacion_fisica  ? result.ubicacion_fisica : 'No disponible'}
+                            ${result.tipo  ? result.tipo : 'No disponible'}
                         </p>
                     </div>
                     <div class="mt-4 pt-3 border-t border-gray-700">
@@ -359,5 +358,6 @@ export function drawResults(results) {
                 return;
         }
         results_container.appendChild(card);
+        document.getElementById('results_container').classList.remove('hidden');
     });
 }

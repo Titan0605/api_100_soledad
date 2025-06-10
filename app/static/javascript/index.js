@@ -39,6 +39,7 @@ search_btn.addEventListener('click', async function (event) {
             if (results.message != 'Search successful') {
                 document.getElementById('results_container').classList.add('hidden');
                 document.getElementById('not_found').classList.remove('hidden');
+                document.getElementById('loading_symbol').classList.add('hidden');
             } else {
                 drawResults(results);
             }
