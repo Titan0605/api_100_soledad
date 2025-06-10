@@ -68,3 +68,6 @@ def specific_event():
         "type": "events",
         "results": event
     }), 200
+
+def update_events(id, dictionary):
+    return search_model.update(id, "eventos",dictionary)
