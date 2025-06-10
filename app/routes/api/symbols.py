@@ -23,6 +23,7 @@ def search_symbols():
     symbols_results = []
     for doc in symbols_cursor:
         doc["eventos_relacionados"] = iterate_arrays_api(doc.get("eventos_relacionados", []), "eventos")
+        doc["personajes_afectados"] = iterate_arrays_api(doc.get("personajes_afectados", []), "personajes")
         doc["type"] = "symbols"
         doc["_id"] = str(doc["_id"])
         symbols_results.append(doc)
