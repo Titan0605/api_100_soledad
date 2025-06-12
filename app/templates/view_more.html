@@ -1,11 +1,12 @@
 {%extends 'layout/base.html' %} {% block title %} 100 años de soledad {% endblock %} {%block main%}
+{% if data.type == 'characters' %}    
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <!-- Breadcrumb -->
   <nav class="mb-6">
     <div class="flex items-center space-x-2 text-sm text-gray-400">
       <a href="/" class="hover:text-blue-400 transition-colors">Inicio</a>
       <span>/</span>
-      <span class="text-white">José Arcadio Segundo</span>
+      <span class="text-white">{{ data.nombre }}</span>
     </div>
   </nav>
 
@@ -13,16 +14,15 @@
   <header class="bg-gray-800 rounded-2xl shadow-lg p-8 mb-8">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
       <div>
-        <h1 class="text-4xl lg:text-5xl font-bold text-white mb-3">José Arcadio Segundo</h1>
-        <p class="text-xl text-gray-300 mb-4">Cuarta generación Buendía</p>
+        <h1 class="text-4xl lg:text-5xl font-bold text-white mb-3">{{ data.nombre }} {{ data.apellido }}</h1>        
         <div class="flex flex-wrap gap-2 mb-4">
-          <span class="text-sm bg-red-600 text-white px-3 py-1 rounded-full">Personaje</span>
-          <span class="text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Generación 4</span>
-          <span class="text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Caps. 13-15</span>
+          <span class="text-sm bg-blue-500 text-white px-3 py-1 rounded-full">Personaje</span>
+          <span class="text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Generación {{ data.generacion }}</span>
+          <span class="text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Aparece en {{ data.capitulos_aparicion|length }} capitulo(s)</span>
         </div>
       </div>
       <div class="text-right">
-        <div class="text-3xl font-bold text-blue-400">9/10</div>
+        <div class="text-3xl font-bold text-blue-400">{{ data.score }}/10</div>
         <div class="text-sm text-gray-400">Importancia narrativa</div>
       </div>
     </div>
@@ -39,36 +39,36 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Nombre Completo</h3>
-            <p class="text-gray-300 text-sm">José Arcadio Segundo Buendía</p>
+            <p class="text-gray-300 text-sm">{{ data.nombre}} {{ data.apellido }}</p>
           </div>
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Generación</h3>
-            <p class="text-gray-300 text-sm">Cuarta generación</p>
+            <p class="text-gray-300 text-sm">Generación número {{ data.generacion }}</p>
           </div>
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Descripción Física</h3>
-            <p class="text-gray-300 text-sm">Alto, corpulento, con bigote característico</p>
+            <p class="text-gray-300 text-sm">{{ data.descripcion_fisica }}</p>
           </div>
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Transformación</h3>
-            <p class="text-gray-300 text-sm">De capataz de la compañía a guardián de la memoria histórica</p>
+            <p class="text-gray-300 text-sm">{{ data.transformacion }}</p>
           </div>
         </div>
 
         <div class="mb-6">
           <h3 class="text-white font-semibold text-sm mb-3">Personalidad</h3>
           <div class="flex flex-wrap gap-2">
-            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">Determinado</span>
-            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">Trabajador</span>
-            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">Testigo de la verdad</span>
+            {% for personalidad in data.personalidad %}
+            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">{{ personalidad }}</span>
+            {% endfor %}
           </div>
         </div>
         <div>
           <h3 class="text-white font-semibold text-sm mb-3">Simbolismo</h3>
           <div class="flex flex-wrap gap-2">
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Memoria histórica</span>
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Testimonio</span>
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Resistencia</span>
+            {% for simbol in data.simbolismo %}
+            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">{{ simbol }}</span>
+            {% endfor %}
           </div>
         </div>
       </section>
@@ -76,38 +76,23 @@
       <!-- Eventos Principales -->
       <section class="bg-gray-800 rounded-2xl shadow-lg p-6">
         <h2 class="text-2xl font-bold text-white mb-6 border-b border-gray-700 pb-3">Eventos Principales</h2>
-
+        <p class="text-2xl font-bold text-white mb-6 border-b border-gray-700 pb-3">Número de eventos: {{ data.eventos_principales|length}}</p>
+        
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200 cursor-pointer">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-red-600 text-white px-2 py-1 rounded">Evento</span>
-              <span class="text-xs text-gray-400">Importancia 9/10</span>
+            {% for event in data.eventos_principales %}
+            <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200 cursor-pointer">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-sm bg-red-600 text-white px-2 py-1 rounded">Evento</span>
+                <span class="text-xs text-gray-400">Importancia {{ event.importancia }}/10</span>
+              </div>
+              <h4 class="text-white font-bold mb-2">{{ event.nombre }}</h4>
+              <p class="text-gray-300 text-sm">{{ event.descripcion }}</p>
             </div>
-            <h4 class="text-white font-bold mb-2">Huelga de trabajadores bananeros</h4>
-            <p class="text-gray-300 text-sm">Evento histórico que marca un punto de inflexión en la narrativa.</p>
+            {% endfor %}
           </div>
-
-          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200 cursor-pointer">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-red-600 text-white px-2 py-1 rounded">Evento</span>
-              <span class="text-xs text-gray-400">Importancia 10/10</span>
-            </div>
-            <h4 class="text-white font-bold mb-2">Masacre de trabajadores</h4>
-            <p class="text-gray-300 text-sm">El evento más traumático presenciado por José Arcadio Segundo.</p>
-          </div>
-
-          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200 cursor-pointer">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-blue-600 text-white px-2 py-1 rounded">Evento</span>
-              <span class="text-xs text-gray-400">Importancia 9/10</span>
-            </div>
-            <h4 class="text-white font-bold mb-2">Llegada de la compañía bananera</h4>
-            <p class="text-gray-300 text-sm">El inicio de la transformación de Macondo.</p>
-          </div>
-        </div>
-      </section>
-
+        </section>
       <!-- Muerte y Legado -->
+      {% if data.muerte %}
       <section class="bg-gray-800 rounded-2xl shadow-lg p-6">
         <h2 class="text-2xl font-bold text-white mb-6 border-b border-gray-700 pb-3">Muerte y Legado</h2>
 
@@ -115,23 +100,20 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
               <h3 class="text-white font-semibold text-sm mb-2">Capítulo de muerte</h3>
-              <p class="text-gray-300 text-sm">Capítulo 15</p>
+              <p class="text-gray-300 text-sm">Capítulo {{ data.muerte.capitulo}}</p>
             </div>
             <div>
               <h3 class="text-white font-semibold text-sm mb-2">Simbolismo</h3>
-              <p class="text-gray-300 text-sm">Muerte del testigo de la verdad</p>
+              <p class="text-gray-300 text-sm">{{ data.muerte.simbolismo }}</p>
             </div>
           </div>
           <div class="mb-4">
             <h3 class="text-white font-semibold text-sm mb-2">Circunstancias</h3>
-            <p class="text-gray-300 text-sm">Muere en el cuarto de Melquíades durante el diluvio que azota Macondo por varios años.</p>
-          </div>
-          <div>
-            <h3 class="text-white font-semibold text-sm mb-2">Legado</h3>
-            <p class="text-gray-300 text-sm italic">Guardián de la memoria histórica que otros prefieren olvidar, representa la importancia del testimonio y la preservación de la verdad.</p>
+            <p class="text-gray-300 text-sm">{{ data.muerte.circunstancias }}</p>
           </div>
         </div>
       </section>
+      {% endif %}
     </div>
 
     <!-- Sidebar -->
@@ -139,82 +121,18 @@
       <!-- Relaciones Familiares -->
       <section class="bg-gray-800 rounded-2xl shadow-lg p-6">
         <h3 class="text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Relaciones Familiares</h3>
+        {% for relacion in data.relaciones %}
         <div class="space-y-3">
-          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200">
+          <div class="flex flex-col gap-2 bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200">
             <div class="flex items-center gap-2 mb-1">
-              <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
+              <span class="text-xs bg-blue-500 text-white px-2 py-1 rounded-full">Personaje</span>
             </div>
-            <h4 class="text-white font-bold text-sm">Aureliano Segundo</h4>
-            <p class="text-gray-300 text-xs mt-1">Hermano gemelo - Personalidades opuestas</p>
-          </div>
-
-          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200">
-            <div class="flex items-center gap-2 mb-1">
-              <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
-            </div>
-            <h4 class="text-white font-bold text-sm">Arcadio</h4>
-            <p class="text-gray-300 text-xs mt-1">Padre - Relación compleja familiar</p>
+            <h4 class="text-white font-bold text-sm">{{ relacion.personaje }}</h4>
+            <p class="text-gray-300 text-xs mt-1">{{ relacion.tipo }}</p>
+            <p class="text-gray-300 text-xs mt-1">{{ relacion.descripcion }}</p>
           </div>
         </div>
-      </section>
-
-      <!-- Localizaciones -->
-      <section class="bg-gray-800 rounded-2xl shadow-lg p-6">
-        <h3 class="text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Localizaciones</h3>
-        <div class="space-y-3">
-          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200">
-            <div class="flex items-center gap-2 mb-1">
-              <span class="text-xs bg-green-600 text-white px-2 py-1 rounded-full">Localización</span>
-            </div>
-            <h4 class="text-white font-bold text-sm">Estación del tren</h4>
-            <p class="text-gray-300 text-xs mt-1">Escenario de la masacre</p>
-          </div>
-
-          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200">
-            <div class="flex items-center gap-2 mb-1">
-              <span class="text-xs bg-green-600 text-white px-2 py-1 rounded-full">Localización</span>
-            </div>
-            <h4 class="text-white font-bold text-sm">Cuarto de Melquíades</h4>
-            <p class="text-gray-300 text-xs mt-1">Lugar de muerte y refugio final</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Objetos Relacionados -->
-      <section class="bg-gray-800 rounded-2xl shadow-lg p-6">
-        <h3 class="text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Objetos Relacionados</h3>
-        <div class="space-y-3">
-          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200">
-            <div class="flex items-center gap-2 mb-1">
-              <span class="text-xs bg-yellow-600 text-white px-2 py-1 rounded-full">Objeto Mágico</span>
-              <span class="text-xs text-gray-400">10/10</span>
-            </div>
-            <h4 class="text-white font-bold text-sm">Pergaminos de Melquíades</h4>
-            <p class="text-gray-300 text-xs mt-1">Manuscritos proféticos del destino familiar</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Símbolos y Temas -->
-      <section class="bg-gray-800 rounded-2xl shadow-lg p-6">
-        <h3 class="text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Símbolos Asociados</h3>
-        <div class="space-y-3">
-          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200">
-            <div class="flex items-center gap-2 mb-1">
-              <span class="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">Símbolo</span>
-            </div>
-            <h4 class="text-white font-bold text-sm">Memoria histórica</h4>
-            <p class="text-gray-300 text-xs mt-1">La importancia del testimonio</p>
-          </div>
-
-          <div class="bg-gray-700 rounded-lg p-4 hover:scale-[1.02] transition-transform duration-200">
-            <div class="flex items-center gap-2 mb-1">
-              <span class="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">Símbolo</span>
-            </div>
-            <h4 class="text-white font-bold text-sm">Soledad del testigo</h4>
-            <p class="text-gray-300 text-xs mt-1">Aislamiento de quien conoce la verdad</p>
-          </div>
-        </div>
+        {% endfor %}
       </section>
     </div>
   </div>
@@ -224,7 +142,7 @@
     <button onclick="window.history.back()" class="bg-blue-600 hover:bg-blue-800 text-white font-medium rounded-lg px-6 py-3 transition-colors duration-200">Volver atrás</button>
   </div>
 </div>
-
+{% elif data.type == 'events' %}
 <!-- EVENTO -->
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <nav class="mb-6">
@@ -237,16 +155,16 @@
   <header class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 mb-8">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
       <div class="flex-1">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Masacre de trabajadores bananeros</h1>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">{{ data.nombre }}</h1>
         <p class="text-lg md:text-xl text-gray-300 mb-4">Evento histórico traumático</p>
         <div class="flex flex-wrap gap-2 mb-4">
           <span class="text-xs md:text-sm bg-red-600 text-white px-3 py-1 rounded-full">Evento</span>
-          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Histórico</span>
-          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Capítulo 14</span>
+          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">{{ data.tipo }}</span>
+          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Capítulo {{ data.capitulo }}</span>
         </div>
       </div>
       <div class="text-center lg:text-right mt-4 lg:mt-0">
-        <div class="text-2xl md:text-3xl font-bold text-red-400">10/10</div>
+        <div class="text-2xl md:text-3xl font-bold text-red-400">{{ data.importancia }}/10</div>
         <div class="text-xs md:text-sm text-gray-400">Importancia narrativa</div>
       </div>
     </div>
@@ -262,37 +180,34 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Fecha Narrativa</h3>
-            <p class="text-gray-300 text-sm">Aproximadamente 1928</p>
+            <p class="text-gray-300 text-sm">{{ data.fecha_narrativa }}</p>
           </div>
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Tipo de Evento</h3>
-            <p class="text-gray-300 text-sm">Histórico / Social</p>
+            <p class="text-gray-300 text-sm">{{ data.tipo }}</p>
           </div>
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Localización</h3>
-            <p class="text-gray-300 text-sm">Estación del tren, Macondo</p>
+            <p class="text-gray-300 text-sm">{% for location in data.localizaciones %} {{location.nombre}} {% endfor %} </p>
           </div>
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Consecuencias</h3>
-            <p class="text-gray-300 text-sm">Borrado de la memoria colectiva</p>
+            <p class="text-gray-300 text-sm">{% for consecuencia in data.consecuencias %} {{consecuencia}},  {% endfor %}</p>
           </div>
         </div>
 
         <!-- Descripción completa -->
         <div class="bg-gray-700 rounded-lg p-4 mb-4">
           <h3 class="text-white font-semibold text-sm mb-2">Descripción Completa</h3>
-          <p class="text-gray-300 text-sm leading-relaxed">
-            La masacre de los trabajadores bananeros representa uno de los eventos más traumáticos y simbólicos de la novela. Durante una manifestación pacífica, las fuerzas militares abren fuego
-            contra los trabajadores en huelga, resultando en una matanza que posteriormente es borrada de la memoria oficial y colectiva.
-          </p>
+          <p class="text-gray-300 text-sm leading-relaxed">{{ data.descripcion }}</p>
         </div>
 
         <div class="mb-6">
           <h3 class="text-white font-semibold text-sm mb-3">Simbolismo</h3>
           <div class="flex flex-wrap gap-2">
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Represión estatal</span>
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Memoria histórica</span>
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Injusticia social</span>
+            {% for simbol in data.simbolismo %}
+            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">{{ simbol }}</span>
+            {% endfor %}
           </div>
         </div>
       </section>
@@ -301,59 +216,60 @@
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Personajes Involucrados</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {% for involucrado in data.personajes_involucrados %}
           <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
             <div class="flex items-center gap-2 mb-2">
-              <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded">Personaje</span>
+              <span class="text-xs bg-blue-500 text-white px-2 py-1 rounded">Personaje</span>
               <span class="text-xs text-gray-400">Testigo</span>
             </div>
-            <h4 class="text-white font-bold mb-2">José Arcadio Segundo</h4>
-            <p class="text-gray-300 text-sm">Único testigo superviviente de la masacre</p>
+            <h4 class="text-white font-bold mb-2">{{ involucrado.nombre }}</h4>
+            <p class="text-gray-300 text-sm">{{ involucrado.descripcion_fisica }}</p>
           </div>
+          {% endfor %}
         </div>
       </section>
     </div>
 
     <!-- Sidebar -->
     <div class="space-y-6">
-      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
-        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Eventos Relacionados</h3>
+      <section class="flex flex-col gap-2 bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
+        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Localizaciones</h3>
+        {% for localizacion in data.localizaciones %}
         <div class="space-y-3">
           <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-red-600 text-white px-2 py-1 rounded-full">Evento</span>
-            <h4 class="text-white font-bold text-sm mt-2">Huelga bananera</h4>
-            <p class="text-gray-300 text-xs mt-1">Evento previo que desencadena la masacre</p>
+            <span class="text-xs bg-green-500 text-white px-2 py-1 rounded-full">Evento</span>
+            <h4 class="text-white font-bold text-sm mt-2">{{ localizacion.nombre }}</h4>
+            <p class="text-gray-300 text-xs mt-1">{{ localizacion.descripcion }}</p>
           </div>
         </div>
+        {% endfor %}
       </section>
     </div>
   </div>
 </div>
-
-<!-- SEPARADOR VISUAL -->
-<div class="my-12 md:my-16 border-t-4 border-blue-600"></div>
-
+{% elif data.type == 'objects' %}
 <!-- OBJETO -->
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <nav class="mb-6">
     <div class="flex items-center space-x-2 text-sm text-gray-400">
       <a href="/" class="hover:text-blue-400 transition-colors">Inicio</a>
       <span>/</span>
+      <span class="text-white">{{ data.nombre }}</span>
     </div>
   </nav>
 
   <header class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 mb-8">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
       <div class="flex-1">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Pergaminos de Melquíades</h1>
-        <p class="text-lg md:text-xl text-gray-300 mb-4">Manuscritos proféticos del destino</p>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">{{ data.nombre }}</h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-4">{{ data.tipo }}</p>
         <div class="flex flex-wrap gap-2 mb-4">
           <span class="text-xs md:text-sm bg-yellow-600 text-white px-3 py-1 rounded-full">Objeto</span>
-          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Mágico</span>
-          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Caps. 1-16</span>
+          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Aparece en {{ data.capitulos_aparicion|length}} capitulo(s)</span>
         </div>
       </div>
       <div class="text-center lg:text-right mt-4 lg:mt-0">
-        <div class="text-2xl md:text-3xl font-bold text-yellow-400">10/10</div>
+        <div class="text-2xl md:text-3xl font-bold text-yellow-400">{{ data.importancia_narrativa }}/10</div>
         <div class="text-xs md:text-sm text-gray-400">Importancia narrativa</div>
       </div>
     </div>
@@ -368,58 +284,54 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Tipo de Objeto</h3>
-            <p class="text-gray-300 text-sm">Mágico / Profético</p>
+            <p class="text-gray-300 text-sm">{{ data.tipo }}</p>
           </div>
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Ubicación Física</h3>
-            <p class="text-gray-300 text-sm">Cuarto de Melquíades</p>
+            <p class="text-gray-300 text-sm">{{ data.ubicacion_fisica }}</p>
           </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Estado Actual</h3>
-            <p class="text-gray-300 text-sm">Casi completamente descifrados</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Importancia</h3>
-            <p class="text-gray-300 text-sm">Contienen el destino de los Buendía</p>
-          </div>
+        </div>
+
+        <!-- Descripción completa -->
+        <div class="bg-gray-700 rounded-lg p-4 mb-4">
+          <h3 class="text-white font-semibold text-sm mb-2">Descripción Completa</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">{{ data.descripcion }}</p>
         </div>
 
         <!-- PROPIETARIOS -->
         <div class="mb-6">
           <h3 class="text-white font-semibold text-sm mb-3">Propietarios</h3>
           <div class="space-y-2">
+            {% for propietario in data.propietarios %}
             <div class="flex items-center gap-3 bg-gray-700 rounded-lg p-3">
-              <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Original</span>
-              <span class="text-white text-sm">Melquíades</span>
+              <span class="text-xs bg-blue-500 text-white px-2 py-1 rounded-full">Personaje</span>
+              <span class="text-white text-sm">{{ propietario.nombre }}</span>
             </div>
-            <div class="flex items-center gap-3 bg-gray-700 rounded-lg p-3">
-              <span class="text-xs bg-blue-600 text-white px-2 py-1 rounded-full">Guardián</span>
-              <span class="text-white text-sm">José Arcadio Segundo</span>
-            </div>
-            <div class="flex items-center gap-3 bg-gray-700 rounded-lg p-3">
-              <span class="text-xs bg-green-600 text-white px-2 py-1 rounded-full">Descifrador</span>
-              <span class="text-white text-sm">Aureliano Babilonia</span>
-            </div>
+            {% endfor %}
           </div>
         </div>
+
+        <div>
+          <h3 class="text-white font-semibold text-sm mb-3">Simbolismos</h3>
+          <div class="flex flex-wrap gap-2">
+            {% for simbol in data.simbolismo %}
+            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">{{ simbol }}</span>
+            {% endfor %}
+          </div>
       </section>
 
       <!-- TRANSFORMACIONES -->
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Transformaciones</h2>
         <div class="space-y-4">
+          {% for transformacion in data.transformaciones %}
           <div class="bg-gray-700 rounded-lg p-4">
             <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-purple-600 text-white px-2 py-1 rounded">Capítulo 15</span>
+              <span class="text-sm bg-purple-600 text-white px-2 py-1 rounded">Capítulo {{ transformacion.capitulo }}</span>
             </div>
-            <p class="text-gray-300 text-sm">Se deterioran con la humedad del diluvio, haciendo más difícil su lectura.</p>
+            <p class="text-gray-300 text-sm">{{ transformacion.descripcion }}</p>
           </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-green-600 text-white px-2 py-1 rounded">Capítulo 16</span>
-            </div>
-            <p class="text-gray-300 text-sm">Aureliano Babilonia logra descifrar casi completamente su contenido profético.</p>
-          </div>
+          {% endfor %}
         </div>
       </section>
     </div>
@@ -427,36 +339,36 @@
     <!-- Sidebar para OBJETO -->
     <div class="space-y-6">
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
-        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Personajes Relacionados</h3>
+        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Ubicación física</h3>
         <div class="space-y-3">
           <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
-            <h4 class="text-white font-bold text-sm mt-2">Aureliano Babilonia</h4>
-            <p class="text-gray-300 text-xs mt-1">El descifrador final de los pergaminos</p>
+            <span class="text-xs bg-green-500 text-white px-2 py-1 rounded-full">Localización</span>
+            <h4 class="text-white font-bold text-sm mt-2">{{ data.ubicacion_fisica }}</h4>
           </div>
         </div>
       </section>
     </div>
   </div>
 </div>
+{% elif data.type == 'locations' %}
 <!-- Localizaciones -->
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <nav class="mb-6">
     <div class="flex items-center space-x-2 text-sm text-gray-400">
       <a href="/" class="hover:text-blue-400 transition-colors">Inicio</a>
       <span>/</span>
+      <span class="text-white">{{ data.nombre }}</span>
     </div>
   </nav>
 
   <header class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 mb-8">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
       <div class="flex-1">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Casa de los Buendía</h1>
-        <p class="text-lg md:text-xl text-gray-300 mb-4">Corazón del universo narrativo</p>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">{{ data.nombre }}</h1>
         <div class="flex flex-wrap gap-2 mb-4">
-          <span class="text-xs md:text-sm bg-green-600 text-white px-3 py-1 rounded-full">Lugar</span>
-          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Emblemático</span>
-          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Caps. 1-20</span>
+          <span class="text-xs md:text-sm bg-green-600 text-white px-3 py-1 rounded-full">Localización</span>
+          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">{{ data.tipo }}</span>
+          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Aparece en {{ data.capitulos_aparicion|length}} capitulo(s)</span>
         </div>
       </div>
       <div class="text-center lg:text-right mt-4 lg:mt-0">
@@ -471,55 +383,18 @@
       <!-- INFORMACIÓN -->
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Información del Lugar</h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Ubicación</h3>
-            <p class="text-gray-300 text-sm">Centro de Macondo</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Tipo</h3>
-            <p class="text-gray-300 text-sm">Residencia familiar</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Estado Actual</h3>
-            <p class="text-gray-300 text-sm">Destruida por el huracán</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Fundador</h3>
-            <p class="text-gray-300 text-sm">José Arcadio Buendía</p>
-          </div>
-        </div>
-
         <!-- Descripción -->
         <div class="bg-gray-700 rounded-lg p-4 mb-4">
           <h3 class="text-white font-semibold text-sm mb-2">Descripción</h3>
-          <p class="text-gray-300 text-sm leading-relaxed">
-            La casa de los Buendía es el epicentro de la saga familiar, testigo silencioso de siete generaciones. Sus muros han presenciado nacimientos, muertes, amores, traiciones y el peso
-            inexorable de la soledad que marca a la estirpe.
-          </p>
+          <p class="text-gray-300 text-sm leading-relaxed">{{ data.descripcion }}</p>
         </div>
 
-        <!-- Espacios importantes -->
-        <div class="mb-6">
-          <h3 class="text-white font-semibold text-sm mb-3">Espacios Importantes</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Cuarto de Melquíades</h4>
-              <p class="text-gray-300 text-xs">Santuario de la sabiduría y los pergaminos</p>
-            </div>
-            <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Laboratorio de alquimia</h4>
-              <p class="text-gray-300 text-xs">Espacio de experimentación y reflexión</p>
-            </div>
-            <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Patio de los almendros</h4>
-              <p class="text-gray-300 text-xs">Centro de reunión familiar</p>
-            </div>
-            <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Corredor</h4>
-              <p class="text-gray-300 text-xs">Espacio de contemplación y espera</p>
-            </div>
+        <div>
+          <h3 class="text-white font-semibold text-sm mb-3">Simbolismo</h3>
+          <div class="flex flex-wrap gap-2">
+            {% for simbol in data.simbolismo %}
+            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">{{ simbol }}</span>
+            {% endfor %}
           </div>
         </div>
       </section>
@@ -528,24 +403,14 @@
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Transformaciones</h2>
         <div class="space-y-4">
+          {% for transformacion in data.transformaciones %}
           <div class="bg-gray-700 rounded-lg p-4">
             <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-green-600 text-white px-2 py-1 rounded">Construcción</span>
+              <span class="text-sm bg-purple-500 text-white px-2 py-1 rounded">capitulo {{ transformacion.capitulo }}</span>
             </div>
-            <p class="text-gray-300 text-sm">José Arcadio Buendía construye la casa con la ayuda de sus vecinos.</p>
+            <p class="text-gray-300 text-sm">{{ transformacion.descripcion }}</p>
           </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-yellow-600 text-white px-2 py-1 rounded">Expansión</span>
-            </div>
-            <p class="text-gray-300 text-sm">Se amplía y modifica a lo largo de las generaciones.</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-red-600 text-white px-2 py-1 rounded">Destrucción</span>
-            </div>
-            <p class="text-gray-300 text-sm">Finalmente es arrasada por el huracán profético.</p>
-          </div>
+          {% endfor %}
         </div>
       </section>
     </div>
@@ -553,23 +418,21 @@
     <!-- Sidebar -->
     <div class="space-y-6">
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
-        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Habitantes Principales</h3>
+        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Personajes relacionados</h3>
         <div class="space-y-3">
+          {% for personaje in data.personajes_asociados %}
           <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
-            <h4 class="text-white font-bold text-sm mt-2">Úrsula Iguarán</h4>
-            <p class="text-gray-300 text-xs mt-1">Matriarca y guardiana de la casa</p>
+            <span class="text-xs bg-blue-500 text-white px-2 py-1 rounded-full">Personaje</span>
+            <h4 class="text-white font-bold text-sm mt-2">{{ personaje.nombre }}</h4>
+            <p class="text-gray-300 text-xs mt-1">{{ personaje.descripcion_fisica }}</p>
           </div>
-          <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
-            <h4 class="text-white font-bold text-sm mt-2">José Arcadio Buendía</h4>
-            <p class="text-gray-300 text-xs mt-1">Fundador y patriarca</p>
-          </div>
+          {% endfor %}
         </div>
       </section>
     </div>
   </div>
 </div>
+{% elif data.type == "dreams_visions" %}
 <!-- Sueños y Visiones -->
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <nav class="mb-6">
@@ -582,17 +445,17 @@
   <header class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 mb-8">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
       <div class="flex-1">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">La Soledad</h1>
-        <p class="text-lg md:text-xl text-gray-300 mb-4">Tema central de la narrativa</p>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Soñador: {{ data.soñador.nombre }}</h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-4">Elementos simbolicos</p>
         <div class="flex flex-wrap gap-2 mb-4">
-          <span class="text-xs md:text-sm bg-orange-600 text-white px-3 py-1 rounded-full">Concepto</span>
-          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Filosófico</span>
-          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Transversal</span>
+          {% for element in data.elementos_simbolicos%}
+            <span class="text-xs md:text-sm bg-orange-600 text-white px-3 py-1 rounded-full">{{ element }}</span>
+          {% endfor %}
         </div>
       </div>
       <div class="text-center lg:text-right mt-4 lg:mt-0">
-        <div class="text-2xl md:text-3xl font-bold text-orange-400">10/10</div>
-        <div class="text-xs md:text-sm text-gray-400">Importancia narrativa</div>
+        <div class="text-2xl md:text-3xl font-bold text-orange-400">{{ data.capitulo }}</div>
+        <div class="text-xs md:text-sm text-gray-400">Capitulo</div>
       </div>
     </div>
   </header>
@@ -607,129 +470,37 @@
         <div class="bg-gray-700 rounded-lg p-4 mb-6">
           <h3 class="text-white font-semibold text-sm mb-2">Descripción</h3>
           <p class="text-gray-300 text-sm leading-relaxed">
-            La soledad en Cien años de soledad no es solo un estado emocional, sino una condición existencial que define a la estirpe Buendía. Es la incapacidad de conectar genuinamente con otros, de
-            romper el ciclo de repetición que los condena al aislamiento.
+            {{ data.descripcion }}
           </p>
         </div>
 
         <!-- Manifestaciones -->
         <div class="mb-6">
-          <h3 class="text-white font-semibold text-sm mb-3">Manifestaciones</h3>
+          <h3 class="text-white font-semibold text-sm mb-3">Información extra</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Soledad física</h4>
-              <p class="text-gray-300 text-xs">Aislamiento geográfico de Macondo</p>
+              <h4 class="text-white font-semibold text-xs mb-1">Interpretación</h4>
+              <p class="text-gray-300 text-xs">{{ data.interpretacion}}</p>
             </div>
             <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Soledad emocional</h4>
-              <p class="text-gray-300 text-xs">Incapacidad de amar plenamente</p>
-            </div>
-            <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Soledad histórica</h4>
-              <p class="text-gray-300 text-xs">Repetición cíclica del destino</p>
-            </div>
-            <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Soledad existencial</h4>
-              <p class="text-gray-300 text-xs">Falta de trascendencia</p>
+              <h4 class="text-white font-semibold text-xs mb-1">Cumplimiento</h4>
+              <p class="text-gray-300 text-xs">{{ data.cumplimiento }}</p>
             </div>
           </div>
         </div>
 
         <!-- Símbolos relacionados -->
         <div class="mb-6">
-          <h3 class="text-white font-semibold text-sm mb-3">Símbolos Relacionados</h3>
+          <h3 class="text-white font-semibold text-sm mb-3">Palabras clave:</h3>
           <div class="flex flex-wrap gap-2">
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">El espejo</span>
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Los círculos</span>
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">El laberinto</span>
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">La memoria</span>
-          </div>
-        </div>
-
-        <!-- Sueños y Visiones Relacionados -->
-        <div class="mb-6">
-          <h3 class="text-white font-semibold text-sm mb-3">Sueños y Visiones Relacionados</h3>
-          <div class="grid grid-cols-1 gap-3">
-            <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Premoniciones de Úrsula</h4>
-              <p class="text-gray-300 text-xs">Visiones sobre la decadencia familiar que refuerzan el tema de la soledad inevitable</p>
-            </div>
-            <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Sueños proféticos</h4>
-              <p class="text-gray-300 text-xs">Los sueños que anuncian muertes y separaciones, perpetuando el aislamiento</p>
-            </div>
-            <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Visiones de los pergaminos</h4>
-              <p class="text-gray-300 text-xs">Las revelaciones de Melquíades sobre el destino solitario de la estirpe</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- PERSONAJES AFECTADOS -->
-      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
-        <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Personajes Más Afectados</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h4 class="text-white font-bold text-sm mb-2">José Arcadio Buendía</h4>
-            <p class="text-gray-300 text-xs">Soledad del visionario incomprendido</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h4 class="text-white font-bold text-sm mb-2">Coronel Aureliano Buendía</h4>
-            <p class="text-gray-300 text-xs">Soledad del poder y la guerra</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h4 class="text-white font-bold text-sm mb-2">Amaranta</h4>
-            <p class="text-gray-300 text-xs">Soledad del amor no correspondido</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h4 class="text-white font-bold text-sm mb-2">Aureliano Babilonia</h4>
-            <p class="text-gray-300 text-xs">Soledad del último de la estirpe</p>
+            {% for element in data.palabras_clave%}
+            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">{{ element }}</span>
+            {% endfor %}
           </div>
         </div>
       </section>
     </div>
-
-    <!-- Sidebar -->
-    <div class="space-y-6">
-      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
-        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Conceptos Relacionados</h3>
-        <div class="space-y-3">
-          <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-orange-600 text-white px-2 py-1 rounded-full">Concepto</span>
-            <h4 class="text-white font-bold text-sm mt-2">El Tiempo Circular</h4>
-            <p class="text-gray-300 text-xs mt-1">La repetición que perpetúa la soledad</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-orange-600 text-white px-2 py-1 rounded-full">Concepto</span>
-            <h4 class="text-white font-bold text-sm mt-2">El Destino</h4>
-            <p class="text-gray-300 text-xs mt-1">La predestinación que aisla</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Nueva sección de Sueños y Visiones -->
-      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
-        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">De la Colección: Sueños y Visiones</h3>
-        <div class="space-y-3">
-          <div class="bg-gray-700 rounded-lg p-4 hover:bg-purple-600 transition-colors duration-200">
-            <span class="text-xs bg-purple-500 text-white px-2 py-1 rounded-full">Premonición</span>
-            <h4 class="text-white font-bold text-sm mt-2">Visión de la Decadencia</h4>
-            <p class="text-gray-300 text-xs mt-1">Úrsula prevé el fin solitario de la familia</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4 hover:bg-purple-600 transition-colors duration-200">
-            <span class="text-xs bg-purple-500 text-white px-2 py-1 rounded-full">Sueño Profético</span>
-            <h4 class="text-white font-bold text-sm mt-2">Los Pergaminos Revelados</h4>
-            <p class="text-gray-300 text-xs mt-1">Las profecías sobre la soledad eterna</p>
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
-</div>
-<!-- SEPARADOR VISUAL -->
-<div class="my-12 md:my-16 border-t-4 border-indigo-600"></div>
-
+{% elif data.type == 'symbols' %}
 <!-- EJEMPLO 5: SÍMBOLO -->
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <nav class="mb-6">
@@ -742,17 +513,13 @@
   <header class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 mb-8">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
       <div class="flex-1">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Los Espejos</h1>
-        <p class="text-lg md:text-xl text-gray-300 mb-4">Símbolo de repetición y autoconocimiento</p>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">{{ data.nombre }}</h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-4">Elementos asociados:</p>
         <div class="flex flex-wrap gap-2 mb-4">
-          <span class="text-xs md:text-sm bg-indigo-600 text-white px-3 py-1 rounded-full">Símbolo</span>
-          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Recurrente</span>
-          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Múltiple</span>
+          {% for element in data.elementos_asociados%}
+            <span class="text-xs md:text-sm bg-indigo-600 text-white px-3 py-1 rounded-full">{{ element }}</span>
+          {% endfor %}
         </div>
-      </div>
-      <div class="text-center lg:text-right mt-4 lg:mt-0">
-        <div class="text-2xl md:text-3xl font-bold text-indigo-400">9/10</div>
-        <div class="text-xs md:text-sm text-gray-400">Importancia simbólica</div>
       </div>
     </div>
   </header>
@@ -765,52 +532,49 @@
 
         <!-- Descripción -->
         <div class="bg-gray-700 rounded-lg p-4 mb-6">
-          <h3 class="text-white font-semibold text-sm mb-2">Interpretación</h3>
-          <p class="text-gray-300 text-sm leading-relaxed">
-            Los espejos en la obra representan la naturaleza cíclica del tiempo y el destino de los Buendía. Reflejan la repetición de patrones, la búsqueda del autoconocimiento y la imposibilidad de
-            escapar de la propia naturaleza.
-          </p>
+          <h3 class="text-white font-semibold text-sm mb-2">Interpretaciones</h3>
+          {% for interpretacion in data.interpretaciones %}
+            <p class="text-gray-300 text-sm leading-relaxed">
+              -{{ interpretacion }}
+            </p>
+            {%endfor%}
         </div>
 
         <!-- Apariciones -->
         <div class="mb-6">
           <h3 class="text-white font-semibold text-sm mb-3">Apariciones en la Obra</h3>
           <div class="space-y-3">
+            {% for capitulo in data.capitulos_aparicion %}
             <div class="bg-gray-700 rounded-lg p-4">
               <div class="flex items-center gap-2 mb-2">
-                <span class="text-sm bg-blue-600 text-white px-2 py-1 rounded">Capítulo 6</span>
+                <span class="text-sm bg-blue-600 text-white px-2 py-1 rounded">Capítulo {{ capitulo }}</span>
               </div>
-              <p class="text-gray-300 text-sm">Los espejos traídos por los gitanos causan asombro y confusión.</p>
             </div>
-            <div class="bg-gray-700 rounded-lg p-4">
-              <div class="flex items-center gap-2 mb-2">
-                <span class="text-sm bg-purple-600 text-white px-2 py-1 rounded">Capítulo 20</span>
-              </div>
-              <p class="text-gray-300 text-sm">Los espejos reflejan la culminación del destino profético.</p>
-            </div>
+            {% endfor %}
           </div>
         </div>
 
         <!-- Niveles de significado -->
         <div class="mb-6">
-          <h3 class="text-white font-semibold text-sm mb-3">Niveles de Significado</h3>
+          <h3 class="text-white font-semibold text-sm mb-3">Eventos relacionados</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {%for event in data.eventos_relacionados%}
             <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Literal</h4>
-              <p class="text-gray-300 text-xs">Objetos que reflejan la imagen</p>
+              <h4 class="text-white font-semibold text-xs mb-1">{{ event.nombre }}</h4>
+              <p class="text-gray-300 text-xs">{{ event.descripcion}}</p>
             </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <h3 class="text-white font-semibold text-sm mb-3">Personajes afectados</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {%for personaje in data.personajes_afectados %}
             <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Psicológico</h4>
-              <p class="text-gray-300 text-xs">Autoconocimiento y introspección</p>
+              <h4 class="text-white font-semibold text-xs mb-1">{{ personaje.nombre }}</h4>
             </div>
-            <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Temporal</h4>
-              <p class="text-gray-300 text-xs">Repetición cíclica del tiempo</p>
-            </div>
-            <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Metafísico</h4>
-              <p class="text-gray-300 text-xs">Naturaleza de la realidad</p>
-            </div>
+            {% endfor %}
           </div>
         </div>
       </section>
@@ -819,26 +583,20 @@
     <!-- Sidebar -->
     <div class="space-y-6">
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
-        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Símbolos Relacionados</h3>
+        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Palabras clave</h3>
         <div class="space-y-3">
+          {%for palabra in data.palabras_clave %}
           <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">Símbolo</span>
-            <h4 class="text-white font-bold text-sm mt-2">Los Círculos</h4>
-            <p class="text-gray-300 text-xs mt-1">Representación del tiempo cíclico</p>
+            <span class="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">Palabra</span>
+            <h4 class="text-white font-bold text-sm mt-2">{{ palabra }}</h4>
           </div>
-          <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">Símbolo</span>
-            <h4 class="text-white font-bold text-sm mt-2">El Laberinto</h4>
-            <p class="text-gray-300 text-xs mt-1">La búsqueda sin salida</p>
-          </div>
+          {%endfor%}
         </div>
       </section>
     </div>
   </div>
 </div>
-<!-- SEPARADOR VISUAL -->
-<div class="my-12 md:my-16 border-t-4 border-pink-600"></div>
-
+{% elif data.type == 'relationships' %}
 <!-- EJEMPLO 6: RELACIÓN -->
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <nav class="mb-6">
@@ -851,17 +609,16 @@
   <header class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 mb-8">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
       <div class="flex-1">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Aureliano Babilonia y Amaranta Úrsula</h1>
-        <p class="text-lg md:text-xl text-gray-300 mb-4">El amor que cierra la estirpe</p>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">{{ data.personaje1.nombre }} y {{ data.personaje2.nombre }}</h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-4">{{ data.descripcion }}</p>
         <div class="flex flex-wrap gap-2 mb-4">
           <span class="text-xs md:text-sm bg-pink-600 text-white px-3 py-1 rounded-full">Relación</span>
-          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Amorosa</span>
-          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Capítulo 20</span>
+          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">{{ data.tipo_relacion }}</span>
         </div>
       </div>
       <div class="text-center lg:text-right mt-4 lg:mt-0">
-        <div class="text-2xl md:text-3xl font-bold text-pink-400">10/10</div>
-        <div class="text-xs md:text-sm text-gray-400">Importancia narrativa</div>
+        <div class="text-2xl md:text-3xl font-bold text-pink-400">{{ data.capitulo_inicio }}</div>
+        <div class="text-xs md:text-sm text-gray-400">Capitulo de inicio</div>
       </div>
     </div>
   </header>
@@ -875,19 +632,25 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Tipo de Relación</h3>
-            <p class="text-gray-300 text-sm">Amorosa / Incestuosa</p>
+            <p class="text-gray-300 text-sm">{{ data.tipo_relacion }}</p>
           </div>
           <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Duración</h3>
-            <p class="text-gray-300 text-sm">Breve pero intensa</p>
+            <h3 class="text-white font-semibold text-sm mb-2">Obstactulos</h3>
+            {% for obstaculo in data.obstaculos%}
+              <p class="text-gray-300 text-sm">-{{ obstaculo }}</p>
+            {%endfor%}
           </div>
           <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Consecuencia</h3>
-            <p class="text-gray-300 text-sm">Nacimiento del último Aureliano</p>
+            <h3 class="text-white font-semibold text-sm mb-2">Simbolismos</h3>
+            {%for simbolo in data.simbolismo %}
+            <p class="text-gray-300 text-sm">-{{ simbolo }}</p>
+            {%endfor%}
           </div>
           <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Destino</h3>
-            <p class="text-gray-300 text-sm">Cumplimiento de la profecía</p>
+            <h3 class="text-white font-semibold text-sm mb-2">Consecuencias</h3>
+            {%for consecuencia in data.consecuencias %}
+              <p class="text-gray-300 text-sm">-{{ consecuencia }}</p>
+            {% endfor %}
           </div>
         </div>
 
@@ -908,70 +671,37 @@
               <div class="flex items-center gap-2 mb-2">
                 <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
               </div>
-              <h4 class="text-white font-bold mb-2">Aureliano Babilonia</h4>
-              <p class="text-gray-300 text-sm">El último de la estirpe, descifrador de pergaminos</p>
+              <h4 class="text-white font-bold mb-2">{{ data.personaje1.nombre }}</h4>
             </div>
             <div class="bg-gray-700 rounded-lg p-4">
               <div class="flex items-center gap-2 mb-2">
                 <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
               </div>
-              <h4 class="text-white font-bold mb-2">Amaranta Úrsula</h4>
-              <p class="text-gray-300 text-sm">La última mujer de la casa, llena de vitalidad</p>
+              <h4 class="text-white font-bold mb-2">{{ data.personaje2.nombre }}</h4>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- EVOLUCIÓN -->
-      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
-        <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Evolución de la Relación</h2>
-        <div class="space-y-4">
-          <div class="bg-gray-700 rounded-lg p-4">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-blue-600 text-white px-2 py-1 rounded">Encuentro</span>
-            </div>
-            <p class="text-gray-300 text-sm">Amaranta Úrsula regresa a Macondo y encuentra a Aureliano.</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-yellow-600 text-white px-2 py-1 rounded">Atracción</span>
-            </div>
-            <p class="text-gray-300 text-sm">Surge una atracción mutua e inevitable entre ambos.</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-pink-600 text-white px-2 py-1 rounded">Consumación</span>
-            </div>
-            <p class="text-gray-300 text-sm">Se entregan al amor sin conocer su parentesco.</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-red-600 text-white px-2 py-1 rounded">Revelación</span>
-            </div>
-            <p class="text-gray-300 text-sm">El descubrimiento de su parentesco confirma la profecía.</p>
-          </div>
-        </div>
-      </section>
     </div>
 
     <!-- Sidebar -->
     <div class="space-y-6">
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
-        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Relaciones Similares</h3>
+        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Palabras clave</h3>
         <div class="space-y-3">
+          {%for palabra in data.palabras_clave %}
           <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-pink-600 text-white px-2 py-1 rounded-full">Relación</span>
-            <h4 class="text-white font-bold text-sm mt-2">José Arcadio y Pilar Ternera</h4>
-            <p class="text-gray-300 text-xs mt-1">Primera relación incestuosa de la saga</p>
+            <span class="text-xs bg-green-600 text-white px-2 py-1 rounded-full">Palabra</span>
+            <h4 class="text-white font-bold text-sm mt-2">{{palabra}}</h4>
           </div>
+          {% endfor %}
         </div>
       </section>
     </div>
   </div>
 </div>
-<!-- SEPARADOR VISUAL -->
-<div class="my-12 md:my-16 border-t-4 border-teal-600"></div>
-
+{% elif data.type == 'chapters' %}
 <!-- EJEMPLO 7: CAPÍTULO -->
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <nav class="mb-6">
@@ -984,16 +714,14 @@
   <header class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 mb-8">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
       <div class="flex-1">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Capítulo 13</h1>
-        <p class="text-lg md:text-xl text-gray-300 mb-4">La llegada de la compañía bananera</p>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Capítulo {{ data.numero }}</h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-4">{{ data.titulo }}</p>
         <div class="flex flex-wrap gap-2 mb-4">
           <span class="text-xs md:text-sm bg-teal-600 text-white px-3 py-1 rounded-full">Capítulo</span>
-          <span class="text-xs md:text-sm bg-red-600 text-white px-3 py-1 rounded-full">Transformación</span>
-          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Progreso y explotación</span>
         </div>
       </div>
       <div class="text-center lg:text-right mt-4 lg:mt-0">
-        <div class="text-2xl md:text-3xl font-bold text-yellow-400">8/10</div>
+        <div class="text-2xl md:text-3xl font-bold text-yellow-400">{{ data.importancia }}/10</div>
         <div class="text-xs md:text-sm text-gray-400">Importancia narrativa</div>
       </div>
     </div>
@@ -1009,9 +737,7 @@
         <div class="bg-gray-700 rounded-lg p-4 mb-6">
           <h3 class="text-white font-semibold text-sm mb-2">Descripción General</h3>
           <p class="text-gray-300 text-sm leading-relaxed">
-            Este capítulo marca la llegada de la compañía bananera a Macondo, lo cual desencadena una transformación profunda en la estructura social, económica y cultural del pueblo. Se introduce una
-            modernización agresiva con la llegada del tren, trabajadores extranjeros y nuevos modelos de trabajo. Aunque inicialmente se percibe como progreso, la compañía simboliza una explotación
-            sistemática de los recursos y las personas de Macondo.
+            {{ data.resumen }}
           </p>
         </div>
 
@@ -1019,9 +745,9 @@
         <div class="mb-6">
           <h3 class="text-white font-semibold text-sm mb-3">Temas Principales</h3>
           <div class="flex flex-wrap gap-2">
-            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">Progreso destructivo</span>
-            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">Explotación económica</span>
-            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">Transformación cultural</span>
+            {%for temas in data.temas_principales %}
+            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">{{ temas }}</span>
+            {%endfor%}
           </div>
         </div>
 
@@ -1029,43 +755,26 @@
         <div class="mb-6">
           <h3 class="text-white font-semibold text-sm mb-3">Palabras Clave</h3>
           <div class="flex flex-wrap gap-2">
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Compañía bananera</span>
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Modernización</span>
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Tren</span>
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Extranjeros</span>
+            {% for palabra in data.palabras_clave%}
+            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">{{ palabra }}</span>
+            {%endfor%}
           </div>
         </div>
       </section>
 
-      <!-- EVENTOS RELACIONADOS -->
+      <!-- EVENTOS RELACIONADOS --> 
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Eventos Relacionados</h2>
         <div class="space-y-4">
+          {%for event in data.eventos_relacionados%}
           <div class="bg-gray-700 rounded-lg p-4">
-            <h4 class="text-white font-semibold text-sm mb-2">Llegada del tren</h4>
-            <p class="text-gray-300 text-sm">El tren simboliza el comienzo de la industrialización en Macondo.</p>
+            <h4 class="text-white font-semibold text-sm mb-2">{{ event.nombre }}</h4>
+            <p class="text-gray-300 text-sm"> {{event.descripcion}}</p>
           </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h4 class="text-white font-semibold text-sm mb-2">Contrato con la compañía extranjera</h4>
-            <p class="text-gray-300 text-sm">Se firma el acuerdo que da paso al dominio extranjero sobre los cultivos de banano.</p>
-          </div>
+          {% endfor%}
         </div>
       </section>
     </div>
+{% endif %}
 
-    <!-- SIDEBAR -->
-    <div class="space-y-6">
-      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
-        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Otros Capítulos Relevantes</h3>
-        <div class="space-y-3">
-          <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-blue-600 text-white px-2 py-1 rounded-full">Capítulo</span>
-            <h4 class="text-white font-bold text-sm mt-2">Capítulo 14</h4>
-            <p class="text-gray-300 text-xs mt-1">Se intensifica el conflicto laboral con la compañía</p>
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
-</div>
 {%endblock%}
