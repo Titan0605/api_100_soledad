@@ -57,9 +57,7 @@ export function drawResults(results) {
                                 ${result.importancia ? `Importancia ${result.importancia}` : ""}
                             </span>
                             <span class="text-xs text-blue-400 font-medium">
-                                <button id="see_more" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value="${
-                                  result._id
-                                }">
+                                <button class="see_more text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value='${JSON.stringify([result._id, result.type])}'>
                                     Ver más
                                 </button>
                             </span>
@@ -112,9 +110,7 @@ export function drawResults(results) {
                                 ${result.capitulos_aparicion ? `Aparece en ${result.capitulos_aparicion.length} capítulo(s)` : ""}
                             </span>
                             <span class="text-xs text-blue-400 font-medium">
-                                <button id="see_more" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value="${
-                                  result._id
-                                }">
+                                <button class="see_more text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value='${JSON.stringify([result._id, result.type])}'>
                                     Ver más
                                 </button>
                             </span>
@@ -166,9 +162,7 @@ export function drawResults(results) {
                                 ${result.capitulos_aparicion ? `Aparece en ${result.capitulos_aparicion.length} capítulo(s)` : ""}
                             </span>
                             <span class="text-xs text-blue-400 font-medium">
-                                <button id="see_more" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value="${
-                                  result._id
-                                }">
+                                <button class="see_more text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value='${JSON.stringify([result._id, result.type])}'>
                                     Ver más
                                 </button>
                             </span>
@@ -221,9 +215,7 @@ export function drawResults(results) {
                                 ${result.capitulos_aparicion ? `Aparece en ${result.capitulos_aparicion.length} capítulo(s)` : ""}
                             </span>
                             <span class="text-xs text-blue-400 font-medium">
-                                <button id="see_more" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value="${
-                                  result._id
-                                }">
+                                <button class="see_more text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value='${JSON.stringify([result._id, result.type])}'>
                                     Ver más
                                 </button>
                             </span>
@@ -276,9 +268,7 @@ export function drawResults(results) {
                                 ${result.numero ? `Aparece en el capitulo ${result.numero}.` : ""}
                             </span>
                             <span class="text-xs text-blue-400 font-medium">
-                                <button id="see_more" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value="${
-                                  result._id
-                                }">
+                                <button class="see_more text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value='${JSON.stringify([result._id, result.type])}'>
                                     Ver más
                                 </button>
                             </span>
@@ -288,36 +278,30 @@ export function drawResults(results) {
       case "relationships":
         card.className = "bg-gray-800 text-white rounded-2xl shadow-lg p-6 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200";
         card.innerHTML = `<div class="mb-3">
-                        <h2 class="text-xl font-bold text-white">${result.nombre} ${result.apellido || ""} </h2>
+                        <h2 class="text-xl font-bold text-white">${result.personaje1.nombre} y ${result.personaje2.nombre || ""} </h2>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="text-sm bg-pink-500 text-white px-2 py-1 rounded">Relaciones</span>                                                                              
                         </div>
                     </div>
                     <div class="mb-3">
                         <p class="text-gray-300 text-sm leading-relaxed">
-                            ${result.descripcion_fisica ? result.descripcion_fisica : "Sin descripción disponible"}
+                            ${result.descripcion ? result.descripcion : "Sin descripción disponible"}
                         </p>
                     </div>
                     <div class="mb-3">
-                        <p class="text-white font-semibold text-sm mb-1">Relaciones:</p>
+                        <p class="text-white font-semibold text-sm mb-1">Consecuencias:</p>
                         <div class="flex flex-wrap gap-2">
                             <ol class='list-disc pl-5'>
                             ${
-                              result.relaciones
-                                ? result.relaciones
+                              result.consecuencias
+                                ? result.consecuencias
                                     .slice(0, 3)
-                                    .map((relacion) => `<li class="text-xs text-white px-2 py-1 rounded-full">${relacion.descripcion}. (${relacion.tipo})</li>`)
+                                    .map((concecuencia) => `<li class="text-xs text-white px-2 py-1 rounded-full">${concecuencia}</li>`)
                                     .join("")
                                 : '<span class="text-gray-400 text-xs">No disponible</span>'
                             }
                             </ol>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <p class="text-white font-semibold text-sm mb-1">Transformación:</p>
-                        <p class="text-gray-300 text-sm italic">
-                            ${result.transformacion ? result.transformacion : "No disponible"}
-                        </p>
                     </div>
                     <div class="mt-4 pt-3 border-t border-gray-700">
                         <div class="flex justify-between items-center">
@@ -325,9 +309,7 @@ export function drawResults(results) {
                                 ${result.capitulos_aparicion ? `Aparece en ${result.capitulos_aparicion.length} capítulo(s)` : ""}
                             </span>
                             <span class="text-xs text-blue-400 font-medium">
-                                <button id="see_more" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value="${
-                                  result._id
-                                }">
+                                <button class="see_more text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value='${JSON.stringify([result._id, result.type])}'>
                                     Ver más
                                 </button>
                             </span>
@@ -372,9 +354,7 @@ export function drawResults(results) {
                                 ${result.capitulos_aparicion ? `Aparece en ${result.capitulos_aparicion.length} capítulo(s)` : ""}
                             </span>
                             <span class="text-xs text-blue-400 font-medium">
-                                <button id="see_more" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value="${
-                                  result._id
-                                }">
+                                <button class="see_more text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value='${JSON.stringify([result._id, result.type])}'>
                                     Ver más
                                 </button>
                             </span>
@@ -437,9 +417,7 @@ export function drawResults(results) {
                                 ${result.capitulos_aparicion ? `Aparece en ${result.capitulos_aparicion.length} capítulo(s)` : ""}
                             </span>
                             <span class="text-xs text-blue-400 font-medium">
-                                <button id="see_more" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value="${
-                                  result._id
-                                }">
+                                <button class="see_more text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" value='${JSON.stringify([result._id, result.type])}'>
                                     Ver más
                                 </button>
                             </span>
@@ -454,3 +432,29 @@ export function drawResults(results) {
     document.getElementById("results_container").classList.remove("hidden");
   });
 }
+
+// ...existing code fuera de drawResults...
+document.getElementById('results_container').addEventListener('click', async function(e) {
+    if (e.target && e.target.classList.contains('see_more')) {
+        const [id, type] = JSON.parse(e.target.value);
+
+        let data = {
+            'id': id,
+            'type': type
+        }
+
+        console.log(data)
+        const response = await fetch(`/search-specific-${type}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+        
+        const result = await response.json();
+
+        console.log(result)
+        // window.location.href = `/view/${id}/${type}`;
+    }
+});

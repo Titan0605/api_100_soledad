@@ -36,7 +36,7 @@ def search_events():
         "results": events_results
     }), 200
 
-bp.route("/search-specific-event", methods=["POST"])
+@bp.route("/search-specific-events", methods=["POST"])
 def specific_event():
     data = request.get_json()
     if not data or "id" not in data:
@@ -46,6 +46,8 @@ def specific_event():
         }), 400
     
     event_id = data.get("id")
+    
+    print("id de eventosssss :", event_id)
 
     event = search_model.search_especific(event_id, "eventos")
 

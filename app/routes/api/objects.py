@@ -37,7 +37,7 @@ def objects_search():
         "results": objects_results
     }), 200
 
-@bp.route("/search-especific-object", methods=["POST"])
+@bp.route("/search-specific-objects", methods=["POST"])
 def specific_object():
     data = request.get_json()
     if not data or "id" not in data:

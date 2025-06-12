@@ -38,7 +38,7 @@ def search_characters():
         "results": character_results
     }), 200
 
-@bp.route("/search-especific-character", methods=['POST'])
+@bp.route("/search-specific-characters", methods=['POST'])
 def specific_character():
     data = request.get_json()
     if not data or "id" not in data:

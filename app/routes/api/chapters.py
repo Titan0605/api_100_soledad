@@ -34,7 +34,7 @@ def search_chapters():
         "results": chapters_results
     }), 200
 
-bp.route("/search-specific-chapter", methods=["POST"])
+@bp.route("/search-specific-chapters", methods=["POST"])
 def specific_chapter():
     data = request.get_json()
     if not data or "id" not in data:

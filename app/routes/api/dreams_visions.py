@@ -37,7 +37,7 @@ def dreams_visions_search():
         "results": dreams_visions_results
     }), 200
 
-@bp.route("/search-especific-dream-vision", methods=["POST"])
+@bp.route("/search-specific-dreams_visions", methods=["POST"])
 def specific_object():
     data = request.get_json()
     if not data or "id" not in data:
@@ -63,7 +63,7 @@ def specific_object():
     return jsonify({
         "status": "successful",
         "message": "the object was found successfuly",
-        "type": "dreams_visions",
+        "type": "dreams-visions",
         "results": dream_vision
     }), 200
 

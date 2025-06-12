@@ -38,7 +38,7 @@ def locations_search():
         "results": locations_results
     }), 200
 
-@bp.route("/search-especific-location", methods=["POST"])
+@bp.route("/search-specific-locations", methods=["POST"])
 def specific_location():
     data = request.get_json()
     if not data or "id" not in data:

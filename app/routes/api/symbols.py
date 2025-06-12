@@ -35,7 +35,7 @@ def search_symbols():
         "results": symbols_results
     }), 200
 
-bp.route("/search-specific-symbol", methods=["POST"])
+@bp.route("/search-specific-symbols", methods=["POST"])
 def specific_symbol():
     data = request.get_json()
     if not data or "id" not in data:
