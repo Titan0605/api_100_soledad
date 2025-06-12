@@ -17,8 +17,9 @@ export function drawResults(results) {
                         <div class="flex justify-between items-center">
                             <h2 class="text-xl font-bold text-white">${result.nombre}</h2>
                             <a href="">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                    <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                                    <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
                                 </svg>
                             </a>
                         </div>
@@ -62,11 +63,19 @@ export function drawResults(results) {
                             </span>
                         </div>
                     </div>`;
-                break;
-            case "characters":
-                card.className = "bg-gray-800 text-white rounded-2xl shadow-lg p-6 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200";
-                card.innerHTML = `<div class="mb-3">
-                        <h2 class="text-xl font-bold text-white">${result.nombre} ${result.apellido || ""}</h2>
+        break;
+      case "characters":
+        card.className = "bg-gray-800 text-white rounded-2xl shadow-lg p-6 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200";
+        card.innerHTML = `<div class="mb-3">
+                        <div class="flex justify-between items-center">
+                            <h2 class="text-xl font-bold text-white">${result.nombre} ${result.apellido || ""}</h2>
+                            <a href="">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                    <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                                    <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                                </svg>
+                            </a>
+                        </div>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="text-sm bg-blue-600 text-white px-2 py-1 rounded">Personaje</span>                            
                             <span class="text-sm text-gray-300 px-2 py-1 rounded">Generación ${result.generacion}</span>                            
@@ -113,11 +122,19 @@ export function drawResults(results) {
                             </span>
                         </div>
                     </div>`;
-                break;
-            case "locations":
-                card.className = "bg-gray-800 text-white rounded-2xl shadow-lg p-6 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200";
-                card.innerHTML = `<div class="mb-3">
-                        <h2 class="text-xl font-bold text-white">${result.nombre} ${result.apellido || ""}</h2>
+        break;
+      case "locations":
+        card.className = "bg-gray-800 text-white rounded-2xl shadow-lg p-6 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200";
+        card.innerHTML = `<div class="mb-3">
+                        <div class="flex justify-between items-center">
+                            <h2 class="text-xl font-bold text-white">${result.nombre} ${result.apellido || ""}</h2>
+                            <a href="">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                    <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                                    <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                                </svg>
+                            </a>
+                        </div>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="text-sm bg-green-500 text-white px-2 py-1 rounded">Localización</span>                                                        
                         </div>
@@ -163,12 +180,20 @@ export function drawResults(results) {
                             </span>
                         </div>
                     </div>`;
-                break;
-            case "objects":
-                console.log("objectos");
-                card.className = "bg-gray-800 text-white rounded-2xl shadow-lg p-6 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200";
-                card.innerHTML = `<div class="mb-3">
-                        <h2 class="text-xl font-bold text-white">${result.nombre}</h2>
+        break;
+      case "objects":
+        console.log("objectos");
+        card.className = "bg-gray-800 text-white rounded-2xl shadow-lg p-6 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200";
+        card.innerHTML = `<div class="mb-3">
+                        <div class="flex justify-between items-center">
+                            <h2 class="text-xl font-bold text-white">${result.nombre}</h2>
+                            <a href="">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                    <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                                    <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                                </svg>
+                            </a>
+                        </div>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="text-sm bg-yellow-500 text-white px-2 py-1 rounded">Objeto</span>                                                        
                         </div>
@@ -214,11 +239,19 @@ export function drawResults(results) {
                             </span>
                         </div>
                     </div>`;
-                break;
-            case "chapters":
-                card.className = "bg-gray-800 text-white rounded-2xl shadow-lg p-6 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200";
-                card.innerHTML = `<div class="mb-3">
-                        <h2 class="text-xl font-bold text-white">${result.titulo}</h2>
+        break;
+      case "chapters":
+        card.className = "bg-gray-800 text-white rounded-2xl shadow-lg p-6 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200";
+        card.innerHTML = `<div class="mb-3">
+                        <div class="flex justify-between items-center">
+                            <h2 class="text-xl font-bold text-white">${result.titulo}</h2>
+                            <a href="">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                    <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                                    <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                                </svg>
+                            </a>
+                        </div>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="text-sm bg-purple-500 text-white px-2 py-1 rounded">Capítulo</span>
                             <span class="text-sm text-gray-300 px-2 py-1 rounded">Número: ${result.numero}</span>                                                       
@@ -265,11 +298,19 @@ export function drawResults(results) {
                             </span>
                         </div>
                     </div>`;
-                break;
-            case "relationships":
-                card.className = "bg-gray-800 text-white rounded-2xl shadow-lg p-6 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200";
-                card.innerHTML = `<div class="mb-3">
-                        <h2 class="text-xl font-bold text-white">${result.personaje1.nombre} y ${result.personaje2.nombre || ""} </h2>
+        break;
+      case "relationships":
+        card.className = "bg-gray-800 text-white rounded-2xl shadow-lg p-6 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200";
+        card.innerHTML = `<div class="mb-3">
+                        <div class="flex justify-between items-center">
+                            <h2 class="text-xl font-bold text-white">${result.nombre} ${result.apellido || ""} </h2>
+                            <a href="">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                    <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                                    <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                                </svg>
+                            </a>
+                        </div>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="text-sm bg-pink-500 text-white px-2 py-1 rounded">Relaciones</span>                                                                              
                         </div>
@@ -311,7 +352,13 @@ export function drawResults(results) {
                 card.innerHTML = `<div class="mb-3">
                         <div class="flex items-center gap-2 mt-1">
                             <span class="text-sm bg-cyan-500 text-white px-2 py-1 rounded">Sueño y/o vición</span>                            
-                            <span class="text-sm text-gray-300 px-2 py-1 rounded">Soñador: ${result.soñador.nombre}</span>                            
+                            <span class="text-sm text-gray-300 px-2 py-1 rounded">Soñador: ${result.soñador.nombre}</span> 
+                            <a href="">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                    <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                                    <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                                </svg>
+                            </a>                           
                         </div>
                     </div>
                     <div class="mb-3">
@@ -349,11 +396,19 @@ export function drawResults(results) {
                             </span>
                         </div>
                     </div>`;
-                break;
-            case "symbols":
-                card.className = "bg-gray-800 text-white rounded-2xl shadow-lg p-6 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200";
-                card.innerHTML = `<div class="mb-3">
-                        <h2 class="text-xl font-bold text-white">${result.nombre}</h2>
+        break;
+      case "symbols":
+        card.className = "bg-gray-800 text-white rounded-2xl shadow-lg p-6 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200";
+        card.innerHTML = `<div class="mb-3">
+                        <div class="flex justify-between items-center">
+                            <h2 class="text-xl font-bold text-white">${result.nombre}</h2>
+                            <a href="">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                                    <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                                    <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                                </svg>
+                            </a>
+                        </div>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="text-sm bg-orange-500 text-white px-2 py-1 rounded">Símbolo</span>                            
                             <span class="text-sm text-gray-300 px-2 py-1 rounded">Soñador: ${result.soñador}</span>                            
