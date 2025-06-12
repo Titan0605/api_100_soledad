@@ -254,22 +254,22 @@
     <div class="flex items-center space-x-2 text-sm text-gray-400">
       <a href="/" class="hover:text-blue-400 transition-colors">Inicio</a>
       <span>/</span>
+      <span class="text-white">{{ data.nombre }}</span>
     </div>
   </nav>
 
   <header class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 mb-8">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
       <div class="flex-1">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Pergaminos de Melquíades</h1>
-        <p class="text-lg md:text-xl text-gray-300 mb-4">Manuscritos proféticos del destino</p>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">{{ data.nombre }}</h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-4">{{ data.tipo }}</p>
         <div class="flex flex-wrap gap-2 mb-4">
           <span class="text-xs md:text-sm bg-yellow-600 text-white px-3 py-1 rounded-full">Objeto</span>
-          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Mágico</span>
-          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Caps. 1-16</span>
+          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Aparece en {{ data.capitulos_aparicion|length}} capitulo(s)</span>
         </div>
       </div>
       <div class="text-center lg:text-right mt-4 lg:mt-0">
-        <div class="text-2xl md:text-3xl font-bold text-yellow-400">10/10</div>
+        <div class="text-2xl md:text-3xl font-bold text-yellow-400">{{ data.importancia_narrativa }}/10</div>
         <div class="text-xs md:text-sm text-gray-400">Importancia narrativa</div>
       </div>
     </div>
@@ -284,58 +284,54 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Tipo de Objeto</h3>
-            <p class="text-gray-300 text-sm">Mágico / Profético</p>
+            <p class="text-gray-300 text-sm">{{ data.tipo }}</p>
           </div>
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Ubicación Física</h3>
-            <p class="text-gray-300 text-sm">Cuarto de Melquíades</p>
+            <p class="text-gray-300 text-sm">{{ data.ubicacion_fisica }}</p>
           </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Estado Actual</h3>
-            <p class="text-gray-300 text-sm">Casi completamente descifrados</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Importancia</h3>
-            <p class="text-gray-300 text-sm">Contienen el destino de los Buendía</p>
-          </div>
+        </div>
+
+        <!-- Descripción completa -->
+        <div class="bg-gray-700 rounded-lg p-4 mb-4">
+          <h3 class="text-white font-semibold text-sm mb-2">Descripción Completa</h3>
+          <p class="text-gray-300 text-sm leading-relaxed">{{ data.descripcion }}</p>
         </div>
 
         <!-- PROPIETARIOS -->
         <div class="mb-6">
           <h3 class="text-white font-semibold text-sm mb-3">Propietarios</h3>
           <div class="space-y-2">
+            {% for propietario in data.propietarios %}
             <div class="flex items-center gap-3 bg-gray-700 rounded-lg p-3">
-              <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Original</span>
-              <span class="text-white text-sm">Melquíades</span>
+              <span class="text-xs bg-blue-500 text-white px-2 py-1 rounded-full">Personaje</span>
+              <span class="text-white text-sm">{{ propietario.nombre }}</span>
             </div>
-            <div class="flex items-center gap-3 bg-gray-700 rounded-lg p-3">
-              <span class="text-xs bg-blue-600 text-white px-2 py-1 rounded-full">Guardián</span>
-              <span class="text-white text-sm">José Arcadio Segundo</span>
-            </div>
-            <div class="flex items-center gap-3 bg-gray-700 rounded-lg p-3">
-              <span class="text-xs bg-green-600 text-white px-2 py-1 rounded-full">Descifrador</span>
-              <span class="text-white text-sm">Aureliano Babilonia</span>
-            </div>
+            {% endfor %}
           </div>
         </div>
+
+        <div>
+          <h3 class="text-white font-semibold text-sm mb-3">Simbolismos</h3>
+          <div class="flex flex-wrap gap-2">
+            {% for simbol in data.simbolismo %}
+            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">{{ simbol }}</span>
+            {% endfor %}
+          </div>
       </section>
 
       <!-- TRANSFORMACIONES -->
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Transformaciones</h2>
         <div class="space-y-4">
+          {% for transformacion in data.transformaciones %}
           <div class="bg-gray-700 rounded-lg p-4">
             <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-purple-600 text-white px-2 py-1 rounded">Capítulo 15</span>
+              <span class="text-sm bg-purple-600 text-white px-2 py-1 rounded">Capítulo {{ transformacion.capitulo }}</span>
             </div>
-            <p class="text-gray-300 text-sm">Se deterioran con la humedad del diluvio, haciendo más difícil su lectura.</p>
+            <p class="text-gray-300 text-sm">{{ transformacion.descripcion }}</p>
           </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-green-600 text-white px-2 py-1 rounded">Capítulo 16</span>
-            </div>
-            <p class="text-gray-300 text-sm">Aureliano Babilonia logra descifrar casi completamente su contenido profético.</p>
-          </div>
+          {% endfor %}
         </div>
       </section>
     </div>
@@ -343,12 +339,11 @@
     <!-- Sidebar para OBJETO -->
     <div class="space-y-6">
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
-        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Personajes Relacionados</h3>
+        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Ubicación física</h3>
         <div class="space-y-3">
           <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
-            <h4 class="text-white font-bold text-sm mt-2">Aureliano Babilonia</h4>
-            <p class="text-gray-300 text-xs mt-1">El descifrador final de los pergaminos</p>
+            <span class="text-xs bg-green-500 text-white px-2 py-1 rounded-full">Localización</span>
+            <h4 class="text-white font-bold text-sm mt-2">{{ data.ubicacion_fisica }}</h4>
           </div>
         </div>
       </section>
@@ -362,18 +357,18 @@
     <div class="flex items-center space-x-2 text-sm text-gray-400">
       <a href="/" class="hover:text-blue-400 transition-colors">Inicio</a>
       <span>/</span>
+      <span class="text-white">{{ data.nombre }}</span>
     </div>
   </nav>
 
   <header class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 mb-8">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
       <div class="flex-1">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Casa de los Buendía</h1>
-        <p class="text-lg md:text-xl text-gray-300 mb-4">Corazón del universo narrativo</p>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">{{ data.nombre }}</h1>
         <div class="flex flex-wrap gap-2 mb-4">
-          <span class="text-xs md:text-sm bg-green-600 text-white px-3 py-1 rounded-full">Lugar</span>
-          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Emblemático</span>
-          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Caps. 1-20</span>
+          <span class="text-xs md:text-sm bg-green-600 text-white px-3 py-1 rounded-full">Localización</span>
+          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">{{ data.tipo }}</span>
+          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Aparece en {{ data.capitulos_aparicion|length}} capitulo(s)</span>
         </div>
       </div>
       <div class="text-center lg:text-right mt-4 lg:mt-0">
@@ -388,55 +383,18 @@
       <!-- INFORMACIÓN -->
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Información del Lugar</h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Ubicación</h3>
-            <p class="text-gray-300 text-sm">Centro de Macondo</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Tipo</h3>
-            <p class="text-gray-300 text-sm">Residencia familiar</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Estado Actual</h3>
-            <p class="text-gray-300 text-sm">Destruida por el huracán</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Fundador</h3>
-            <p class="text-gray-300 text-sm">José Arcadio Buendía</p>
-          </div>
-        </div>
-
         <!-- Descripción -->
         <div class="bg-gray-700 rounded-lg p-4 mb-4">
           <h3 class="text-white font-semibold text-sm mb-2">Descripción</h3>
-          <p class="text-gray-300 text-sm leading-relaxed">
-            La casa de los Buendía es el epicentro de la saga familiar, testigo silencioso de siete generaciones. Sus muros han presenciado nacimientos, muertes, amores, traiciones y el peso
-            inexorable de la soledad que marca a la estirpe.
-          </p>
+          <p class="text-gray-300 text-sm leading-relaxed">{{ data.descripcion }}</p>
         </div>
 
-        <!-- Espacios importantes -->
-        <div class="mb-6">
-          <h3 class="text-white font-semibold text-sm mb-3">Espacios Importantes</h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Cuarto de Melquíades</h4>
-              <p class="text-gray-300 text-xs">Santuario de la sabiduría y los pergaminos</p>
-            </div>
-            <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Laboratorio de alquimia</h4>
-              <p class="text-gray-300 text-xs">Espacio de experimentación y reflexión</p>
-            </div>
-            <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Patio de los almendros</h4>
-              <p class="text-gray-300 text-xs">Centro de reunión familiar</p>
-            </div>
-            <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Corredor</h4>
-              <p class="text-gray-300 text-xs">Espacio de contemplación y espera</p>
-            </div>
+        <div>
+          <h3 class="text-white font-semibold text-sm mb-3">Simbolismo</h3>
+          <div class="flex flex-wrap gap-2">
+            {% for simbol in data.simbolismo %}
+            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">{{ simbol }}</span>
+            {% endfor %}
           </div>
         </div>
       </section>
@@ -445,24 +403,14 @@
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Transformaciones</h2>
         <div class="space-y-4">
+          {% for transformacion in data.transformaciones %}
           <div class="bg-gray-700 rounded-lg p-4">
             <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-green-600 text-white px-2 py-1 rounded">Construcción</span>
+              <span class="text-sm bg-purple-500 text-white px-2 py-1 rounded">capitulo {{ transformacion.capitulo }}</span>
             </div>
-            <p class="text-gray-300 text-sm">José Arcadio Buendía construye la casa con la ayuda de sus vecinos.</p>
+            <p class="text-gray-300 text-sm">{{ transformacion.descripcion }}</p>
           </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-yellow-600 text-white px-2 py-1 rounded">Expansión</span>
-            </div>
-            <p class="text-gray-300 text-sm">Se amplía y modifica a lo largo de las generaciones.</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-red-600 text-white px-2 py-1 rounded">Destrucción</span>
-            </div>
-            <p class="text-gray-300 text-sm">Finalmente es arrasada por el huracán profético.</p>
-          </div>
+          {% endfor %}
         </div>
       </section>
     </div>
@@ -470,18 +418,15 @@
     <!-- Sidebar -->
     <div class="space-y-6">
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
-        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Habitantes Principales</h3>
+        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Personajes relacionados</h3>
         <div class="space-y-3">
+          {% for personaje in data.personajes_asociados %}
           <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
-            <h4 class="text-white font-bold text-sm mt-2">Úrsula Iguarán</h4>
-            <p class="text-gray-300 text-xs mt-1">Matriarca y guardiana de la casa</p>
+            <span class="text-xs bg-blue-500 text-white px-2 py-1 rounded-full">Personaje</span>
+            <h4 class="text-white font-bold text-sm mt-2">{{ personaje.nombre }}</h4>
+            <p class="text-gray-300 text-xs mt-1">{{ personaje.descripcion_fisica }}</p>
           </div>
-          <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
-            <h4 class="text-white font-bold text-sm mt-2">José Arcadio Buendía</h4>
-            <p class="text-gray-300 text-xs mt-1">Fundador y patriarca</p>
-          </div>
+          {% endfor %}
         </div>
       </section>
     </div>
