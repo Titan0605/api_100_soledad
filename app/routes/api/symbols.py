@@ -53,6 +53,7 @@ def specific_symbol(id):
         }), 404
 
     symbol["eventos_relacionados"] = iterate_arrays_api(symbol.get("eventos_relacionados", []), "eventos")
+    symbol["personajes_afectados"] = iterate_arrays_api(symbol.get("personajes_afectados", []), "personajes")
     symbol["type"] = "symbols"
     symbol["_id"] = str(symbol["_id"])
 

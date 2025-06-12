@@ -46,7 +46,7 @@ def specific_object(id):
             "message": "Not data sent or missing id field"
         }), 400
 
-    dream_vision = search_model.search_especific(dream_vision_id, "sueños_visiones")
+    dream_vision = search_model.search_especific(dream_vision_id, "suenos_visiones")
 
     if not dream_vision:
         return jsonify({
@@ -54,7 +54,7 @@ def specific_object(id):
             "message": "vision or dream was not found"
         }), 404
     
-    dream_vision["soñador"] = iterate_arrays_api(dream_vision.get("soñador", []), "personajes")
+    dream_vision["soñador"] = search_model.search_especific(dream_vision.get("soñador", ""), "personajes")
     dream_vision["type"] = "dreams_visions"
     dream_vision["_id"] = str(dream_vision["_id"])
 
