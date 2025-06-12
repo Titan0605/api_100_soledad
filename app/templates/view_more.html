@@ -664,17 +664,16 @@
   <header class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 mb-8">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
       <div class="flex-1">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Aureliano Babilonia y Amaranta Úrsula</h1>
-        <p class="text-lg md:text-xl text-gray-300 mb-4">El amor que cierra la estirpe</p>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">{{ data.personaje1.nombre }} y {{ data.personaje2.nombre }}</h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-4">{{ data.descripcion }}</p>
         <div class="flex flex-wrap gap-2 mb-4">
           <span class="text-xs md:text-sm bg-pink-600 text-white px-3 py-1 rounded-full">Relación</span>
-          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Amorosa</span>
-          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Capítulo 20</span>
+          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">{{ data.tipo_relacion }}</span>
         </div>
       </div>
       <div class="text-center lg:text-right mt-4 lg:mt-0">
-        <div class="text-2xl md:text-3xl font-bold text-pink-400">10/10</div>
-        <div class="text-xs md:text-sm text-gray-400">Importancia narrativa</div>
+        <div class="text-2xl md:text-3xl font-bold text-pink-400">{{ data.capitulo_inicio }}</div>
+        <div class="text-xs md:text-sm text-gray-400">Capitulo de inicio</div>
       </div>
     </div>
   </header>
@@ -688,19 +687,25 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Tipo de Relación</h3>
-            <p class="text-gray-300 text-sm">Amorosa / Incestuosa</p>
+            <p class="text-gray-300 text-sm">{{ data.tipo_relacion }}</p>
           </div>
           <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Duración</h3>
-            <p class="text-gray-300 text-sm">Breve pero intensa</p>
+            <h3 class="text-white font-semibold text-sm mb-2">Obstactulos</h3>
+            {% for obstaculo in data.obstaculos%}
+              <p class="text-gray-300 text-sm">-{{ obstaculo }}</p>
+            {%endfor%}
           </div>
           <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Consecuencia</h3>
-            <p class="text-gray-300 text-sm">Nacimiento del último Aureliano</p>
+            <h3 class="text-white font-semibold text-sm mb-2">Simbolismos</h3>
+            {%for simbolo in data.simbolismo %}
+            <p class="text-gray-300 text-sm">-{{ simbolo }}</p>
+            {%endfor%}
           </div>
           <div class="bg-gray-700 rounded-lg p-4">
-            <h3 class="text-white font-semibold text-sm mb-2">Destino</h3>
-            <p class="text-gray-300 text-sm">Cumplimiento de la profecía</p>
+            <h3 class="text-white font-semibold text-sm mb-2">Consecuencias</h3>
+            {%for consecuencia in data.consecuencias %}
+              <p class="text-gray-300 text-sm">-{{ consecuencia }}</p>
+            {% endfor %}
           </div>
         </div>
 
@@ -721,62 +726,31 @@
               <div class="flex items-center gap-2 mb-2">
                 <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
               </div>
-              <h4 class="text-white font-bold mb-2">Aureliano Babilonia</h4>
-              <p class="text-gray-300 text-sm">El último de la estirpe, descifrador de pergaminos</p>
+              <h4 class="text-white font-bold mb-2">{{ data.personaje1.nombre }}</h4>
             </div>
             <div class="bg-gray-700 rounded-lg p-4">
               <div class="flex items-center gap-2 mb-2">
                 <span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Personaje</span>
               </div>
-              <h4 class="text-white font-bold mb-2">Amaranta Úrsula</h4>
-              <p class="text-gray-300 text-sm">La última mujer de la casa, llena de vitalidad</p>
+              <h4 class="text-white font-bold mb-2">{{ data.personaje2.nombre }}</h4>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- EVOLUCIÓN -->
-      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
-        <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Evolución de la Relación</h2>
-        <div class="space-y-4">
-          <div class="bg-gray-700 rounded-lg p-4">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-blue-600 text-white px-2 py-1 rounded">Encuentro</span>
-            </div>
-            <p class="text-gray-300 text-sm">Amaranta Úrsula regresa a Macondo y encuentra a Aureliano.</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-yellow-600 text-white px-2 py-1 rounded">Atracción</span>
-            </div>
-            <p class="text-gray-300 text-sm">Surge una atracción mutua e inevitable entre ambos.</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-pink-600 text-white px-2 py-1 rounded">Consumación</span>
-            </div>
-            <p class="text-gray-300 text-sm">Se entregan al amor sin conocer su parentesco.</p>
-          </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <div class="flex items-center gap-2 mb-2">
-              <span class="text-sm bg-red-600 text-white px-2 py-1 rounded">Revelación</span>
-            </div>
-            <p class="text-gray-300 text-sm">El descubrimiento de su parentesco confirma la profecía.</p>
-          </div>
-        </div>
-      </section>
     </div>
 
     <!-- Sidebar -->
     <div class="space-y-6">
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
-        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Relaciones Similares</h3>
+        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Palabras clave</h3>
         <div class="space-y-3">
+          {%for palabra in data.palabras_clave %}
           <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-pink-600 text-white px-2 py-1 rounded-full">Relación</span>
-            <h4 class="text-white font-bold text-sm mt-2">José Arcadio y Pilar Ternera</h4>
-            <p class="text-gray-300 text-xs mt-1">Primera relación incestuosa de la saga</p>
+            <span class="text-xs bg-green-600 text-white px-2 py-1 rounded-full">Palabra</span>
+            <h4 class="text-white font-bold text-sm mt-2">{{palabra}}</h4>
           </div>
+          {% endfor %}
         </div>
       </section>
     </div>
@@ -795,16 +769,14 @@
   <header class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 mb-8">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
       <div class="flex-1">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Capítulo 13</h1>
-        <p class="text-lg md:text-xl text-gray-300 mb-4">La llegada de la compañía bananera</p>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Capítulo {{ data.numero }}</h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-4">{{ data.titulo }}</p>
         <div class="flex flex-wrap gap-2 mb-4">
           <span class="text-xs md:text-sm bg-teal-600 text-white px-3 py-1 rounded-full">Capítulo</span>
-          <span class="text-xs md:text-sm bg-red-600 text-white px-3 py-1 rounded-full">Transformación</span>
-          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Progreso y explotación</span>
         </div>
       </div>
       <div class="text-center lg:text-right mt-4 lg:mt-0">
-        <div class="text-2xl md:text-3xl font-bold text-yellow-400">8/10</div>
+        <div class="text-2xl md:text-3xl font-bold text-yellow-400">{{ data.importancia }}/10</div>
         <div class="text-xs md:text-sm text-gray-400">Importancia narrativa</div>
       </div>
     </div>
@@ -820,9 +792,7 @@
         <div class="bg-gray-700 rounded-lg p-4 mb-6">
           <h3 class="text-white font-semibold text-sm mb-2">Descripción General</h3>
           <p class="text-gray-300 text-sm leading-relaxed">
-            Este capítulo marca la llegada de la compañía bananera a Macondo, lo cual desencadena una transformación profunda en la estructura social, económica y cultural del pueblo. Se introduce una
-            modernización agresiva con la llegada del tren, trabajadores extranjeros y nuevos modelos de trabajo. Aunque inicialmente se percibe como progreso, la compañía simboliza una explotación
-            sistemática de los recursos y las personas de Macondo.
+            {{ data.resumen }}
           </p>
         </div>
 
@@ -830,9 +800,9 @@
         <div class="mb-6">
           <h3 class="text-white font-semibold text-sm mb-3">Temas Principales</h3>
           <div class="flex flex-wrap gap-2">
-            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">Progreso destructivo</span>
-            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">Explotación económica</span>
-            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">Transformación cultural</span>
+            {%for temas in data.temas_principales %}
+            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">{{ temas }}</span>
+            {%endfor%}
           </div>
         </div>
 
@@ -840,45 +810,26 @@
         <div class="mb-6">
           <h3 class="text-white font-semibold text-sm mb-3">Palabras Clave</h3>
           <div class="flex flex-wrap gap-2">
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Compañía bananera</span>
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Modernización</span>
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Tren</span>
-            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">Extranjeros</span>
+            {% for palabra in data.palabras_clave%}
+            <span class="text-xs bg-yellow-600 text-white px-3 py-1 rounded-full">{{ palabra }}</span>
+            {%endfor%}
           </div>
         </div>
       </section>
 
-      <!-- EVENTOS RELACIONADOS -->
+      <!-- EVENTOS RELACIONADOS --> 
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Eventos Relacionados</h2>
         <div class="space-y-4">
+          {%for event in data.eventos_relacionados%}
           <div class="bg-gray-700 rounded-lg p-4">
-            <h4 class="text-white font-semibold text-sm mb-2">Llegada del tren</h4>
-            <p class="text-gray-300 text-sm">El tren simboliza el comienzo de la industrialización en Macondo.</p>
+            <h4 class="text-white font-semibold text-sm mb-2">{{ event.nombre }}</h4>
+            <p class="text-gray-300 text-sm"> {{event.descripcion}}</p>
           </div>
-          <div class="bg-gray-700 rounded-lg p-4">
-            <h4 class="text-white font-semibold text-sm mb-2">Contrato con la compañía extranjera</h4>
-            <p class="text-gray-300 text-sm">Se firma el acuerdo que da paso al dominio extranjero sobre los cultivos de banano.</p>
-          </div>
+          {% endfor%}
         </div>
       </section>
     </div>
-
-    <!-- SIDEBAR -->
-    <div class="space-y-6">
-      <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
-        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Otros Capítulos Relevantes</h3>
-        <div class="space-y-3">
-          <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-blue-600 text-white px-2 py-1 rounded-full">Capítulo</span>
-            <h4 class="text-white font-bold text-sm mt-2">Capítulo 14</h4>
-            <p class="text-gray-300 text-xs mt-1">Se intensifica el conflicto laboral con la compañía</p>
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
-</div>
 {% endif %}
 
 {%endblock%}
