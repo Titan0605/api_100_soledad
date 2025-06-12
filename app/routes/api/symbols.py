@@ -35,16 +35,14 @@ def search_symbols():
         "results": symbols_results
     }), 200
 
-bp.route("/search-specific-symbol", methods=["POST"])
-def specific_symbol():
-    data = request.get_json()
-    if not data or "id" not in data:
+@bp.route("/search-specific-symbols/<id>", methods=["GET"])
+def specific_symbol(id):
+    symbol_id = id
+    if not symbol_id:
         return jsonify({
             "status": "error",
             "message": "Not data sent or missing id field"
         }), 400
-    
-    symbol_id = data.get("id")
 
     symbol = search_model.search_especific(symbol_id, "simbolos_temas")
 
@@ -55,6 +53,7 @@ def specific_symbol():
         }), 404
 
     symbol["eventos_relacionados"] = iterate_arrays_api(symbol.get("eventos_relacionados", []), "eventos")
+    symbol["personajes_afectados"] = iterate_arrays_api(symbol.get("personajes_afectados", []), "personajes")
     symbol["type"] = "symbols"
     symbol["_id"] = str(symbol["_id"])
 

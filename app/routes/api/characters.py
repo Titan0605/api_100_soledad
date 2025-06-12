@@ -38,16 +38,14 @@ def search_characters():
         "results": character_results
     }), 200
 
-@bp.route("/search-especific-character", methods=['POST'])
-def specific_character():
-    data = request.get_json()
-    if not data or "id" not in data:
+@bp.route("/search-specific-characters/<id>", methods=['GET'])
+def specific_character(id):
+    character_id = id
+    if not character_id:
         return jsonify({
             "status": "error",
             "message": "Not data sent or missing id field"
         }), 400
-    
-    character_id = data.get("id")
 
     character = search_model.search_especific(character_id, "personajes")
 
@@ -58,7 +56,7 @@ def specific_character():
         }), 404
     
     character["eventos_principales"] = iterate_arrays_api(character.get("eventos_principales", []), "eventos")
-    character["type"] = ""
+    character["type"] = "characters"
     character["_id"] = str(character["_id"])
     return jsonify({
         "status": "successful",

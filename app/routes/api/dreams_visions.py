@@ -37,18 +37,16 @@ def dreams_visions_search():
         "results": dreams_visions_results
     }), 200
 
-@bp.route("/search-especific-dream-vision", methods=["POST"])
-def specific_object():
-    data = request.get_json()
-    if not data or "id" not in data:
+@bp.route("/search-specific-dreams_visions/<id>", methods=["GET"])
+def specific_object(id):
+    dream_vision_id = id
+    if not dream_vision_id:
         return jsonify({
             "status": "error",
             "message": "Not data sent or missing id field"
         }), 400
-    
-    dream_vision_id = data.get("id")
 
-    dream_vision = search_model.search_especific(dream_vision_id, "sueños_visiones")
+    dream_vision = search_model.search_especific(dream_vision_id, "suenos_visiones")
 
     if not dream_vision:
         return jsonify({
@@ -56,14 +54,14 @@ def specific_object():
             "message": "vision or dream was not found"
         }), 404
     
-    dream_vision["soñador"] = iterate_arrays_api(dream_vision.get("soñador", []), "personajes")
+    dream_vision["soñador"] = search_model.search_especific(dream_vision.get("soñador", ""), "personajes")
     dream_vision["type"] = "dreams_visions"
     dream_vision["_id"] = str(dream_vision["_id"])
 
     return jsonify({
         "status": "successful",
         "message": "the object was found successfuly",
-        "type": "dreams_visions",
+        "type": "dreams-visions",
         "results": dream_vision
     }), 200
 

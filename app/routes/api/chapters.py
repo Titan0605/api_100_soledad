@@ -34,16 +34,14 @@ def search_chapters():
         "results": chapters_results
     }), 200
 
-bp.route("/search-specific-chapter", methods=["POST"])
-def specific_chapter():
-    data = request.get_json()
-    if not data or "id" not in data:
+@bp.route("/search-specific-chapters/<id>", methods=["GET"])
+def specific_chapter(id):
+    chapter_id = id
+    if not chapter_id:
         return jsonify({
             "status": "error",
             "message": "Not data sent or missing id field"
         }), 400
-    
-    chapter_id = data.get("id")
 
     chapter = search_model.search_especific(chapter_id, "capitulos")
 
