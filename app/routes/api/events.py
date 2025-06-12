@@ -46,8 +46,6 @@ def specific_event():
         }), 400
     
     event_id = data.get("id")
-    
-    print("id de eventosssss :", event_id)
 
     event = search_model.search_especific(event_id, "eventos")
 
