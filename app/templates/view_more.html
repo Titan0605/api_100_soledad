@@ -555,7 +555,6 @@
         </div>
       </section>
     </div>
-
 {% elif data.type == 'symbols' %}
 <!-- EJEMPLO 5: SÍMBOLO -->
 <div class="container mx-auto px-4 py-6 max-w-7xl">
@@ -569,17 +568,13 @@
   <header class="bg-gray-800 rounded-2xl shadow-lg p-6 md:p-8 mb-8">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
       <div class="flex-1">
-        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">Los Espejos</h1>
-        <p class="text-lg md:text-xl text-gray-300 mb-4">Símbolo de repetición y autoconocimiento</p>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">{{ data.nombre }}</h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-4">Elementos asociados:</p>
         <div class="flex flex-wrap gap-2 mb-4">
-          <span class="text-xs md:text-sm bg-indigo-600 text-white px-3 py-1 rounded-full">Símbolo</span>
-          <span class="text-xs md:text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Recurrente</span>
-          <span class="text-xs md:text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Múltiple</span>
+          {% for element in data.elementos_asociados%}
+            <span class="text-xs md:text-sm bg-indigo-600 text-white px-3 py-1 rounded-full">{{ element }}</span>
+          {% endfor %}
         </div>
-      </div>
-      <div class="text-center lg:text-right mt-4 lg:mt-0">
-        <div class="text-2xl md:text-3xl font-bold text-indigo-400">9/10</div>
-        <div class="text-xs md:text-sm text-gray-400">Importancia simbólica</div>
       </div>
     </div>
   </header>
@@ -592,52 +587,49 @@
 
         <!-- Descripción -->
         <div class="bg-gray-700 rounded-lg p-4 mb-6">
-          <h3 class="text-white font-semibold text-sm mb-2">Interpretación</h3>
-          <p class="text-gray-300 text-sm leading-relaxed">
-            Los espejos en la obra representan la naturaleza cíclica del tiempo y el destino de los Buendía. Reflejan la repetición de patrones, la búsqueda del autoconocimiento y la imposibilidad de
-            escapar de la propia naturaleza.
-          </p>
+          <h3 class="text-white font-semibold text-sm mb-2">Interpretaciones</h3>
+          {% for interpretacion in data.interpretaciones %}
+            <p class="text-gray-300 text-sm leading-relaxed">
+              -{{ interpretacion }}
+            </p>
+            {%endfor%}
         </div>
 
         <!-- Apariciones -->
         <div class="mb-6">
           <h3 class="text-white font-semibold text-sm mb-3">Apariciones en la Obra</h3>
           <div class="space-y-3">
+            {% for capitulo in data.capitulos_aparicion %}
             <div class="bg-gray-700 rounded-lg p-4">
               <div class="flex items-center gap-2 mb-2">
-                <span class="text-sm bg-blue-600 text-white px-2 py-1 rounded">Capítulo 6</span>
+                <span class="text-sm bg-blue-600 text-white px-2 py-1 rounded">Capítulo {{ capitulo }}</span>
               </div>
-              <p class="text-gray-300 text-sm">Los espejos traídos por los gitanos causan asombro y confusión.</p>
             </div>
-            <div class="bg-gray-700 rounded-lg p-4">
-              <div class="flex items-center gap-2 mb-2">
-                <span class="text-sm bg-purple-600 text-white px-2 py-1 rounded">Capítulo 20</span>
-              </div>
-              <p class="text-gray-300 text-sm">Los espejos reflejan la culminación del destino profético.</p>
-            </div>
+            {% endfor %}
           </div>
         </div>
 
         <!-- Niveles de significado -->
         <div class="mb-6">
-          <h3 class="text-white font-semibold text-sm mb-3">Niveles de Significado</h3>
+          <h3 class="text-white font-semibold text-sm mb-3">Eventos relacionados</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {%for event in data.eventos_relacionados%}
             <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Literal</h4>
-              <p class="text-gray-300 text-xs">Objetos que reflejan la imagen</p>
+              <h4 class="text-white font-semibold text-xs mb-1">{{ event.nombre }}</h4>
+              <p class="text-gray-300 text-xs">{{ event.descripcion}}</p>
             </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <h3 class="text-white font-semibold text-sm mb-3">Personajes afectados</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {%for personaje in data.personajes_afectados %}
             <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Psicológico</h4>
-              <p class="text-gray-300 text-xs">Autoconocimiento y introspección</p>
+              <h4 class="text-white font-semibold text-xs mb-1">{{ personaje.nombre }}</h4>
             </div>
-            <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Temporal</h4>
-              <p class="text-gray-300 text-xs">Repetición cíclica del tiempo</p>
-            </div>
-            <div class="bg-gray-700 rounded-lg p-3">
-              <h4 class="text-white font-semibold text-xs mb-1">Metafísico</h4>
-              <p class="text-gray-300 text-xs">Naturaleza de la realidad</p>
-            </div>
+            {% endfor %}
           </div>
         </div>
       </section>
@@ -646,18 +638,14 @@
     <!-- Sidebar -->
     <div class="space-y-6">
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
-        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Símbolos Relacionados</h3>
+        <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Palabras clave</h3>
         <div class="space-y-3">
+          {%for palabra in data.palabras_clave %}
           <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">Símbolo</span>
-            <h4 class="text-white font-bold text-sm mt-2">Los Círculos</h4>
-            <p class="text-gray-300 text-xs mt-1">Representación del tiempo cíclico</p>
+            <span class="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">Palabra</span>
+            <h4 class="text-white font-bold text-sm mt-2">{{ palabra }}</h4>
           </div>
-          <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">Símbolo</span>
-            <h4 class="text-white font-bold text-sm mt-2">El Laberinto</h4>
-            <p class="text-gray-300 text-xs mt-1">La búsqueda sin salida</p>
-          </div>
+          {%endfor%}
         </div>
       </section>
     </div>
