@@ -59,3 +59,15 @@ class SearchingModel:
         except Exception as e:
             print(f"Error updating: {e}")
             return False
+        
+    def get_essential(self, collection_name):
+        db = self.getCollection(collection_name)
+        try:
+            results = db.find(
+                {}, # Empty filter to obtain all data
+                {"nombre": 1} # We only want the name with the _id
+            )
+            return results
+        except Exception as e:
+            print(f"Error obtaining data: {e}")
+            return f"Error obtaining data: {e}"

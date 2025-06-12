@@ -71,3 +71,15 @@ def specific_event():
 
 def update_events(id, dictionary):
     return search_model.update(id, "eventos",dictionary)
+
+@bp.route("/obtain-essential/events", methods=["GET"])
+def get_events_essential():
+    events = search_model.get_essential("eventos")
+    
+    if isinstance(events, str):
+        return events
+    
+    for event in events:
+        print(event)
+        
+    return "test"
