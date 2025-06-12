@@ -26,7 +26,7 @@ def collect_type(doc_id, doc_type):
                 data = response.json()
                 results = data.get('results')  
                 return results
-        case 'dreams_visions':
+        case "dreams_visions":
             response = requests.get(f'http://127.0.0.1:3000/search-specific-dreams_visions/{doc_id}')            
             if response.status_code == 200:
                 data = response.json()
