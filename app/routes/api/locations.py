@@ -38,16 +38,14 @@ def locations_search():
         "results": locations_results
     }), 200
 
-@bp.route("/search-specific-locations", methods=["POST"])
-def specific_location():
-    data = request.get_json()
-    if not data or "id" not in data:
+@bp.route("/search-specific-locations/<id>", methods=["GET"])
+def specific_location(id):
+    location_id = id
+    if not location_id:
         return jsonify({
             "status": "error",
             "message": "Not data sent or missing id field"
         }), 400
-    
-    location_id = data.get("id")
 
     location = search_model.search_especific(location_id, "localizaciones")
 

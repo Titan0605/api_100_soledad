@@ -37,16 +37,14 @@ def dreams_visions_search():
         "results": dreams_visions_results
     }), 200
 
-@bp.route("/search-specific-dreams_visions", methods=["POST"])
-def specific_object():
-    data = request.get_json()
-    if not data or "id" not in data:
+@bp.route("/search-specific-dreams_visions/<id>", methods=["GET"])
+def specific_object(id):
+    dream_vision_id = id
+    if not dream_vision_id:
         return jsonify({
             "status": "error",
             "message": "Not data sent or missing id field"
         }), 400
-    
-    dream_vision_id = data.get("id")
 
     dream_vision = search_model.search_especific(dream_vision_id, "sueños_visiones")
 

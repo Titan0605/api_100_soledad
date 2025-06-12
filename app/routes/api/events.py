@@ -36,16 +36,14 @@ def search_events():
         "results": events_results
     }), 200
 
-@bp.route("/search-specific-events", methods=["POST"])
-def specific_event():
-    data = request.get_json()
-    if not data or "id" not in data:
+@bp.route("/search-specific-events/<id>", methods=["GET"])
+def specific_event(id):
+    event_id = id
+    if not event_id:
         return jsonify({
             "status": "error",
             "message": "Not data sent or missing id field"
         }), 400
-    
-    event_id = data.get("id")
 
     event = search_model.search_especific(event_id, "eventos")
 

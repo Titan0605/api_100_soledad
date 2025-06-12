@@ -38,16 +38,14 @@ def search_relationships():
         "results": relationships_results
     }), 200
 
-@bp.route("/search-specific-relationships", methods=['POST'])
-def specific_relationship():
-    data = request.get_json()
-    if not data or "id" not in data:
+@bp.route("/search-specific-relationships/<id>", methods=['GET'])
+def specific_relationship(id):
+    relationship_id = id
+    if not relationship_id:
         return jsonify({
             "status": "error",
             "message": "Not data sent or missing id field"
         }), 400
-    
-    relationship_id = data.get("id")
 
     relationship = search_model.search_especific(relationship_id, "parejas_relaciones")
 

@@ -1,11 +1,12 @@
 {%extends 'layout/base.html' %} {% block title %} 100 años de soledad {% endblock %} {%block main%}
+{% if data.type == 'characters' %}    
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <!-- Breadcrumb -->
   <nav class="mb-6">
     <div class="flex items-center space-x-2 text-sm text-gray-400">
       <a href="/" class="hover:text-blue-400 transition-colors">Inicio</a>
       <span>/</span>
-      <span class="text-white">José Arcadio Segundo</span>
+      <span class="text-white">{{ data.nombre }}</span>
     </div>
   </nav>
 
@@ -13,16 +14,15 @@
   <header class="bg-gray-800 rounded-2xl shadow-lg p-8 mb-8">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
       <div>
-        <h1 class="text-4xl lg:text-5xl font-bold text-white mb-3">José Arcadio Segundo</h1>
-        <p class="text-xl text-gray-300 mb-4">Cuarta generación Buendía</p>
+        <h1 class="text-4xl lg:text-5xl font-bold text-white mb-3">{{ data.nombre }}</h1>        
         <div class="flex flex-wrap gap-2 mb-4">
-          <span class="text-sm bg-red-600 text-white px-3 py-1 rounded-full">Personaje</span>
-          <span class="text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Generación 4</span>
-          <span class="text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Caps. 13-15</span>
+          <span class="text-sm bg-blue-500 text-white px-3 py-1 rounded-full">Personaje</span>
+          <span class="text-sm bg-purple-600 text-white px-3 py-1 rounded-full">Generación {{ data.generacion }}</span>
+          <span class="text-sm bg-blue-600 text-white px-3 py-1 rounded-full">Aparece en {{ data.capitulos_aparicion|length }} capitulo(s)</span>
         </div>
       </div>
       <div class="text-right">
-        <div class="text-3xl font-bold text-blue-400">9/10</div>
+        <div class="text-3xl font-bold text-blue-400">{{ data.score }}/10</div>
         <div class="text-sm text-gray-400">Importancia narrativa</div>
       </div>
     </div>
@@ -39,28 +39,28 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Nombre Completo</h3>
-            <p class="text-gray-300 text-sm">José Arcadio Segundo Buendía</p>
+            <p class="text-gray-300 text-sm">{{ data.nombre}} {{ data.apellido }}</p>
           </div>
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Generación</h3>
-            <p class="text-gray-300 text-sm">Cuarta generación</p>
+            <p class="text-gray-300 text-sm">Generación número {{ data.generacion }}</p>
           </div>
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Descripción Física</h3>
-            <p class="text-gray-300 text-sm">Alto, corpulento, con bigote característico</p>
+            <p class="text-gray-300 text-sm">{{ data.descripcion_fisica }}</p>
           </div>
           <div class="bg-gray-700 rounded-lg p-4">
             <h3 class="text-white font-semibold text-sm mb-2">Transformación</h3>
-            <p class="text-gray-300 text-sm">De capataz de la compañía a guardián de la memoria histórica</p>
+            <p class="text-gray-300 text-sm">{{ data.transformacion }}</p>
           </div>
         </div>
 
         <div class="mb-6">
           <h3 class="text-white font-semibold text-sm mb-3">Personalidad</h3>
           <div class="flex flex-wrap gap-2">
-            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">Determinado</span>
-            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">Trabajador</span>
-            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">Testigo de la verdad</span>
+            {% for personalidad in data.personalidad %}
+            <span class="text-xs bg-green-600 text-white px-3 py-1 rounded-full">{{ personalidad }}</span>
+            {% endfor %}
           </div>
         </div>
         <div>
@@ -224,7 +224,7 @@
     <button onclick="window.history.back()" class="bg-blue-600 hover:bg-blue-800 text-white font-medium rounded-lg px-6 py-3 transition-colors duration-200">Volver atrás</button>
   </div>
 </div>
-
+{% elif data.type == 'events' %}
 <!-- EVENTO -->
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <nav class="mb-6">
@@ -328,10 +328,7 @@
     </div>
   </div>
 </div>
-
-<!-- SEPARADOR VISUAL -->
-<div class="my-12 md:my-16 border-t-4 border-blue-600"></div>
-
+{% elif data.type == 'objects' %}
 <!-- OBJETO -->
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <nav class="mb-6">
@@ -439,6 +436,7 @@
     </div>
   </div>
 </div>
+{% elif data.type == 'locations' %}
 <!-- Localizaciones -->
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <nav class="mb-6">
@@ -570,6 +568,7 @@
     </div>
   </div>
 </div>
+{% elif data.type == 'dreams-visions' %}
 <!-- Sueños y Visiones -->
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <nav class="mb-6">
@@ -727,9 +726,7 @@
     </div>
   </div>
 </div>
-<!-- SEPARADOR VISUAL -->
-<div class="my-12 md:my-16 border-t-4 border-indigo-600"></div>
-
+{% elif data.type == 'symbols' %}
 <!-- EJEMPLO 5: SÍMBOLO -->
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <nav class="mb-6">
@@ -836,9 +833,7 @@
     </div>
   </div>
 </div>
-<!-- SEPARADOR VISUAL -->
-<div class="my-12 md:my-16 border-t-4 border-pink-600"></div>
-
+{% elif data.type == 'relationships' %}
 <!-- EJEMPLO 6: RELACIÓN -->
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <nav class="mb-6">
@@ -969,9 +964,7 @@
     </div>
   </div>
 </div>
-<!-- SEPARADOR VISUAL -->
-<div class="my-12 md:my-16 border-t-4 border-teal-600"></div>
-
+{% elif data.type == 'chapters' %}
 <!-- EJEMPLO 7: CAPÍTULO -->
 <div class="container mx-auto px-4 py-6 max-w-7xl">
   <nav class="mb-6">
@@ -1068,5 +1061,6 @@
     </div>
   </div>
 </div>
+{% endif %}
 
 {%endblock%}

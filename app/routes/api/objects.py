@@ -37,16 +37,14 @@ def objects_search():
         "results": objects_results
     }), 200
 
-@bp.route("/search-specific-objects", methods=["POST"])
-def specific_object():
-    data = request.get_json()
-    if not data or "id" not in data:
+@bp.route("/search-specific-objects/<id>", methods=["GET"])
+def specific_object(id):
+    object_id = id
+    if not object_id:
         return jsonify({
             "status": "error",
             "message": "Not data sent or missing id field"
         }), 400
-    
-    object_id = data.get("id")
 
     object = search_model.search_especific(object_id, "objetos")
 
