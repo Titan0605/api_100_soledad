@@ -29,7 +29,6 @@ document.getElementById("customModal").addEventListener("click", function (e) {
   }
 });
 
-
 /** Function to obtain the data from the active form
  */
 function getActiveFormData() {
@@ -37,75 +36,120 @@ function getActiveFormData() {
     formEvent: {
       endpoint: "/insert/events",
       getFormData: () => ({
-          nombre: document.getElementById("eventName").value,
-          descripcion: document.getElementById("eventDescription").value,
-          capitulo: parseInt(document.getElementById("eventChapter").value),
-          importancia: parseInt(document.getElementById("eventImportance").value),
-          tipo: document.getElementById("eventType").value,
-          fecha_narrativa: document.getElementById("eventDate").value,
-          personajes_involucrados: Array.from(selectedCharacterIds),
-          localizaciones: document.getElementById("eventLocations").value.split(",").map((l) => l.trim()),
-          objetos_relacionados: document.getElementById("eventObjects").value.split(",").map((o) => o.trim()),
-          simbolismo: document.getElementById("eventSymbolism").value.split(",").map((s) => s.trim()),
-          consecuencias: document.getElementById("eventConsequences").value.split(",").map((c) => c.trim()),
-          palabras_clave: document.getElementById("eventKeywords").value.split(",").map((k) => k.trim()),
-          texto_completo: document.getElementById("eventFullText").value,
-        }),
+        nombre: document.getElementById("eventName").value,
+        descripcion: document.getElementById("eventDescription").value,
+        capitulo: parseInt(document.getElementById("eventChapter").value),
+        importancia: parseInt(document.getElementById("eventImportance").value),
+        tipo: document.getElementById("eventType").value,
+        fecha_narrativa: document.getElementById("eventDate").value,
+        personajes_involucrados: Array.from(selectedCharacterIds),
+        localizaciones: document
+          .getElementById("eventLocations")
+          .value.split(",")
+          .map((l) => l.trim()),
+        objetos_relacionados: document
+          .getElementById("eventObjects")
+          .value.split(",")
+          .map((o) => o.trim()),
+        simbolismo: document
+          .getElementById("eventSymbolism")
+          .value.split(",")
+          .map((s) => s.trim()),
+        consecuencias: document
+          .getElementById("eventConsequences")
+          .value.split(",")
+          .map((c) => c.trim()),
+        palabras_clave: document
+          .getElementById("eventKeywords")
+          .value.split(",")
+          .map((k) => k.trim()),
+        texto_completo: document.getElementById("eventFullText").value,
+      }),
     },
     formCharacter: {
-        endpoint: "/insert/characters",
-        getFormData: () => ({
+      endpoint: "/insert/characters",
+      getFormData: () => ({
         nombre: document.getElementById("characterFirstName").value,
         apellido: document.getElementById("characterLastName").value,
         descripcion_fisica: document.getElementById("characterPhysicalDescription").value,
         generacion: parseInt(document.getElementById("characterGeneration").value),
-        personalidad: document.getElementById("characterPersonality").value.split(",").map((p) => p.trim()),
-        capitulos_aparicion: document.getElementById("characterChapters").value.split(",").map((c) => parseInt(c.trim())),
-        eventos_principales: document.getElementById("characterEvents").value.split(",").map((e) => e.trim()),
+        personalidad: document
+          .getElementById("characterPersonality")
+          .value.split(",")
+          .map((p) => p.trim()),
+        capitulos_aparicion: document
+          .getElementById("characterChapters")
+          .value.split(",")
+          .map((c) => parseInt(c.trim())),
+        eventos_principales: Array.from(selectedEventIds),
         transformacion: document.getElementById("characterTransformation").value,
         muerte: {
           capitulo: parseInt(document.getElementById("characterDeathChapter").value) || null,
           circunstancias: document.getElementById("characterDeathCircumstances").value,
           simbolismo: document.getElementById("characterDeathSymbolism").value,
         },
-        simbolismo: document.getElementById("characterSymbolism").value.split(",").map((s) => s.trim()),
-        palabras_clave: document.getElementById("characterKeywords").value.split(",").map((k) => k.trim()),
+        simbolismo: document
+          .getElementById("characterSymbolism")
+          .value.split(",")
+          .map((s) => s.trim()),
+        palabras_clave: document
+          .getElementById("characterKeywords")
+          .value.split(",")
+          .map((k) => k.trim()),
       }),
     },
     formObject: {
-        endpoint: "/insert/objects",
-        getFormData: () => ({
-            nombre: document.getElementById("objectName").value,
+      endpoint: "/insert/objects",
+      getFormData: () => ({
+        nombre: document.getElementById("objectName").value,
         tipo: document.getElementById("objectType").value,
         descripcion: document.getElementById("objectDescription").value,
-        capitulos_aparicion: document.getElementById("objectChapters").value.split(",").map((c) => parseInt(c.trim())),
+        capitulos_aparicion: document
+          .getElementById("objectChapters")
+          .value.split(",")
+          .map((c) => parseInt(c.trim())),
         propietarios: Array.from(selectedCharacterIds),
         ubicacion_fisica: document.getElementById("objectLocation").value,
-        simbolismo: document.getElementById("objectSymbolism").value.split(",").map((s) => s.trim()),
+        simbolismo: document
+          .getElementById("objectSymbolism")
+          .value.split(",")
+          .map((s) => s.trim()),
         transformaciones: document.getElementById("objectTransformations").value /* .split('\n').map(t => ({
             capitulo: parseInt(t.split(':')[0].trim()),
             estado: t.split(':')[1].trim()
             })) */,
         importancia_narrativa: parseInt(document.getElementById("objectImportance").value),
-        palabras_clave: document.getElementById("objectKeywords").value.split(",").map((k) => k.trim()),
-        }),
+        palabras_clave: document
+          .getElementById("objectKeywords")
+          .value.split(",")
+          .map((k) => k.trim()),
+      }),
     },
     formLocation: {
-        endpoint: "/insert/locations",
-        getFormData: () => ({
+      endpoint: "/insert/locations",
+      getFormData: () => ({
         nombre: document.getElementById("locationName").value,
         tipo: document.getElementById("locationType").value,
         descripcion: document.getElementById("locationDescription").value,
-        capitulos_aparicion: document.getElementById("locationChapters").value.split(",").map((c) => parseInt(c.trim())),
-        eventos_importantes: document.getElementById("locationEvents").value.split(",").map((e) => e.trim()),
-        simbolismo: document.getElementById("locationSymbolism").value.split(",").map((s) => s.trim()),
+        capitulos_aparicion: document
+          .getElementById("locationChapters")
+          .value.split(",")
+          .map((c) => parseInt(c.trim())),
+        eventos_importantes: Array.from(selectedEventIds),
+        simbolismo: document
+          .getElementById("locationSymbolism")
+          .value.split(",")
+          .map((s) => s.trim()),
         transformaciones: document.getElementById("locationTransformations").value /* .split('\n').map(t => ({
             capitulo: parseInt(t.split(':')[0].trim()),
             estado: t.split(':')[1].trim()
             })) */,
         personajes_asociados: Array.from(selectedCharacterIds),
-        palabras_clave: document.getElementById("locationKeywords").value.split(",").map((k) => k.trim()),
-        }),
+        palabras_clave: document
+          .getElementById("locationKeywords")
+          .value.split(",")
+          .map((k) => k.trim()),
+      }),
     },
     formChapter: {
       endpoint: "/insert/chapters",
@@ -113,24 +157,36 @@ function getActiveFormData() {
         numero: parseInt(document.getElementById("chapterNumber").value),
         titulo: document.getElementById("chapterTitle").value,
         resumen: document.getElementById("chapterSummary").value,
-        temas_principales: document.getElementById("chapterThemes").value.split(",").map((t) => t.trim()),
+        temas_principales: document
+          .getElementById("chapterThemes")
+          .value.split(",")
+          .map((t) => t.trim()),
         importancia: parseInt(document.getElementById("chapterImportance").value),
-        palabras_clave: document.getElementById("chapterKeywords").value.split(",").map((k) => k.trim()),
-        eventos_relacionados: document.getElementById("chapterEvents").value.split(",").map((e) => e.trim()),
-    }),
+        palabras_clave: document
+          .getElementById("chapterKeywords")
+          .value.split(",")
+          .map((k) => k.trim()),
+        eventos_relacionados: Array.from(selectedEventIds),
+      }),
     },
     formDream: {
-        endpoint: "/insert/dreams",
-        getFormData: () => ({
+      endpoint: "/insert/dreams",
+      getFormData: () => ({
         soñador: Array.from(selectedCharacterIds),
         tipo: document.getElementById("dreamType").value,
         capitulo: parseInt(document.getElementById("dreamChapter").value),
         descripcion: document.getElementById("dreamDescription").value,
         interpretacion: document.getElementById("dreamInterpretation").value,
-        elementos_simbolicos: document.getElementById("dreamElements").value.split(",").map((e) => e.trim()),
+        elementos_simbolicos: document
+          .getElementById("dreamElements")
+          .value.split(",")
+          .map((e) => e.trim()),
         cumplimiento: document.getElementById("dreamFulfillment").value,
-        palabras_clave: document.getElementById("dreamKeywords").value.split(",").map((k) => k.trim()),
-    }),
+        palabras_clave: document
+          .getElementById("dreamKeywords")
+          .value.split(",")
+          .map((k) => k.trim()),
+      }),
     },
     formRelation: {
       endpoint: "/insert/relationships",
@@ -140,55 +196,79 @@ function getActiveFormData() {
         tipo_relacion: document.getElementById("relationType").value,
         capitulo_inicio: parseInt(document.getElementById("relationStart").value),
         descripcion: document.getElementById("relationDescription").value,
-        obstaculos: document.getElementById("relationObstacles").value.split(",").map((o) => o.trim()),
-        simbolismo: document.getElementById("relationSymbolism").value.split(",").map((s) => s.trim()),
-        consecuencias: document.getElementById("relationConsequences").value.split(",").map((c) => c.trim()),
-        palabras_clave: document.getElementById("relationKeywords").value.split(",").map((k) => k.trim()),
-    }),
+        obstaculos: document
+          .getElementById("relationObstacles")
+          .value.split(",")
+          .map((o) => o.trim()),
+        simbolismo: document
+          .getElementById("relationSymbolism")
+          .value.split(",")
+          .map((s) => s.trim()),
+        consecuencias: document
+          .getElementById("relationConsequences")
+          .value.split(",")
+          .map((c) => c.trim()),
+        palabras_clave: document
+          .getElementById("relationKeywords")
+          .value.split(",")
+          .map((k) => k.trim()),
+      }),
     },
     formSymbol: {
       endpoint: "/insert/symbols",
       getFormData: () => ({
         nombre: document.getElementById("symbolName").value,
         tipo: document.getElementById("symbolType").value,
-        capitulos_aparicion: document.getElementById("symbolChapters").value.split(",").map((c) => parseInt(c.trim())),
-        interpretaciones: document.getElementById("symbolInterpretations").value.split("\n").map((i) => i.trim()),
-        elementos_asociados: document.getElementById("symbolElements").value.split(",").map((e) => e.trim()),
+        capitulos_aparicion: document
+          .getElementById("symbolChapters")
+          .value.split(",")
+          .map((c) => parseInt(c.trim())),
+        interpretaciones: document
+          .getElementById("symbolInterpretations")
+          .value.split("\n")
+          .map((i) => i.trim()),
+        elementos_asociados: document
+          .getElementById("symbolElements")
+          .value.split(",")
+          .map((e) => e.trim()),
         personajes_afectados: Array.from(selectedCharacterIds),
-        eventos_relacionados: document.getElementById("symbolEvents").value.split(",").map((e) => e.trim()),
-        palabras_clave: document.getElementById("symbolKeywords").value.split(",").map((k) => k.trim()),
-    }),
+        eventos_relacionados: Array.from(selectedEventIds),
+        palabras_clave: document
+          .getElementById("symbolKeywords")
+          .value.split(",")
+          .map((k) => k.trim()),
+      }),
     },
-};
+  };
 
-// Finds the active form
-const activeFormId = Object.keys(forms).find((formId) => !document.getElementById(formId).classList.contains("hidden"));
+  // Finds the active form
+  const activeFormId = Object.keys(forms).find((formId) => !document.getElementById(formId).classList.contains("hidden"));
 
-if (!activeFormId) return null;
+  if (!activeFormId) return null;
 
-return {
+  return {
     formId: activeFormId,
     endpoint: forms[activeFormId].endpoint,
     data: forms[activeFormId].getFormData(),
-};
+  };
 }
 
 // Function to validate form data
 function validateFormData(formData) {
-    if (!formData || !formData.data) return false;
-    
-    // Verifies if the values are correct
-    const requiredFields = Object.values(formData.data).filter((value) => value === "" || (Array.isArray(value) && value.length === 0) || value === undefined);
-    
-    return requiredFields.length === 0;
+  if (!formData || !formData.data) return false;
+
+  // Verifies if the values are correct
+  const requiredFields = Object.values(formData.data).filter((value) => value === "" || (Array.isArray(value) && value.length === 0) || value === undefined);
+
+  return requiredFields.length === 0;
 }
 
 // Function to send data to the server and save it
 async function submitFormData() {
   const formData = getActiveFormData();
-  
+
   console.log(`Last data in ${formData.formId}:`, formData.data);
-  
+
   if (!formData) {
     showNotification("Error: No hay formulario activo", "error");
     return;
@@ -198,18 +278,18 @@ async function submitFormData() {
     showNotification("Error: Por favor completa todos los campos requeridos", "error");
     return;
   }
-  
+
   try {
     const response = await fetch(formData.endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-    },
+      },
       body: JSON.stringify(formData.data),
     });
-    
+
     const result = await response.json();
-    
+
     if (response.ok) {
       showNotification("¡Datos guardados exitosamente!", "success");
       document.getElementById("customModal").classList.add("hidden");
@@ -218,7 +298,7 @@ async function submitFormData() {
       showNotification(`Error: ${result.message}`, "error");
     }
   } catch (error) {
-      showNotification("Error al enviar los datos", "error");
+    showNotification("Error al enviar los datos", "error");
     console.error("Error:", error);
   }
 }
@@ -247,8 +327,8 @@ function updateSelectedCharactersDisplay() {
     container.innerHTML = "";
 
     selectedCharacterIds.forEach((id) => {
-        const option = document.querySelector(`[data-character-id="${id}"]`);
-        if (option) {
+      const option = document.querySelector(`[data-character-id="${id}"]`);
+      if (option) {
         const chip = document.createElement("div");
         chip.className = "inline-flex items-center gap-1 px-3 py-1 rounded-full bg-red-500/20 border border-red-400/30 text-white";
         chip.innerHTML = `
@@ -259,7 +339,7 @@ function updateSelectedCharactersDisplay() {
                 `;
         chip.querySelector("button").addEventListener("click", () => removeCharacter(id));
         container.appendChild(chip);
-        }
+      }
     });
   });
 
@@ -302,22 +382,21 @@ async function loadCharacters() {
         optionsContainer.innerHTML = ""; // Clear existing options
 
         data.results.forEach((character) => {
-            console.log(character);
-            const option = document.createElement("div");
-            const name = character.nombre + (character.apellido ? " " + character.apellido : "");
-            option.className = `px-4 py-2 cursor-pointer text-white transition-all duration-200 ${selectedCharacterIds.has(character.id) ? "bg-red-500/20" : "hover:bg-slate-700/60"}`;
-            option.setAttribute("data-character-id", character.id);
-            option.textContent = name;
-            option.addEventListener("click", (e) => {
+          const option = document.createElement("div");
+          const name = character.nombre + (character.apellido ? " " + character.apellido : "");
+          option.className = `px-4 py-2 cursor-pointer text-white transition-all duration-200 ${selectedCharacterIds.has(character.id) ? "bg-red-500/20" : "hover:bg-slate-700/60"}`;
+          option.setAttribute("data-character-id", character.id);
+          option.textContent = name;
+          option.addEventListener("click", (e) => {
             e.stopPropagation(); // Prevenir que el click se propague
             const characterId = character.id;
             if (selectedCharacterIds.has(characterId)) {
-                removeCharacter(characterId);
+              removeCharacter(characterId);
             } else {
-                selectCharacter(characterId, name);
+              selectCharacter(characterId, name);
             }
-            });
-            optionsContainer.appendChild(option);
+          });
+          optionsContainer.appendChild(option);
         });
       });
     } else {
@@ -340,6 +419,99 @@ document.getElementById("openModal").addEventListener("click", function () {
 document.addEventListener("click", function (event) {
   const dropdowns = document.querySelectorAll(".characterDropdown");
   const buttons = document.querySelectorAll(".characterDropdownButton");
+
+  dropdowns.forEach((dropdown, i) => {
+    if (dropdown && buttons[i] && !dropdown.contains(event.target) && !buttons[i].contains(event.target)) {
+      dropdown.classList.add("hidden");
+    }
+  });
+});
+
+// Section to manage event selection when responding the form
+let selectedEventIds = new Set();
+
+function toggleEventDropdown() {
+  const dropdowns = document.querySelectorAll(".eventDropdown");
+  dropdowns.forEach((dropdown) => {
+    dropdown.classList.toggle("hidden");
+  });
+}
+
+function updateSelectedEventsDisplay() {
+  const containers = document.querySelectorAll(".selectedEvents");
+  
+  containers.forEach((container) => {
+    container.innerHTML = "";
+    selectedEventIds.forEach((id) => {
+        const eventName = document.querySelector(`[data-event-id="${id}"]`).getAttribute("data-event-name");
+        const tag = document.createElement("div");
+        tag.className = "px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-lg text-sm font-medium flex items-center gap-2";
+        tag.innerHTML = `
+                ${eventName}
+                <button onclick="removeEvent('${id}')" class="hover:text-yellow-200 transition-colors">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            `;
+        container.appendChild(tag);
+    });
+  });
+}
+
+function selectEvent(id, name) {
+  if (!selectedEventIds.has(id)) {
+    selectedEventIds.add(id);
+    updateSelectedEventsDisplay();
+  }
+}
+
+function removeEvent(id) {
+  if (selectedEventIds.has(id)) {
+    selectedEventIds.delete(id);
+    updateSelectedEventsDisplay();
+  }
+}
+
+async function loadEvents() {
+  try {
+    const response = await fetch("/events-list");
+    const data = await response.json();
+
+    if (data.status === "successful") {
+      const optionsContainers = document.querySelectorAll(".eventOptions");
+      
+      optionsContainers.forEach((optionsContainer) => {
+        optionsContainer.innerHTML = data.results
+        .map(
+          (event) => `
+                <button
+                    type="button"
+                    class="w-full px-4 py-2 text-left text-white hover:bg-yellow-400/20 transition-colors"
+                    data-event-id="${event.id}"
+                    data-event-name="${event.nombre}"
+                    onclick="selectEvent('${event.id}', '${event.nombre}')">
+                    ${event.nombre}
+                </button>
+            `
+        )
+        .join("");
+      });
+    }
+  } catch (error) {
+    console.error("Error loading events:", error);
+  }
+}
+
+// Reset selected events when opening modal
+document.getElementById("openModal").addEventListener("click", function () {
+  selectedEventIds.clear();
+  updateSelectedEventsDisplay();
+  loadEvents();
+});
+
+// Close events dropdown when clicking outside
+document.addEventListener("click", function (event) {
+  const dropdowns = document.querySelectorAll(".eventDropdown");
+  const buttons = document.querySelectorAll(".eventDropdownButton");
 
   dropdowns.forEach((dropdown, i) => {
     if (dropdown && buttons[i] && !dropdown.contains(event.target) && !buttons[i].contains(event.target)) {

@@ -102,3 +102,26 @@ def create_event():
             "status": "error",
             "message": f"Error creating event: {inserted_id}"
         }), 500
+
+@bp.route("/events-list", methods=["GET"])
+def list_events():
+    events_cursor = search_model.get_essential("eventos")
+    if not events_cursor or isinstance(events_cursor, str):
+        return jsonify({
+            "status": "error",
+            "message": "No events found" if not events_cursor else events_cursor
+        }), 404
+    
+    event_results = []
+    for doc in events_cursor:
+        if isinstance(doc, dict) and '_id' in doc:
+            event_results.append({
+                "id": str(doc['_id']),
+                "nombre": doc.get('nombre', '')
+            })
+    
+    return jsonify({
+        "status": "successful",
+        "message": "Events retrieved successfully",
+        "results": event_results
+    }), 200

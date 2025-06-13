@@ -427,11 +427,19 @@
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Eventos principales</label>
-              <input
-                id="characterEvents"
-                oninput="filtrarCaracteres1(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Eventos separados por comas" />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="eventDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-yellow-400 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleEventDropdown()">
+                  <span>Seleccionar eventos</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="eventDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="eventOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedEvents flex flex-wrap gap-2 mt-2"></div>
             </div>
           </div>
           <div class="space-y-2 mt-4">
@@ -655,11 +663,19 @@
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Eventos importantes</label>
-              <input
-                id="locationEvents"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="IDs de eventos (separados por coma)" />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="eventDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-yellow-400 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleEventDropdown()">
+                  <span>Seleccionar eventos</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="eventDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="eventOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedEvents flex flex-wrap gap-2 mt-2"></div>
             </div>
           </div>
           <div class="space-y-2 mt-4">
@@ -763,11 +779,19 @@
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Eventos relacionados</label>
-              <input
-                id="chapterEvents"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="IDs de eventos (separados por coma)" />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="eventDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-yellow-400 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleEventDropdown()">
+                  <span>Seleccionar eventos</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="eventDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="eventOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedEvents flex flex-wrap gap-2 mt-2"></div>
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
@@ -1034,11 +1058,19 @@
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Eventos relacionados</label>
-              <input
-                id="symbolEvents"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="IDs de eventos (separados por coma)" />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="eventDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-yellow-400 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleEventDropdown()">
+                  <span>Seleccionar eventos</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="eventDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="eventOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedEvents flex flex-wrap gap-2 mt-2"></div>
             </div>
           </div>
           <div class="space-y-2 mt-4">
