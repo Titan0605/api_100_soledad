@@ -1094,6 +1094,989 @@
     </div>
   </div>
 
+  <div class="flex justify-end mb-4">
+    <button
+      id="openEditModal"
+      class="fixed bottom-8 right-8 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white text-3xl rounded-full w-16 h-16 shadow-2xl flex items-center justify-center transition-all duration-300 btn-hover border-2 border-emerald-400/20 z-40">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+  </div>
+
+    <!-- Modal -->
+  <div id="customEditModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in">
+    <div class="relative w-full max-w-4xl p-6 glass-effect rounded-3xl shadow-2xl mx-4 md:mx-auto max-h-[90vh] overflow-y-auto animate-slide-up border border-slate-600/30">
+      <button
+        type="button"
+        class="absolute top-4 right-4 text-slate-300 hover:text-white text-2xl font-bold w-10 h-10 rounded-full bg-slate-700/50 hover:bg-slate-600/50 flex items-center justify-center transition-all duration-300 btn-hover"
+        onclick="document.getElementById('customEditModal').classList.add('hidden'); document.querySelectorAll('[id^=formEdit]').forEach(f => f.classList.add('hidden'));"
+        >
+        <i class="fa-solid fa-times"></i>
+      </button>
+
+      <!-- Header del modal -->
+      <div class="mb-8 pt-2">
+        <h2 class="text-3xl font-bold text-center bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Agregar Información</h2>
+        <p class="text-center text-slate-300 mt-2 text-lg">Editar</p>
+      </div>
+
+      <!-- Formulario de Evento -->
+      <form id="formEditevents" class="hidden space-y-5 animate-slide-up">
+        <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl overflow-auto scrollbar-hide">
+          <h3 class="text-2xl font-bold mb-6 text-red-400 flex items-center"><i class="fa-solid fa-star mr-3"></i>Agregar Evento</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Nombre del evento</label>
+              <input
+                id="eventName"
+                oninput="filtrarCaracteres2(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Ej: La muerte de José Arcadio" 
+                name="nombre"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Capítulo</label>
+              <input
+                id="eventChapter"
+                min="13"
+                max="16"
+                maxlength="2"
+                type="number"
+                class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Ej: Capítulo 5" 
+                name="capitulo"
+                />
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Descripción</label>
+            <textarea
+              id="eventDescription"
+              rows="4"
+              oninput="filtrarCaracteres2(this)"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
+              placeholder="Describe detalladamente el evento..."></textarea>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Importancia (1-10)</label>
+              <input
+                id="eventImportance"
+                type="number"
+                min="1"
+                max="10"
+                class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="8" 
+                name="importancia"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Tipo de evento</label>
+              <select
+                id="eventType"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 input-focus font-medium"
+                name="tipo"
+                >
+                <option value="">Seleccionar tipo</option>
+                <option value="histórico">Histórico</option>
+                <option value="personal">Personal</option>
+                <option value="sobrenatural">Sobrenatural</option>
+                <option value="social">Social</option>
+              </select>
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Fecha narrativa</label>
+            <input
+              id="eventDate"
+              type="number"
+              min="1900"
+              max="2000"
+              class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+              placeholder="Ej: aproximadamente 1915" 
+              name="fecha_narrativa"/>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Personajes involucrados</label>
+              <div class="relative">
+                <button
+                  type="button"
+                  id="characterDropdownButton"
+                  class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleCharacterDropdown()">
+                  <span>Seleccionar personajes</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div id="characterDropdown" class="hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div id="characterOptions" class="space-y-1">
+                    <!-- Options will be populated here -->
+                  </div>
+                </div>
+              </div>
+              <div id="selectedCharacters" class="flex flex-wrap gap-2 mt-2">
+                <!-- Selected characters will appear here -->
+              </div>
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Localizaciones</label>
+              <input
+                id="eventLocations"
+                oninput="filtrarCaracteres1(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Lugares separados por comas" 
+                name="localizaciones"
+                />
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Objetos relacionados</label>
+              <input
+                id="eventObjects"
+                oninput="filtrarCaracteres1(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Objetos separados por comas" 
+                name="objetos_relacionados"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Simbolismo</label>
+              <input
+                id="eventSymbolism"
+                oninput="filtrarCaracteres1(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Elementos simbólicos separados por comas" 
+                name="simbolismo"
+                />
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Consecuencias</label>
+              <input
+                id="eventConsequences"
+                oninput="filtrarCaracteres2(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Consecuencias separadas por comas" 
+                name="consecuencias"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
+              <input
+                id="eventKeywords"
+                oninput="filtrarCaracteres1(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Palabras clave separadas por comas" 
+                name="palabras_clave"
+                />
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Texto completo</label>
+            <textarea
+              id="eventFullText"
+              rows="4"
+              oninput="filtrarCaracteres2(this)"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
+              placeholder="Descripción extensa del evento para búsquedas de texto completo..."
+              name="texto_completo"
+              ></textarea>
+          </div>
+        </div>
+      </form>
+
+      <!-- Formulario de Personaje -->
+      <form id="formEditcharacters" class="hidden space-y-5 animate-slide-up">
+        <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl">
+          <h3 class="text-2xl font-bold mb-6 text-blue-400 flex items-center"><i class="fa-solid fa-user mr-3"></i>Agregar Personaje</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Nombre</label>
+              <input
+                id="characterFirstName"
+                oninput="filtrarCaracteres2(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Ej: José Arcadio" 
+                name="nombre"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Apellido</label>
+              <input
+                id="characterLastName"
+                oninput="filtrarCaracteres2(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Ej: Buendía"
+                name="apellido"
+                />
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Descripción física</label>
+            <textarea
+              id="characterPhysicalDescription"
+              oninput="filtrarCaracteres2(this)"
+              rows="3"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
+              placeholder="Describe el aspecto físico del personaje..."
+              name="descripcion_fisica"
+              ></textarea>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Generación</label>
+              <input
+                id="characterGeneration"
+                type="number"
+                min="1"
+                max="7"
+                class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Ej: 1" 
+                name="generacion"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Personalidad</label>
+              <input
+                id="characterPersonality"
+                oninput="filtrarCaracteres1(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Rasgos separados por comas" 
+                name="personalidad"
+                />
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Capítulos de aparición</label>
+              <input
+                id="characterChapters"
+                oninput="filtrarCaracteres1(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Números separados por comas" 
+                name="capitulos_aparicion"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Eventos principales</label>
+              <input
+                id="characterEvents"
+                oninput="filtrarCaracteres1(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Eventos separados por comas" 
+                name="eventos_principales"
+                />
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Transformación</label>
+            <textarea
+              id="characterTransformation"
+              oninput="filtrarCaracteres2(this)"
+              rows="2"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
+              placeholder="Describe cómo evoluciona el personaje..."
+              name="transformacion"
+              ></textarea>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Simbolismo</label>
+              <input
+                id="characterSymbolism"
+                oninput="filtrarCaracteres1(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Elementos simbólicos separados por comas" 
+                name="simbolismo"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
+              <input
+                id="characterKeywords"
+                oninput="filtrarCaracteres1(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Palabras clave separadas por comas"
+                name="palabras_clave"
+                />
+            </div>
+          </div>
+          <div class="mt-4">
+            <h4 class="text-lg font-semibold text-blue-400 mb-3">Información sobre la muerte</h4>
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="space-y-2">
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Capítulo de muerte</label>
+                <input
+                  id="characterDeathChapter"
+                  type="number"
+                  min="13"
+                  max="16"
+                  class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                  placeholder="Ej: 16" />
+              </div>
+              <div class="space-y-2">
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Circunstancias</label>
+                <input
+                  id="characterDeathCircumstances"
+                  oninput="filtrarCaracteres2(this)"
+                  class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                  placeholder="Cómo murió" />
+              </div>
+              <div class="space-y-2">
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Simbolismo de la muerte</label>
+                <input
+                  id="characterDeathSymbolism"
+                  oninput="filtrarCaracteres2(this)"
+                  class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                  placeholder="Significado simbólico" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!-- Formulario de Objeto -->
+      <form id="formEditobjects" class="hidden space-y-5 animate-slide-up">
+        <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl">
+          <h3 class="text-2xl font-bold mb-6 text-green-400 flex items-center"><i class="fa-solid fa-cube mr-3"></i>Agregar Objeto</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Nombre del objeto</label>
+              <input
+                id="objectName"
+                oninput="filtrarCaracteres2(this)"
+                maxlength="40"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Ej: Manuscritos de Melquíades" 
+                name="nombre"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Tipo de objeto</label>
+              <select
+                id="objectType"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 transition-all duration-300 input-focus font-medium"
+                name="tipo"
+                >
+                <option value="">Seleccionar tipo</option>
+                <option value="mágico">Mágico</option>
+                <option value="cotidiano">Cotidiano</option>
+                <option value="simbólico">Simbólico</option>
+                <option value="histórico">Histórico</option>
+              </select>
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Descripción</label>
+            <textarea
+              id="objectDescription"
+              oninput="filtrarCaracteres2(this)"
+              rows="3"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
+              placeholder="Describe el objeto y su significado en la historia..."
+              name="descripcion"
+              ></textarea>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Capítulos de aparición</label>
+              <input
+                id="objectChapters"
+                oninput="filtrarCaracteres4(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Ej: 1, 3, 7 (separados por coma)" 
+                name="capitulos_aparicion"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Importancia narrativa (1-10)</label>
+              <input
+                id="objectImportance"
+                type="number"
+                min="1"
+                max="10"
+                class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="8" 
+                name="importancia_narrativa"
+                />
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Propietarios</label>
+              <input
+                id="objectOwners"
+                oninput="filtrarCaracteres3(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="IDs de personajes (separados por coma)" />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Ubicación física</label>
+              <input
+                id="objectLocation"
+                oninput="filtrarCaracteres2(this)"
+                maxlength="50"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Ej: Laboratorio de Melquíades" 
+                name="ubicacion_fisica"
+                />
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Simbolismo</label>
+              <input
+                id="objectSymbolism"
+                oninput="filtrarCaracteres1(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="poder, conocimiento, destino (separados por coma)" 
+                name="simbolismo"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
+              <input
+                id="objectKeywords"
+                oninput="filtrarCaracteres1(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="magia, profecía, destino (separadas por coma)" 
+                name="palabras_clave"
+                />
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Transformaciones</label>
+            <textarea
+              id="objectTransformations"
+              oninput="filtrarCaracteres1(this)"
+              rows="3"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
+              placeholder="Formato: capítulo:estado (uno por línea)"
+              name="transformaciones"
+              ></textarea>
+          </div>
+        </div>
+      </form>
+
+      <!-- Formulario de Localización -->
+      <form id="formEditlocations" class="hidden space-y-5 animate-slide-up">
+        <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl">
+          <h3 class="text-2xl font-bold mb-6 text-yellow-400 flex items-center"><i class="fa-solid fa-map-marker-alt mr-3"></i>Agregar Localización</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Nombre de la localización</label>
+              <input
+                id="locationName"
+                oninput="filtrarCaracteres2(this)"
+                maxlength="60"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Ej: Macondo" 
+                name="nombre"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Tipo de localización</label>
+              <select
+                id="locationType"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 transition-all duration-300 input-focus font-medium"
+                name="tipo"
+                >
+                <option value="">Seleccionar tipo</option>
+                <option value="construcción">Construcción</option>
+                <option value="natural">Natural</option>
+                <option value="mítica">Mítica</option>
+                <option value="histórica">Histórica</option>
+              </select>
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Descripción</label>
+            <textarea
+              id="locationDescription"
+              oninput="filtrarCaracteres2(this)"
+              rows="3"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
+              placeholder="Describe la localización y su importancia en la historia..."
+              name="descripcion"
+              ></textarea>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Capítulos de aparición</label>
+              <input
+                id="locationChapters"
+                oninput="filtrarCaracteres4(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Ej: 1, 2, 3 (separados por coma)" 
+                name="capitulos_aparicion"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Eventos importantes</label>
+              <input
+                id="locationEvents"
+                oninput="filtrarCaracteres3(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="IDs de eventos (separados por coma)" />
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Transformaciones</label>
+            <textarea
+              id="locationTransformations"
+              oninput="filtrarCaracteres2(this)"
+              rows="3"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
+              placeholder="Describe los cambios de la localización a través del tiempo..."></textarea>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Personajes asociados</label>
+              <input
+                id="locationCharacters"
+                oninput="filtrarCaracteres3(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="IDs de personajes (separados por coma)" />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
+              <input
+                id="locationKeywords"
+                oninput="filtrarCaracteres1(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="aislamiento, magia, historia (separadas por coma)" 
+                name="palabras_clave"
+                />
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Simbolismo</label>
+            <input
+              id="locationSymbolism"
+              oninput="filtrarCaracteres1(this)"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+              placeholder="aislamiento, progreso, decadencia (separados por coma)" 
+              name="simbolismo"
+              />
+          </div>
+        </div>
+      </form>
+
+      <!-- Formulario de Capítulo -->
+      <form id="formEditchapters" class="hidden space-y-5 animate-slide-up">
+        <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl">
+          <h3 class="text-2xl font-bold mb-6 text-purple-400 flex items-center"><i class="fa-solid fa-book mr-3"></i>Agregar Capítulo</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Número del capítulo</label>
+              <input
+                id="chapterNumber"
+                type="number"
+                min="13"
+                max="16"
+                class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="1" 
+                name="numero"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Importancia (1-10)</label>
+              <input
+                id="chapterImportance"
+                type="number"
+                min="1"
+                max="10"
+                class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="7" 
+                name="importancia"
+                />
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Título del capítulo</label>
+            <input
+              id="chapterTitle"
+              oninput="filtrarCaracteres2(this)"
+              maxlength="70"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+              placeholder="Ej: El origen de Macondo" 
+              name="titulo"
+              />
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Resumen del capítulo</label>
+            <textarea
+              id="chapterSummary"
+              oninput="filtrarCaracteres2(this)"
+              rows="4"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
+              placeholder="Resume los eventos principales del capítulo..."
+              name="resumen"
+              ></textarea>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Temas principales</label>
+            <input
+              id="chapterThemes"
+              oninput="filtrarCaracteres1(this)"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+              placeholder="soledad, tiempo, memoria (separados por coma)" 
+              name="temas_principales"
+              />
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Eventos relacionados</label>
+              <input
+                id="chapterEvents"
+                oninput="filtrarCaracteres3(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="IDs de eventos (separados por coma)" />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
+              <input
+                id="chapterKeywords"
+                oninput="filtrarCaracteres1(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="origen, fundación, familia (separadas por coma)" 
+                name="palabras_clave"
+                />
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!-- Formulario de Sueño/Visión -->
+      <form id="formEditdreams_visions" class="hidden space-y-5 animate-slide-up">
+        <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl">
+          <h3 class="text-2xl font-bold mb-6 text-pink-400 flex items-center"><i class="fa-solid fa-eye mr-3"></i>Agregar Sueño/Visión</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Soñador</label>
+              <input
+                id="dreamDreamer"
+                oninput="filtrarCaracteres3(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="ID del personaje" 
+                name="soñador"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Tipo</label>
+              <select
+                id="dreamType"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 transition-all duration-300 input-focus font-medium"
+                name="tipo"
+                >
+                <option value="">Seleccionar tipo</option>
+                <option value="premonición">Premonición</option>
+                <option value="pesadilla">Pesadilla</option>
+                <option value="visión">Visión</option>
+                <option value="sueño_profético">Sueño Profético</option>
+              </select>
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Descripción del sueño/visión</label>
+            <textarea
+              id="dreamDescription"
+              oninput="filtrarCaracteres2(this)"
+              rows="3"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
+              placeholder="Describe el sueño o la visión en detalle..."
+              name="descripcion"
+              ></textarea>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Capítulo</label>
+              <input
+                id="dreamChapter"
+                type="number"
+                min="13"
+                max="16"
+                class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Número de capítulo" 
+                name="capitulo"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Elementos simbólicos</label>
+              <input
+                id="dreamElements"
+                oninput="filtrarCaracteres1(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="mariposas, lluvia, sangre (separados por coma)" 
+                name="elementos_simbolicos"
+                />
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Interpretación</label>
+            <textarea
+              id="dreamInterpretation"
+              oninput="filtrarCaracteres2(this)"
+              rows="3"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
+              placeholder="Explica el significado del sueño o visión..."
+              name="interpretacion"
+              ></textarea>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Cumplimiento</label>
+            <textarea
+              id="dreamFulfillment"
+              oninput="filtrarCaracteres2(this)"
+              rows="3"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
+              placeholder="¿Cómo se cumple o manifiesta este sueño/visión en la historia?"
+              name="cumplimiento"
+              ></textarea>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
+            <input
+              id="dreamKeywords"
+              oninput="filtrarCaracteres1(this)"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+              placeholder="premonición, destino, magia (separadas por coma)" 
+              name="palabras_clave"
+              />
+          </div>
+        </div>
+      </form>
+
+      <!-- Formulario de Relación -->
+      <form id="formEditrelationships" class="hidden space-y-5 animate-slide-up">
+        <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl">
+          <h3 class="text-2xl font-bold mb-6 text-indigo-400 flex items-center"><i class="fa-solid fa-heart mr-3"></i>Agregar Relación</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Personaje 1</label>
+              <input
+                id="relationCharacter1"
+                oninput="filtrarCaracteres3(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="ID del primer personaje" 
+                name="personaje1"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Personaje 2</label>
+              <input
+                id="relationCharacter2"
+                oninput="filtrarCaracteres3(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="ID del segundo personaje"
+                name="personaje2"
+                />
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Tipo de relación</label>
+              <select
+                id="relationType"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 transition-all duration-300 input-focus font-medium"
+                name="tipo_relacion"
+                >
+                <option value="">Seleccionar tipo</option>
+                <option value="amor_prohibido">Amor Prohibido</option>
+                <option value="matrimonio">Matrimonio</option>
+                <option value="amistad">Amistad</option>
+                <option value="enemistad">Enemistad</option>
+                <option value="parentesco">Parentesco</option>
+                <option value="aventura">Aventura</option>
+              </select>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Capítulo inicio</label>
+                <input
+                  id="relationStart"
+                  type="number"
+                  min="13"
+                  max="16"
+                  class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                  placeholder="Inicio"
+                  name="capitulo_inicio"
+                  />
+              </div>
+              <div class="space-y-2">
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Capítulo fin</label>
+                <input
+                  id="relationEnd"
+                  type="number"
+                  min="13"
+                  max="16"
+                  class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                  placeholder="Opcional" 
+                  />
+              </div>
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Descripción</label>
+            <textarea
+              id="relationDescription"
+              oninput="filtrarCaracteres2(this)"
+              rows="3"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
+              placeholder="Describe la naturaleza y evolución de la relación..."
+              name="descripcion"
+              ></textarea>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Obstáculos</label>
+              <input
+                id="relationObstacles"
+                oninput="filtrarCaracteres1(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="familia, sociedad, destino (separados por coma)" 
+                name="obstaculos"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Simbolismo</label>
+              <input
+                id="relationSymbolism"
+                oninput="filtrarCaracteres1(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="amor, soledad, destino (separados por coma)" 
+                name="simbolismo"
+                />
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Consecuencias</label>
+            <textarea
+              id="relationConsequences"
+              oninput="filtrarCaracteres2(this)"
+              rows="2"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
+              placeholder="Describe las consecuencias de esta relación..."
+              name="consecuencias"
+              ></textarea>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
+            <input
+              id="relationKeywords"
+              oninput="filtrarCaracteres1(this)"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+              placeholder="amor, tragedia, destino (separadas por coma)" 
+              name="palabras_clave"
+              />
+          </div>
+        </div>
+      </form>
+
+      <!-- Formulario de Símbolo/Tema -->
+      <form id="formEditsymbols" class="hidden space-y-5 animate-slide-up">
+        <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl">
+          <h3 class="text-2xl font-bold mb-6 text-orange-400 flex items-center"><i class="fa-solid fa-moon mr-3"></i>Agregar Símbolo/Tema</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Nombre del símbolo/tema</label>
+              <input
+                id="symbolName"
+                oninput="filtrarCaracteres2(this)"
+                maxlength="50"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Ej: La soledad" 
+                name="nombre"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Tipo</label>
+              <select
+                id="symbolType"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 transition-all duration-300 input-focus font-medium"
+                name="tipo"
+                >
+                <option value="">Seleccionar tipo</option>
+                <option value="símbolo_natural">Símbolo Natural</option>
+                <option value="símbolo_cultural">Símbolo Cultural</option>
+                <option value="tema_literario">Tema Literario</option>
+                <option value="motivo_recurrente">Motivo Recurrente</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Capítulos de aparición</label>
+              <input
+                id="symbolChapters"
+                oninput="filtrarCaracteres4(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Ej: 1, 3, 7 (separados por coma)"
+                name="capitulos_aparicion"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Eventos relacionados</label>
+              <input
+                id="symbolEvents"
+                oninput="filtrarCaracteres3(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="IDs de eventos (separados por coma)" />
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Interpretaciones</label>
+            <textarea
+              id="symbolInterpretations"
+              oninput="filtrarCaracteres2(this)"
+              rows="4"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
+              placeholder="Escribe las diferentes interpretaciones del símbolo o tema (una por línea)..."
+              name="interpretaciones"
+              ></textarea>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Elementos asociados</label>
+              <input
+                id="symbolElements"
+                oninput="filtrarCaracteres1(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="hielo, espejo, mariposa (separados por coma)" 
+                name="elementos_asociados"
+                />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Personajes afectados</label>
+              <input
+                id="symbolCharacters"
+                oninput="filtrarCaracteres3(this)"
+                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="IDs de personajes (separados por coma)" />
+            </div>
+          </div>
+          <div class="space-y-2 mt-4">
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
+            <input
+              id="symbolKeywords"
+              oninput="filtrarCaracteres1(this)"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+              placeholder="soledad, tiempo, memoria (separadas por coma)" 
+              name="palabras_clave"
+              />
+          </div>
+        </div>
+      </form>
+
+      <!-- Botón guardar -->
+      <div class="mt-4 flex justify-end">
+        <button class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded">Guardar</button>
+      </div>
+    </div>
+  </div>
+
   <div id="results_container" class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"></div>
 
   <div class="flex flex-col items-center text-white justify-center hidden" id="not_found">
@@ -1113,4 +2096,5 @@
 <script src="{{ url_for('static', filename='javascript/insertService.js') }}"></script>
 <script src="{{ url_for('static', filename='javascript/validate_input.js') }}"></script>
 <script src="{{ url_for('static', filename='javascript/animation.js') }}"></script>
+<script src="{{ url_for('static', filename='javascript/editService.js') }}"></script>
 {%endblock%}
