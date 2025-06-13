@@ -65,5 +65,38 @@ def specific_symbol(id):
         "results": symbol
     }), 200
 
+@bp.route("/insert/symbols", methods=['POST'])
+def create_symbol():
+    data = request.get_json()
+    if not data:
+        return jsonify({
+            "status": "error",
+            "message": "No data was sent"
+        }), 400
+
+    # Validate required fields
+    required_fields = ['nombre', 'tipo', 'capitulos_aparicion', 'interpretaciones', 'elementos_asociados']
+    missing_fields = [field for field in required_fields if field not in data]
+    if missing_fields:
+        return jsonify({
+            "status": "error",
+            "message": f"Missing required fields: {', '.join(missing_fields)}"
+        }), 400
+
+    # Insert the symbol
+    success, inserted_id = search_model.insert_document("simbolos_temas", data)
+
+    if success:
+        return jsonify({
+            "status": "successful",
+            "message": "Symbol created successfully",
+            "_id": inserted_id
+        }), 201
+    else:
+        return jsonify({
+            "status": "error",
+            "message": f"Error creating symbol: {inserted_id}"
+        }), 500
+
 def update_symbols(id, dictionary):
     return search_model.update(id, "simbolos_temas", dictionary)

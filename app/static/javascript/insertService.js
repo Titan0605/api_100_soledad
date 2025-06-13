@@ -21,8 +21,9 @@ document.getElementById("customModal").addEventListener("click", function (e) {
 function getActiveFormData() {
     const forms = {
         formEvent: {
-            endpoint: '/api/events',
-            getFormData: () => ({                nombre: document.getElementById('eventName').value,
+            endpoint: '/insert/events',
+            getFormData: () => ({
+                nombre: document.getElementById('eventName').value,
                 descripcion: document.getElementById('eventDescription').value,
                 capitulo: parseInt(document.getElementById('eventChapter').value),
                 importancia: parseInt(document.getElementById('eventImportance').value),
@@ -38,8 +39,9 @@ function getActiveFormData() {
             })
         },
         formCharacter: {
-            endpoint: '/api/characters',
-            getFormData: () => ({                nombre: document.getElementById('characterFirstName').value,
+            endpoint: '/insert/characters',
+            getFormData: () => ({
+                nombre: document.getElementById('characterFirstName').value,
                 apellido: document.getElementById('characterLastName').value,
                 descripcion_fisica: document.getElementById('characterPhysicalDescription').value,
                 generacion: parseInt(document.getElementById('characterGeneration').value),
@@ -57,8 +59,9 @@ function getActiveFormData() {
             })
         },
         formObject: {
-            endpoint: '/api/objects',
-            getFormData: () => ({                nombre: document.getElementById('objectName').value,
+            endpoint: '/insert/objects',
+            getFormData: () => ({
+                nombre: document.getElementById('objectName').value,
                 tipo: document.getElementById('objectType').value,
                 descripcion: document.getElementById('objectDescription').value,
                 capitulos_aparicion: document.getElementById('objectChapters').value.split(',').map(c => parseInt(c.trim())),
@@ -74,8 +77,9 @@ function getActiveFormData() {
             })
         },
         formLocation: {
-            endpoint: '/api/locations',
-            getFormData: () => ({                nombre: document.getElementById('locationName').value,
+            endpoint: '/insert/locations',
+            getFormData: () => ({
+                nombre: document.getElementById('locationName').value,
                 tipo: document.getElementById('locationType').value,
                 descripcion: document.getElementById('locationDescription').value,
                 capitulos_aparicion: document.getElementById('locationChapters').value.split(',').map(c => parseInt(c.trim())),
@@ -90,8 +94,9 @@ function getActiveFormData() {
             })
         },
         formChapter: {
-            endpoint: '/api/chapters',
-            getFormData: () => ({                numero: parseInt(document.getElementById('chapterNumber').value),
+            endpoint: '/insert/chapters',
+            getFormData: () => ({
+                numero: parseInt(document.getElementById('chapterNumber').value),
                 titulo: document.getElementById('chapterTitle').value,
                 resumen: document.getElementById('chapterSummary').value,
                 temas_principales: document.getElementById('chapterThemes').value.split(',').map(t => t.trim()),
@@ -101,8 +106,9 @@ function getActiveFormData() {
             })
         },
         formDream: {
-            endpoint: '/api/dreams',
-            getFormData: () => ({                soñador: document.getElementById('dreamDreamer').value,
+            endpoint: '/insert/dreams',
+            getFormData: () => ({
+                soñador: document.getElementById('dreamDreamer').value,
                 tipo: document.getElementById('dreamType').value,
                 capitulo: parseInt(document.getElementById('dreamChapter').value),
                 descripcion: document.getElementById('dreamDescription').value,
@@ -113,8 +119,9 @@ function getActiveFormData() {
             })
         },
         formRelation: {
-            endpoint: '/api/relationships',
-            getFormData: () => ({                personaje1: document.getElementById('relationCharacter1').value,
+            endpoint: '/insert/relationships',
+            getFormData: () => ({
+                personaje1: document.getElementById('relationCharacter1').value,
                 personaje2: document.getElementById('relationCharacter2').value,
                 tipo_relacion: document.getElementById('relationType').value,
                 capitulo_inicio: parseInt(document.getElementById('relationStart').value),
@@ -126,8 +133,9 @@ function getActiveFormData() {
             })
         },
         formSymbol: {
-            endpoint: '/api/symbols',
-            getFormData: () => ({                nombre: document.getElementById('symbolName').value,
+            endpoint: '/insert/symbols',
+            getFormData: () => ({
+                nombre: document.getElementById('symbolName').value,
                 tipo: document.getElementById('symbolType').value,
                 capitulos_aparicion: document.getElementById('symbolChapters').value.split(',').map(c => parseInt(c.trim())),
                 interpretaciones: document.getElementById('symbolInterpretations').value.split('\n').map(i => i.trim()),

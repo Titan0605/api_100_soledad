@@ -71,3 +71,27 @@ class SearchingModel:
         except Exception as e:
             print(f"Error obtaining data: {e}")
             return f"Error obtaining data: {e}"
+
+    def insert_document(self, collection_name: str, data: dict) -> tuple[bool, str]:
+        """Insert a new document into the specified collection
+        
+        Args:
+            collection_name: Name of the MongoDB collection
+            data: Dictionary containing the document data
+            
+        Returns:
+            Tuple of (success: bool, inserted_id: str)
+        """
+        db = self.getCollection(collection_name)
+        try:
+            # Add creation timestamp
+            data['fecha_creacion'] = datetime.now(timezone.utc)
+            
+            # Insert the document
+            result = db.insert_one(data)
+            
+            # Return success and the new document's ID
+            return True, str(result.inserted_id)
+        except Exception as e:
+            print(f"Error inserting document: {e}")
+            return False, str(e)

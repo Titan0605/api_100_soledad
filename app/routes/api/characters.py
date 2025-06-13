@@ -65,5 +65,38 @@ def specific_character(id):
         "results": character
     }), 200
 
+@bp.route("/insert/characters", methods=['POST'])
+def create_character():
+    data = request.get_json()
+    if not data:
+        return jsonify({
+            "status": "error",
+            "message": "No data was sent"
+        }), 400
+
+    # Validate required fields
+    required_fields = ['nombre', 'apellido', 'generacion', 'descripcion_fisica', 'personalidad', 'capitulos_aparicion']
+    missing_fields = [field for field in required_fields if field not in data]
+    if missing_fields:
+        return jsonify({
+            "status": "error",
+            "message": f"Missing required fields: {', '.join(missing_fields)}"
+        }), 400
+
+    # Insert the character
+    success, inserted_id = search_model.insert_document("personajes", data)
+
+    if success:
+        return jsonify({
+            "status": "successful",
+            "message": "Character created successfully",
+            "_id": inserted_id
+        }), 201
+    else:
+        return jsonify({
+            "status": "error",
+            "message": f"Error creating character: {inserted_id}"
+        }), 500
+
 def update_characters(id, dictionary):
     return search_model.update(id, "personajes", dictionary)

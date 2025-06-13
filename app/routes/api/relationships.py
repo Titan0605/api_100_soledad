@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from app.models import SearchingModel
+from app.utils import iterate_arrays_api
 
 bp = Blueprint("api_relationships", __name__)
 search_model = SearchingModel()
@@ -69,3 +70,36 @@ def specific_relationship(id):
 
 def update_relationships(id, dictionary):
     return search_model.update(id, "parejas_relaciones", dictionary)
+
+@bp.route("/insert/relationships", methods=['POST'])
+def create_relationship():
+    data = request.get_json()
+    if not data:
+        return jsonify({
+            "status": "error",
+            "message": "No data was sent"
+        }), 400
+
+    # Validate required fields
+    required_fields = ['personaje1', 'personaje2', 'tipo_relacion', 'capitulo_inicio', 'descripcion']
+    missing_fields = [field for field in required_fields if field not in data]
+    if missing_fields:
+        return jsonify({
+            "status": "error",
+            "message": f"Missing required fields: {', '.join(missing_fields)}"
+        }), 400
+
+    # Insert the relationship
+    success, inserted_id = search_model.insert_document("parejas_relaciones", data)
+
+    if success:
+        return jsonify({
+            "status": "successful",
+            "message": "Relationship created successfully",
+            "_id": inserted_id
+        }), 201
+    else:
+        return jsonify({
+            "status": "error",
+            "message": f"Error creating relationship: {inserted_id}"
+        }), 500
