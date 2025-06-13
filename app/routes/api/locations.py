@@ -21,7 +21,7 @@ def locations_search():
         return jsonify({
             "status": "error",
             "message": "No event was found"
-        }), 404
+        }, 404)
     
     locations_results = []
     for doc in locations_cursor:
@@ -66,6 +66,39 @@ def specific_location(id):
         "type": "locations",
         "results": location
     }), 200
+
+@bp.route("/insert/locations", methods=['POST'])
+def create_location():
+    data = request.get_json()
+    if not data:
+        return jsonify({
+            "status": "error",
+            "message": "No data was sent"
+        }), 400
+
+    # Validate required fields
+    required_fields = ['nombre', 'tipo', 'descripcion', 'capitulos_aparicion']
+    missing_fields = [field for field in required_fields if field not in data]
+    if missing_fields:
+        return jsonify({
+            "status": "error",
+            "message": f"Missing required fields: {', '.join(missing_fields)}"
+        }), 400
+
+    # Insert the location
+    success, inserted_id = search_model.insert_document("localizaciones", data)
+
+    if success:
+        return jsonify({
+            "status": "successful",
+            "message": "Location created successfully",
+            "_id": inserted_id
+        }), 201
+    else:
+        return jsonify({
+            "status": "error",
+            "message": f"Error creating location: {inserted_id}"
+        }), 500
 
 def update_locations(id, dictionary):
     return search_model.update(id, "localizaciones", dictionary)

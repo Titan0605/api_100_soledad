@@ -65,5 +65,38 @@ def specific_object(id):
         "results": dream_vision
     }), 200
 
+@bp.route("/insert/dreams", methods=['POST'])
+def create_dream():
+    data = request.get_json()
+    if not data:
+        return jsonify({
+            "status": "error",
+            "message": "No data was sent"
+        }), 400
+
+    # Validate required fields
+    required_fields = ['soñador', 'tipo', 'capitulo', 'descripcion', 'interpretacion']
+    missing_fields = [field for field in required_fields if field not in data]
+    if missing_fields:
+        return jsonify({
+            "status": "error",
+            "message": f"Missing required fields: {', '.join(missing_fields)}"
+        }), 400
+
+    # Insert the dream/vision
+    success, inserted_id = search_model.insert_document("suenos_visiones", data)
+
+    if success:
+        return jsonify({
+            "status": "successful",
+            "message": "Dream/vision created successfully",
+            "_id": inserted_id
+        }), 201
+    else:
+        return jsonify({
+            "status": "error", 
+            "message": f"Error creating dream/vision: {inserted_id}"
+        }), 500
+
 def update_dreams_visions(id, dictionary):
     return search_model.update(id, "sueños_visiones", dictionary)

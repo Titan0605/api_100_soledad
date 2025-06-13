@@ -69,3 +69,36 @@ def specific_event(id):
 
 def update_events(id, dictionary):
     return search_model.update(id, "eventos",dictionary)
+
+@bp.route("/insert/events", methods=['POST'])
+def create_event():
+    data = request.get_json()
+    if not data:
+        return jsonify({
+            "status": "error",
+            "message": "No data was sent"
+        }), 400
+
+    # Validate required fields
+    required_fields = ['nombre', 'descripcion', 'capitulo', 'importancia', 'tipo']
+    missing_fields = [field for field in required_fields if field not in data]
+    if missing_fields:
+        return jsonify({
+            "status": "error",
+            "message": f"Missing required fields: {', '.join(missing_fields)}"
+        }), 400
+
+    # Insert the event
+    success, inserted_id = search_model.insert_document("eventos", data)
+
+    if success:
+        return jsonify({
+            "status": "successful", 
+            "message": "Event created successfully",
+            "_id": inserted_id
+        }), 201
+    else:
+        return jsonify({
+            "status": "error",
+            "message": f"Error creating event: {inserted_id}"
+        }), 500

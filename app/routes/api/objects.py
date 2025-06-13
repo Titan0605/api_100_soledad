@@ -65,5 +65,38 @@ def specific_object(id):
         "results": object
     }), 200
 
+@bp.route("/insert/objects", methods=['POST'])
+def create_object():
+    data = request.get_json()
+    if not data:
+        return jsonify({
+            "status": "error",
+            "message": "No data was sent"
+        }), 400
+
+    # Validate required fields
+    required_fields = ['nombre', 'tipo', 'descripcion', 'capitulos_aparicion']
+    missing_fields = [field for field in required_fields if field not in data]
+    if missing_fields:
+        return jsonify({
+            "status": "error",
+            "message": f"Missing required fields: {', '.join(missing_fields)}"
+        }), 400
+
+    # Insert the object
+    success, inserted_id = search_model.insert_document("objetos", data)
+
+    if success:
+        return jsonify({
+            "status": "successful",
+            "message": "Object created successfully",
+            "_id": inserted_id
+        }), 201
+    else:
+        return jsonify({
+            "status": "error",
+            "message": f"Error creating object: {inserted_id}"
+        }), 500
+
 def update_objects(id, dictionary):
     return search_model.update(id, "objetos", dictionary)

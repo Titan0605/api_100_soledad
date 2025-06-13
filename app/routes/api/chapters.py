@@ -65,3 +65,36 @@ def specific_chapter(id):
 
 def update_chapters(id, dictionary):
     return search_model.update(id, "capitulos", dictionary)
+
+@bp.route("/insert/chapters", methods=['POST'])
+def create_chapter():
+    data = request.get_json()
+    if not data:
+        return jsonify({
+            "status": "error",
+            "message": "No data was sent"
+        }), 400
+
+    # Validate required fields
+    required_fields = ['numero', 'titulo', 'resumen', 'temas_principales']
+    missing_fields = [field for field in required_fields if field not in data]
+    if missing_fields:
+        return jsonify({
+            "status": "error",
+            "message": f"Missing required fields: {', '.join(missing_fields)}"
+        }), 400
+
+    # Insert the chapter
+    success, inserted_id = search_model.insert_document("capitulos", data)
+
+    if success:
+        return jsonify({
+            "status": "successful",
+            "message": "Chapter created successfully",
+            "_id": inserted_id
+        }), 201
+    else:
+        return jsonify({
+            "status": "error",
+            "message": f"Error creating chapter: {inserted_id}"
+        }), 500
