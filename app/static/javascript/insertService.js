@@ -43,14 +43,8 @@ function getActiveFormData() {
         tipo: document.getElementById("eventType").value,
         fecha_narrativa: document.getElementById("eventDate").value,
         personajes_involucrados: Array.from(selectedCharacterIds),
-        localizaciones: document
-          .getElementById("eventLocations")
-          .value.split(",")
-          .map((l) => l.trim()),
-        objetos_relacionados: document
-          .getElementById("eventObjects")
-          .value.split(",")
-          .map((o) => o.trim()),
+        localizaciones: Array.from(selectedLocationIds),
+        objetos_relacionados: Array.from(selectedObjectIds),
         simbolismo: document
           .getElementById("eventSymbolism")
           .value.split(",")
@@ -329,16 +323,16 @@ function updateSelectedCharactersDisplay() {
     selectedCharacterIds.forEach((id) => {
       const option = document.querySelector(`[data-character-id="${id}"]`);
       if (option) {
-        const chip = document.createElement("div");
-        chip.className = "inline-flex items-center gap-1 px-3 py-1 rounded-full bg-red-500/20 border border-red-400/30 text-white";
-        chip.innerHTML = `
+        const tag = document.createElement("div");
+        tag.className = "px-3 py-1 bg-blue-400/20 text-blue-400 rounded-lg text-sm font-medium flex items-center gap-2";
+        tag.innerHTML = `
                     <span>${option.textContent}</span>
-                    <button type="button" class="hover:text-red-400">
+                    <button type="button" class="hover:text-blue-200 transition-colors">
                         <i class="fa-solid fa-times"></i>
                     </button>
                 `;
-        chip.querySelector("button").addEventListener("click", () => removeCharacter(id));
-        container.appendChild(chip);
+        tag.querySelector("button").addEventListener("click", () => removeCharacter(id));
+        container.appendChild(tag);
       }
     });
   });
@@ -355,7 +349,7 @@ function selectCharacter(id, name) {
   if (!id) return; // Validación para asegurar que tenemos un ID
   const option = document.querySelector(`[data-character-id="${id}"]`);
   if (option && !selectedCharacterIds.has(id)) {
-    option.classList.add("bg-red-500/20"); // Add selected state
+    option.classList.add("bg-blue-500/20"); // Add selected state
     selectedCharacterIds.add(id);
     updateSelectedCharactersDisplay();
     // Ya no cerramos el dropdown para permitir selecciones múltiples
@@ -366,7 +360,7 @@ function removeCharacter(id) {
   selectedCharacterIds.delete(id);
   const option = document.querySelector(`[data-character-id="${id}"]`);
   if (option) {
-    option.classList.remove("bg-red-500/20"); // Remove selected state
+    option.classList.remove("bg-blue-500/20"); // Remove selected state
   }
   updateSelectedCharactersDisplay();
 }
@@ -409,20 +403,32 @@ async function loadCharacters() {
   }
 }
 
-// Reset selected characters when opening modal
+// Reset all selections when opening modal
 document.getElementById("openModal").addEventListener("click", function () {
   selectedCharacterIds.clear();
-  document.getElementById("customModal").classList.remove("hidden");
+  selectedLocationIds.clear();
+  selectedObjectIds.clear();
+  selectedEventIds.clear();
+  updateSelectedCharactersDisplay();
+  updateSelectedLocationsDisplay();
+  updateSelectedObjectsDisplay();
+  loadCharacters();
+  loadLocations();
+  loadObjects();
 });
 
-// Close dropdown when clicking outside, but don't interfere with option clicks
+// Close dropdowns when clicking outside
 document.addEventListener("click", function (event) {
-  const dropdowns = document.querySelectorAll(".characterDropdown");
-  const buttons = document.querySelectorAll(".characterDropdownButton");
+  const dropdowns = [
+    { button: ".characterDropdownButton", dropdown: ".characterDropdown" },
+    { button: ".locationDropdownButton", dropdown: ".locationDropdown" },
+    { button: ".objectDropdownButton", dropdown: ".objectDropdown" },
+  ];
 
-  dropdowns.forEach((dropdown, i) => {
-    if (dropdown && buttons[i] && !dropdown.contains(event.target) && !buttons[i].contains(event.target)) {
-      dropdown.classList.add("hidden");
+  dropdowns.forEach(({ button, dropdown }) => {
+    const dropdownEl = document.querySelector(dropdown);
+    if (!event.target.closest(button) && !event.target.closest(dropdown) && !dropdownEl.classList.contains("hidden")) {
+      dropdownEl.classList.add("hidden");
     }
   });
 });
@@ -439,21 +445,27 @@ function toggleEventDropdown() {
 
 function updateSelectedEventsDisplay() {
   const containers = document.querySelectorAll(".selectedEvents");
-  
+
   containers.forEach((container) => {
     container.innerHTML = "";
     selectedEventIds.forEach((id) => {
-        const eventName = document.querySelector(`[data-event-id="${id}"]`).getAttribute("data-event-name");
-        const tag = document.createElement("div");
-        tag.className = "px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-lg text-sm font-medium flex items-center gap-2";
-        tag.innerHTML = `
+      const eventName = document.querySelector(`[data-event-id="${id}"]`).getAttribute("data-event-name");
+      const tag = document.createElement("div");
+      tag.className = "px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-lg text-sm font-medium flex items-center gap-2";
+      tag.innerHTML = `
                 ${eventName}
                 <button onclick="removeEvent('${id}')" class="hover:text-yellow-200 transition-colors">
                     <i class="fa-solid fa-times"></i>
                 </button>
             `;
-        container.appendChild(tag);
+      container.appendChild(tag);
     });
+  });
+
+  const dropdownButtons = document.querySelectorAll(".eventDropdownButton");
+  const count = selectedEventIds.size;
+  dropdownButtons.forEach((dropdownButton) => {
+    dropdownButton.querySelector("span").textContent = count > 0 ? `${count} evento${count > 1 ? "s" : ""} seleccionado${count > 1 ? "s" : ""}` : "Seleccionar eventos";
   });
 }
 
@@ -478,11 +490,11 @@ async function loadEvents() {
 
     if (data.status === "successful") {
       const optionsContainers = document.querySelectorAll(".eventOptions");
-      
+
       optionsContainers.forEach((optionsContainer) => {
         optionsContainer.innerHTML = data.results
-        .map(
-          (event) => `
+          .map(
+            (event) => `
                 <button
                     type="button"
                     class="w-full px-4 py-2 text-left text-white hover:bg-yellow-400/20 transition-colors"
@@ -492,8 +504,8 @@ async function loadEvents() {
                     ${event.nombre}
                 </button>
             `
-        )
-        .join("");
+          )
+          .join("");
       });
     }
   } catch (error) {
@@ -515,7 +527,149 @@ document.addEventListener("click", function (event) {
 
   dropdowns.forEach((dropdown, i) => {
     if (dropdown && buttons[i] && !dropdown.contains(event.target) && !buttons[i].contains(event.target)) {
-        dropdown.classList.add("hidden");
+      dropdown.classList.add("hidden");
     }
   });
 });
+
+// Section to manage location selection
+let selectedLocationIds = new Set();
+
+function toggleLocationDropdown() {
+  const dropdown = document.querySelector(".locationDropdown");
+  dropdown.classList.toggle("hidden");
+}
+
+function updateSelectedLocationsDisplay() {
+  const container = document.querySelector(".selectedLocations");
+  container.innerHTML = "";
+  selectedLocationIds.forEach((id) => {
+    const locationName = document.querySelector(`[data-location-id="${id}"]`).getAttribute("data-location-name");
+    const tag = document.createElement("div");
+    tag.className = "px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-lg text-sm font-medium flex items-center gap-2";
+    tag.innerHTML = `
+            ${locationName}
+            <button onclick="removeLocation('${id}')" class="hover:text-yellow-200 transition-colors">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        `;
+    container.appendChild(tag);
+  });
+
+  const dropdownButton = document.querySelector(".locationDropdownButton");
+  const count = selectedLocationIds.size;
+
+  dropdownButton.querySelector("span").textContent = count > 0 ? `${count} localizacion${count > 1 ? "es" : ""} seleccionado${count > 1 ? "s" : ""}` : "Seleccionar localizaciones";
+}
+
+function selectLocation(id, name) {
+  if (!selectedLocationIds.has(id)) {
+    selectedLocationIds.add(id);
+    updateSelectedLocationsDisplay();
+  }
+}
+
+function removeLocation(id) {
+  if (selectedLocationIds.has(id)) {
+    selectedLocationIds.delete(id);
+    updateSelectedLocationsDisplay();
+  }
+}
+
+async function loadLocations() {
+  try {
+    const response = await fetch("/locations-list");
+    const data = await response.json();
+
+    if (data.status === "successful") {
+      const optionsContainer = document.querySelector(".locationOptions");
+      optionsContainer.innerHTML = data.results
+        .map(
+          (location) => `
+                <button
+                    type="button"
+                    class="w-full px-4 py-2 text-left text-white hover:bg-yellow-400/20 transition-colors"
+                    data-location-id="${location.id}"
+                    data-location-name="${location.nombre}"
+                    onclick="selectLocation('${location.id}', '${location.nombre}')">
+                    ${location.nombre}
+                </button>
+            `
+        )
+        .join("");
+    }
+  } catch (error) {
+    console.error("Error loading locations:", error);
+  }
+}
+
+// Section to manage object selection
+let selectedObjectIds = new Set();
+
+function toggleObjectDropdown() {
+  const dropdown = document.querySelector(".objectDropdown");
+  dropdown.classList.toggle("hidden");
+}
+
+function updateSelectedObjectsDisplay() {
+  const container = document.querySelector(".selectedObjects");
+  container.innerHTML = "";
+  selectedObjectIds.forEach((id) => {
+    const objectName = document.querySelector(`[data-object-id="${id}"]`).getAttribute("data-object-name");
+    const tag = document.createElement("div");
+    tag.className = "px-3 py-1 bg-green-400/20 text-green-400 rounded-lg text-sm font-medium flex items-center gap-2";
+    tag.innerHTML = `
+            ${objectName}
+            <button onclick="removeObject('${id}')" class="hover:text-green-200 transition-colors">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        `;
+    container.appendChild(tag);
+  });
+
+  const dropdownButton = document.querySelector(".objectDropdownButton");
+  const count = selectedObjectIds.size;
+
+  dropdownButton.querySelector("span").textContent = count > 0 ? `${count} objeto${count > 1 ? "s" : ""} seleccionado${count > 1 ? "s" : ""}` : "Seleccionar objetos";
+}
+
+function selectObject(id, name) {
+  if (!selectedObjectIds.has(id)) {
+    selectedObjectIds.add(id);
+    updateSelectedObjectsDisplay();
+  }
+}
+
+function removeObject(id) {
+  if (selectedObjectIds.has(id)) {
+    selectedObjectIds.delete(id);
+    updateSelectedObjectsDisplay();
+  }
+}
+
+async function loadObjects() {
+  try {
+    const response = await fetch("/objects-list");
+    const data = await response.json();
+
+    if (data.status === "successful") {
+      const optionsContainer = document.querySelector(".objectOptions");
+      optionsContainer.innerHTML = data.results
+        .map(
+          (object) => `
+                <button
+                    type="button"
+                    class="w-full px-4 py-2 text-left text-white hover:bg-green-400/20 transition-colors"
+                    data-object-id="${object.id}"
+                    data-object-name="${object.nombre}"
+                    onclick="selectObject('${object.id}', '${object.nombre}')">
+                    ${object.nombre}
+                </button>
+            `
+        )
+        .join("");
+    }
+  } catch (error) {
+    console.error("Error loading objects:", error);
+  }
+}

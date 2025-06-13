@@ -297,7 +297,7 @@
               <div class="relative">
                 <button
                   type="button"
-                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
                   onclick="toggleCharacterDropdown()">
                   <span>Seleccionar personajes</span>
                   <i class="fa-solid fa-chevron-down"></i>
@@ -310,21 +310,37 @@
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Localizaciones</label>
-              <input
-                id="eventLocations"
-                oninput="filtrarCaracteres1(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Lugares separados por comas" />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="locationDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-yellow-400 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleLocationDropdown()">
+                  <span>Seleccionar localizaciones</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="locationDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="locationOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedLocations flex flex-wrap gap-2 mt-2"></div>
             </div>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Objetos relacionados</label>
-              <input
-                id="eventObjects"
-                oninput="filtrarCaracteres1(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Objetos separados por comas" />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="objectDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-green-400 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleObjectDropdown()">
+                  <span>Seleccionar objetos</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="objectDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="objectOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedObjects flex flex-wrap gap-2 mt-2"></div>
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Simbolismo</label>
@@ -565,7 +581,7 @@
               <div class="relative">
                 <button
                   type="button"
-                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
                   onclick="toggleCharacterDropdown()">
                   <span>Seleccionar personajes</span>
                   <i class="fa-solid fa-chevron-down"></i>
@@ -693,7 +709,7 @@
               <div class="relative">
                 <button
                   type="button"
-                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
                   onclick="toggleCharacterDropdown()">
                   <span>Seleccionar personajes</span>
                   <i class="fa-solid fa-chevron-down"></i>
@@ -815,7 +831,7 @@
               <div class="relative">
                 <button
                   type="button"
-                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
                   onclick="toggleCharacterDropdown()">
                   <span>Seleccionar personaje</span>
                   <i class="fa-solid fa-chevron-down"></i>
@@ -907,7 +923,7 @@
               <div class="relative">
                 <button
                   type="button"
-                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
                   onclick="toggleCharacterDropdown()">
                   <span>Seleccionar personajes</span>
                   <i class="fa-solid fa-chevron-down"></i>
@@ -923,7 +939,7 @@
               <div class="relative">
                 <button
                   type="button"
-                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
                   onclick="toggleCharacterDropdown()">
                   <span>Seleccionar personajes</span>
                   <i class="fa-solid fa-chevron-down"></i>
@@ -1096,7 +1112,7 @@
               <div class="relative">
                 <button
                   type="button"
-                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
                   onclick="toggleCharacterDropdown()">
                   <span>Seleccionar personajes</span>
                   <i class="fa-solid fa-chevron-down"></i>

@@ -98,5 +98,28 @@ def create_object():
             "message": f"Error creating object: {inserted_id}"
         }), 500
 
+@bp.route("/objects-list", methods=["GET"])
+def list_objects():
+    objects_cursor = search_model.get_essential("objetos")
+    if not objects_cursor or isinstance(objects_cursor, str):
+        return jsonify({
+            "status": "error",
+            "message": "No objects found" if not objects_cursor else objects_cursor
+        }), 404
+    
+    object_results = []
+    for doc in objects_cursor:
+        if isinstance(doc, dict) and '_id' in doc:
+            object_results.append({
+                "id": str(doc['_id']),
+                "nombre": doc.get('nombre', '')
+            })
+    
+    return jsonify({
+        "status": "successful",
+        "message": "Objects retrieved successfully",
+        "results": object_results
+    }), 200
+
 def update_objects(id, dictionary):
     return search_model.update(id, "objetos", dictionary)
