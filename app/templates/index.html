@@ -297,21 +297,16 @@
               <div class="relative">
                 <button
                   type="button"
-                  id="characterDropdownButton"
-                  class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
                   onclick="toggleCharacterDropdown()">
                   <span>Seleccionar personajes</span>
                   <i class="fa-solid fa-chevron-down"></i>
                 </button>
-                <div id="characterDropdown" class="hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
-                  <div id="characterOptions" class="space-y-1">
-                    <!-- Options will be populated here -->
-                  </div>
+                <div class="characterDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="characterOptions space-y-1"></div>
                 </div>
               </div>
-              <div id="selectedCharacters" class="flex flex-wrap gap-2 mt-2">
-                <!-- Selected characters will appear here -->
-              </div>
+              <div class="selectedCharacters flex flex-wrap gap-2 mt-2"></div>
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Localizaciones</label>
@@ -559,11 +554,19 @@
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Propietarios</label>
-              <input
-                id="objectOwners"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="IDs de personajes (separados por coma)" />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleCharacterDropdown()">
+                  <span>Seleccionar personajes</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="characterDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="characterOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedCharacters flex flex-wrap gap-2 mt-2"></div>
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Ubicación física</label>
@@ -670,12 +673,20 @@
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
-              <label class="block text-sm font-semibold text-slate-300 mb-2">Personajes asociados</label>
-              <input
-                id="locationCharacters"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="IDs de personajes (separados por coma)" />
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Personajes involucrados</label>
+              <div class="relative">
+                <button
+                  type="button"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleCharacterDropdown()">
+                  <span>Seleccionar personajes</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="characterDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="characterOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedCharacters flex flex-wrap gap-2 mt-2"></div>
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
@@ -777,11 +788,19 @@
           <div class="grid md:grid-cols-2 gap-4">
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Soñador</label>
-              <input
-                id="dreamDreamer"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="ID del personaje" />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleCharacterDropdown()">
+                  <span>Seleccionar personaje</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="characterDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="characterOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedCharacters flex flex-wrap gap-2 mt-2"></div>
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Tipo</label>
@@ -861,19 +880,35 @@
           <div class="grid md:grid-cols-2 gap-4">
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Personaje 1</label>
-              <input
-                id="relationCharacter1"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="ID del primer personaje" />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleCharacterDropdown()">
+                  <span>Seleccionar personajes</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="characterDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="characterOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedCharacters flex flex-wrap gap-2 mt-2"></div>
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Personaje 2</label>
-              <input
-                id="relationCharacter2"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="ID del segundo personaje" />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleCharacterDropdown()">
+                  <span>Seleccionar personajes</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="characterDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="characterOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedCharacters flex flex-wrap gap-2 mt-2"></div>
             </div>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
@@ -1026,11 +1061,19 @@
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Personajes afectados</label>
-              <input
-                id="symbolCharacters"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="IDs de personajes (separados por coma)" />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleCharacterDropdown()">
+                  <span>Seleccionar personajes</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="characterDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="characterOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedCharacters flex flex-wrap gap-2 mt-2"></div>
             </div>
           </div>
           <div class="space-y-2 mt-4">

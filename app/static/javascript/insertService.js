@@ -6,6 +6,16 @@ function mostrarFormulario(id) {
 
   if (id === "formEvent") {
     loadCharacters();
+  } else if (id === "formLocation") {
+    loadCharacters();
+  } else if (id === "formObject") {
+    loadCharacters();
+  } else if (id === "formDream") {
+    loadCharacters();
+  } else if (id === "formRelation") {
+    loadCharacters();
+  } else if (id === "formSymbol") {
+    loadCharacters();
   }
 }
 
@@ -69,15 +79,15 @@ function getActiveFormData() {
         tipo: document.getElementById("objectType").value,
         descripcion: document.getElementById("objectDescription").value,
         capitulos_aparicion: document.getElementById("objectChapters").value.split(",").map((c) => parseInt(c.trim())),
-        propietarios: document.getElementById("objectOwners").value.split(",").map((p) => p.trim()),
+        propietarios: Array.from(selectedCharacterIds),
         ubicacion_fisica: document.getElementById("objectLocation").value,
         simbolismo: document.getElementById("objectSymbolism").value.split(",").map((s) => s.trim()),
         transformaciones: document.getElementById("objectTransformations").value /* .split('\n').map(t => ({
             capitulo: parseInt(t.split(':')[0].trim()),
             estado: t.split(':')[1].trim()
             })) */,
-            importancia_narrativa: parseInt(document.getElementById("objectImportance").value),
-            palabras_clave: document.getElementById("objectKeywords").value.split(",").map((k) => k.trim()),
+        importancia_narrativa: parseInt(document.getElementById("objectImportance").value),
+        palabras_clave: document.getElementById("objectKeywords").value.split(",").map((k) => k.trim()),
         }),
     },
     formLocation: {
@@ -93,8 +103,8 @@ function getActiveFormData() {
             capitulo: parseInt(t.split(':')[0].trim()),
             estado: t.split(':')[1].trim()
             })) */,
-            personajes_asociados: document.getElementById("locationCharacters").value.split(",").map((c) => c.trim()),
-            palabras_clave: document.getElementById("locationKeywords").value.split(",").map((k) => k.trim()),
+        personajes_asociados: Array.from(selectedCharacterIds),
+        palabras_clave: document.getElementById("locationKeywords").value.split(",").map((k) => k.trim()),
         }),
     },
     formChapter: {
@@ -112,7 +122,7 @@ function getActiveFormData() {
     formDream: {
         endpoint: "/insert/dreams",
         getFormData: () => ({
-        soñador: document.getElementById("dreamDreamer").value,
+        soñador: Array.from(selectedCharacterIds),
         tipo: document.getElementById("dreamType").value,
         capitulo: parseInt(document.getElementById("dreamChapter").value),
         descripcion: document.getElementById("dreamDescription").value,
@@ -125,8 +135,8 @@ function getActiveFormData() {
     formRelation: {
       endpoint: "/insert/relationships",
       getFormData: () => ({
-        personaje1: document.getElementById("relationCharacter1").value,
-        personaje2: document.getElementById("relationCharacter2").value,
+        personaje1: Array.from(selectedCharacterIds)[0],
+        personaje2: Array.from(selectedCharacterIds)[1],
         tipo_relacion: document.getElementById("relationType").value,
         capitulo_inicio: parseInt(document.getElementById("relationStart").value),
         descripcion: document.getElementById("relationDescription").value,
@@ -144,7 +154,7 @@ function getActiveFormData() {
         capitulos_aparicion: document.getElementById("symbolChapters").value.split(",").map((c) => parseInt(c.trim())),
         interpretaciones: document.getElementById("symbolInterpretations").value.split("\n").map((i) => i.trim()),
         elementos_asociados: document.getElementById("symbolElements").value.split(",").map((e) => e.trim()),
-        personajes_afectados: document.getElementById("symbolCharacters").value.split(",").map((c) => c.trim()),
+        personajes_afectados: Array.from(selectedCharacterIds),
         eventos_relacionados: document.getElementById("symbolEvents").value.split(",").map((e) => e.trim()),
         palabras_clave: document.getElementById("symbolKeywords").value.split(",").map((k) => k.trim()),
     }),
@@ -224,34 +234,41 @@ document.querySelector("#customModal button.bg-green-600").addEventListener("cli
 let selectedCharacterIds = new Set();
 
 function toggleCharacterDropdown() {
-  const dropdown = document.getElementById("characterDropdown");
-  dropdown.classList.toggle("hidden");
+  const dropdowns = document.querySelectorAll(".characterDropdown");
+  dropdowns.forEach((dropdown) => {
+    dropdown.classList.toggle("hidden");
+  });
 }
 
 function updateSelectedCharactersDisplay() {
-  const container = document.getElementById("selectedCharacters");
-  container.innerHTML = "";
+  const containers = document.querySelectorAll(".selectedCharacters");
 
-  selectedCharacterIds.forEach((id) => {
-    const option = document.querySelector(`[data-character-id="${id}"]`);
-    if (option) {
-      const chip = document.createElement("div");
-      chip.className = "inline-flex items-center gap-1 px-3 py-1 rounded-full bg-red-500/20 border border-red-400/30 text-white";
-      chip.innerHTML = `
-                <span>${option.textContent}</span>
-                <button type="button" class="hover:text-red-400">
-                    <i class="fa-solid fa-times"></i>
-                </button>
-            `;
-      chip.querySelector("button").addEventListener("click", () => removeCharacter(id));
-      container.appendChild(chip);
-    }
+  containers.forEach((container) => {
+    container.innerHTML = "";
+
+    selectedCharacterIds.forEach((id) => {
+        const option = document.querySelector(`[data-character-id="${id}"]`);
+        if (option) {
+        const chip = document.createElement("div");
+        chip.className = "inline-flex items-center gap-1 px-3 py-1 rounded-full bg-red-500/20 border border-red-400/30 text-white";
+        chip.innerHTML = `
+                    <span>${option.textContent}</span>
+                    <button type="button" class="hover:text-red-400">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                `;
+        chip.querySelector("button").addEventListener("click", () => removeCharacter(id));
+        container.appendChild(chip);
+        }
+    });
   });
 
   // Update dropdown button text
-  const dropdownButton = document.getElementById("characterDropdownButton");
+  const dropdownButtons = document.querySelectorAll(".characterDropdownButton");
   const count = selectedCharacterIds.size;
-  dropdownButton.querySelector("span").textContent = count > 0 ? `${count} personaje${count > 1 ? "s" : ""} seleccionado${count > 1 ? "s" : ""}` : "Seleccionar personajes";
+  dropdownButtons.forEach((dropdownButton) => {
+    dropdownButton.querySelector("span").textContent = count > 0 ? `${count} personaje${count > 1 ? "s" : ""} seleccionado${count > 1 ? "s" : ""}` : "Seleccionar personajes";
+  });
 }
 
 function selectCharacter(id, name) {
@@ -280,26 +297,28 @@ async function loadCharacters() {
     const data = await response.json();
 
     if (data.status === "successful") {
-      const optionsContainer = document.getElementById("characterOptions");
-      optionsContainer.innerHTML = ""; // Clear existing options
+      const optionsContainers = document.querySelectorAll(".characterOptions");
+      optionsContainers.forEach((optionsContainer) => {
+        optionsContainer.innerHTML = ""; // Clear existing options
 
-      data.results.forEach((character) => {
-        console.log(character);
-        const option = document.createElement("div");
-        const name = character.nombre + (character.apellido ? " " + character.apellido : "");
-        option.className = `px-4 py-2 cursor-pointer text-white transition-all duration-200 ${selectedCharacterIds.has(character.id) ? "bg-red-500/20" : "hover:bg-slate-700/60"}`;
-        option.setAttribute("data-character-id", character.id);
-        option.textContent = name;
-        option.addEventListener("click", (e) => {
-          e.stopPropagation(); // Prevenir que el click se propague
-          const characterId = character.id;
-          if (selectedCharacterIds.has(characterId)) {
-            removeCharacter(characterId);
-          } else {
-            selectCharacter(characterId, name);
-          }
+        data.results.forEach((character) => {
+            console.log(character);
+            const option = document.createElement("div");
+            const name = character.nombre + (character.apellido ? " " + character.apellido : "");
+            option.className = `px-4 py-2 cursor-pointer text-white transition-all duration-200 ${selectedCharacterIds.has(character.id) ? "bg-red-500/20" : "hover:bg-slate-700/60"}`;
+            option.setAttribute("data-character-id", character.id);
+            option.textContent = name;
+            option.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevenir que el click se propague
+            const characterId = character.id;
+            if (selectedCharacterIds.has(characterId)) {
+                removeCharacter(characterId);
+            } else {
+                selectCharacter(characterId, name);
+            }
+            });
+            optionsContainer.appendChild(option);
         });
-        optionsContainer.appendChild(option);
       });
     } else {
       console.error("Error loading characters:", data.message);
@@ -319,10 +338,12 @@ document.getElementById("openModal").addEventListener("click", function () {
 
 // Close dropdown when clicking outside, but don't interfere with option clicks
 document.addEventListener("click", function (event) {
-  const dropdown = document.getElementById("characterDropdown");
-  const button = document.getElementById("characterDropdownButton");
+  const dropdowns = document.querySelectorAll(".characterDropdown");
+  const buttons = document.querySelectorAll(".characterDropdownButton");
 
-  if (dropdown && button && !dropdown.contains(event.target) && !button.contains(event.target)) {
-    dropdown.classList.add("hidden");
-  }
+  dropdowns.forEach((dropdown, i) => {
+    if (dropdown && buttons[i] && !dropdown.contains(event.target) && !buttons[i].contains(event.target)) {
+        dropdown.classList.add("hidden");
+    }
+  });
 });
