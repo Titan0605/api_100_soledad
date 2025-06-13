@@ -91,14 +91,14 @@ document.querySelector("#customEditModal button.bg-green-600").addEventListener(
     const result = await response.json();
 
     if (response.ok) {
-      alert("✅ Datos actualizados correctamente");
+      alert("Datos actualizados correctamente");
       document.getElementById("customEditModal").classList.add("hidden");
       visibleForm.classList.add("hidden");
     } else {
-      alert("❌ Error: " + result.message);
+      alert("Error: " + result.message);
     }
   } catch (error) {
     console.error("Update error:", error);
-    alert("❌ Error al actualizar");
+    alert("Error al actualizar");
   }
 });
