@@ -1,43 +1,60 @@
 async function abrirEditModal(type, id) {
-    const modal = document.getElementById('customEditModal');
-    modal.classList.remove('hidden');
+  const modal = document.getElementById("customEditModal");
+  modal.classList.remove("hidden");
 
-    const formId = `formEdit${type}`;
-    const form = document.getElementById(formId);
-    form.classList.remove("hidden")
+  const formId = `formEdit${type}`;
+  const form = document.getElementById(formId);
+  form.classList.remove("hidden");
 
-    const response = await fetch(`/search-specific-${type}/${id}`, {
-        method: 'GET',
-    });
-    const { results } = await response.json();
-    const data = Array.isArray(results) ? results[0] : results;
+  const response = await fetch(`/search-specific-${type}/${id}`, {
+    method: "GET",
+  });
+  const { results } = await response.json();
+  const data = Array.isArray(results) ? results[0] : results;
 
-    Object.entries(data).forEach(([key, value]) => {
+  Object.entries(data).forEach(([key, value]) => {
     const element = form.querySelector(`[name="${key}"]`);
     if (!element) return;
 
     let formattedValue = value;
 
-    if (typeof formattedValue === "object" && formattedValue !== null && formattedValue.type === "characters") {
-        formattedValue = formattedValue.nombre;
+    // Handle null values
+    if (value === null) {
+      formattedValue = "";
+    }
+    // Handle complex objects (like relations, death info, transformations)
+    else if (typeof value === "object" && !Array.isArray(value) && value !== null) {
+      if (value.type === "characters" || value.type === "events" || value.type === "locations") {
+        formattedValue = value.nombre || value.titulo || "";
+      } else if (key === "muerte") {
+        formattedValue = `${value.capitulo}: ${value.circunstancias}`;
+      } else if (key === "transformaciones") {
+        formattedValue = value.map((t) => `${t.capitulo}: ${t.estado}`).join(", ");
+      }
+    }
+    // Handle arrays (personajes_involucrados, eventos_principales, etc)
+    else if (Array.isArray(value)) {
+      formattedValue = value
+        .map((item) => {
+          if (typeof item === "object") {
+            if (item.nombre) return item.nombre;
+            if (item.titulo) return item.titulo;
+            if (item.tipo && item.descripcion) return `${item.tipo}: ${item.descripcion}`;
+            return item._id || "";
+          }
+          return item;
+        })
+        .join(", ");
     }
 
-    if (Array.isArray(value)) {
-        formattedValue = value.map(item =>
-            typeof item === 'object' ? (item.nombre || item.titulo || item._id || '') : item
-        ).join(', ');
+    if (element.tagName === "TEXTAREA" || element.tagName === "INPUT" || element.tagName === "SELECT") {
+      element.value = formattedValue;
     }
-
-    if (element.tagName === 'TEXTAREA' || element.tagName === 'INPUT' || element.tagName === 'SELECT') {
-        element.value = formattedValue;
-    }
-});
-
+  });
 }
 
 document.querySelector("#customEditModal button.bg-green-600").addEventListener("click", async function () {
-  const visibleForm = Array.from(document.querySelectorAll("[id^=formEdit]"))
-    .find(f => !f.classList.contains("hidden"));
+  const visibleForm = Array.from(document.querySelectorAll("[id^=formEdit]")).find((f) => !f.classList.contains("hidden"));
   if (!visibleForm) return;
 
   const formData = {};
@@ -46,7 +63,7 @@ document.querySelector("#customEditModal button.bg-green-600").addEventListener(
   let id = "";
   let collection = "";
 
-  inputs.forEach(el => {
+  inputs.forEach((el) => {
     const name = el.name;
     if (!name) return;
 
@@ -57,8 +74,7 @@ document.querySelector("#customEditModal button.bg-green-600").addEventListener(
     } else if (el.type === "checkbox") {
       value = el.checked;
     } else if (el.tagName === "TEXTAREA" || el.tagName === "INPUT" || el.tagName === "SELECT") {
-      if (value.includes(","))
-        value = value.split(",").map(v => v.trim());
+      if (value.includes(",")) value = value.split(",").map((v) => v.trim());
     }
 
     if (name === "_id") {
@@ -84,8 +100,8 @@ document.querySelector("#customEditModal button.bg-green-600").addEventListener(
       body: JSON.stringify({
         id: id,
         collection: collection,
-        dictionary: formData
-      })
+        dictionary: formData,
+      }),
     });
 
     const result = await response.json();
