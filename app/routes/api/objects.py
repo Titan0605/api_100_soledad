@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app.models import SearchingModel
 from app.utils import iterate_arrays_api
+from bson.objectid import ObjectId
 
 bp = Blueprint("api_objects", __name__)
 search_model = SearchingModel()
@@ -35,7 +36,7 @@ def objects_search():
         "message": "Request was successful",
         "type":    "objects",
         "results": objects_results
-    }), 200
+    }, 200)
 
 @bp.route("/search-specific-objects/<id>", methods=["GET"])
 def specific_object(id):
@@ -83,6 +84,10 @@ def create_object():
             "message": f"Missing required fields: {', '.join(missing_fields)}"
         }), 400
 
+    # Convert IDs to ObjectId
+    if 'propietarios' in data:
+        data['propietarios'] = [ObjectId(id) for id in data['propietarios']]
+
     # Insert the object
     success, inserted_id = search_model.insert_document("objetos", data)
 
@@ -97,6 +102,29 @@ def create_object():
             "status": "error",
             "message": f"Error creating object: {inserted_id}"
         }), 500
+
+@bp.route("/objects-list", methods=["GET"])
+def list_objects():
+    objects_cursor = search_model.get_essential("objetos")
+    if not objects_cursor or isinstance(objects_cursor, str):
+        return jsonify({
+            "status": "error",
+            "message": "No objects found" if not objects_cursor else objects_cursor
+        }), 404
+    
+    object_results = []
+    for doc in objects_cursor:
+        if isinstance(doc, dict) and '_id' in doc:
+            object_results.append({
+                "id": str(doc['_id']),
+                "nombre": doc.get('nombre', '')
+            })
+    
+    return jsonify({
+        "status": "successful",
+        "message": "Objects retrieved successfully",
+        "results": object_results
+    }), 200
 
 def update_objects(id, dictionary):
     return search_model.update(id, "objetos", dictionary)

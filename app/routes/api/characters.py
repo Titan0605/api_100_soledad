@@ -84,6 +84,10 @@ def create_character():
             "message": f"Missing required fields: {', '.join(missing_fields)}"
         }), 400
 
+    # Convert IDs to ObjectId
+    if 'eventos_principales' in data:
+        data['eventos_principales'] = [ObjectId(id) for id in data['eventos_principales']]
+
     # Insert the character
     success, inserted_id = search_model.insert_document("personajes", data)
 
