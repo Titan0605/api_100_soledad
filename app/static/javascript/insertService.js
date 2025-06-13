@@ -109,7 +109,11 @@ function getActiveFormData() {
           .getElementById("objectSymbolism")
           .value.split(",")
           .map((s) => s.trim()),
-        transformaciones: document.getElementById("objectTransformations").value /* .split('\n').map(t => ({
+        transformaciones: [{
+          capitulo: document.getElementById("objectTransformationChapter").value,
+          descripcion: document.getElementById("objectTransformationDescription").value
+        }] 
+        /* document.getElementById("objectTransformations").value .split('\n').map(t => ({
             capitulo: parseInt(t.split(':')[0].trim()),
             estado: t.split(':')[1].trim()
             })) */,
@@ -135,7 +139,11 @@ function getActiveFormData() {
           .getElementById("locationSymbolism")
           .value.split(",")
           .map((s) => s.trim()),
-        transformaciones: document.getElementById("locationTransformations").value /* .split('\n').map(t => ({
+        transformaciones: [{
+          capitulo: document.getElementById("locationTransformationChapter").value,
+          descripcion: document.getElementById("locationTransformationDescription").value
+        }] 
+        /* document.getElementById("locationTransformations").value .split('\n').map(t => ({
             capitulo: parseInt(t.split(':')[0].trim()),
             estado: t.split(':')[1].trim()
             })) */,

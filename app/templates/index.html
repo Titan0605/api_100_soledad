@@ -437,7 +437,7 @@
               <label class="block text-sm font-semibold text-slate-300 mb-2">Capítulos de aparición</label>
               <input
                 id="characterChapters"
-                oninput="filtrarCaracteres1(this)"
+                oninput="filtrarCaracteres3(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
                 placeholder="Números separados por comas" />
             </div>
@@ -621,13 +621,28 @@
             </div>
           </div>
           <div class="space-y-2 mt-4">
-            <label class="block text-sm font-semibold text-slate-300 mb-2">Transformaciones</label>
-            <textarea
-              id="objectTransformations"
-              oninput="filtrarCaracteres1(this)"
-              rows="3"
-              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
-              placeholder="Formato: capítulo:estado (uno por línea)"></textarea>
+            <h4 class="text-lg font-semibold text-green-400 mb-3">Transformacion</h4>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Capitulo</label>
+                <input
+                  id="objectTransformationChapter"
+                  type="number"
+                  min="13"
+                  max="16"
+                  class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                  placeholder="Ej: 16" />
+              </div>
+              <div class="space-y-2">
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Descripción</label>
+                <input
+                  id="objectTransformationDescription"
+                  type="text"
+                  oninput="filtrarCaracteres2(this)"
+                  class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                  placeholder="Cómo murió" />
+              </div>
+            </div>
           </div>
         </div>
       </form>
@@ -694,15 +709,6 @@
               <div class="selectedEvents flex flex-wrap gap-2 mt-2"></div>
             </div>
           </div>
-          <div class="space-y-2 mt-4">
-            <label class="block text-sm font-semibold text-slate-300 mb-2">Transformaciones</label>
-            <textarea
-              id="locationTransformations"
-              oninput="filtrarCaracteres2(this)"
-              rows="3"
-              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
-              placeholder="Describe los cambios de la localización a través del tiempo..."></textarea>
-          </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Personajes involucrados</label>
@@ -723,23 +729,47 @@
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
               <input
-                id="locationKeywords"
-                oninput="filtrarCaracteres1(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="aislamiento, magia, historia (separadas por coma)" />
+              id="locationKeywords"
+              oninput="filtrarCaracteres1(this)"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+              placeholder="aislamiento, magia, historia (separadas por coma)" />
             </div>
           </div>
           <div class="space-y-2 mt-4">
             <label class="block text-sm font-semibold text-slate-300 mb-2">Simbolismo</label>
             <input
-              id="locationSymbolism"
-              oninput="filtrarCaracteres1(this)"
-              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-              placeholder="aislamiento, progreso, decadencia (separados por coma)" />
+            id="locationSymbolism"
+            oninput="filtrarCaracteres1(this)"
+            class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+            placeholder="aislamiento, progreso, decadencia (separados por coma)" />
+          </div>
+          <div class="space-y-2 mt-4">
+            <h4 class="text-lg font-semibold text-yellow-400 mb-3">Transformacion</h4>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Capitulo</label>
+                <input
+                  id="locationTransformationChapter"
+                  type="number"
+                  min="13"
+                  max="16"
+                  class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                  placeholder="Ej: 16" />
+              </div>
+              <div class="space-y-2">
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Descripción</label>
+                <input
+                  id="locationTransformationDescription"
+                  type="text"
+                  oninput="filtrarCaracteres2(this)"
+                  class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                  placeholder="Cómo murió" />
+              </div>
+            </div>
           </div>
         </div>
       </form>
-
+      
       <!-- Formulario de Capítulo -->
       <form id="formChapter" class="hidden space-y-5 animate-slide-up">
         <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl">
@@ -748,10 +778,10 @@
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Número del capítulo</label>
               <input
-                id="chapterNumber"
-                type="number"
-                min="13"
-                max="16"
+              id="chapterNumber"
+              type="number"
+              min="13"
+              max="16"
                 class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
                 placeholder="1" />
             </div>
