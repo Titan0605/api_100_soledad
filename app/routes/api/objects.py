@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app.models import SearchingModel
 from app.utils import iterate_arrays_api
+from bson.objectid import ObjectId
 
 bp = Blueprint("api_objects", __name__)
 search_model = SearchingModel()
@@ -35,7 +36,7 @@ def objects_search():
         "message": "Request was successful",
         "type":    "objects",
         "results": objects_results
-    }), 200
+    }, 200)
 
 @bp.route("/search-specific-objects/<id>", methods=["GET"])
 def specific_object(id):
@@ -82,6 +83,10 @@ def create_object():
             "status": "error",
             "message": f"Missing required fields: {', '.join(missing_fields)}"
         }), 400
+
+    # Convert IDs to ObjectId
+    if 'propietarios' in data:
+        data['propietarios'] = [ObjectId(id) for id in data['propietarios']]
 
     # Insert the object
     success, inserted_id = search_model.insert_document("objetos", data)

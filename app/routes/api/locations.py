@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app.models import SearchingModel
 from app.utils import iterate_arrays_api
+from bson import ObjectId
 
 bp = Blueprint("api_locations", __name__)
 search_model = SearchingModel()
@@ -84,6 +85,12 @@ def create_location():
             "status": "error",
             "message": f"Missing required fields: {', '.join(missing_fields)}"
         }), 400
+
+    # Convert IDs to ObjectId
+    if 'eventos_importantes' in data:
+        data['eventos_importantes'] = [ObjectId(id) for id in data['eventos_importantes']]
+    if 'personajes_asociados' in data:
+        data['personajes_asociados'] = [ObjectId(id) for id in data['personajes_asociados']]
 
     # Insert the location
     success, inserted_id = search_model.insert_document("localizaciones", data)

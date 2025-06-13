@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app.models import SearchingModel
 from app.utils import iterate_arrays_api
+from bson import ObjectId
 
 bp = Blueprint("api_dreams_visions", __name__)
 search_model = SearchingModel()
@@ -21,7 +22,7 @@ def dreams_visions_search():
         return jsonify({
             "status": "error",
             "message": "No object was found"
-        }), 404
+        }, 404)
     
     dreams_visions_results = []
     for doc in dreams_visions_cursor:
@@ -82,6 +83,13 @@ def create_dream():
             "status": "error",
             "message": f"Missing required fields: {', '.join(missing_fields)}"
         }), 400
+
+    # Convert ID to ObjectId
+    if 'soñador' in data:
+        if isinstance(data['soñador'], list):
+            data['soñador'] = [ObjectId(id) for id in data['soñador']]
+        else:
+            data['soñador'] = ObjectId(data['soñador'])
 
     # Insert the dream/vision
     success, inserted_id = search_model.insert_document("suenos_visiones", data)

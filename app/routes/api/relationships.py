@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app.models import SearchingModel
 from app.utils import iterate_arrays_api
+from bson import ObjectId
 
 bp = Blueprint("api_relationships", __name__)
 search_model = SearchingModel()
@@ -88,6 +89,12 @@ def create_relationship():
             "status": "error",
             "message": f"Missing required fields: {', '.join(missing_fields)}"
         }), 400
+
+    # Convert IDs to ObjectId
+    if 'personaje1' in data:
+        data['personaje1'] = ObjectId(data['personaje1'])
+    if 'personaje2' in data:
+        data['personaje2'] = ObjectId(data['personaje2'])
 
     # Insert the relationship
     success, inserted_id = search_model.insert_document("parejas_relaciones", data)

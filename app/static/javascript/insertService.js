@@ -3,7 +3,6 @@ function mostrarFormulario(id) {
     document.getElementById(f).classList.add("hidden");
   });
   document.getElementById(id).classList.remove("hidden");
-
   if (id === "formEvent") {
     loadCharacters();
   } else if (id === "formLocation") {
@@ -16,6 +15,8 @@ function mostrarFormulario(id) {
     loadCharacters();
   } else if (id === "formSymbol") {
     loadCharacters();
+  } else if (id === "formChapter") {
+    loadEvents();
   }
 }
 
