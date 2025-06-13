@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app.models import SearchingModel
 from app.utils import iterate_arrays_api
+from bson import ObjectId
 
 bp = Blueprint("api_characters", __name__)
 search_model = SearchingModel()
@@ -97,6 +98,29 @@ def create_character():
             "status": "error",
             "message": f"Error creating character: {inserted_id}"
         }), 500
+
+@bp.route("/characters-list", methods=["GET"])
+def list_characters():
+    characters_cursor = search_model.get_essential("personajes")
+    if not characters_cursor or isinstance(characters_cursor, str):  # Handling error case where a string is returned
+        return jsonify({
+            "status": "error",
+            "message": "No characters found" if not characters_cursor else characters_cursor
+        }), 404
+    
+    character_results = []
+    for doc in characters_cursor:
+        if isinstance(doc, dict) and '_id' in doc:
+            character_results.append({
+                "id": str(doc['_id']),
+                "nombre": doc.get('nombre', '')
+            })
+    
+    return jsonify({
+        "status": "successful",
+        "message": "Characters retrieved successfully",
+        "results": character_results
+    }), 200
 
 def update_characters(id, dictionary):
     return search_model.update(id, "personajes", dictionary)
