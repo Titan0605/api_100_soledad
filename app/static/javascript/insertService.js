@@ -451,10 +451,10 @@ function updateSelectedEventsDisplay() {
     selectedEventIds.forEach((id) => {
       const eventName = document.querySelector(`[data-event-id="${id}"]`).getAttribute("data-event-name");
       const tag = document.createElement("div");
-      tag.className = "px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-lg text-sm font-medium flex items-center gap-2";
+      tag.className = "px-3 py-1 bg-red-400/20 text-red-400 rounded-lg text-sm font-medium flex items-center gap-2";
       tag.innerHTML = `
                 ${eventName}
-                <button onclick="removeEvent('${id}')" class="hover:text-yellow-200 transition-colors">
+                <button onclick="removeEvent('${id}')" class="hover:text-red-200 transition-colors">
                     <i class="fa-solid fa-times"></i>
                 </button>
             `;
@@ -470,17 +470,22 @@ function updateSelectedEventsDisplay() {
 }
 
 function selectEvent(id, name) {
-  if (!selectedEventIds.has(id)) {
+  if (!id) return;
+  const option = document.querySelector(`[data-event-id="${id}"]`);
+  if (option && !selectedEventIds.has(id)) {
+    option.classList.add("bg-red-500/20"); // Add selected state
     selectedEventIds.add(id);
     updateSelectedEventsDisplay();
   }
 }
 
 function removeEvent(id) {
-  if (selectedEventIds.has(id)) {
-    selectedEventIds.delete(id);
-    updateSelectedEventsDisplay();
+  selectedEventIds.delete(id);
+  const option = document.querySelector(`[data-event-id="${id}"]`);
+  if (option) {
+    option.classList.remove("bg-red-500/20"); // Remove selected state
   }
+  updateSelectedEventsDisplay();
 }
 
 async function loadEvents() {
@@ -497,7 +502,7 @@ async function loadEvents() {
             (event) => `
                 <button
                     type="button"
-                    class="w-full px-4 py-2 text-left text-white hover:bg-yellow-400/20 transition-colors"
+                    class="w-full px-4 py-2 text-left text-white hover:bg-red-400/20 transition-colors"
                     data-event-id="${event.id}"
                     data-event-name="${event.nombre}"
                     onclick="selectEvent('${event.id}', '${event.nombre}')">
@@ -536,44 +541,58 @@ document.addEventListener("click", function (event) {
 let selectedLocationIds = new Set();
 
 function toggleLocationDropdown() {
-  const dropdown = document.querySelector(".locationDropdown");
-  dropdown.classList.toggle("hidden");
+  const dropdowns = document.querySelectorAll(".locationDropdown");
+  dropdowns.forEach((dropdown) => {
+    dropdown.classList.toggle("hidden");
+  });
 }
 
 function updateSelectedLocationsDisplay() {
-  const container = document.querySelector(".selectedLocations");
-  container.innerHTML = "";
-  selectedLocationIds.forEach((id) => {
-    const locationName = document.querySelector(`[data-location-id="${id}"]`).getAttribute("data-location-name");
-    const tag = document.createElement("div");
-    tag.className = "px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-lg text-sm font-medium flex items-center gap-2";
-    tag.innerHTML = `
-            ${locationName}
-            <button onclick="removeLocation('${id}')" class="hover:text-yellow-200 transition-colors">
-                <i class="fa-solid fa-times"></i>
-            </button>
+  const containers = document.querySelectorAll(".selectedLocations");
+
+  containers.forEach((container) => {
+    container.innerHTML = "";
+    selectedLocationIds.forEach((id) => {
+      const option = document.querySelector(`[data-location-id="${id}"]`);
+      if (option) {
+        const tag = document.createElement("div");
+        tag.className = "px-3 py-1 bg-yellow-400/20 text-yellow-400 rounded-lg text-sm font-medium flex items-center gap-2";
+        tag.innerHTML = `
+          <span>${option.textContent}</span>
+          <button type="button" class="hover:text-yellow-200 transition-colors">
+            <i class="fa-solid fa-times"></i>
+          </button>
         `;
-    container.appendChild(tag);
+        tag.querySelector("button").addEventListener("click", () => removeLocation(id));
+        container.appendChild(tag);
+      }
+    });
   });
 
-  const dropdownButton = document.querySelector(".locationDropdownButton");
+  const dropdownButtons = document.querySelectorAll(".locationDropdownButton");
   const count = selectedLocationIds.size;
-
-  dropdownButton.querySelector("span").textContent = count > 0 ? `${count} localizacion${count > 1 ? "es" : ""} seleccionado${count > 1 ? "s" : ""}` : "Seleccionar localizaciones";
+  dropdownButtons.forEach((dropdownButton) => {
+    dropdownButton.querySelector("span").textContent = count > 0 ? `${count} localización${count > 1 ? "es" : ""} seleccionada${count > 1 ? "s" : ""}` : "Seleccionar localizaciones";
+  });
 }
 
 function selectLocation(id, name) {
-  if (!selectedLocationIds.has(id)) {
+  if (!id) return;
+  const option = document.querySelector(`[data-location-id="${id}"]`);
+  if (option && !selectedLocationIds.has(id)) {
+    option.classList.add("bg-yellow-500/20"); // Add selected state
     selectedLocationIds.add(id);
     updateSelectedLocationsDisplay();
   }
 }
 
 function removeLocation(id) {
-  if (selectedLocationIds.has(id)) {
-    selectedLocationIds.delete(id);
-    updateSelectedLocationsDisplay();
+  selectedLocationIds.delete(id);
+  const option = document.querySelector(`[data-location-id="${id}"]`);
+  if (option) {
+    option.classList.remove("bg-yellow-500/20"); // Remove selected state
   }
+  updateSelectedLocationsDisplay();
 }
 
 async function loadLocations() {
@@ -582,24 +601,26 @@ async function loadLocations() {
     const data = await response.json();
 
     if (data.status === "successful") {
-      const optionsContainer = document.querySelector(".locationOptions");
-      optionsContainer.innerHTML = data.results
-        .map(
-          (location) => `
-                <button
-                    type="button"
-                    class="w-full px-4 py-2 text-left text-white hover:bg-yellow-400/20 transition-colors"
-                    data-location-id="${location.id}"
-                    data-location-name="${location.nombre}"
-                    onclick="selectLocation('${location.id}', '${location.nombre}')">
-                    ${location.nombre}
-                </button>
-            `
-        )
-        .join("");
+      const optionsContainers = document.querySelectorAll(".locationOptions");
+      optionsContainers.forEach((optionsContainer) => {
+        optionsContainer.innerHTML = "";
+        data.results.forEach((location) => {
+          const option = document.createElement("div");
+          option.className = `px-4 py-2 cursor-pointer text-white transition-all duration-200 ${selectedLocationIds.has(location.id) ? "bg-yellow-500/20" : "hover:bg-slate-700/60"}`;
+          option.setAttribute("data-location-id", location.id);
+          option.setAttribute("data-location-name", location.nombre);
+          option.textContent = location.nombre;
+          option.addEventListener("click", (e) => {
+            e.stopPropagation();
+            selectLocation(location.id, location.nombre);
+          });
+          optionsContainer.appendChild(option);
+        });
+      });
     }
   } catch (error) {
     console.error("Error loading locations:", error);
+    showNotification("Error cargando localizaciones", "error");
   }
 }
 
@@ -607,44 +628,58 @@ async function loadLocations() {
 let selectedObjectIds = new Set();
 
 function toggleObjectDropdown() {
-  const dropdown = document.querySelector(".objectDropdown");
-  dropdown.classList.toggle("hidden");
+  const dropdowns = document.querySelectorAll(".objectDropdown");
+  dropdowns.forEach((dropdown) => {
+    dropdown.classList.toggle("hidden");
+  });
 }
 
 function updateSelectedObjectsDisplay() {
-  const container = document.querySelector(".selectedObjects");
-  container.innerHTML = "";
-  selectedObjectIds.forEach((id) => {
-    const objectName = document.querySelector(`[data-object-id="${id}"]`).getAttribute("data-object-name");
-    const tag = document.createElement("div");
-    tag.className = "px-3 py-1 bg-green-400/20 text-green-400 rounded-lg text-sm font-medium flex items-center gap-2";
-    tag.innerHTML = `
-            ${objectName}
-            <button onclick="removeObject('${id}')" class="hover:text-green-200 transition-colors">
-                <i class="fa-solid fa-times"></i>
-            </button>
+  const containers = document.querySelectorAll(".selectedObjects");
+
+  containers.forEach((container) => {
+    container.innerHTML = "";
+    selectedObjectIds.forEach((id) => {
+      const option = document.querySelector(`[data-object-id="${id}"]`);
+      if (option) {
+        const tag = document.createElement("div");
+        tag.className = "px-3 py-1 bg-green-400/20 text-green-400 rounded-lg text-sm font-medium flex items-center gap-2";
+        tag.innerHTML = `
+          <span>${option.textContent}</span>
+          <button type="button" class="hover:text-green-200 transition-colors">
+            <i class="fa-solid fa-times"></i>
+          </button>
         `;
-    container.appendChild(tag);
+        tag.querySelector("button").addEventListener("click", () => removeObject(id));
+        container.appendChild(tag);
+      }
+    });
   });
 
-  const dropdownButton = document.querySelector(".objectDropdownButton");
+  const dropdownButtons = document.querySelectorAll(".objectDropdownButton");
   const count = selectedObjectIds.size;
-
-  dropdownButton.querySelector("span").textContent = count > 0 ? `${count} objeto${count > 1 ? "s" : ""} seleccionado${count > 1 ? "s" : ""}` : "Seleccionar objetos";
+  dropdownButtons.forEach((dropdownButton) => {
+    dropdownButton.querySelector("span").textContent = count > 0 ? `${count} objeto${count > 1 ? "s" : ""} seleccionado${count > 1 ? "s" : ""}` : "Seleccionar objetos";
+  });
 }
 
 function selectObject(id, name) {
-  if (!selectedObjectIds.has(id)) {
+  if (!id) return;
+  const option = document.querySelector(`[data-object-id="${id}"]`);
+  if (option && !selectedObjectIds.has(id)) {
+    option.classList.add("bg-green-500/20"); // Add selected state
     selectedObjectIds.add(id);
     updateSelectedObjectsDisplay();
   }
 }
 
 function removeObject(id) {
-  if (selectedObjectIds.has(id)) {
-    selectedObjectIds.delete(id);
-    updateSelectedObjectsDisplay();
+  selectedObjectIds.delete(id);
+  const option = document.querySelector(`[data-object-id="${id}"]`);
+  if (option) {
+    option.classList.remove("bg-green-500/20"); // Remove selected state
   }
+  updateSelectedObjectsDisplay();
 }
 
 async function loadObjects() {
@@ -653,23 +688,25 @@ async function loadObjects() {
     const data = await response.json();
 
     if (data.status === "successful") {
-      const optionsContainer = document.querySelector(".objectOptions");
-      optionsContainer.innerHTML = data.results
-        .map(
-          (object) => `
-                <button
-                    type="button"
-                    class="w-full px-4 py-2 text-left text-white hover:bg-green-400/20 transition-colors"
-                    data-object-id="${object.id}"
-                    data-object-name="${object.nombre}"
-                    onclick="selectObject('${object.id}', '${object.nombre}')">
-                    ${object.nombre}
-                </button>
-            `
-        )
-        .join("");
+      const optionsContainers = document.querySelectorAll(".objectOptions");
+      optionsContainers.forEach((optionsContainer) => {
+        optionsContainer.innerHTML = "";
+        data.results.forEach((object) => {
+          const option = document.createElement("div");
+          option.className = `px-4 py-2 cursor-pointer text-white transition-all duration-200 ${selectedObjectIds.has(object.id) ? "bg-green-500/20" : "hover:bg-slate-700/60"}`;
+          option.setAttribute("data-object-id", object.id);
+          option.setAttribute("data-object-name", object.nombre);
+          option.textContent = object.nombre;
+          option.addEventListener("click", (e) => {
+            e.stopPropagation();
+            selectObject(object.id, object.nombre);
+          });
+          optionsContainer.appendChild(option);
+        });
+      });
     }
   } catch (error) {
     console.error("Error loading objects:", error);
+    showNotification("Error cargando objetos", "error");
   }
 }
