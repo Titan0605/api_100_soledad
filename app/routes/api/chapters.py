@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app.models import SearchingModel
 from app.utils import iterate_arrays_api
+from bson.objectid import ObjectId
 
 bp = Blueprint("api_chapters", __name__)
 search_model = SearchingModel()
@@ -83,6 +84,10 @@ def create_chapter():
             "status": "error",
             "message": f"Missing required fields: {', '.join(missing_fields)}"
         }), 400
+
+    # Convert IDs to ObjectId
+    if 'eventos_relacionados' in data:
+        data['eventos_relacionados'] = [ObjectId(id) for id in data['eventos_relacionados']]
 
     # Insert the chapter
     success, inserted_id = search_model.insert_document("capitulos", data)
