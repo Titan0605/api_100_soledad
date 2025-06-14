@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app.models import SearchingModel
 from app.utils import iterate_arrays_api
+from bson import ObjectId
 
 bp = Blueprint("api_locations", __name__)
 search_model = SearchingModel()
@@ -21,7 +22,7 @@ def locations_search():
         return jsonify({
             "status": "error",
             "message": "No event was found"
-        }), 404
+        }, 404)
     
     locations_results = []
     for doc in locations_cursor:
@@ -65,6 +66,68 @@ def specific_location(id):
         "message": "location was found successfuly",
         "type": "locations",
         "results": location
+    }), 200
+
+@bp.route("/insert/locations", methods=['POST'])
+def create_location():
+    data = request.get_json()
+    if not data:
+        return jsonify({
+            "status": "error",
+            "message": "No data was sent"
+        }), 400
+
+    # Validate required fields
+    required_fields = ['nombre', 'tipo', 'descripcion', 'capitulos_aparicion']
+    missing_fields = [field for field in required_fields if field not in data]
+    if missing_fields:
+        return jsonify({
+            "status": "error",
+            "message": f"Missing required fields: {', '.join(missing_fields)}"
+        }), 400
+
+    # Convert IDs to ObjectId
+    if 'eventos_importantes' in data:
+        data['eventos_importantes'] = [ObjectId(id) for id in data['eventos_importantes']]
+    if 'personajes_asociados' in data:
+        data['personajes_asociados'] = [ObjectId(id) for id in data['personajes_asociados']]
+
+    # Insert the location
+    success, inserted_id = search_model.insert_document("localizaciones", data)
+
+    if success:
+        return jsonify({
+            "status": "successful",
+            "message": "Location created successfully",
+            "_id": inserted_id
+        }), 201
+    else:
+        return jsonify({
+            "status": "error",
+            "message": f"Error creating location: {inserted_id}"
+        }), 500
+
+@bp.route("/locations-list", methods=["GET"])
+def list_locations():
+    locations_cursor = search_model.get_essential("localizaciones")
+    if not locations_cursor or isinstance(locations_cursor, str):
+        return jsonify({
+            "status": "error",
+            "message": "No locations found" if not locations_cursor else locations_cursor
+        }), 404
+    
+    location_results = []
+    for doc in locations_cursor:
+        if isinstance(doc, dict) and '_id' in doc:
+            location_results.append({
+                "id": str(doc['_id']),
+                "nombre": doc.get('nombre', '')
+            })
+    
+    return jsonify({
+        "status": "successful",
+        "message": "Locations retrieved successfully",
+        "results": location_results
     }), 200
 
 def update_locations(id, dictionary):

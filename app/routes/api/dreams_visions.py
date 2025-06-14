@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app.models import SearchingModel
 from app.utils import iterate_arrays_api
+from bson import ObjectId
 
 bp = Blueprint("api_dreams_visions", __name__)
 search_model = SearchingModel()
@@ -21,7 +22,7 @@ def dreams_visions_search():
         return jsonify({
             "status": "error",
             "message": "No object was found"
-        }), 404
+        }, 404)
     
     dreams_visions_results = []
     for doc in dreams_visions_cursor:
@@ -64,6 +65,46 @@ def specific_object(id):
         "type": "dreams-visions",
         "results": dream_vision
     }), 200
+
+@bp.route("/insert/dreams", methods=['POST'])
+def create_dream():
+    data = request.get_json()
+    if not data:
+        return jsonify({
+            "status": "error",
+            "message": "No data was sent"
+        }), 400
+
+    # Validate required fields
+    required_fields = ['soñador', 'tipo', 'capitulo', 'descripcion', 'interpretacion']
+    missing_fields = [field for field in required_fields if field not in data]
+    if missing_fields:
+        return jsonify({
+            "status": "error",
+            "message": f"Missing required fields: {', '.join(missing_fields)}"
+        }), 400
+
+    # Convert ID to ObjectId
+    if 'soñador' in data:
+        if isinstance(data['soñador'], list):
+            data['soñador'] = [ObjectId(id) for id in data['soñador']]
+        else:
+            data['soñador'] = ObjectId(data['soñador'])
+
+    # Insert the dream/vision
+    success, inserted_id = search_model.insert_document("suenos_visiones", data)
+
+    if success:
+        return jsonify({
+            "status": "successful",
+            "message": "Dream/vision created successfully",
+            "_id": inserted_id
+        }), 201
+    else:
+        return jsonify({
+            "status": "error", 
+            "message": f"Error creating dream/vision: {inserted_id}"
+        }), 500
 
 def update_dreams_visions(id, dictionary):
     return search_model.update(id, "sueños_visiones", dictionary)

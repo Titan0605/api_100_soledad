@@ -1,0 +1,43 @@
+/* 1) Define la animación */
+@keyframes fade-in-down {
+0% {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+100% {
+    opacity: 1;
+    transform: translateY(0px);
+}
+}
+
+/* 2) Clase base para todos los labels animados */
+.animate-item {
+opacity: 0;
+animation: fade-in-down 0.5s ease-out forwards;
+}
+
+/* 3) Clases de retraso escalonado */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.3s; }
+.delay-3 { animation-delay: 0.5s; }
+.delay-4 { animation-delay: 0.7s; }
+.delay-5 { animation-delay: 0.9s; }
+.delay-6 { animation-delay: 1.1s; }
+.delay-7 { animation-delay: 1.3s; }
+.delay-8 { animation-delay: 1.5s; }
+
+input.no-spinner::-webkit-outer-spin-button,
+input.no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* En tu archivo CSS (por ejemplo, styles.css o global.css) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE y Edge */
+  scrollbar-width: none;     /* Firefox */
+}

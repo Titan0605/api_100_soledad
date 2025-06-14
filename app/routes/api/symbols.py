@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from app.models import SearchingModel
 from app.utils import iterate_arrays_api
+from bson.objectid import ObjectId
 
 bp = Blueprint("api_symbols", __name__)
 search_model = SearchingModel()
@@ -64,6 +65,45 @@ def specific_symbol(id):
         "type": "symbols",
         "results": symbol
     }), 200
+
+@bp.route("/insert/symbols", methods=['POST'])
+def create_symbol():
+    data = request.get_json()
+    if not data:
+        return jsonify({
+            "status": "error",
+            "message": "No data was sent"
+        }), 400
+
+    # Validate required fields
+    required_fields = ['nombre', 'tipo', 'capitulos_aparicion', 'interpretaciones', 'elementos_asociados']
+    missing_fields = [field for field in required_fields if field not in data]
+    if missing_fields:
+        return jsonify({
+            "status": "error",
+            "message": f"Missing required fields: {', '.join(missing_fields)}"
+        }), 400
+
+    # Convert IDs to ObjectId
+    if 'personajes_afectados' in data:
+        data['personajes_afectados'] = [ObjectId(id) for id in data['personajes_afectados']]
+    if 'eventos_relacionados' in data:
+        data['eventos_relacionados'] = [ObjectId(id) for id in data['eventos_relacionados']]
+
+    # Insert the symbol
+    success, inserted_id = search_model.insert_document("simbolos_temas", data)
+
+    if success:
+        return jsonify({
+            "status": "successful",
+            "message": "Symbol created successfully",
+            "_id": inserted_id
+        }), 201
+    else:
+        return jsonify({
+            "status": "error",
+            "message": f"Error creating symbol: {inserted_id}"
+        }), 500
 
 def update_symbols(id, dictionary):
     return search_model.update(id, "simbolos_temas", dictionary)
