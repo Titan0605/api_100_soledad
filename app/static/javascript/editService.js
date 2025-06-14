@@ -1,5 +1,4 @@
 async function abrirEditModal(type, id) {
-  console.log("entro a la función por lo menos");
   const modal = document.getElementById("customEditModal");
   modal.classList.remove("hidden");
 
@@ -179,10 +178,10 @@ document.querySelector("#customEditModal button.bg-green-600").addEventListener(
           .getElementById("locationEditSymbolism")
           .value.split(",")
           .map((s) => s.trim()),
-        transformaciones: document.getElementById("locationEditTransformations").value /* .split('\n').map(t => ({
+        transformaciones: document.getElementById("locationEditTransformations").value.split('\n').map(t => ({
             capitulo: parseInt(t.split(':')[0].trim()),
-            estado: t.split(':')[1].trim()
-            })) */,
+            descripcion: t.split(':')[1].trim()
+            })),
         personajes_asociados: Array.from(selectedCharacterIds),
         palabras_clave: document
           .getElementById("locationEditKeywords")

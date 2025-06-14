@@ -112,11 +112,7 @@ function getActiveFormData() {
         transformaciones: [{
           capitulo: document.getElementById("objectTransformationChapter").value,
           descripcion: document.getElementById("objectTransformationDescription").value
-        }] 
-        /* document.getElementById("objectTransformations").value .split('\n').map(t => ({
-            capitulo: parseInt(t.split(':')[0].trim()),
-            estado: t.split(':')[1].trim()
-            })) */,
+        }],
         importancia_narrativa: parseInt(document.getElementById("objectImportance").value),
         palabras_clave: document
           .getElementById("objectKeywords")
@@ -142,11 +138,7 @@ function getActiveFormData() {
         transformaciones: [{
           capitulo: document.getElementById("locationTransformationChapter").value,
           descripcion: document.getElementById("locationTransformationDescription").value
-        }] 
-        /* document.getElementById("locationTransformations").value .split('\n').map(t => ({
-            capitulo: parseInt(t.split(':')[0].trim()),
-            estado: t.split(':')[1].trim()
-            })) */,
+        }],
         personajes_asociados: Array.from(selectedCharacterIds),
         palabras_clave: document
           .getElementById("locationKeywords")
