@@ -274,7 +274,7 @@
                 id="eventType"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 input-focus font-medium">
                 <option value="">Seleccionar tipo</option>
-                <option value="histórico">Histórico</option>
+                <option value="historico">Histórico</option>
                 <option value="personal">Personal</option>
                 <option value="sobrenatural">Sobrenatural</option>
                 <option value="social">Social</option>
@@ -539,10 +539,10 @@
                 id="objectType"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 transition-all duration-300 input-focus font-medium">
                 <option value="">Seleccionar tipo</option>
-                <option value="mágico">Mágico</option>
+                <option value="magico">Mágico</option>
                 <option value="cotidiano">Cotidiano</option>
-                <option value="simbólico">Simbólico</option>
-                <option value="histórico">Histórico</option>
+                <option value="simbolico">Simbólico</option>
+                <option value="historico">Histórico</option>
               </select>
             </div>
           </div>
@@ -652,9 +652,9 @@
                 id="locationType"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 transition-all duration-300 input-focus font-medium">
                 <option value="">Seleccionar tipo</option>
-                <option value="construcción">Construcción</option>
+                <option value="construccion">Construcción</option>
                 <option value="natural">Natural</option>
-                <option value="mítica">Mítica</option>
+                <option value="mitica">Mítica</option>
                 <option value="histórica">Histórica</option>
               </select>
             </div>
@@ -848,10 +848,11 @@
                 id="dreamType"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 transition-all duration-300 input-focus font-medium">
                 <option value="">Seleccionar tipo</option>
-                <option value="premonición">Premonición</option>
+                <option value="premonicion">Premonición</option>
                 <option value="pesadilla">Pesadilla</option>
                 <option value="visión">Visión</option>
-                <option value="sueño_profético">Sueño Profético</option>
+                <option value="vision_profética">Vision Profética</option>
+                <option value="sueño_nostálgico">Sueño Nostálgico</option>
               </select>
             </div>
           </div>
@@ -1113,7 +1114,9 @@
                 <button
                   type="button"
                   class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
-                  onclick="toggleCharacterDropdown()">
+                  onclick="toggleCharacterDropdown()"
+                  
+                  >
                   <span>Seleccionar personajes</span>
                   <i class="fa-solid fa-chevron-down"></i>
                 </button>
@@ -1143,8 +1146,12 @@
   </div>
 
 
-  <!--AQUI EMPIEZA EL EDITAR
+  <!--
+  AQUI EMPIEZA EL EDITAR
   NO TE PIERDAS DAVIIIIIIIID
+  ----------------------------------
+  ----------------------------------
+  ----------------------------------
   -->
   <div class="flex justify-end mb-4">
     <button
@@ -1209,7 +1216,9 @@
               rows="4"
               oninput="filtrarCaracteres2(this)"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
-              placeholder="Describe detalladamente el evento..."></textarea>
+              placeholder="Describe detalladamente el evento..."
+              name="descripcion"
+              ></textarea>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
@@ -1232,23 +1241,25 @@
                 name="tipo"
                 >
                 <option value="">Seleccionar tipo</option>
-                <option value="histórico">Histórico</option>
+                <option value="historico">Histórico</option>
                 <option value="personal">Personal</option>
                 <option value="sobrenatural">Sobrenatural</option>
                 <option value="social">Social</option>
+                <option value="simbólico">Simbólico</option>
               </select>
             </div>
           </div>
           <div class="space-y-2 mt-4">
             <label class="block text-sm font-semibold text-slate-300 mb-2">Fecha narrativa</label>
             <input
-              id="eventDate"
+              id="eventEditDate"
               type="number"
               min="1900"
               max="2000"
               class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
               placeholder="Ej: aproximadamente 1915" 
-              name="fecha_narrativa"/>
+              name="fecha_narrativa"
+              />
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
@@ -1262,7 +1273,7 @@
                   <span>Seleccionar personajes</span>
                   <i class="fa-solid fa-chevron-down"></i>
                 </button>
-                <div id="characterDropdown" class="hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                <div id="characterEditDropdown" class="hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
                   <div id="characterOptions" class="space-y-1">
                     <!-- Options will be populated here -->
                   </div>
@@ -1309,7 +1320,7 @@
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Consecuencias</label>
               <input
-                id="eventConsequences"
+                id="eventEditConsequences"
                 oninput="filtrarCaracteres2(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
                 placeholder="Consecuencias separadas por comas" 
@@ -1608,7 +1619,6 @@
             <label class="block text-sm font-semibold text-slate-300 mb-2">Transformaciones</label>
             <textarea
               id="objectEditTransformations"
-              oninput="filtrarCaracteres1(this)"
               rows="3"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Formato: capítulo:estado (uno por línea)"
@@ -1686,10 +1696,11 @@
             <label class="block text-sm font-semibold text-slate-300 mb-2">Transformaciones</label>
             <textarea
               id="locationEditTransformations"
-              oninput="filtrarCaracteres2(this)"
               rows="3"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
-              placeholder="Describe los cambios de la localización a través del tiempo..."></textarea>
+              placeholder="Describe los cambios de la localización a través del tiempo..."
+              name="transformaciones"
+              ></textarea>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
@@ -1703,7 +1714,7 @@
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
               <input
-                id="locationKeywords"
+                id="locationEditKeywords"
                 oninput="filtrarCaracteres1(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
                 placeholder="aislamiento, magia, historia (separadas por coma)" 
@@ -1836,10 +1847,11 @@
                 name="tipo"
                 >
                 <option value="">Seleccionar tipo</option>
-                <option value="premonición">Premonición</option>
+                <option value="premonicion">Premonición</option>
                 <option value="pesadilla">Pesadilla</option>
                 <option value="visión">Visión</option>
                 <option value="sueño_profético">Sueño Profético</option>
+                <option value="vision_traumática">Vision Traumática</option>
               </select>
             </div>
           </div>
@@ -1892,7 +1904,7 @@
           <div class="space-y-2 mt-4">
             <label class="block text-sm font-semibold text-slate-300 mb-2">Cumplimiento</label>
             <textarea
-              id="dreamFulfillment"
+              id="dreamEditFulfillment"
               oninput="filtrarCaracteres2(this)"
               rows="3"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
@@ -1956,6 +1968,9 @@
                 <option value="enemistad">Enemistad</option>
                 <option value="parentesco">Parentesco</option>
                 <option value="aventura">Aventura</option>
+                <option value="matrimonio_deteriorado">Matrimonio Deteriorado</option>
+                <option value="solidaridad_laboral">Solidaridad Laboral</option>
+                <option value="matrimonio_moderno">Matrimonio Moderno</option>
               </select>
             </div>
             <div class="grid grid-cols-2 gap-4">
@@ -2067,8 +2082,8 @@
                 name="tipo"
                 >
                 <option value="">Seleccionar tipo</option>
-                <option value="símbolo_natural">Símbolo Natural</option>
-                <option value="símbolo_cultural">Símbolo Cultural</option>
+                <option value="simbolo_natural">Símbolo Natural</option>
+                <option value="simbolo_cultural">Símbolo Cultural</option>
                 <option value="tema_literario">Tema Literario</option>
                 <option value="motivo_recurrente">Motivo Recurrente</option>
               </select>

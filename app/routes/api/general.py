@@ -27,6 +27,9 @@ def general_search():
     user_query = data.get("query", "").strip()
     filters    = data.get("filters", [])
 
+    print("Estos son los filtos: ", filters)
+    print("este es el query: ", user_query )
+
     if not user_query:
         return jsonify({"status":"error","message":"the field 'query' is obligatory"}), 400
     if not isinstance(filters, list):
@@ -82,8 +85,12 @@ def general_update():
     dictionary = data.get("dictionary")
     collection = data.get("collection", "").strip()
 
-    if not event_id or not dictionary or not collection:
-        return jsonify({"status":"error","message":"Fields 'id', 'dictionary' and 'collection' are required"}), 400
+    if not event_id:
+        return jsonify({"status":"error","message":"Fields 'id' are required"}), 400
+    if not dictionary:
+        return jsonify({"status":"error","message":"Fields 'dictionary' are required"}), 400
+    if not collection:
+        return jsonify({"status":"error","message":"Fields 'collection' are required"}), 400
     if not isinstance(dictionary, dict):
         return jsonify({"status":"error","message":"the information must be sent as dictionary"}), 400
     if collection not in TOPIC_FUNCS_UPDATE:

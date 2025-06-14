@@ -28,7 +28,9 @@ def search_relationships():
     relationships_results = []
     for doc in relationships_cursor:
         doc["personaje1"] = search_model.search_especific(str(doc.get("personaje1", "")), "personajes")
+        doc["personaje1"]["type"] = "characters"
         doc["personaje2"] = search_model.search_especific(str(doc.get("personaje2", "")), "personajes")
+        doc["personaje2"]["type"] = "characters"
         doc["type"] = "relationships"
         doc["_id"] = str(doc["_id"])
         relationships_results.append(doc)
@@ -58,7 +60,9 @@ def specific_relationship(id):
         }), 404
     
     relationship["personaje1"] = search_model.search_especific(str(relationship.get("personaje1", "")), "personajes")
+    relationship["personaje1"]["type"] = "characters"
     relationship["personaje2"] = search_model.search_especific(str(relationship.get("personaje2", "")), "personajes")
+    relationship["personaje2"]["type"] = "characters"
     relationship["type"] = "relationships"
 
     relationship["_id"] = str(relationship["_id"])

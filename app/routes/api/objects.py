@@ -16,7 +16,7 @@ def objects_search():
             }), 400
     
     user_query = data.get("query", "")
-
+    print("si entro aquí a OBJETOS y el query es: ", user_query)
     objects_cursor = search_model.search_general(user_query, "objetos")
     if not objects_cursor:
         return jsonify({
@@ -24,19 +24,24 @@ def objects_search():
             "message": "No object was found"
         }), 404
     
+    print("paso de la validación de que no encontró en OBJETOS")
+
     objects_results = []
     for doc in objects_cursor:
+        print("ESTE PUEDE SER EL ERROR: ", doc.get("propietarios", []))
         doc["propietarios"] = iterate_arrays_api(doc.get("propietarios", []), "personajes")
         doc["type"] = "objects"
         doc["_id"] = str(doc["_id"])
         objects_results.append(doc)
+
+    print("paso del FOR en OBJETOS")
 
     return  jsonify({
         "status":  "successful",
         "message": "Request was successful",
         "type":    "objects",
         "results": objects_results
-    }, 200)
+    }), 200
 
 @bp.route("/search-specific-objects/<id>", methods=["GET"])
 def specific_object(id):
