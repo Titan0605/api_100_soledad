@@ -56,6 +56,7 @@ def specific_object(id):
         }), 404
     
     dream_vision["soñador"] = search_model.search_especific(dream_vision.get("soñador", ""), "personajes")
+    dream_vision["soñador"]["type"] = "characters"
     dream_vision["type"] = "dreams_visions"
     dream_vision["_id"] = str(dream_vision["_id"])
 
