@@ -456,8 +456,9 @@
     </div>
   </header>
 
-  <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 md:gap-8">
-    <div class="xl:col-span-2 space-y-6">
+  <!-- Contenedor perfectamente centrado -->
+  <div class="flex justify-center w-full">
+    <div class="w-full max-w-4xl space-y-6">
       <!-- INFORMACIÓN -->
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Definición del Concepto</h2>
@@ -496,6 +497,8 @@
         </div>
       </section>
     </div>
+  </div>
+</div>
 {% elif data.type == 'symbols' %}
 <!-- EJEMPLO 5: SÍMBOLO -->
 <div class="container mx-auto px-4 py-6 max-w-7xl">
@@ -520,9 +523,10 @@
     </div>
   </header>
 
-  <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 md:gap-8">
-    <div class="xl:col-span-2 space-y-6">
-      <!-- INFORMACIÓN -->
+  <!-- Contenedor centrado para toda la información -->
+  <div class="flex justify-center">
+    <div class="w-full max-w-4xl space-y-6">
+      <!-- INFORMACIÓN PRINCIPAL -->
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Significado Simbólico</h2>
 
@@ -574,18 +578,13 @@
           </div>
         </div>
       </section>
-    </div>
 
-    <!-- Sidebar -->
-    <div class="space-y-6">
+      <!-- PALABRAS CLAVE AL FONDO -->
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
         <h3 class="text-lg md:text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Palabras clave</h3>
-        <div class="space-y-3">
+        <div class="flex flex-wrap gap-2">
           {%for palabra in data.palabras_clave %}
-          <div class="bg-gray-700 rounded-lg p-4 hover:bg-gray-600 transition-colors duration-200">
-            <span class="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">Palabra</span>
-            <h4 class="text-white font-bold text-sm mt-2">{{ palabra }}</h4>
-          </div>
+          <span class="text-xs bg-indigo-600 text-white px-3 py-1 rounded-full">{{ palabra }}</span>
           {%endfor%}
         </div>
       </section>
@@ -723,8 +722,9 @@
     </div>
   </header>
 
-  <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 md:gap-8">
-    <div class="xl:col-span-2 space-y-6">
+  <!-- Contenedor perfectamente centrado -->
+  <div class="flex justify-center w-full">
+    <div class="w-full max-w-4xl space-y-6">
       <!-- INFORMACIÓN -->
       <section class="bg-gray-800 rounded-2xl shadow-lg p-4 md:p-6">
         <h2 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 border-b border-gray-700 pb-3">Resumen del Capítulo</h2>
@@ -771,6 +771,8 @@
         </div>
       </section>
     </div>
+  </div>
+</div>
 {% endif %}
 
 {%endblock%}
