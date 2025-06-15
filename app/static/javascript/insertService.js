@@ -379,7 +379,7 @@ async function loadCharacters() {
         data.results.forEach((character) => {
           const option = document.createElement("div");
           const name = character.nombre + (character.apellido ? " " + character.apellido : "");
-          option.className = `px-4 py-2 cursor-pointer text-white transition-all duration-200 ${selectedCharacterIds.has(character.id) ? "bg-red-500/20" : "hover:bg-slate-700/60"}`;
+          option.className = `px-4 py-2 cursor-pointer text-white transition-all duration-200 ${selectedCharacterIds.has(character.id) ? "bg-blue-500/20" : "hover:bg-slate-700/60"}`;
           option.setAttribute("data-character-id", character.id);
           option.textContent = name;
           option.addEventListener("click", (e) => {
@@ -436,6 +436,10 @@ document.addEventListener("click", function (event) {
 
 // Section to manage event selection when responding the form
 let selectedEventIds = new Set();
+
+function addIdEvent(id) {
+  selectedEventIds.add(id);
+}
 
 function toggleEventDropdown() {
   const dropdowns = document.querySelectorAll(".eventDropdown");

@@ -581,7 +581,7 @@
               <div class="relative">
                 <button
                   type="button"
-                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-green-400 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 transition-all duration-300 text-left flex items-center justify-between"
                   onclick="toggleCharacterDropdown()">
                   <span>Seleccionar personajes</span>
                   <i class="fa-solid fa-chevron-down"></i>
@@ -621,28 +621,12 @@
             </div>
           </div>
           <div class="space-y-2 mt-4">
-            <h4 class="text-lg font-semibold text-green-400 mb-3">Transformacion</h4>
-            <div class="grid md:grid-cols-2 gap-4">
-              <div class="space-y-2">
-                <label class="block text-sm font-semibold text-slate-300 mb-2">Capitulo</label>
-                <input
-                  id="objectTransformationChapter"
-                  type="number"
-                  min="13"
-                  max="16"
-                  class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                  placeholder="Ej: 16" />
-              </div>
-              <div class="space-y-2">
-                <label class="block text-sm font-semibold text-slate-300 mb-2">Descripción</label>
-                <input
-                  id="objectTransformationDescription"
-                  type="text"
-                  oninput="filtrarCaracteres2(this)"
-                  class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                  placeholder="Cómo murió" />
-              </div>
-            </div>
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Transformaciones</label>
+            <textarea
+              id="objectTransformations"
+              rows="3"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
+              placeholder="Formato: capítulo:estado (uno por línea)"></textarea>
           </div>
         </div>
       </form>
@@ -709,67 +693,17 @@
               <div class="selectedEvents flex flex-wrap gap-2 mt-2"></div>
             </div>
           </div>
-          <div class="grid md:grid-cols-2 gap-4 mt-4">
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-slate-300 mb-2">Personajes involucrados</label>
-              <div class="relative">
-                <button
-                  type="button"
-                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
-                  onclick="toggleCharacterDropdown()">
-                  <span>Seleccionar personajes</span>
-                  <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="characterDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
-                  <div class="characterOptions space-y-1"></div>
-                </div>
-              </div>
-              <div class="selectedCharacters flex flex-wrap gap-2 mt-2"></div>
-            </div>
-            <div class="space-y-2">
-              <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
-              <input
-              id="locationKeywords"
-              oninput="filtrarCaracteres1(this)"
-              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-              placeholder="aislamiento, magia, historia (separadas por coma)" />
-            </div>
-          </div>
           <div class="space-y-2 mt-4">
-            <label class="block text-sm font-semibold text-slate-300 mb-2">Simbolismo</label>
-            <input
-            id="locationSymbolism"
-            oninput="filtrarCaracteres1(this)"
-            class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-            placeholder="aislamiento, progreso, decadencia (separados por coma)" />
-          </div>
-          <div class="space-y-2 mt-4">
-            <h4 class="text-lg font-semibold text-yellow-400 mb-3">Transformacion</h4>
-            <div class="grid md:grid-cols-2 gap-4">
-              <div class="space-y-2">
-                <label class="block text-sm font-semibold text-slate-300 mb-2">Capitulo</label>
-                <input
-                  id="locationTransformationChapter"
-                  type="number"
-                  min="13"
-                  max="16"
-                  class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                  placeholder="Ej: 16" />
-              </div>
-              <div class="space-y-2">
-                <label class="block text-sm font-semibold text-slate-300 mb-2">Descripción</label>
-                <input
-                  id="locationTransformationDescription"
-                  type="text"
-                  oninput="filtrarCaracteres2(this)"
-                  class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                  placeholder="Cómo murió" />
-              </div>
-            </div>
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Transformaciones</label>
+            <textarea
+              id="locationTransformations"
+              rows="3"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
+              placeholder="Describe los cambios de la localización a través del tiempo..."></textarea>
           </div>
         </div>
       </form>
-      
+
       <!-- Formulario de Capítulo -->
       <form id="formChapter" class="hidden space-y-5 animate-slide-up">
         <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl">
@@ -778,10 +712,10 @@
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Número del capítulo</label>
               <input
-              id="chapterNumber"
-              type="number"
-              min="13"
-              max="16"
+                id="chapterNumber"
+                type="number"
+                min="13"
+                max="16"
                 class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
                 placeholder="1" />
             </div>
@@ -863,7 +797,7 @@
                   type="button"
                   class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
                   onclick="toggleCharacterDropdown()">
-                  <span>Seleccionar personaje</span>
+                  <span>Seleccionar personajes</span>
                   <i class="fa-solid fa-chevron-down"></i>
                 </button>
                 <div class="characterDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
@@ -997,27 +931,15 @@
                 <option value="aventura">Aventura</option>
               </select>
             </div>
-            <div class="grid grid-cols-2 gap-4">
-              <div class="space-y-2">
-                <label class="block text-sm font-semibold text-slate-300 mb-2">Capítulo inicio</label>
-                <input
-                  id="relationStart"
-                  type="number"
-                  min="13"
-                  max="16"
-                  class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                  placeholder="Inicio" />
-              </div>
-              <div class="space-y-2">
-                <label class="block text-sm font-semibold text-slate-300 mb-2">Capítulo fin</label>
-                <input
-                  id="relationEnd"
-                  type="number"
-                  min="13"
-                  max="16"
-                  class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                  placeholder="Opcional" />
-              </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Capítulo inicio</label>
+              <input
+                id="relationStart"
+                type="number"
+                min="13"
+                max="16"
+                class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Inicio" />
             </div>
           </div>
           <div class="space-y-2 mt-4">
@@ -1144,9 +1066,7 @@
                 <button
                   type="button"
                   class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
-                  onclick="toggleCharacterDropdown()"
-                  
-                  >
+                  onclick="toggleCharacterDropdown()">
                   <span>Seleccionar personajes</span>
                   <i class="fa-solid fa-chevron-down"></i>
                 </button>
@@ -1175,7 +1095,6 @@
     </div>
   </div>
 
-
   <!--
   AQUI EMPIEZA EL EDITAR
   NO TE PIERDAS DAVIIIIIIIID
@@ -1191,14 +1110,13 @@
     </button>
   </div>
 
-    <!-- Modal -->
+  <!-- Modal -->
   <div id="customEditModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in">
     <div class="relative w-full max-w-4xl p-6 glass-effect rounded-3xl shadow-2xl mx-4 md:mx-auto max-h-[90vh] overflow-y-auto animate-slide-up border border-slate-600/30">
       <button
         type="button"
         class="absolute top-4 right-4 text-slate-300 hover:text-white text-2xl font-bold w-10 h-10 rounded-full bg-slate-700/50 hover:bg-slate-600/50 flex items-center justify-center transition-all duration-300 btn-hover"
-        onclick="document.getElementById('customEditModal').classList.add('hidden'); document.querySelectorAll('[id^=formEdit]').forEach(f => f.classList.add('hidden'));"
-        >
+        onclick="document.getElementById('customEditModal').classList.add('hidden'); document.querySelectorAll('[id^=formEdit]').forEach(f => f.classList.add('hidden'));">
         <i class="fa-solid fa-times"></i>
       </button>
 
@@ -1211,19 +1129,17 @@
       <!-- Formulario de Evento -->
       <form id="formEditevents" class="hidden space-y-5 animate-slide-up">
         <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl overflow-auto scrollbar-hide">
+          <input type="hidden" name="_id" />
           <h3 class="text-2xl font-bold mb-6 text-red-400 flex items-center"><i class="fa-solid fa-star mr-3"></i>Editar Evento</h3>
           <div class="grid md:grid-cols-2 gap-4">
             <div class="space-y-2">
-              <input type="hidden" name="type">
-              <input type="hidden" name="_id">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Nombre del evento</label>
               <input
                 id="eventEditName"
                 oninput="filtrarCaracteres2(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Ej: La muerte de José Arcadio" 
-                name="nombre"
-                />
+                placeholder="Ej: La muerte de José Arcadio"
+                name="nombre" />
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Capítulo</label>
@@ -1234,9 +1150,8 @@
                 maxlength="2"
                 type="number"
                 class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Ej: Capítulo 5" 
-                name="capitulo"
-                />
+                placeholder="Ej: Capítulo 5"
+                name="capitulo" />
             </div>
           </div>
           <div class="space-y-2 mt-4">
@@ -1247,8 +1162,7 @@
               oninput="filtrarCaracteres2(this)"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Describe detalladamente el evento..."
-              name="descripcion"
-              ></textarea>
+              name="descripcion"></textarea>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
@@ -1259,17 +1173,15 @@
                 min="1"
                 max="10"
                 class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="8" 
-                name="importancia"
-                />
+                placeholder="8"
+                name="importancia" />
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Tipo de evento</label>
               <select
                 id="eventEditType"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 input-focus font-medium"
-                name="tipo"
-                >
+                name="tipo">
                 <option value="">Seleccionar tipo</option>
                 <option value="historico">Histórico</option>
                 <option value="personal">Personal</option>
@@ -1283,13 +1195,10 @@
             <label class="block text-sm font-semibold text-slate-300 mb-2">Fecha narrativa</label>
             <input
               id="eventEditDate"
-              type="number"
-              min="1900"
-              max="2000"
+              type="text"
               class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-              placeholder="Ej: aproximadamente 1915" 
-              name="fecha_narrativa"
-              />
+              placeholder="Ej: aproximadamente 1915"
+              name="fecha_narrativa" />
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
@@ -1297,96 +1206,101 @@
               <div class="relative">
                 <button
                   type="button"
-                  id="characterEditDropdownButton"
-                  class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
-                  onclick="toggleCharacterDropdown()">
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleCharacterDropdown()"
+                  name="personajes_involucrados">
                   <span>Seleccionar personajes</span>
                   <i class="fa-solid fa-chevron-down"></i>
                 </button>
-                <div id="characterEditDropdown" class="hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
-                  <div id="characterOptions" class="space-y-1">
-                    <!-- Options will be populated here -->
-                  </div>
+                <div class="characterDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="characterOptions space-y-1"></div>
                 </div>
               </div>
-              <div id="selectedCharacters" class="flex flex-wrap gap-2 mt-2">
-                <!-- Selected characters will appear here -->
-              </div>
+              <div class="selectedCharacters flex flex-wrap gap-2 mt-2"></div>
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Localizaciones</label>
-              <input
-                id="eventEditLocations"
-                oninput="filtrarCaracteres1(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Lugares separados por comas" 
-                name="localizaciones"
-                />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="locationDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-yellow-400 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleLocationDropdown()"
+                  name="localizaciones">
+                  <span>Seleccionar localizaciones</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="locationDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="locationOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedLocations flex flex-wrap gap-2 mt-2"></div>
             </div>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Objetos relacionados</label>
-              <input
-                id="eventEditObjects"
-                oninput="filtrarCaracteres1(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Objetos separados por comas" 
-                name="objetos_relacionados"
-                />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="objectDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-green-400 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleObjectDropdown()"
+                  name="objetos_relacionados">
+                  <span>Seleccionar objetos</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="objectDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="objectOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedObjects flex flex-wrap gap-2 mt-2"></div>
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Simbolismo</label>
               <input
-                id="eventEditSymbolism"
+                id="eventSymbolism"
                 oninput="filtrarCaracteres1(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Elementos simbólicos separados por comas" 
-                name="simbolismo"
-                />
+                placeholder="Elementos simbólicos separados por comas"
+                name="simbolismo"/>
             </div>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Consecuencias</label>
               <input
-                id="eventEditConsequences"
-                oninput="filtrarCaracteres2(this)"
+                id="eventConsequences"
+                oninput="filtrarCaracteres1(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Consecuencias separadas por comas" 
-                name="consecuencias"
-                />
+                placeholder="Consecuencias separadas por comas"
+                name="consecuencias"/>
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
               <input
-                id="eventEditKeywords"
+                id="eventKeywords"
                 oninput="filtrarCaracteres1(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Palabras clave separadas por comas" 
-                name="palabras_clave"
-                />
+                placeholder="Palabras clave separadas por comas"
+                name="palabras_clave"/>
             </div>
           </div>
           <div class="space-y-2 mt-4">
             <label class="block text-sm font-semibold text-slate-300 mb-2">Texto completo</label>
             <textarea
-              id="eventEditFullText"
+              id="eventFullText"
               rows="4"
               oninput="filtrarCaracteres2(this)"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Descripción extensa del evento para búsquedas de texto completo..."
-              name="texto_completo"
-              ></textarea>
+              name="texto_completo"></textarea>
           </div>
         </div>
       </form>
 
       <!-- Formulario de Personaje -->
       <form id="formEditcharacters" class="hidden space-y-5 animate-slide-up">
-        <input type="hidden" name="type">
-        <input type="hidden" name="_id">
         <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl">
+          <input type="hidden" name="_id" />
           <h3 class="text-2xl font-bold mb-6 text-blue-400 flex items-center"><i class="fa-solid fa-user mr-3"></i>Editar Personaje</h3>
           <div class="grid md:grid-cols-2 gap-4">
             <div class="space-y-2">
@@ -1395,9 +1309,8 @@
                 id="characterEditFirstName"
                 oninput="filtrarCaracteres2(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Ej: José Arcadio" 
-                name="nombre"
-                />
+                placeholder="Ej: José Arcadio"
+                name="nombre" />
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Apellido</label>
@@ -1406,8 +1319,7 @@
                 oninput="filtrarCaracteres2(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
                 placeholder="Ej: Buendía"
-                name="apellido"
-                />
+                name="apellido" />
             </div>
           </div>
           <div class="space-y-2 mt-4">
@@ -1418,8 +1330,7 @@
               rows="3"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Describe el aspecto físico del personaje..."
-              name="descripcion_fisica"
-              ></textarea>
+              name="descripcion_fisica"></textarea>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
@@ -1430,9 +1341,8 @@
                 min="1"
                 max="7"
                 class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Ej: 1" 
-                name="generacion"
-                />
+                placeholder="Ej: 1"
+                name="generacion" />
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Personalidad</label>
@@ -1440,9 +1350,8 @@
                 id="characterEditPersonality"
                 oninput="filtrarCaracteres1(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Rasgos separados por comas" 
-                name="personalidad"
-                />
+                placeholder="Rasgos separados por comas"
+                name="personalidad" />
             </div>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
@@ -1452,19 +1361,25 @@
                 id="characterEditChapters"
                 oninput="filtrarCaracteres1(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Números separados por comas" 
-                name="capitulos_aparicion"
-                />
+                placeholder="Números separados por comas"
+                name="capitulos_aparicion" />
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Eventos principales</label>
-              <input
-                id="characterEditEvents"
-                oninput="filtrarCaracteres1(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Eventos separados por comas" 
-                name="eventos_principales"
-                />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="eventDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleEventDropdown()"
+                  name="eventos_principales">
+                  <span>Seleccionar eventos</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="eventDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="eventOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedEvents flex flex-wrap gap-2 mt-2"></div>
             </div>
           </div>
           <div class="space-y-2 mt-4">
@@ -1475,8 +1390,7 @@
               rows="2"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Describe cómo evoluciona el personaje..."
-              name="transformacion"
-              ></textarea>
+              name="transformacion"></textarea>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
@@ -1485,9 +1399,8 @@
                 id="characterEditSymbolism"
                 oninput="filtrarCaracteres1(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Elementos simbólicos separados por comas" 
-                name="simbolismo"
-                />
+                placeholder="Elementos simbólicos separados por comas"
+                name="simbolismo" />
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
@@ -1496,8 +1409,7 @@
                 oninput="filtrarCaracteres1(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
                 placeholder="Palabras clave separadas por comas"
-                name="palabras_clave"
-                />
+                name="palabras_clave" />
             </div>
           </div>
           <div class="mt-4">
@@ -1537,10 +1449,9 @@
       <!-- Formulario de Objeto -->
       <form id="formEditobjects" class="hidden space-y-5 animate-slide-up">
         <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl">
+          <input type="hidden" name="_id" />
           <h3 class="text-2xl font-bold mb-6 text-green-400 flex items-center"><i class="fa-solid fa-cube mr-3"></i>Editar Objeto</h3>
           <div class="grid md:grid-cols-2 gap-4">
-            <input type="hidden" name="type">
-            <input type="hidden" name="_id">
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Nombre del objeto</label>
               <input
@@ -1548,22 +1459,21 @@
                 oninput="filtrarCaracteres2(this)"
                 maxlength="40"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Ej: Manuscritos de Melquíades" 
-                name="nombre"
-                />
+                placeholder="Ej: Manuscritos de Melquíades"
+                name="nombre" />
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Tipo de objeto</label>
               <select
                 id="objectEditType"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 transition-all duration-300 input-focus font-medium"
-                name="tipo"
-                >
+                name="tipo">
                 <option value="">Seleccionar tipo</option>
                 <option value="mágico">Mágico</option>
                 <option value="cotidiano">Cotidiano</option>
                 <option value="simbólico">Simbólico</option>
                 <option value="histórico">Histórico</option>
+                <option value="transporte">Transporte</option>
               </select>
             </div>
           </div>
@@ -1575,8 +1485,7 @@
               rows="3"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Describe el objeto y su significado en la historia..."
-              name="descripcion"
-              ></textarea>
+              name="descripcion"></textarea>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
@@ -1585,9 +1494,8 @@
                 id="objectEditChapters"
                 oninput="filtrarCaracteres4(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Ej: 1, 3, 7 (separados por coma)" 
-                name="capitulos_aparicion"
-                />
+                placeholder="Ej: 1, 3, 7 (separados por coma)"
+                name="capitulos_aparicion" />
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Importancia narrativa (1-10)</label>
@@ -1597,19 +1505,27 @@
                 min="1"
                 max="10"
                 class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="8" 
-                name="importancia_narrativa"
-                />
+                placeholder="8"
+                name="importancia_narrativa" />
             </div>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Propietarios</label>
-              <input
-                id="objectEditOwners"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="IDs de personajes (separados por coma)" />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-green-400 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleCharacterDropdown()"
+                  name="propietarios">
+                  <span>Seleccionar personajes</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="characterDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="characterOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedCharacters flex flex-wrap gap-2 mt-2"></div>
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Ubicación física</label>
@@ -1618,9 +1534,8 @@
                 oninput="filtrarCaracteres2(this)"
                 maxlength="50"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Ej: Laboratorio de Melquíades" 
-                name="ubicacion_fisica"
-                />
+                placeholder="Ej: Laboratorio de Melquíades"
+                name="ubicacion_fisica" />
             </div>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
@@ -1630,9 +1545,8 @@
                 id="objectEditSymbolism"
                 oninput="filtrarCaracteres1(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="poder, conocimiento, destino (separados por coma)" 
-                name="simbolismo"
-                />
+                placeholder="poder, conocimiento, destino (separados por coma)"
+                name="simbolismo" />
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
@@ -1640,9 +1554,8 @@
                 id="objectEditKeywords"
                 oninput="filtrarCaracteres1(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="magia, profecía, destino (separadas por coma)" 
-                name="palabras_clave"
-                />
+                placeholder="magia, profecía, destino (separadas por coma)"
+                name="palabras_clave" />
             </div>
           </div>
           <div class="space-y-2 mt-4">
@@ -1652,8 +1565,7 @@
               rows="3"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Formato: capítulo:estado (uno por línea)"
-              name="transformaciones"
-              ></textarea>
+              name="transformaciones"></textarea>
           </div>
         </div>
       </form>
@@ -1661,10 +1573,9 @@
       <!-- Formulario de Localización -->
       <form id="formEditlocations" class="hidden space-y-5 animate-slide-up">
         <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl">
+          <input type="hidden" name="_id" />
           <h3 class="text-2xl font-bold mb-6 text-yellow-400 flex items-center"><i class="fa-solid fa-map-marker-alt mr-3"></i>Editar Localización</h3>
           <div class="grid md:grid-cols-2 gap-4">
-            <input type="hidden" name="type">
-            <input type="hidden" name="_id">
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Nombre de la localización</label>
               <input
@@ -1672,22 +1583,24 @@
                 oninput="filtrarCaracteres2(this)"
                 maxlength="60"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Ej: Macondo" 
-                name="nombre"
-                />
+                placeholder="Ej: Macondo"
+                name="nombre" />
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Tipo de localización</label>
               <select
                 id="locationEditType"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 transition-all duration-300 input-focus font-medium"
-                name="tipo"
-                >
+                name="tipo">
                 <option value="">Seleccionar tipo</option>
                 <option value="construcción">Construcción</option>
                 <option value="natural">Natural</option>
                 <option value="mítica">Mítica</option>
                 <option value="histórica">Histórica</option>
+                <option value="pueblo">Pueblo</option>
+                <option value="espacio_sagrado">Espacio Sagrado</option>
+                <option value="espacio_productivo">Espacio Productivo</option>
+                <option value="hogar_familiar">Hogar Familiar</option>
               </select>
             </div>
           </div>
@@ -1699,8 +1612,7 @@
               rows="3"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Describe la localización y su importancia en la historia..."
-              name="descripcion"
-              ></textarea>
+              name="descripcion"></textarea>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
@@ -1709,17 +1621,25 @@
                 id="locationEditChapters"
                 oninput="filtrarCaracteres4(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Ej: 1, 2, 3 (separados por coma)" 
-                name="capitulos_aparicion"
-                />
+                placeholder="Ej: 1, 2, 3 (separados por coma)"
+                name="capitulos_aparicion" />
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Eventos importantes</label>
-              <input
-                id="locationEditEvents"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="IDs de eventos (separados por coma)" />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="eventDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleEventDropdown()"
+                  name="eventos_importantes">
+                  <span>Seleccionar eventos</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="eventDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="eventOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedEvents flex flex-wrap gap-2 mt-2"></div>
             </div>
           </div>
           <div class="space-y-2 mt-4">
@@ -1729,17 +1649,25 @@
               rows="3"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Describe los cambios de la localización a través del tiempo..."
-              name="transformaciones"
-              ></textarea>
+              name="transformaciones"></textarea>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Personajes asociados</label>
-              <input
-                id="locationEditCharacters"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="IDs de personajes (separados por coma)" />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleCharacterDropdown()"
+                  name="personajes_asociados">
+                  <span>Seleccionar personajes</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="characterDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="characterOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedCharacters flex flex-wrap gap-2 mt-2"></div>
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
@@ -1747,9 +1675,8 @@
                 id="locationEditKeywords"
                 oninput="filtrarCaracteres1(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="aislamiento, magia, historia (separadas por coma)" 
-                name="palabras_clave"
-                />
+                placeholder="aislamiento, magia, historia (separadas por coma)"
+                name="palabras_clave" />
             </div>
           </div>
           <div class="space-y-2 mt-4">
@@ -1758,9 +1685,8 @@
               id="locationEditSymbolism"
               oninput="filtrarCaracteres1(this)"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-              placeholder="aislamiento, progreso, decadencia (separados por coma)" 
-              name="simbolismo"
-              />
+              placeholder="aislamiento, progreso, decadencia (separados por coma)"
+              name="simbolismo" />
           </div>
         </div>
       </form>
@@ -1768,11 +1694,10 @@
       <!-- Formulario de Capítulo -->
       <form id="formEditchapters" class="hidden space-y-5 animate-slide-up">
         <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl">
+          <input type="hidden" name="_id" />
           <h3 class="text-2xl font-bold mb-6 text-purple-400 flex items-center"><i class="fa-solid fa-book mr-3"></i>Editar Capítulo</h3>
           <div class="grid md:grid-cols-2 gap-4">
             <div class="space-y-2">
-              <input type="hidden" name="type">
-              <input type="hidden" name="_id">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Número del capítulo</label>
               <input
                 id="chapterEditNumber"
@@ -1780,9 +1705,8 @@
                 min="13"
                 max="16"
                 class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="1" 
-                name="numero"
-                />
+                placeholder="1"
+                name="numero" />
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Importancia (1-10)</label>
@@ -1792,9 +1716,8 @@
                 min="1"
                 max="10"
                 class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="7" 
-                name="importancia"
-                />
+                placeholder="7"
+                name="importancia" />
             </div>
           </div>
           <div class="space-y-2 mt-4">
@@ -1804,9 +1727,8 @@
               oninput="filtrarCaracteres2(this)"
               maxlength="70"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-              placeholder="Ej: El origen de Macondo" 
-              name="titulo"
-              />
+              placeholder="Ej: El origen de Macondo"
+              name="titulo" />
           </div>
           <div class="space-y-2 mt-4">
             <label class="block text-sm font-semibold text-slate-300 mb-2">Resumen del capítulo</label>
@@ -1816,8 +1738,7 @@
               rows="4"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Resume los eventos principales del capítulo..."
-              name="resumen"
-              ></textarea>
+              name="resumen"></textarea>
           </div>
           <div class="space-y-2 mt-4">
             <label class="block text-sm font-semibold text-slate-300 mb-2">Temas principales</label>
@@ -1825,18 +1746,26 @@
               id="chapterEditThemes"
               oninput="filtrarCaracteres1(this)"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-              placeholder="soledad, tiempo, memoria (separados por coma)" 
-              name="temas_principales"
-              />
+              placeholder="soledad, tiempo, memoria (separados por coma)"
+              name="temas_principales" />
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Eventos relacionados</label>
-              <input
-                id="chapterEditEvents"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="IDs de eventos (separados por coma)" />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="eventDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleEventDropdown()"
+                  name="eventos_relacionados">
+                  <span>Seleccionar eventos</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="eventDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="eventOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedEvents flex flex-wrap gap-2 mt-2"></div>
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
@@ -1844,9 +1773,8 @@
                 id="chapterEditKeywords"
                 oninput="filtrarCaracteres1(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="origen, fundación, familia (separadas por coma)" 
-                name="palabras_clave"
-                />
+                placeholder="origen, fundación, familia (separadas por coma)"
+                name="palabras_clave" />
             </div>
           </div>
         </div>
@@ -1855,27 +1783,32 @@
       <!-- Formulario de Sueño/Visión -->
       <form id="formEditdreams_visions" class="hidden space-y-5 animate-slide-up">
         <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl">
+          <input type="hidden" name="_id" />
           <h3 class="text-2xl font-bold mb-6 text-pink-400 flex items-center"><i class="fa-solid fa-eye mr-3"></i>Editar Sueño/Visión</h3>
           <div class="grid md:grid-cols-2 gap-4">
             <div class="space-y-2">
-              <input type="hidden" name="type">
-              <input type="hidden" name="_id">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Soñador</label>
-              <input
-                id="dreamEditDreamer"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="ID del personaje" 
-                name="soñador"
-                />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleCharacterDropdown()"
+                  name="soñador">
+                  <span>Seleccionar personajes</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="characterDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="characterOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedCharacters flex flex-wrap gap-2 mt-2"></div>
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Tipo</label>
               <select
                 id="dreamEditType"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 transition-all duration-300 input-focus font-medium"
-                name="tipo"
-                >
+                name="tipo">
                 <option value="">Seleccionar tipo</option>
                 <option value="premonicion">Premonición</option>
                 <option value="pesadilla">Pesadilla</option>
@@ -1893,8 +1826,7 @@
               rows="3"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Describe el sueño o la visión en detalle..."
-              name="descripcion"
-              ></textarea>
+              name="descripcion"></textarea>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
@@ -1905,9 +1837,8 @@
                 min="13"
                 max="16"
                 class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Número de capítulo" 
-                name="capitulo"
-                />
+                placeholder="Número de capítulo"
+                name="capitulo" />
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Elementos simbólicos</label>
@@ -1915,9 +1846,8 @@
                 id="dreamEditElements"
                 oninput="filtrarCaracteres1(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="mariposas, lluvia, sangre (separados por coma)" 
-                name="elementos_simbolicos"
-                />
+                placeholder="mariposas, lluvia, sangre (separados por coma)"
+                name="elementos_simbolicos" />
             </div>
           </div>
           <div class="space-y-2 mt-4">
@@ -1928,8 +1858,7 @@
               rows="3"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Explica el significado del sueño o visión..."
-              name="interpretacion"
-              ></textarea>
+              name="interpretacion"></textarea>
           </div>
           <div class="space-y-2 mt-4">
             <label class="block text-sm font-semibold text-slate-300 mb-2">Cumplimiento</label>
@@ -1939,8 +1868,7 @@
               rows="3"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="¿Cómo se cumple o manifiesta este sueño/visión en la historia?"
-              name="cumplimiento"
-              ></textarea>
+              name="cumplimiento"></textarea>
           </div>
           <div class="space-y-2 mt-4">
             <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
@@ -1948,39 +1876,51 @@
               id="dreamEditKeywords"
               oninput="filtrarCaracteres1(this)"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-              placeholder="premonición, destino, magia (separadas por coma)" 
-              name="palabras_clave"
-              />
+              placeholder="premonición, destino, magia (separadas por coma)"
+              name="palabras_clave" />
           </div>
         </div>
       </form>
 
       <!-- Formulario de Relación -->
       <form id="formEditrelationships" class="hidden space-y-5 animate-slide-up">
-        <input type="hidden" name="type">
-        <input type="hidden" name="_id">
         <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl">
+          <input type="hidden" name="_id" />
           <h3 class="text-2xl font-bold mb-6 text-indigo-400 flex items-center"><i class="fa-solid fa-heart mr-3"></i>Editar Relación</h3>
           <div class="grid md:grid-cols-2 gap-4">
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Personaje 1</label>
-              <input
-                id="relationEditCharacter1"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="ID del primer personaje" 
-                name="personaje1"
-                />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleCharacterDropdown()"
+                  name="personaje1">
+                  <span>Seleccionar personajes</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="characterDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="characterOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedCharacters flex flex-wrap gap-2 mt-2"></div>
             </div>
             <div class="space-y-2">
-              <label class="block text-sm font-semibold text-slate-300 mb-2">Personaje 2</label>
-              <input
-                id="relationEditCharacter2"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="ID del segundo personaje"
-                name="personaje2"
-                />
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Personaje 1</label>
+              <div class="relative">
+                <button
+                  type="button"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleCharacterDropdown()"
+                  name="personaje2">
+                  <span>Seleccionar personajes</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="characterDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="characterOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedCharacters flex flex-wrap gap-2 mt-2"></div>
             </div>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
@@ -1989,8 +1929,7 @@
               <select
                 id="relationEditType"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 transition-all duration-300 input-focus font-medium"
-                name="tipo_relacion"
-                >
+                name="tipo_relacion">
                 <option value="">Seleccionar tipo</option>
                 <option value="amor_prohibido">Amor Prohibido</option>
                 <option value="matrimonio">Matrimonio</option>
@@ -2003,30 +1942,16 @@
                 <option value="matrimonio_moderno">Matrimonio Moderno</option>
               </select>
             </div>
-            <div class="grid grid-cols-2 gap-4">
-              <div class="space-y-2">
-                <label class="block text-sm font-semibold text-slate-300 mb-2">Capítulo inicio</label>
-                <input
-                  id="relationEditStart"
-                  type="number"
-                  min="13"
-                  max="16"
-                  class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                  placeholder="Inicio"
-                  name="capitulo_inicio"
-                  />
-              </div>
-              <div class="space-y-2">
-                <label class="block text-sm font-semibold text-slate-300 mb-2">Capítulo fin</label>
-                <input
-                  id="relationEditEnd"
-                  type="number"
-                  min="13"
-                  max="16"
-                  class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                  placeholder="Opcional" 
-                  />
-              </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Capítulo inicio</label>
+              <input
+                id="relationEditStart"
+                type="number"
+                min="13"
+                max="16"
+                class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                placeholder="Inicio"
+                name="capitulo_inicio" />
             </div>
           </div>
           <div class="space-y-2 mt-4">
@@ -2037,8 +1962,7 @@
               rows="3"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Describe la naturaleza y evolución de la relación..."
-              name="descripcion"
-              ></textarea>
+              name="descripcion"></textarea>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
@@ -2047,9 +1971,8 @@
                 id="relationEditObstacles"
                 oninput="filtrarCaracteres1(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="familia, sociedad, destino (separados por coma)" 
-                name="obstaculos"
-                />
+                placeholder="familia, sociedad, destino (separados por coma)"
+                name="obstaculos" />
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Simbolismo</label>
@@ -2057,9 +1980,8 @@
                 id="relationEditSymbolism"
                 oninput="filtrarCaracteres1(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="amor, soledad, destino (separados por coma)" 
-                name="simbolismo"
-                />
+                placeholder="amor, soledad, destino (separados por coma)"
+                name="simbolismo" />
             </div>
           </div>
           <div class="space-y-2 mt-4">
@@ -2070,8 +1992,7 @@
               rows="2"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Describe las consecuencias de esta relación..."
-              name="consecuencias"
-              ></textarea>
+              name="consecuencias"></textarea>
           </div>
           <div class="space-y-2 mt-4">
             <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
@@ -2079,18 +2000,16 @@
               id="relationEditKeywords"
               oninput="filtrarCaracteres1(this)"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-              placeholder="amor, tragedia, destino (separadas por coma)" 
-              name="palabras_clave"
-              />
+              placeholder="amor, tragedia, destino (separadas por coma)"
+              name="palabras_clave" />
           </div>
         </div>
       </form>
 
       <!-- Formulario de Símbolo/Tema -->
       <form id="formEditsymbols" class="hidden space-y-5 animate-slide-up">
-        <input type="hidden" name="type">
-        <input type="hidden" name="_id">
         <div class="form-gradient p-6 rounded-2xl border border-slate-600/30 shadow-xl">
+          <input type="hidden" name="_id" />
           <h3 class="text-2xl font-bold mb-6 text-orange-400 flex items-center"><i class="fa-solid fa-moon mr-3"></i>Editar Símbolo/Tema</h3>
           <div class="grid md:grid-cols-2 gap-4">
             <div class="space-y-2">
@@ -2100,17 +2019,15 @@
                 oninput="filtrarCaracteres2(this)"
                 maxlength="50"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="Ej: La soledad" 
-                name="nombre"
-                />
+                placeholder="Ej: La soledad"
+                name="nombre" />
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Tipo</label>
               <select
                 id="symbolEditType"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 transition-all duration-300 input-focus font-medium"
-                name="tipo"
-                >
+                name="tipo">
                 <option value="">Seleccionar tipo</option>
                 <option value="simbolo_natural">Símbolo Natural</option>
                 <option value="simbolo_cultural">Símbolo Cultural</option>
@@ -2127,16 +2044,24 @@
                 oninput="filtrarCaracteres4(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
                 placeholder="Ej: 1, 3, 7 (separados por coma)"
-                name="capitulos_aparicion"
-                />
+                name="capitulos_aparicion" />
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-slate-300 mb-2">Eventos relacionados</label>
-              <input
-                id="symbolEditEvents"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="IDs de eventos (separados por coma)" />
+              <div class="relative">
+                <button
+                  type="button"
+                  class="eventDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-red-400 focus:border-red-400 focus:ring-4 focus:ring-red-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleEventDropdown()"
+                  name="eventos_relacionados">
+                  <span>Seleccionar eventos</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="eventDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="eventOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedEvents flex flex-wrap gap-2 mt-2"></div>
             </div>
           </div>
           <div class="space-y-2 mt-4">
@@ -2147,8 +2072,7 @@
               rows="4"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Escribe las diferentes interpretaciones del símbolo o tema (una por línea)..."
-              name="interpretaciones"
-              ></textarea>
+              name="interpretaciones"></textarea>
           </div>
           <div class="grid md:grid-cols-2 gap-4 mt-4">
             <div class="space-y-2">
@@ -2157,17 +2081,25 @@
                 id="symbolEditElements"
                 oninput="filtrarCaracteres1(this)"
                 class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="hielo, espejo, mariposa (separados por coma)" 
-                name="elementos_asociados"
-                />
+                placeholder="hielo, espejo, mariposa (separados por coma)"
+                name="elementos_asociados" />
             </div>
             <div class="space-y-2">
-              <label class="block text-sm font-semibold text-slate-300 mb-2">Personajes afectados</label>
-              <input
-                id="symbolEditCharacters"
-                oninput="filtrarCaracteres3(this)"
-                class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                placeholder="IDs de personajes (separados por coma)" />
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Personaje 1</label>
+              <div class="relative">
+                <button
+                  type="button"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleCharacterDropdown()"
+                  name="personajes_afectados">
+                  <span>Seleccionar personajes</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="characterDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="characterOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedCharacters flex flex-wrap gap-2 mt-2"></div>
             </div>
           </div>
           <div class="space-y-2 mt-4">
@@ -2176,9 +2108,8 @@
               id="symbolEditKeywords"
               oninput="filtrarCaracteres1(this)"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-              placeholder="soledad, tiempo, memoria (separadas por coma)" 
-              name="palabras_clave"
-              />
+              placeholder="soledad, tiempo, memoria (separadas por coma)"
+              name="palabras_clave" />
           </div>
         </div>
       </form>
@@ -2209,5 +2140,5 @@
 <script src="{{ url_for('static', filename='javascript/insertService.js') }}"></script>
 <script src="{{ url_for('static', filename='javascript/validate_input.js') }}"></script>
 <script src="{{ url_for('static', filename='javascript/animation.js') }}"></script>
-<script src="{{ url_for('static', filename='javascript/editService.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='javascript/editService.js') }}"></script>
 {%endblock%}
