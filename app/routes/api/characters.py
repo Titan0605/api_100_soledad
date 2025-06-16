@@ -127,4 +127,7 @@ def list_characters():
     }), 200
 
 def update_characters(id, dictionary):
+    if 'eventos_principales' in dictionary:
+        dictionary['eventos_principales'] = [ObjectId(id) for id in dictionary['eventos_principales']]
+    
     return search_model.update(id, "personajes", dictionary)

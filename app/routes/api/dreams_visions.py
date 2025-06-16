@@ -56,6 +56,7 @@ def specific_object(id):
         }), 404
     
     dream_vision["soñador"] = search_model.search_especific(dream_vision.get("soñador", ""), "personajes")
+    dream_vision["soñador"]["type"] = "characters"
     dream_vision["type"] = "dreams_visions"
     dream_vision["_id"] = str(dream_vision["_id"])
 
@@ -107,4 +108,10 @@ def create_dream():
         }), 500
 
 def update_dreams_visions(id, dictionary):
-    return search_model.update(id, "sueños_visiones", dictionary)
+    if 'soñador' in dictionary:
+        if isinstance(dictionary['soñador'], list):
+            dictionary['soñador'] = [ObjectId(id) for id in dictionary['soñador']]
+        else:
+            dictionary['soñador'] = ObjectId(dictionary['soñador'])
+    
+    return search_model.update(id, "suenos_visiones", dictionary)

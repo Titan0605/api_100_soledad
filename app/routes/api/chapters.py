@@ -65,6 +65,9 @@ def specific_chapter(id):
     }), 200
 
 def update_chapters(id, dictionary):
+    if 'eventos_relacionados' in dictionary:
+        dictionary['eventos_relacionados'] = [ObjectId(id) for id in dictionary['eventos_relacionados']]
+
     return search_model.update(id, "capitulos", dictionary)
 
 @bp.route("/insert/chapters", methods=['POST'])

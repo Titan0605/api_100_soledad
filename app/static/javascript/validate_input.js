@@ -37,7 +37,6 @@ const length_2 = [
   document.getElementById('chapterImportance'),
   document.getElementById('dreamChapter'),
   document.getElementById('relationStart'),
-  document.getElementById('relationEnd'),
 ];
 
 length_2.forEach(input => {
