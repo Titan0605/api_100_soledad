@@ -106,4 +106,9 @@ def create_symbol():
         }), 500
 
 def update_symbols(id, dictionary):
+    if 'personajes_afectados' in dictionary:
+        dictionary['personajes_afectados'] = [ObjectId(id) for id in dictionary['personajes_afectados']]
+    if 'eventos_relacionados' in dictionary:
+        dictionary['eventos_relacionados'] = [ObjectId(id) for id in dictionary['eventos_relacionados']]
+    
     return search_model.update(id, "simbolos_temas", dictionary)

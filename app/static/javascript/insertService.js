@@ -167,7 +167,7 @@ function getActiveFormData() {
     formDream: {
       endpoint: "/insert/dreams",
       getFormData: () => ({
-        soñador: Array.from(selectedCharacterIds),
+        soñador: Array.from(selectedCharacterIds)[0],
         tipo: document.getElementById("dreamType").value,
         capitulo: parseInt(document.getElementById("dreamChapter").value),
         descripcion: document.getElementById("dreamDescription").value,

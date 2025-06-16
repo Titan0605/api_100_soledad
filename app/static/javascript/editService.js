@@ -1,8 +1,8 @@
 // Sets para manejar las selecciones múltiples
-let selectedCharacterIds = new Set();
-let selectedEventIds = new Set();
-let selectedLocationIds = new Set();
-let selectedObjectIds = new Set();
+let selectedEditCharacterIds = new Set();
+let selectedEditEventIds = new Set();
+let selectedEditLocationIds = new Set();
+let selectedEditObjectIds = new Set();
 
 // Hacer las funciones accesibles globalmente
 window.abrirEditModal = async function (type, id) {
@@ -14,14 +14,15 @@ window.abrirEditModal = async function (type, id) {
   form.classList.remove("hidden");
 
   // Limpiar las selecciones previas
-  selectedCharacterIds.clear();
-  selectedEventIds.clear();
-  selectedLocationIds.clear();
-  selectedObjectIds.clear();
+  selectedEditCharacterIds.clear();
+  selectedEditEventIds.clear();
+  selectedEditLocationIds.clear();
+  selectedEditObjectIds.clear();
 
   // Cargar las listas desplegables
-  await Promise.all([loadCharacters(), loadEvents(), loadLocations(), loadObjects()]);
+  await Promise.all([loadEditCharacters(), loadEditEvents(), loadEditLocations(), loadEditObjects()]);
 
+  debugger;
   const response = await fetch(`/search-specific-${type}/${id}`, {
     method: "GET",
   });
@@ -29,6 +30,17 @@ window.abrirEditModal = async function (type, id) {
   const data = Array.isArray(results) ? results[0] : results;
 
   Object.entries(data).forEach(([key, value]) => {
+    debugger;
+
+    if (key === "muerte") {
+      Object.keys(value).forEach((field) => {
+        const deathElements = form.querySelectorAll(`[name="${field}"]`);
+        deathElements.forEach((deathElement) => {
+          deathElement.value = value[field];
+        });
+      });
+    }
+
     const element = form.querySelector(`[name="${key}"]`);
     if (!element) return;
 
@@ -43,42 +55,42 @@ window.abrirEditModal = async function (type, id) {
       if (key === "personajes_involucrados" || key === "personajes_asociados" || key === "personajes_afectados" || key === "propietarios" || key === "soñador") {
         value.forEach((charId) => {
           if (typeof charId === "string") {
-            selectedCharacterIds.add(charId);
+            selectedEditCharacterIds.add(charId);
           } else if (charId._id) {
-            selectedCharacterIds.add(charId._id);
+            selectedEditCharacterIds.add(charId._id);
           }
         });
-        updateSelectedCharactersDisplay();
+        updateSelectedEditCharactersDisplay();
         return;
       } else if (key === "eventos_principales" || key === "eventos_importantes" || key === "eventos_relacionados") {
         value.forEach((eventId) => {
           if (typeof eventId === "string") {
-            selectedEventIds.add(eventId);
+            selectedEditEventIds.add(eventId);
           } else if (eventId._id) {
-            selectedEventIds.add(eventId._id);
+            selectedEditEventIds.add(eventId._id);
           }
         });
-        updateSelectedEventsDisplay();
+        updateSelectedEditEventsDisplay();
         return;
       } else if (key === "localizaciones") {
         value.forEach((locId) => {
           if (typeof locId === "string") {
-            selectedLocationIds.add(locId);
+            selectedEditLocationIds.add(locId);
           } else if (locId._id) {
-            selectedLocationIds.add(locId._id);
+            selectedEditLocationIds.add(locId._id);
           }
         });
-        updateSelectedLocationsDisplay();
+        updateSelectedEditLocationsDisplay();
         return;
       } else if (key === "objetos_relacionados") {
         value.forEach((objId) => {
           if (typeof objId === "string") {
-            selectedObjectIds.add(objId);
+            selectedEditObjectIds.add(objId);
           } else if (objId._id) {
-            selectedObjectIds.add(objId._id);
+            selectedEditObjectIds.add(objId._id);
           }
         });
-        updateSelectedObjectsDisplay();
+        updateSelectedEditObjectsDisplay();
         return;
       } else if (key === "transformaciones" && Array.isArray(value)) {
         formattedValue = value.map((t) => `${t.capitulo}: ${t.descripcion}`).join("\n");
@@ -104,8 +116,8 @@ window.abrirEditModal = async function (type, id) {
     }
 
     if (key === "personaje1" || key === "personaje2" || key === "soñador") {
-      selectedCharacterIds.add(value._id);
-      updateSelectedCharactersDisplay();
+      selectedEditCharacterIds.add(value._id);
+      updateSelectedEditCharactersDisplay();
     }
 
     if (element.tagName === "TEXTAREA" || element.tagName === "INPUT" || element.tagName === "SELECT") {
@@ -153,9 +165,9 @@ document.querySelector("#customEditModal button.bg-green-600").addEventListener(
         importancia: parseInt(document.getElementById("eventEditImportance").value),
         tipo: document.getElementById("eventEditType").value,
         fecha_narrativa: document.getElementById("eventEditDate").value,
-        personajes_involucrados: Array.from(selectedCharacterIds),
-        localizaciones: Array.from(selectedLocationIds),
-        objetos_relacionados: Array.from(selectedObjectIds),
+        personajes_involucrados: Array.from(selectedEditCharacterIds),
+        localizaciones: Array.from(selectedEditLocationIds),
+        objetos_relacionados: Array.from(selectedEditObjectIds),
         simbolismo: document
           .getElementById("eventEditSymbolism")
           .value.split(",")
@@ -186,7 +198,7 @@ document.querySelector("#customEditModal button.bg-green-600").addEventListener(
           .getElementById("characterEditChapters")
           .value.split(",")
           .map((c) => parseInt(c.trim())),
-        eventos_principales: Array.from(selectedEventIds),
+        eventos_principales: Array.from(selectedEditEventIds),
         transformacion: document.getElementById("characterEditTransformation").value,
         muerte: {
           capitulo: parseInt(document.getElementById("characterEditDeathChapter").value) || null,
@@ -213,7 +225,7 @@ document.querySelector("#customEditModal button.bg-green-600").addEventListener(
           .getElementById("objectEditChapters")
           .value.split(",")
           .map((c) => parseInt(c.trim())),
-        propietarios: Array.from(selectedCharacterIds),
+        propietarios: Array.from(selectedEditCharacterIds),
         ubicacion_fisica: document.getElementById("objectEditLocation").value,
         simbolismo: document
           .getElementById("objectEditSymbolism")
@@ -243,7 +255,7 @@ document.querySelector("#customEditModal button.bg-green-600").addEventListener(
           .getElementById("locationEditChapters")
           .value.split(",")
           .map((c) => parseInt(c.trim())),
-        eventos_importantes: Array.from(selectedEventIds),
+        eventos_importantes: Array.from(selectedEditEventIds),
         simbolismo: document
           .getElementById("locationEditSymbolism")
           .value.split(",")
@@ -255,7 +267,7 @@ document.querySelector("#customEditModal button.bg-green-600").addEventListener(
             capitulo: parseInt(t.split(":")[0].trim()),
             descripcion: t.split(":")[1].trim(),
           })),
-        personajes_asociados: Array.from(selectedCharacterIds),
+        personajes_asociados: Array.from(selectedEditCharacterIds),
         palabras_clave: document
           .getElementById("locationEditKeywords")
           .value.split(",")
@@ -277,13 +289,14 @@ document.querySelector("#customEditModal button.bg-green-600").addEventListener(
           .getElementById("chapterEditKeywords")
           .value.split(",")
           .map((k) => k.trim()),
-        eventos_relacionados: Array.from(selectedEventIds),
+        eventos_relacionados: Array.from(selectedEditEventIds),
       };
       break;
     case "formEditdreams_visions":
+      debugger;
       collection = "dreams_visions";
       dictionary = {
-        soñador: Array.from(selectedCharacterIds)[0],
+        soñador: Array.from(selectedEditCharacterIds)[0],
         tipo: document.getElementById("dreamEditType").value,
         capitulo: parseInt(document.getElementById("dreamEditChapter").value),
         descripcion: document.getElementById("dreamEditDescription").value,
@@ -302,8 +315,8 @@ document.querySelector("#customEditModal button.bg-green-600").addEventListener(
     case "formEditrelationships":
       collection = "relationships";
       dictionary = {
-        personaje1: Array.from(selectedCharacterIds)[0],
-        personaje2: Array.from(selectedCharacterIds)[1],
+        personaje1: Array.from(selectedEditCharacterIds)[0],
+        personaje2: Array.from(selectedEditCharacterIds)[1],
         tipo_relacion: document.getElementById("relationEditType").value,
         capitulo_inicio: parseInt(document.getElementById("relationEditStart").value),
         descripcion: document.getElementById("relationEditDescription").value,
@@ -342,8 +355,8 @@ document.querySelector("#customEditModal button.bg-green-600").addEventListener(
           .getElementById("symbolEditElements")
           .value.split(",")
           .map((e) => e.trim()),
-        personajes_afectados: Array.from(selectedCharacterIds),
-        eventos_relacionados: Array.from(selectedEventIds),
+        personajes_afectados: Array.from(selectedEditCharacterIds),
+        eventos_relacionados: Array.from(selectedEditEventIds),
         palabras_clave: document
           .getElementById("symbolEditKeywords")
           .value.split(",")
@@ -376,7 +389,7 @@ document.querySelector("#customEditModal button.bg-green-600").addEventListener(
 });
 
 // Funciones para manejar los dropdowns
-async function loadCharacters() {
+async function loadEditCharacters() {
   try {
     const response = await fetch("/characters-list");
     const data = await response.json();
@@ -390,7 +403,7 @@ async function loadCharacters() {
             (char) => `
             <div class="px-4 py-2 cursor-pointer text-white transition-all duration-200 hover:bg-slate-700/60" 
                  data-character-id="${char.id}" 
-                 onclick="selectCharacter('${char.id}', '${char.nombre} ${char.apellido || ""}')">
+                 onclick="selectEditCharacter('${char.id}', '${char.nombre} ${char.apellido || ""}')">
               <span>${char.nombre} ${char.apellido || ""}</span>
             </div>
           `
@@ -405,7 +418,7 @@ async function loadCharacters() {
   }
 }
 
-async function loadEvents() {
+async function loadEditEvents() {
   try {
     const response = await fetch("/events-list");
     const data = await response.json();
@@ -420,7 +433,7 @@ async function loadEvents() {
             <div class="px-4 py-2 cursor-pointer text-white transition-all duration-200 hover:bg-slate-700/60" 
                  data-event-id="${event.id}"
                  data-event-name="${event.nombre}" 
-                 onclick="selectEvent('${event.id}', '${event.nombre}')">
+                 onclick="selectEditEvent('${event.id}', '${event.nombre}')">
               <span>${event.nombre}</span>
             </div>
           `
@@ -435,7 +448,7 @@ async function loadEvents() {
   }
 }
 
-async function loadLocations() {
+async function loadEditLocations() {
   try {
     const response = await fetch("/locations-list");
     const data = await response.json();
@@ -450,7 +463,7 @@ async function loadLocations() {
             <div class="px-4 py-2 cursor-pointer text-white transition-all duration-200 hover:bg-slate-700/60" 
                  data-location-id="${location.id}"
                  data-location-name=${location.nombre}"
-                 onclick="selectLocation('${location.id}', '${location.nombre}')">
+                 onclick="selectEditLocation('${location.id}', '${location.nombre}')">
               <span>${location.nombre}</span>
             </div>
           `
@@ -465,7 +478,7 @@ async function loadLocations() {
   }
 }
 
-async function loadObjects() {
+async function loadEditObjects() {
   try {
     const response = await fetch("/objects-list");
     const data = await response.json();
@@ -479,7 +492,7 @@ async function loadObjects() {
             (object) => `
             <div class="px-4 py-2 cursor-pointer text-white transition-all duration-200 hover:bg-slate-700/60" 
                  data-object-id="${object.id}" 
-                 onclick="selectObject('${object.id}', '${object.nombre}')">
+                 onclick="selectEditObject('${object.id}', '${object.nombre}')">
               <span>${object.nombre}</span>
             </div>
           `
@@ -494,13 +507,13 @@ async function loadObjects() {
   }
 }
 
-function updateSelectedCharactersDisplay() {
+function updateSelectedEditCharactersDisplay() {
   const containers = document.querySelectorAll(".selectedCharacters");
 
   containers.forEach((container) => {
     container.innerHTML = "";
 
-    selectedCharacterIds.forEach((id) => {
+    selectedEditCharacterIds.forEach((id) => {
       const option = document.querySelector(`[data-character-id="${id}"]`);
       if (option) {
         const tag = document.createElement("div");
@@ -511,31 +524,31 @@ function updateSelectedCharactersDisplay() {
                         <i class="fa-solid fa-times"></i>
                     </button>
                 `;
-        tag.querySelector("button").addEventListener("click", () => removeCharacter(id));
+        tag.querySelector("button").addEventListener("click", () => removeEditCharacter(id));
         container.appendChild(tag);
       }
     });
   });
 
   const dropdownButtons = document.querySelectorAll(".characterDropdownButton");
-  const count = selectedCharacterIds.size;
+  const count = selectedEditCharacterIds.size;
   dropdownButtons.forEach((dropdownButton) => {
     dropdownButton.querySelector("span").textContent = count > 0 ? `${count} personaje${count > 1 ? "s" : ""} seleccionado${count > 1 ? "s" : ""}` : "Seleccionar personajes";
   });
 }
 
-function updateSelectedEventsDisplay() {
+window.updateSelectedEditEventsDisplay = function() {
   const containers = document.querySelectorAll(".selectedEvents");
 
   containers.forEach((container) => {
     container.innerHTML = "";
-    selectedEventIds.forEach((id) => {
+    selectedEditEventIds.forEach((id) => {
       const eventName = document.querySelector(`[data-event-id="${id}"]`).getAttribute("data-event-name");
       const tag = document.createElement("div");
       tag.className = "px-3 py-1 bg-red-400/20 text-red-400 rounded-lg text-sm font-medium flex items-center gap-2";
       tag.innerHTML = `
                 ${eventName}
-                <button onclick="removeEvent('${id}')" class="hover:text-red-200 transition-colors">
+                <button onclick="removeEditEvent('${id}')" class="hover:text-red-200 transition-colors">
                     <i class="fa-solid fa-times"></i>
                 </button>
             `;
@@ -544,18 +557,18 @@ function updateSelectedEventsDisplay() {
   });
 
   const dropdownButtons = document.querySelectorAll(".eventDropdownButton");
-  const count = selectedEventIds.size;
+  const count = selectedEditEventIds.size;
   dropdownButtons.forEach((dropdownButton) => {
     dropdownButton.querySelector("span").textContent = count > 0 ? `${count} evento${count > 1 ? "s" : ""} seleccionado${count > 1 ? "s" : ""}` : "Seleccionar eventos";
   });
 }
 
-function updateSelectedLocationsDisplay() {
+function updateSelectedEditLocationsDisplay() {
   const containers = document.querySelectorAll(".selectedLocations");
 
   containers.forEach((container) => {
     container.innerHTML = "";
-    selectedLocationIds.forEach((id) => {
+    selectedEditLocationIds.forEach((id) => {
       const option = document.querySelector(`[data-location-id="${id}"]`);
       if (option) {
         const tag = document.createElement("div");
@@ -566,25 +579,25 @@ function updateSelectedLocationsDisplay() {
             <i class="fa-solid fa-times"></i>
           </button>
         `;
-        tag.querySelector("button").addEventListener("click", () => removeLocation(id));
+        tag.querySelector("button").addEventListener("click", () => removeEditLocation(id));
         container.appendChild(tag);
       }
     });
   });
 
   const dropdownButtons = document.querySelectorAll(".locationDropdownButton");
-  const count = selectedLocationIds.size;
+  const count = selectedEditLocationIds.size;
   dropdownButtons.forEach((dropdownButton) => {
     dropdownButton.querySelector("span").textContent = count > 0 ? `${count} localización${count > 1 ? "es" : ""} seleccionada${count > 1 ? "s" : ""}` : "Seleccionar localizaciones";
   });
 }
 
-function updateSelectedObjectsDisplay() {
+function updateSelectedEditObjectsDisplay() {
   const containers = document.querySelectorAll(".selectedObjects");
 
   containers.forEach((container) => {
     container.innerHTML = "";
-    selectedObjectIds.forEach((id) => {
+    selectedEditObjectIds.forEach((id) => {
       const option = document.querySelector(`[data-object-id="${id}"]`);
       if (option) {
         const tag = document.createElement("div");
@@ -595,14 +608,14 @@ function updateSelectedObjectsDisplay() {
             <i class="fa-solid fa-times"></i>
           </button>
         `;
-        tag.querySelector("button").addEventListener("click", () => removeObject(id));
+        tag.querySelector("button").addEventListener("click", () => removeEditObject(id));
         container.appendChild(tag);
       }
     });
   });
 
   const dropdownButtons = document.querySelectorAll(".objectDropdownButton");
-  const count = selectedObjectIds.size;
+  const count = selectedEditObjectIds.size;
   dropdownButtons.forEach((dropdownButton) => {
     dropdownButton.querySelector("span").textContent = count > 0 ? `${count} objeto${count > 1 ? "s" : ""} seleccionado${count > 1 ? "s" : ""}` : "Seleccionar objetos";
   });
@@ -630,84 +643,82 @@ toggleObjectDropdown = function () {
   dropdowns.forEach((dropdown) => dropdown.classList.toggle("hidden"));
 };
 
-// Funciones de selección
-// Hacer las funciones de selección accesibles globalmente
-selectCharacter = function (id, name) {
+window.selectEditCharacter = function (id, name) {
   if (!id) return;
   const option = document.querySelector(`[data-character-id="${id}"]`);
-  if (option && !selectedCharacterIds.has(id)) {
+  if (option && !selectedEditCharacterIds.has(id)) {
     option.classList.add("bg-blue-500/20");
-    selectedCharacterIds.add(id);
-    updateSelectedCharactersDisplay();
+    selectedEditCharacterIds.add(id);
+    updateSelectedEditCharactersDisplay();
   }
 };
 
-selectEvent = function (id, name) {
+window.selectEditEvent = function (id, name) {
   if (!id) return;
   const option = document.querySelector(`[data-event-id="${id}"]`);
-  if (option && !selectedEventIds.has(id)) {
+  if (option && !selectedEditEventIds.has(id)) {
     option.classList.add("bg-red-500/20");
-    selectedEventIds.add(id);
-    updateSelectedEventsDisplay();
+    selectedEditEventIds.add(id);
+    updateSelectedEditEventsDisplay();
   }
 };
 
-selectLocation = function (id, name) {
+window.selectEditLocation = function (id, name) {
   if (!id) return;
   const option = document.querySelector(`[data-location-id="${id}"]`);
-  if (option && !selectedLocationIds.has(id)) {
+  if (option && !selectedEditLocationIds.has(id)) {
     option.classList.add("bg-yellow-500/20");
-    selectedLocationIds.add(id);
-    updateSelectedLocationsDisplay();
+    selectedEditLocationIds.add(id);
+    updateSelectedEditLocationsDisplay();
   }
 };
 
-selectObject = function (id, name) {
+window.selectEditObject = function (id, name) {
   if (!id) return;
   const option = document.querySelector(`[data-object-id="${id}"]`);
-  if (option && !selectedObjectIds.has(id)) {
+  if (option && !selectedEditObjectIds.has(id)) {
     option.classList.add("bg-green-500/20");
-    selectedObjectIds.add(id);
-    updateSelectedObjectsDisplay();
+    selectedEditObjectIds.add(id);
+    updateSelectedEditObjectsDisplay();
   }
 };
 
 // Funciones de eliminación
 // Hacer las funciones de eliminación accesibles globalmente
-removeCharacter = function (id) {
-  selectedCharacterIds.delete(id);
+window.removeEditCharacter = function (id) {
+  selectedEditCharacterIds.delete(id);
   const option = document.querySelector(`[data-character-id="${id}"]`);
   if (option) {
     option.classList.remove("bg-blue-500/20");
   }
-  updateSelectedCharactersDisplay();
+  updateSelectedEditCharactersDisplay();
 };
 
-removeEvent = function (id) {
-  selectedEventIds.delete(id);
+window.removeEditEvent = function (id) {
+  selectedEditEventIds.delete(id);
   const option = document.querySelector(`[data-event-id="${id}"]`);
   if (option) {
     option.classList.remove("bg-red-500/20");
   }
-  updateSelectedEventsDisplay();
+  updateSelectedEditEventsDisplay();
 };
 
-removeLocation = function (id) {
-  selectedLocationIds.delete(id);
+window.removeEditLocation = function (id) {
+  selectedEditLocationIds.delete(id);
   const option = document.querySelector(`[data-location-id="${id}"]`);
   if (option) {
     option.classList.remove("bg-yellow-500/20");
   }
-  updateSelectedLocationsDisplay();
+  updateSelectedEditLocationsDisplay();
 };
 
-removeObject = function (id) {
-  selectedObjectIds.delete(id);
+window.removeEditObject = function (id) {
+  selectedEditObjectIds.delete(id);
   const option = document.querySelector(`[data-object-id="${id}"]`);
   if (option) {
     option.classList.remove("bg-green-500/20");
   }
-  updateSelectedObjectsDisplay();
+  updateSelectedEditObjectsDisplay();
 };
 
 // Manejador para cerrar dropdowns al hacer clic fuera

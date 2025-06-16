@@ -132,4 +132,7 @@ def list_objects():
     }), 200
 
 def update_objects(id, dictionary):
+    if 'propietarios' in dictionary:
+        dictionary['propietarios'] = [ObjectId(id) for id in dictionary['propietarios']]
+    
     return search_model.update(id, "objetos", dictionary)

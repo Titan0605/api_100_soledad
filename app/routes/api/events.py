@@ -69,6 +69,13 @@ def specific_event(id):
     }), 200
 
 def update_events(id, dictionary):
+    if 'personajes_involucrados' in dictionary:
+        dictionary['personajes_involucrados'] = [ObjectId(id) for id in dictionary['personajes_involucrados']]
+    if 'localizaciones' in dictionary:
+        dictionary['localizaciones'] = [ObjectId(id) for id in dictionary['localizaciones']]
+    if 'objetos_relacionados' in dictionary:
+        dictionary['objetos_relacionados'] = [ObjectId(id) for id in dictionary['objetos_relacionados']]
+    
     return search_model.update(id, "eventos",dictionary)
 
 @bp.route("/insert/events", methods=['POST'])

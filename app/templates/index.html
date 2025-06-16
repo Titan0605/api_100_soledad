@@ -621,12 +621,28 @@
             </div>
           </div>
           <div class="space-y-2 mt-4">
-            <label class="block text-sm font-semibold text-slate-300 mb-2">Transformaciones</label>
-            <textarea
-              id="objectTransformations"
-              rows="3"
-              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-green-400 focus:ring-4 focus:ring-green-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
-              placeholder="Formato: capítulo:estado (uno por línea)"></textarea>
+                        <h4 class="text-lg font-semibold text-green-400 mb-3">Transformacion</h4>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Capitulo</label>
+                <input
+                  id="objectTransformationChapter"
+                  type="number"
+                  min="13"
+                  max="16"
+                  class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                  placeholder="Ej: 16" />
+              </div>
+              <div class="space-y-2">
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Descripción</label>
+                <input
+                  id="objectTransformationDescription"
+                  type="text"
+                  oninput="filtrarCaracteres2(this)"
+                  class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                  placeholder="Cómo murió" />
+              </div>
+            </div>
           </div>
         </div>
       </form>
@@ -693,13 +709,63 @@
               <div class="selectedEvents flex flex-wrap gap-2 mt-2"></div>
             </div>
           </div>
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Personajes involucrados</label>
+              <div class="relative">
+                <button
+                  type="button"
+                  class="characterDropdownButton w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 hover:border-blue-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 transition-all duration-300 text-left flex items-center justify-between"
+                  onclick="toggleCharacterDropdown()">
+                  <span>Seleccionar personajes</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="characterDropdown hidden absolute z-50 w-full mt-2 py-2 bg-slate-800 rounded-xl border-2 border-slate-600/50 shadow-xl max-h-60 overflow-y-auto">
+                  <div class="characterOptions space-y-1"></div>
+                </div>
+              </div>
+              <div class="selectedCharacters flex flex-wrap gap-2 mt-2"></div>
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Palabras clave</label>
+              <input
+              id="locationKeywords"
+              oninput="filtrarCaracteres1(this)"
+              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+              placeholder="aislamiento, magia, historia (separadas por coma)" />
+            </div>
+          </div>
           <div class="space-y-2 mt-4">
-            <label class="block text-sm font-semibold text-slate-300 mb-2">Transformaciones</label>
-            <textarea
-              id="locationTransformations"
-              rows="3"
-              class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
-              placeholder="Describe los cambios de la localización a través del tiempo..."></textarea>
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Simbolismo</label>
+            <input
+            id="locationSymbolism"
+            oninput="filtrarCaracteres1(this)"
+            class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+            placeholder="aislamiento, progreso, decadencia (separados por coma)" />
+          </div>
+          <div class="space-y-2 mt-4">
+            <h4 class="text-lg font-semibold text-yellow-400 mb-3">Transformacion</h4>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Capitulo</label>
+                <input
+                  id="locationTransformationChapter"
+                  type="number"
+                  min="13"
+                  max="16"
+                  class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                  placeholder="Ej: 16" />
+              </div>
+              <div class="space-y-2">
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Descripción</label>
+                <input
+                  id="locationTransformationDescription"
+                  type="text"
+                  oninput="filtrarCaracteres2(this)"
+                  class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
+                  placeholder="Cómo murió" />
+              </div>
+            </div>
           </div>
         </div>
       </form>
@@ -1422,7 +1488,8 @@
                   min="13"
                   max="16"
                   class="no-spinner w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                  placeholder="Ej: 16" />
+                  placeholder="Ej: 16"
+                  name="capitulo"/>
               </div>
               <div class="space-y-2">
                 <label class="block text-sm font-semibold text-slate-300 mb-2">Circunstancias</label>
@@ -1430,7 +1497,8 @@
                   id="characterEditDeathCircumstances"
                   oninput="filtrarCaracteres2(this)"
                   class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                  placeholder="Cómo murió" />
+                  placeholder="Cómo murió"
+                  name="circunstancias"/>
               </div>
               <div class="space-y-2">
                 <label class="block text-sm font-semibold text-slate-300 mb-2">Simbolismo de la muerte</label>
@@ -1438,7 +1506,8 @@
                   id="characterEditDeathSymbolism"
                   oninput="filtrarCaracteres2(this)"
                   class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-blue-400 focus:ring-4 focus:ring-blue-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium"
-                  placeholder="Significado simbólico" />
+                  placeholder="Significado simbólico"
+                  name="simbolismo"/>
               </div>
             </div>
           </div>
@@ -1594,8 +1663,8 @@
                 <option value="">Seleccionar tipo</option>
                 <option value="construcción">Construcción</option>
                 <option value="natural">Natural</option>
-                <option value="mítica">Mítica</option>
-                <option value="histórica">Histórica</option>
+                <option value="mitica">Mítica</option>
+                <option value="historica">Histórica</option>
                 <option value="pueblo">Pueblo</option>
                 <option value="espacio_sagrado">Espacio Sagrado</option>
                 <option value="espacio_productivo">Espacio Productivo</option>
@@ -1814,6 +1883,7 @@
                 <option value="visión">Visión</option>
                 <option value="sueño_profético">Sueño Profético</option>
                 <option value="vision_traumática">Vision Traumática</option>
+                <option value="vision_profética">Vision Profetica</option>
               </select>
             </div>
           </div>
@@ -1821,7 +1891,6 @@
             <label class="block text-sm font-semibold text-slate-300 mb-2">Descripción del sueño/visión</label>
             <textarea
               id="dreamEditDescription"
-              oninput="filtrarCaracteres2(this)"
               rows="3"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-pink-400 focus:ring-4 focus:ring-pink-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Describe el sueño o la visión en detalle..."
@@ -1987,7 +2056,7 @@
             <label class="block text-sm font-semibold text-slate-300 mb-2">Consecuencias</label>
             <textarea
               id="relationEditConsequences"
-              oninput="filtrarCaracteres2(this)"
+              oninput="filtrarCaracteres1(this)"
               rows="2"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Describe las consecuencias de esta relación..."
@@ -2067,7 +2136,7 @@
             <label class="block text-sm font-semibold text-slate-300 mb-2">Interpretaciones</label>
             <textarea
               id="symbolEditInterpretations"
-              oninput="filtrarCaracteres2(this)"
+              oninput="filtrarCaracteres1(this)"
               rows="4"
               class="w-full p-4 rounded-xl bg-slate-700/60 text-white border-2 border-slate-600/50 focus:border-orange-400 focus:ring-4 focus:ring-orange-400/20 placeholder-slate-400 transition-all duration-300 input-focus font-medium resize-none"
               placeholder="Escribe las diferentes interpretaciones del símbolo o tema (una por línea)..."
