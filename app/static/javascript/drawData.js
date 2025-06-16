@@ -158,8 +158,8 @@ export function drawResults(results) {
                             ${
                               result.transformaciones
                                 ? result.transformaciones
-                                    .slice(0, 2)
-                                    .map((t) => `<span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Cap. ${t.capitulo}: ${t.estado}</span>`)
+                                    .slice()
+                                    .map((t) => `<span class="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">Cap. ${t.capitulo}: ${t.descripcion}</span>`)
                                     .join("")
                                 : '<span class="text-gray-400 text-xs">No disponible</span>'
                             }

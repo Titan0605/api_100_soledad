@@ -108,4 +108,10 @@ def create_dream():
         }), 500
 
 def update_dreams_visions(id, dictionary):
-    return search_model.update(id, "sueños_visiones", dictionary)
+    if 'soñador' in dictionary:
+        if isinstance(dictionary['soñador'], list):
+            dictionary['soñador'] = [ObjectId(id) for id in dictionary['soñador']]
+        else:
+            dictionary['soñador'] = ObjectId(dictionary['soñador'])
+    
+    return search_model.update(id, "suenos_visiones", dictionary)

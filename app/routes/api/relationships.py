@@ -74,6 +74,11 @@ def specific_relationship(id):
     }), 200
 
 def update_relationships(id, dictionary):
+    if 'personaje1' in dictionary:
+        dictionary['personaje1'] = ObjectId(dictionary['personaje1'])
+    if 'personaje2' in dictionary:
+        dictionary['personaje2'] = ObjectId(dictionary['personaje2'])
+    
     return search_model.update(id, "parejas_relaciones", dictionary)
 
 @bp.route("/insert/relationships", methods=['POST'])

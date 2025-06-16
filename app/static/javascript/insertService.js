@@ -112,11 +112,7 @@ function getActiveFormData() {
         transformaciones: [{
           capitulo: document.getElementById("objectTransformationChapter").value,
           descripcion: document.getElementById("objectTransformationDescription").value
-        }] 
-        /* document.getElementById("objectTransformations").value .split('\n').map(t => ({
-            capitulo: parseInt(t.split(':')[0].trim()),
-            estado: t.split(':')[1].trim()
-            })) */,
+        }],
         importancia_narrativa: parseInt(document.getElementById("objectImportance").value),
         palabras_clave: document
           .getElementById("objectKeywords")
@@ -142,11 +138,7 @@ function getActiveFormData() {
         transformaciones: [{
           capitulo: document.getElementById("locationTransformationChapter").value,
           descripcion: document.getElementById("locationTransformationDescription").value
-        }] 
-        /* document.getElementById("locationTransformations").value .split('\n').map(t => ({
-            capitulo: parseInt(t.split(':')[0].trim()),
-            estado: t.split(':')[1].trim()
-            })) */,
+        }],
         personajes_asociados: Array.from(selectedCharacterIds),
         palabras_clave: document
           .getElementById("locationKeywords")
@@ -175,7 +167,7 @@ function getActiveFormData() {
     formDream: {
       endpoint: "/insert/dreams",
       getFormData: () => ({
-        soñador: Array.from(selectedCharacterIds),
+        soñador: Array.from(selectedCharacterIds)[0],
         tipo: document.getElementById("dreamType").value,
         capitulo: parseInt(document.getElementById("dreamChapter").value),
         descripcion: document.getElementById("dreamDescription").value,
@@ -387,7 +379,7 @@ async function loadCharacters() {
         data.results.forEach((character) => {
           const option = document.createElement("div");
           const name = character.nombre + (character.apellido ? " " + character.apellido : "");
-          option.className = `px-4 py-2 cursor-pointer text-white transition-all duration-200 ${selectedCharacterIds.has(character.id) ? "bg-red-500/20" : "hover:bg-slate-700/60"}`;
+          option.className = `px-4 py-2 cursor-pointer text-white transition-all duration-200 ${selectedCharacterIds.has(character.id) ? "bg-blue-500/20" : "hover:bg-slate-700/60"}`;
           option.setAttribute("data-character-id", character.id);
           option.textContent = name;
           option.addEventListener("click", (e) => {
@@ -444,6 +436,10 @@ document.addEventListener("click", function (event) {
 
 // Section to manage event selection when responding the form
 let selectedEventIds = new Set();
+
+function addIdEvent(id) {
+  selectedEventIds.add(id);
+}
 
 function toggleEventDropdown() {
   const dropdowns = document.querySelectorAll(".eventDropdown");

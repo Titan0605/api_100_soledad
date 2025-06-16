@@ -131,4 +131,9 @@ def list_locations():
     }), 200
 
 def update_locations(id, dictionary):
+    if 'eventos_importantes' in dictionary:
+        dictionary['eventos_importantes'] = [ObjectId(id) for id in dictionary['eventos_importantes']]
+    if 'personajes_asociados' in dictionary:
+        dictionary['personajes_asociados'] = [ObjectId(id) for id in dictionary['personajes_asociados']]
+    
     return search_model.update(id, "localizaciones", dictionary)
